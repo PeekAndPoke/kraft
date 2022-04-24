@@ -11,10 +11,11 @@ import preact.Component as PreactComponent
 class PreactVDomEngine : VDomEngine {
 
     companion object {
-        operator fun invoke(element: HTMLElement, view: VDom.() -> Any?): PreactVDomEngine =
-            PreactVDomEngine().apply {
+        operator fun invoke(element: HTMLElement, view: VDom.() -> Any?): PreactVDomEngine {
+            return PreactVDomEngine().apply {
                 mount(element, view)
             }
+        }
     }
 
     override fun mount(element: HTMLElement, view: VDom.() -> Any?) {
@@ -24,7 +25,9 @@ class PreactVDomEngine : VDomEngine {
         preact.render(lowLevelRoot, element)
     }
 
-    override fun createTagConsumer(host: KraftComponent<*>?): VDomTagConsumer = PreactTagConsumer(this, host)
+    override fun createTagConsumer(host: KraftComponent<*>?): VDomTagConsumer {
+        return PreactTagConsumer(this, host)
+    }
 
     override fun triggerRedraw(component: KraftComponent<*>) {
         (component.lowLevelBridgeComponent as? PreactComponent)?.setState(jsObject)

@@ -1,57 +1,41 @@
 package de.peekandpoke.kraft
 
-import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
+import de.peekandpoke.kraft.testbed.TestBed
+import de.peekandpoke.kraft.testbed.textContent
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import kotlinx.browser.document
-import kotlinx.coroutines.delay
-import kotlinx.dom.appendElement
+import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.html.h1
-import org.w3c.dom.HTMLBodyElement
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.get
+import org.w3c.dom.HTMLHeadingElement
 
 class PreactFundamentalsSpec : StringSpec({
 
-    suspend fun usePreactTestBed(
-        render: VDom.() -> Unit,
-        test: suspend (HTMLDivElement) -> Unit
-    ) {
-        val body = document.getElementsByTagName("body")[0] as HTMLBodyElement
-
-        val testBed = body.appendElement("div") {
-            id = "kraft-testbed"
-        } as HTMLDivElement
-
-        PreactVDomEngine(testBed) {
-            render()
-        }
-
-        delay(10)
-
-        test(testBed)
-
-        delay(10)
-
-        testBed.remove()
-    }
-
     "Render 'Hello world'" {
 
-        usePreactTestBed(
+        TestBed.preact(
             { h1 { +"Hello World!" } }
         ) {
-            it.textContent shouldContain "Hello World"
+            it.textContent() shouldContain "Hello World"
         }
     }
 
     "Render 'Hello Mars'" {
 
-        usePreactTestBed(
+        TestBed.preact(
             { h1 { +"Hello Mars!" } }
-        ) {
-            it.textContent shouldContain "Hello Mars!"
+        ) { root ->
+
+            val h1 = root.selectCss("h1")
+
+            h1.size shouldBe 1
+
+            h1.textContent() shouldContain "Hello Mars!"
+
+            h1.first().let {
+                it.tagName shouldBe "H1"
+                it.shouldBeInstanceOf<HTMLHeadingElement>()
+            }
         }
     }
 })
