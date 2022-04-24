@@ -5,6 +5,7 @@ import de.peekandpoke.kraft.store.StreamSource
 import de.peekandpoke.kraft.utils.launch
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.kraft.vdom.VDomEngine
+import de.peekandpoke.ultra.common.MutableTypedAttributes
 import kotlinx.coroutines.delay
 import org.w3c.dom.HTMLElement
 import kotlin.properties.ReadOnlyProperty
@@ -15,6 +16,9 @@ import kotlin.properties.ReadOnlyProperty
 @Suppress("FunctionName")
 abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
+    /** The attributes of the component */
+    val attributes: MutableTypedAttributes = MutableTypedAttributes.empty()
+
     /** Accessor for the parent component */
     val parent: Component<*>? get() = _parent
 
@@ -23,9 +27,6 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
     /** The Dom node to which the component is rendered */
     val dom: HTMLElement? get() = _dom
-
-    /** Message system for child to parent component communication */
-    val events = Messages()
 
     /** Pointer to the low level bridge Component for example for Preact */
     internal var lowLevelBridgeComponent: Any? = null
@@ -111,35 +112,6 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
         ctx.engine.triggerRedraw(this)
     }
 
-    ////  Event system  /////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Sends a message to all parent components in the tree
-     */
-    fun sendMessage(message: Message) {
-
-        // We do not dispatch the message on the component that sent it
-        if (message.sender != this) {
-            events.send(message)
-        } else {
-            // but we will trigger a re-draw
-            triggerRedraw()
-        }
-
-        // Continue with the parent if the message was not stopped
-        _parent?.let {
-            if (!message.isStopped) {
-                it.sendMessage(message)
-            }
-        }
-    }
-
-    fun onMessage(handler: (Message?) -> Unit) {
-        events.stream {
-            handler(it)
-        }
-    }
-
     ////  Stream Helpers  ///////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -147,7 +119,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
      *
      * When the components is destroyed, the subscription will be unsubscribed automatically.
      */
-    protected operator fun <T> Stream<T>.invoke(handler: (T) -> Unit): () -> Unit {
+    operator fun <T> Stream<T>.invoke(handler: (T) -> Unit): () -> Unit {
 
         return this.subscribeToStream(handler).apply {
             unSubscribers.add(this)

@@ -17,12 +17,12 @@ import kotlinx.html.div
 import kotlinx.html.h2
 
 
-@Suppress("FunctionName")
-fun Tag.PureCounter() = comp {
+@Suppress("FunctionName", "TestFunctionName")
+private fun Tag.PureCounter() = comp {
     PureCounter(it)
 }
 
-class PureCounter(ctx: NoProps) : PureComponent(ctx) {
+private class PureCounter(ctx: NoProps) : PureComponent(ctx) {
 
     ////  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -10,7 +10,7 @@ open class StreamSourceImpl<T>(initialValue: T) : StreamSource<T> {
     /**
      * All subscriptions to the stream
      */
-    protected val subscriptions: MutableSet<(T) -> Unit> = mutableSetOf()
+    internal val subscriptions: MutableSet<(T) -> Unit> = mutableSetOf()
 
     /**
      * @see StreamSource.invoke

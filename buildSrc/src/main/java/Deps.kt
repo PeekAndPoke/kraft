@@ -22,7 +22,7 @@ object Deps {
     // //////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.40.2-SNAPSHOT"
+    private const val ultra_version = "0.40.3-SNAPSHOT"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
