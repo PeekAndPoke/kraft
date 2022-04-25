@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.store
+package de.peekandpoke.kraft.streams
 
 open class StreamSourceImpl<T>(initialValue: T) : StreamSource<T> {
 
@@ -10,7 +10,7 @@ open class StreamSourceImpl<T>(initialValue: T) : StreamSource<T> {
     /**
      * All subscriptions to the stream
      */
-    internal val subscriptions: MutableSet<(T) -> Unit> = mutableSetOf()
+    override val subscriptions: MutableSet<(T) -> Unit> = mutableSetOf()
 
     /**
      * @see StreamSource.invoke
@@ -39,6 +39,13 @@ open class StreamSourceImpl<T>(initialValue: T) : StreamSource<T> {
             subscriptions.remove(sub)
             onUnSub()
         }
+    }
+
+    /**
+     * @see StreamSource.removeAllSubscriptions
+     */
+    override fun removeAllSubscriptions() {
+        this.subscriptions.clear()
     }
 
     /**

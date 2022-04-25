@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.store
+package de.peekandpoke.kraft.streams
 
 import de.peekandpoke.kraft.utils.launch
 

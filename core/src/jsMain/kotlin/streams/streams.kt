@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.store
+package de.peekandpoke.kraft.streams
 
 /**
  * Base interface for all streams
@@ -18,6 +18,18 @@ interface Stream<T> {
      */
     fun subscribeToStream(sub: (T) -> Unit): Unsubscribe
 }
+
+/**
+ * The [Unsubscribe] function is returned when a subscription is created on a [Stream].
+ *
+ * Calling this function cancels the subscription.
+ */
+typealias Unsubscribe = () -> Unit
+
+/**
+ * Handler-function for the incoming values of a [Stream].
+ */
+typealias StreamHandler<T> = (T) -> Unit
 
 /**
  * Subscribes to the stream permanently
@@ -43,9 +55,14 @@ interface StreamSource<T> : Stream<T> {
     }
 
     /**
-     * Get the readonly version of this stream
+     * Get the readonly version of this stream.
      */
     val readonly get() = this as Stream<T>
+
+    /**
+     * The subscription the stream source has.
+     */
+    val subscriptions: Set<StreamHandler<T>>
 
     /**
      * Returns the current value of the stream
@@ -77,6 +94,11 @@ interface StreamSource<T> : Stream<T> {
      * The [block] will have the current value of the stream as the scopes this pointer.
      */
     fun modify(block: T.() -> T): Unit = invoke(block(invoke()))
+
+    /**
+     * Removes all subscriptions
+     */
+    fun removeAllSubscriptions()
 }
 
 /**

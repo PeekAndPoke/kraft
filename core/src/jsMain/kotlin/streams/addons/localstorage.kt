@@ -1,8 +1,8 @@
-package de.peekandpoke.kraft.store.addons
+package de.peekandpoke.kraft.streams.addons
 
-import de.peekandpoke.kraft.store.PersistentStreamSource
-import de.peekandpoke.kraft.store.StreamSource
-import de.peekandpoke.kraft.store.StreamStorage
+import de.peekandpoke.kraft.streams.PersistentStreamSource
+import de.peekandpoke.kraft.streams.StreamSource
+import de.peekandpoke.kraft.streams.StreamStorage
 import kotlinx.browser.window
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json

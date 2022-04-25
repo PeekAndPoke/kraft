@@ -1,7 +1,8 @@
 package de.peekandpoke.kraft.components
 
-import de.peekandpoke.kraft.store.Stream
-import de.peekandpoke.kraft.store.StreamSource
+import de.peekandpoke.kraft.streams.Stream
+import de.peekandpoke.kraft.streams.StreamSource
+import de.peekandpoke.kraft.streams.Unsubscribe
 import de.peekandpoke.kraft.utils.launch
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.kraft.vdom.VDomEngine
@@ -47,7 +48,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     private var renderCache: dynamic = null
 
     /** A list of stream unsubscribe functions. Will be called when the component is removed */
-    private val unSubscribers = mutableListOf<() -> Unit>()
+    private val unSubscribers = mutableListOf<Unsubscribe>()
 
     /** Map of state values created via useState or useSubscription */
     internal val inlineProperties = mutableMapOf<String, Any?>()

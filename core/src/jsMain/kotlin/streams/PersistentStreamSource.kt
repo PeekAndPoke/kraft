@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.store
+package de.peekandpoke.kraft.streams
 
 /**
  * A persistent stream source is able to store values for later use.
@@ -8,8 +8,8 @@ package de.peekandpoke.kraft.store
  */
 internal class PersistentStreamSource<T>(
     private val storage: StreamStorage<T>,
-    private val wrapped: StreamSource<T>
-) : StreamSource<T> {
+    private val wrapped: StreamSource<T>,
+) : StreamSource<T> by wrapped {
 
     init {
         try {
@@ -23,11 +23,6 @@ internal class PersistentStreamSource<T>(
     }
 
     /**
-     * Getting values is forwarded to the [wrapped] stream source.
-     */
-    override fun invoke(): T = wrapped()
-
-    /**
      * Incoming values are stored and forwarded to the [wrapped] stream source.
      */
     override fun invoke(next: T) {
@@ -35,9 +30,4 @@ internal class PersistentStreamSource<T>(
 
         return wrapped(next)
     }
-
-    /**
-     * Subscribes to the stream source.
-     */
-    override fun subscribeToStream(sub: (T) -> Unit): Unsubscribe = wrapped.subscribeToStream(sub)
 }

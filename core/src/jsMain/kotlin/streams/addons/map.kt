@@ -1,8 +1,8 @@
-package de.peekandpoke.kraft.store.addons
+package de.peekandpoke.kraft.streams.addons
 
-import de.peekandpoke.kraft.store.AsyncMappingStreamWrapper
-import de.peekandpoke.kraft.store.MappingStreamWrapper
-import de.peekandpoke.kraft.store.Stream
+import de.peekandpoke.kraft.streams.AsyncMappingStreamWrapper
+import de.peekandpoke.kraft.streams.MappingStreamWrapper
+import de.peekandpoke.kraft.streams.Stream
 
 /**
  * Maps incoming values from type [IN] to type [OUT].

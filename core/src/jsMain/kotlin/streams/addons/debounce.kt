@@ -1,7 +1,7 @@
-package de.peekandpoke.kraft.store.addons
+package de.peekandpoke.kraft.streams.addons
 
-import de.peekandpoke.kraft.store.Stream
-import de.peekandpoke.kraft.store.StreamWrapper
+import de.peekandpoke.kraft.streams.Stream
+import de.peekandpoke.kraft.streams.StreamWrapper
 import de.peekandpoke.kraft.utils.DebouncingTimer
 
 /**

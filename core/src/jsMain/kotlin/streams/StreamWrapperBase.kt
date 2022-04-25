@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.store
+package de.peekandpoke.kraft.streams
 
 /**
  * Base class for all stream wrappers
@@ -49,7 +49,7 @@ abstract class StreamWrapperBase<WRAPPED, RESULT>(
             if (subscriptions.isEmpty()) {
                 // console.log("Un-Subscribing from wrapped")
 
-                wrappedUnsubscribe!!()
+                wrappedUnsubscribe?.invoke()
                 wrappedUnsubscribe = null
             }
         }

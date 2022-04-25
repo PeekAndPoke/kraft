@@ -1,7 +1,7 @@
-package de.peekandpoke.kraft.store
+package de.peekandpoke.kraft.streams
 
 /**
- * Base class for all stream wrappers
+ * Operator that combines two streams.
  */
 class StreamCombinator<FIRST, SECOND, RESULT>(
     /** The first wrapped stream */
@@ -63,11 +63,11 @@ class StreamCombinator<FIRST, SECOND, RESULT>(
                 // console.log("Un-Subscribing from wrapped")
 
                 // Unsubscribe from the first stream
-                firstUnsubscribe!!()
+                firstUnsubscribe?.invoke()
                 firstUnsubscribe = null
 
                 // Unsubscribe from the second stream
-                secondUnsubscribe!!()
+                secondUnsubscribe?.invoke()
                 secondUnsubscribe = null
             }
         }

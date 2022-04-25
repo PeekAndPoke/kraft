@@ -3,14 +3,6 @@ package de.peekandpoke.kraft.utils
 import kotlinx.browser.window
 import org.w3c.dom.Window
 
-/**
- * Helper function for a nicer use of [Window.setTimeout]
- *
- * @return The timer id
- */
-fun setTimeout(timeMs: Int, block: () -> Unit): Int {
-    return window.setTimeout(block, timeMs)
-}
 
 /**
  * Helper class implementing a debouncing timer.
@@ -23,6 +15,9 @@ class DebouncingTimer(private val delayMs: Int, private val delayFirstMs: Int = 
     private var counter = 0
     private var timerId: Int? = null
 
+    /**
+     * Schedules [block] to be called after the timeout.
+     */
     operator fun invoke(block: () -> Unit) {
         if (counter++ == 0) {
             schedule(delayFirstMs, block)
@@ -31,12 +26,31 @@ class DebouncingTimer(private val delayMs: Int, private val delayFirstMs: Int = 
         }
     }
 
-    fun schedule(delay: Int, block: () -> Unit) {
-        timerId?.let { window.clearTimeout(it) }
+    /**
+     * Schedules the next timeout.
+     */
+    private fun schedule(delay: Int, block: () -> Unit) {
+        timerId?.let { clearTimeout(it) }
 
         timerId = setTimeout(delay) {
             timerId = null
             block()
         }
+    }
+
+    /**
+     * Helper function for a nicer use of [Window.setTimeout] returning an Int.
+     *
+     * @return The timer id
+     */
+    private fun setTimeout(timeMs: Int, block: () -> Unit): Int {
+        return window.setTimeout(block, timeMs)
+    }
+
+    /**
+     * Helper function for a nicer use of [Window.clearTimeout].
+     */
+    private fun clearTimeout(timerId: Int) {
+        window.clearTimeout(timerId)
     }
 }

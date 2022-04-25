@@ -1,7 +1,7 @@
 package de.peekandpoke.kraft.components
 
-import de.peekandpoke.kraft.store.Stream
-import de.peekandpoke.kraft.store.StreamSource
+import de.peekandpoke.kraft.streams.Stream
+import de.peekandpoke.kraft.streams.StreamSource
 import de.peekandpoke.kraft.utils.launch
 import kotlin.properties.ObservableProperty
 import kotlin.properties.ReadOnlyProperty

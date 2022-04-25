@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.pubsub
+package de.peekandpoke.kraft.messages
 
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.testbed.TestBed
@@ -127,7 +127,7 @@ private class SimpleReceiver(ctx: Ctx<Props>) : Component<SimpleReceiver.Props>(
     }
 }
 
-class PubSubSpec : StringSpec({
+class MessagesSpec : StringSpec({
 
     "A message must not be received by the sender itself" {
 
