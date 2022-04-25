@@ -8,7 +8,7 @@ import de.peekandpoke.kraft.streams.StreamCombinator
  *
  * The [combinator] is applied whenever this or the other stream receives the next value.
  */
-fun <IN1, IN2, OUT> Stream<IN1>.combineWith(
+fun <IN1, IN2, OUT> Stream<IN1>.combinedWith(
     other: Stream<IN2>,
     combinator: (IN1, IN2) -> OUT,
 ): Stream<OUT> {
@@ -26,7 +26,7 @@ fun <IN1, IN2, OUT> Stream<IN1>.combineWith(
  * whenever [this] stream or the [other] stream published a new value.
  */
 fun <IN1, IN2> Stream<IN1>.pairedWith(other: Stream<IN2>): Stream<Pair<IN1, IN2>> {
-    return combineWith(other) { first, second ->
+    return combinedWith(other) { first, second ->
         Pair(first, second)
     }
 }

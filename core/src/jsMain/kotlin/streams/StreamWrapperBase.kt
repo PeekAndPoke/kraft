@@ -26,10 +26,9 @@ abstract class StreamWrapperBase<WRAPPED, RESULT>(
      *
      * Returns an unsubscribe function. Calling this function unsubscribes from the stream.
      *
-     * NOTICE: It is the callers obligation to unsubscribe from the stream.
+     * NOTICE: It is the callers' obligation to unsubscribe from the stream.
      */
     override fun subscribeToStream(sub: StreamHandler<RESULT>): Unsubscribe {
-        this.subscriptions.add(sub)
 
         // Subscribe to the wrapped stream if necessary
         if (wrappedUnsubscribe == null) {
@@ -39,6 +38,8 @@ abstract class StreamWrapperBase<WRAPPED, RESULT>(
                 handleIncoming(it)
             }
         }
+
+        this.subscriptions.add(sub)
 
         sub(invoke())
 

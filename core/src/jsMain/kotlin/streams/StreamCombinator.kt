@@ -32,10 +32,9 @@ class StreamCombinator<FIRST, SECOND, RESULT>(
      *
      * Returns an unsubscribe function. Calling this function unsubscribes from the stream.
      *
-     * NOTICE: It is the callers obligation to unsubscribe from the stream.
+     * NOTICE: It is the callers' obligation to unsubscribe from the stream.
      */
     override fun subscribeToStream(sub: StreamHandler<RESULT>): Unsubscribe {
-        this.subscriptions.add(sub)
 
         // Subscribe to the first wrapped stream if necessary
         if (firstUnsubscribe == null) {
@@ -52,6 +51,8 @@ class StreamCombinator<FIRST, SECOND, RESULT>(
                 handleInComing()
             }
         }
+
+        this.subscriptions.add(sub)
 
         sub(invoke())
 
