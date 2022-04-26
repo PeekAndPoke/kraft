@@ -1,3 +1,5 @@
+@file:Suppress("Detekt.TooManyFunctions")
+
 package de.peekandpoke.kraft.components
 
 import de.peekandpoke.kraft.vdom.VDom
@@ -113,7 +115,7 @@ fun <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> component(
 
 internal class FuncComp0(
     ctx: NoProps,
-    private val fn: VDom.() -> Unit
+    private val fn: VDom.() -> Unit,
 ) : PureComponent(ctx) {
     override fun VDom.render() {
         fn()
@@ -122,133 +124,223 @@ internal class FuncComp0(
 
 internal class FuncComp1<P1>(
     ctx: Ctx<Props<P1>>,
-    private val fn: VDom.(P1) -> Unit
+    private val fn: VDom.(P1) -> Unit,
 ) : Component<FuncComp1.Props<P1>>(ctx) {
 
     data class Props<P1>(
-        val p1: P1
+        val p1: P1,
     )
 
     override fun VDom.render() {
-        fn(props.p1)
+        fn(
+            props.p1,
+        )
     }
 }
 
 internal class FuncComp2<P1, P2>(
     ctx: Ctx<Props<P1, P2>>,
-    private val fn: VDom.(P1, P2) -> Unit
+    private val fn: VDom.(P1, P2) -> Unit,
 ) : Component<FuncComp2.Props<P1, P2>>(ctx) {
 
     data class Props<P1, P2>(
-        val p1: P1, val p2: P2
+        val p1: P1,
+        val p2: P2,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2)
+        fn(
+            props.p1,
+            props.p2,
+        )
     }
 }
 
 internal class FuncComp3<P1, P2, P3>(
     ctx: Ctx<Props<P1, P2, P3>>,
-    private val fn: VDom.(P1, P2, P3) -> Unit
+    private val fn: VDom.(P1, P2, P3) -> Unit,
 ) : Component<FuncComp3.Props<P1, P2, P3>>(ctx) {
 
     data class Props<P1, P2, P3>(
-        val p1: P1, val p2: P2, val p3: P3
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+        )
     }
 }
 
 internal class FuncComp4<P1, P2, P3, P4>(
     ctx: Ctx<Props<P1, P2, P3, P4>>,
-    private val fn: VDom.(P1, P2, P3, P4) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4) -> Unit,
 ) : Component<FuncComp4.Props<P1, P2, P3, P4>>(ctx) {
 
     data class Props<P1, P2, P3, P4>(
-        val p1: P1, val p2: P2, val p3: P3, val p4: P4
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
+        val p4: P4,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+        )
     }
 }
 
 internal class FuncComp5<P1, P2, P3, P4, P5>(
     ctx: Ctx<Props<P1, P2, P3, P4, P5>>,
-    private val fn: VDom.(P1, P2, P3, P4, P5) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4, P5) -> Unit,
 ) : Component<FuncComp5.Props<P1, P2, P3, P4, P5>>(ctx) {
 
     data class Props<P1, P2, P3, P4, P5>(
-        val p1: P1, val p2: P2, val p3: P3, val p4: P4, val p5: P5
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
+        val p4: P4,
+        val p5: P5,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4, props.p5)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+            props.p5,
+        )
     }
 }
 
 internal class FuncComp6<P1, P2, P3, P4, P5, P6>(
     ctx: Ctx<Props<P1, P2, P3, P4, P5, P6>>,
-    private val fn: VDom.(P1, P2, P3, P4, P5, P6) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4, P5, P6) -> Unit,
 ) : Component<FuncComp6.Props<P1, P2, P3, P4, P5, P6>>(ctx) {
 
     data class Props<P1, P2, P3, P4, P5, P6>(
-        val p1: P1, val p2: P2, val p3: P3, val p4: P4, val p5: P5, val p6: P6
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
+        val p4: P4,
+        val p5: P5,
+        val p6: P6,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4, props.p5, props.p6)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+            props.p5,
+            props.p6,
+        )
     }
 }
 
 internal class FuncComp7<P1, P2, P3, P4, P5, P6, P7>(
     ctx: Ctx<Props<P1, P2, P3, P4, P5, P6, P7>>,
-    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7) -> Unit,
 ) : Component<FuncComp7.Props<P1, P2, P3, P4, P5, P6, P7>>(ctx) {
 
     data class Props<P1, P2, P3, P4, P5, P6, P7>(
-        val p1: P1, val p2: P2, val p3: P3, val p4: P4, val p5: P5, val p6: P6, val p7: P7
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
+        val p4: P4,
+        val p5: P5,
+        val p6: P6,
+        val p7: P7,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4, props.p5, props.p6, props.p7)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+            props.p5,
+            props.p6,
+            props.p7,
+        )
     }
 }
 
 internal class FuncComp8<P1, P2, P3, P4, P5, P6, P7, P8>(
     ctx: Ctx<Props<P1, P2, P3, P4, P5, P6, P7, P8>>,
-    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit,
 ) : Component<FuncComp8.Props<P1, P2, P3, P4, P5, P6, P7, P8>>(ctx) {
 
     data class Props<P1, P2, P3, P4, P5, P6, P7, P8>(
-        val p1: P1, val p2: P2, val p3: P3, val p4: P4, val p5: P5, val p6: P6, val p7: P7, val p8: P8
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
+        val p4: P4,
+        val p5: P5,
+        val p6: P6,
+        val p7: P7,
+        val p8: P8,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4, props.p5, props.p6, props.p7, props.p8)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+            props.p5,
+            props.p6,
+            props.p7,
+            props.p8,
+        )
     }
 }
 
 internal class FuncComp9<P1, P2, P3, P4, P5, P6, P7, P8, P9>(
     ctx: Ctx<Props<P1, P2, P3, P4, P5, P6, P7, P8, P9>>,
-    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7, P8, P9) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7, P8, P9) -> Unit,
 ) : Component<FuncComp9.Props<P1, P2, P3, P4, P5, P6, P7, P8, P9>>(ctx) {
 
     data class Props<P1, P2, P3, P4, P5, P6, P7, P8, P9>(
-        val p1: P1, val p2: P2, val p3: P3, val p4: P4, val p5: P5, val p6: P6, val p7: P7, val p8: P8, val p9: P9,
+        val p1: P1,
+        val p2: P2,
+        val p3: P3,
+        val p4: P4,
+        val p5: P5,
+        val p6: P6,
+        val p7: P7,
+        val p8: P8,
+        val p9: P9,
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4, props.p5, props.p6, props.p7, props.p8, props.p9)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+            props.p5,
+            props.p6,
+            props.p7,
+            props.p8,
+            props.p9,
+        )
     }
 }
 
 internal class FuncComp10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
     ctx: Ctx<Props<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>>,
-    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> Unit
+    private val fn: VDom.(P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> Unit,
 ) : Component<FuncComp10.Props<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>>(ctx) {
 
     data class Props<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
@@ -265,6 +357,17 @@ internal class FuncComp10<P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
     )
 
     override fun VDom.render() {
-        fn(props.p1, props.p2, props.p3, props.p4, props.p5, props.p6, props.p7, props.p8, props.p9, props.p10)
+        fn(
+            props.p1,
+            props.p2,
+            props.p3,
+            props.p4,
+            props.p5,
+            props.p6,
+            props.p7,
+            props.p8,
+            props.p9,
+            props.p10,
+        )
     }
 }
