@@ -28,11 +28,13 @@ class InlineStateForValue<P>(val component: Component<*>, val initial: P, val ty
         }
     }
 
-    private fun KProperty<*>.getFullName() = "value::${name}::${type}"
+    private fun KProperty<*>.getFullName() = "value::$name::$type"
 }
 
 class InlineStateForStreamSubscription<T>(
-    val component: Component<*>, val stream: Stream<T>, val type: KType,
+    val component: Component<*>,
+    val stream: Stream<T>,
+    val type: KType,
 ) : ReadOnlyProperty<Any?, T> {
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
@@ -55,7 +57,7 @@ class InlineStateForStreamSubscription<T>(
         return stream()
     }
 
-    private fun KProperty<*>.getFullName() = "sub::${name}::???"
+    private fun KProperty<*>.getFullName() = "sub::$name::$type"
 }
 
 class ObservableComponentProperty<T>(

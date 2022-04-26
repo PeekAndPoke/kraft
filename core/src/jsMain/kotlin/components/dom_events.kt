@@ -1,3 +1,5 @@
+@file:Suppress("Detekt.TooManyFunctions", "unused")
+
 package de.peekandpoke.kraft.components
 
 import kotlinx.html.CommonAttributeGroupFacade

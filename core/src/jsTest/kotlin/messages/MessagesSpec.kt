@@ -26,7 +26,7 @@ private fun Tag.SimpleSender() = comp {
 
 private class SimpleSender(ctx: NoProps) : PureComponent(ctx) {
 
-    ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     init {
         onMessage<TestMessage> {
@@ -85,7 +85,6 @@ private class InBetween(ctx: Ctx<Props>) : Component<InBetween.Props>(ctx) {
         SimpleSender()
     }
 }
-
 
 @Suppress("FunctionName", "TestFunctionName")
 private fun Tag.SimpleReceiver(stopMessages: Boolean) = comp(

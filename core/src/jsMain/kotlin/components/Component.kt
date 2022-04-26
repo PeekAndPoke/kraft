@@ -14,7 +14,7 @@ import kotlin.properties.ReadOnlyProperty
 /**
  * Base class of all Components
  */
-@Suppress("FunctionName")
+@Suppress("FunctionName", "Detekt.TooManyFunctions")
 abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
     /** The attributes of the component */
@@ -322,4 +322,3 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
         return renderCache
     }
 }
-

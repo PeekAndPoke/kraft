@@ -128,7 +128,6 @@ class FilterSpec : StringSpec({
             received shouldBe listOf(null, B(10))
         }
 
-
         withClue("The next input must not pass the filter") {
             source(A(10))
 

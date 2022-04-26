@@ -9,4 +9,3 @@ import de.peekandpoke.kraft.streams.StreamMapper
 fun <IN, OUT> Stream<IN>.map(mapper: (IN) -> OUT): Stream<OUT> {
     return StreamMapper(this, mapper)
 }
-

@@ -31,7 +31,6 @@ class IndexedSpec : StringSpec({
             received shouldBe listOf(Pair(0, 10.0))
         }
 
-
         withClue("The next received index must be 1") {
             source(20.0)
 
@@ -40,7 +39,6 @@ class IndexedSpec : StringSpec({
 
             received shouldBe listOf(Pair(0, 10.0), Pair(1, 20.0))
         }
-
 
         withClue("The next received index must be 2") {
             source(20.0)
@@ -73,7 +71,6 @@ class IndexedSpec : StringSpec({
             received shouldBe listOf(Pair(0, 10.0))
         }
 
-
         withClue("The next received index must be 1") {
             source(20.0)
 
@@ -82,7 +79,6 @@ class IndexedSpec : StringSpec({
 
             received shouldBe listOf(Pair(0, 10.0), Pair(1, 20.0))
         }
-
 
         withClue("The next received index must be 2") {
             source(20.0)
