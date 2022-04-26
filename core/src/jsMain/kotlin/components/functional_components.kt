@@ -6,14 +6,18 @@ import kotlinx.html.Tag
 /**
  * Creates a functional component with no parameters
  */
-fun component(func: VDom.() -> Unit): Tag.() -> Unit = {
+fun component(
+    func: VDom.() -> Unit
+): Tag.() -> Unit = {
     comp { FuncComp0(it, func) }
 }
 
 /**
  * Creates a functional component with 1 parameter
  */
-fun <P1> component(func: VDom.(P1) -> Unit): Tag.(P1) -> Unit = { p1: P1 ->
+fun <P1> component(
+    func: VDom.(P1) -> Unit
+): Tag.(P1) -> Unit = { p1: P1 ->
     comp(FuncComp1.Props(p1)) { FuncComp1(it, func) }
 }
 
@@ -22,63 +26,70 @@ fun <P1> component(func: VDom.(P1) -> Unit): Tag.(P1) -> Unit = { p1: P1 ->
  */
 fun <P1, P2> component(
     func: VDom.(P1, P2) -> Unit
-): Tag.(P1, P2) -> Unit = { p1: P1, p2: P2 ->
-    comp(FuncComp2.Props(p1, p2)) { FuncComp2(it, func) }
-}
+): Tag.(P1, P2) -> Unit =
+    { p1: P1, p2: P2 ->
+        comp(FuncComp2.Props(p1, p2)) { FuncComp2(it, func) }
+    }
 
 /**
  * Creates a functional component with 3 parameters
  */
 fun <P1, P2, P3> component(
     func: VDom.(P1, P2, P3) -> Unit
-): Tag.(P1, P2, P3) -> Unit = { p1: P1, p2: P2, p3: P3 ->
-    comp(FuncComp3.Props(p1, p2, p3)) { FuncComp3(it, func) }
-}
+): Tag.(P1, P2, P3) -> Unit =
+    { p1: P1, p2: P2, p3: P3 ->
+        comp(FuncComp3.Props(p1, p2, p3)) { FuncComp3(it, func) }
+    }
 
 /**
  * Creates a functional component with 4 parameters
  */
 fun <P1, P2, P3, P4> component(
     func: VDom.(P1, P2, P3, P4) -> Unit
-): Tag.(P1, P2, P3, P4) -> Unit = { p1: P1, p2: P2, p3: P3, p4: P4 ->
-    comp(FuncComp4.Props(p1, p2, p3, p4)) { FuncComp4(it, func) }
-}
+): Tag.(P1, P2, P3, P4) -> Unit =
+    { p1: P1, p2: P2, p3: P3, p4: P4 ->
+        comp(FuncComp4.Props(p1, p2, p3, p4)) { FuncComp4(it, func) }
+    }
 
 /**
  * Creates a functional component with 5 parameters
  */
 fun <P1, P2, P3, P4, P5> component(
     func: VDom.(P1, P2, P3, P4, P5) -> Unit
-): Tag.(P1, P2, P3, P4, P5) -> Unit = { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 ->
-    comp(FuncComp5.Props(p1, p2, p3, p4, p5)) { FuncComp5(it, func) }
-}
+): Tag.(P1, P2, P3, P4, P5) -> Unit =
+    { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 ->
+        comp(FuncComp5.Props(p1, p2, p3, p4, p5)) { FuncComp5(it, func) }
+    }
 
 /**
  * Creates a functional component with 6 parameters
  */
 fun <P1, P2, P3, P4, P5, P6> component(
     func: VDom.(P1, P2, P3, P4, P5, P6) -> Unit
-): Tag.(P1, P2, P3, P4, P5, P6) -> Unit = { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 ->
-    comp(FuncComp6.Props(p1, p2, p3, p4, p5, p6)) { FuncComp6(it, func) }
-}
+): Tag.(P1, P2, P3, P4, P5, P6) -> Unit =
+    { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 ->
+        comp(FuncComp6.Props(p1, p2, p3, p4, p5, p6)) { FuncComp6(it, func) }
+    }
 
 /**
  * Creates a functional component with 7 parameters
  */
 fun <P1, P2, P3, P4, P5, P6, P7> component(
     func: VDom.(P1, P2, P3, P4, P5, P6, P7) -> Unit
-): Tag.(P1, P2, P3, P4, P5, P6, P7) -> Unit = { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 ->
-    comp(FuncComp7.Props(p1, p2, p3, p4, p5, p6, p7)) { FuncComp7(it, func) }
-}
+): Tag.(P1, P2, P3, P4, P5, P6, P7) -> Unit =
+    { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 ->
+        comp(FuncComp7.Props(p1, p2, p3, p4, p5, p6, p7)) { FuncComp7(it, func) }
+    }
 
 /**
  * Creates a functional component with 8 parameters
  */
 fun <P1, P2, P3, P4, P5, P6, P7, P8> component(
     func: VDom.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit
-): Tag.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit = { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 ->
-    comp(FuncComp8.Props(p1, p2, p3, p4, p5, p6, p7, p8)) { FuncComp8(it, func) }
-}
+): Tag.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit =
+    { p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 ->
+        comp(FuncComp8.Props(p1, p2, p3, p4, p5, p6, p7, p8)) { FuncComp8(it, func) }
+    }
 
 /**
  * Creates a functional component with 9 parameters
@@ -100,7 +111,10 @@ fun <P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> component(
         comp(FuncComp10.Props(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)) { FuncComp10(it, func) }
     }
 
-internal class FuncComp0(ctx: NoProps, private val fn: VDom.() -> Unit) : PureComponent(ctx) {
+internal class FuncComp0(
+    ctx: NoProps,
+    private val fn: VDom.() -> Unit
+) : PureComponent(ctx) {
     override fun VDom.render() {
         fn()
     }

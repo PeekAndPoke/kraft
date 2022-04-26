@@ -156,7 +156,7 @@ class FilterSpec : StringSpec({
         }
 
         withClue("The first received value must be the initial value") {
-            received shouldBe listOf(B((0)))
+            received shouldBe listOf(B(0))
         }
 
         withClue("The next input must pass the filter") {
