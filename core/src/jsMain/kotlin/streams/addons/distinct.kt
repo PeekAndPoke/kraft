@@ -10,7 +10,7 @@ import de.peekandpoke.kraft.streams.StreamWrapper
  * You can set [strict] to true to use strict === comparison
  */
 fun <T> Stream<T>.distinct(strict: Boolean = false): Stream<T> =
-    DistinctStreamOperator(wrapped = this, strict = strict)
+    StreamDistinctOperator(wrapped = this, strict = strict)
 
 /**
  * Ignores duplicate values and thus only publishes when the value has changed.
@@ -18,7 +18,7 @@ fun <T> Stream<T>.distinct(strict: Boolean = false): Stream<T> =
  * The comparison between the previous and current value is NOT strict, using ==.
  */
 fun <T> Stream<T>.distinct(): Stream<T> =
-    DistinctStreamOperator(wrapped = this, strict = false)
+    StreamDistinctOperator(wrapped = this, strict = false)
 
 /**
  * Ignores duplicate values and thus only publishes when the value has changed.
@@ -26,12 +26,12 @@ fun <T> Stream<T>.distinct(): Stream<T> =
  * The comparison between the previous and current value IS strict, using ===.
  */
 fun <T> Stream<T>.distinctStrict(): Stream<T> =
-    DistinctStreamOperator(wrapped = this, strict = true)
+    StreamDistinctOperator(wrapped = this, strict = true)
 
 /**
  * Operator impl
  */
-private class DistinctStreamOperator<T>(
+private class StreamDistinctOperator<T>(
     wrapped: Stream<T>,
     private val strict: Boolean,
 ) : StreamWrapper<T>(wrapped = wrapped) {

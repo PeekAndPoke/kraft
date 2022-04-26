@@ -12,12 +12,11 @@ internal class Ticker(
     private val intervalMs: Int = 1000,
 ) : StreamSourceImpl<Long>(0) {
 
-    val start = Date.now()
+    private val start = Date.now()
 
     private var interval: Int? = null
 
     override fun onSub() {
-
         if (interval == null) {
             interval = window.setInterval(::handler, intervalMs)
         }

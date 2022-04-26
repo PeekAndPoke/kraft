@@ -14,8 +14,15 @@ abstract class StreamMapper<WRAPPED, RESULT>(
 ) : StreamWrapperBase<WRAPPED, RESULT>(
     wrapped = wrapped
 ) {
-    override fun invoke(): RESULT = mapper(wrapped())
+    private var latest: RESULT? = null
 
-    override fun handleIncoming(value: WRAPPED): Unit = publish(mapper(value))
+    override fun invoke(): RESULT = latest ?: mapper(wrapped()).also { latest = it }
+
+    override fun handleIncoming(value: WRAPPED) {
+        mapper(value)?.let {
+            latest = it
+            publish(it)
+        }
+    }
 }
 

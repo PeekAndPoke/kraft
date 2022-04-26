@@ -1,6 +1,7 @@
 package de.peekandpoke.kraft.streams.addons
 
 import de.peekandpoke.kraft.streams.StreamSource
+import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.delay
@@ -25,9 +26,11 @@ class MapAsyncSpec : StringSpec({
             received.add(it)
         }
 
-        received shouldBe listOf(null)
+        withClue("The initial value must be 'null'") {
+            received shouldBe listOf(null)
+        }
 
-        delay(100)
+        delay(1000)
 
         received shouldBe listOf(null, Out(100))
 
