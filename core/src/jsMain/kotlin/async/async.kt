@@ -4,7 +4,8 @@ import kotlinx.coroutines.Deferred
 
 @Deprecated(
     message = "Use de.peekandpoke.kraft.utils.launch instead",
-    ReplaceWith("de.peekandpoke.kraft.utils.launch"),
+    level = DeprecationLevel.ERROR,
+    replaceWith = ReplaceWith("de.peekandpoke.kraft.utils.launch"),
 )
 fun <T : Any?> launch(block: suspend () -> T) = de.peekandpoke.kraft.utils.launch(block)
 

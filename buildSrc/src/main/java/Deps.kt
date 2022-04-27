@@ -22,8 +22,9 @@ object Deps {
     // //////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.40.3-SNAPSHOT"
+    private const val ultra_version = "0.42.0-SNAPSHOT"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
+    const val ultra_semanticui = "io.peekandpoke.ultra:semanticui:$ultra_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     private const val kotlinx_coroutines_version = "1.6.0"
@@ -37,12 +38,8 @@ object Deps {
     const val kotlinx_serialization_json =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
-    // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
-    private const val kotlinx_html_version = "0.7.2"
-    const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
-
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.330-kotlin-1.6.20"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.325-kotlin-1.6.10"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 

@@ -68,8 +68,8 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(Deps.kotlinx_html)
-//                api(Deps.kotlinx_wrappers_externsions)
+                api(Deps.kotlinx_wrappers_extensions)
+                api(Deps.ultra_semanticui)
 
                 // External Javascript libraries
                 implementation(npm("preact", "10.5.14"))
