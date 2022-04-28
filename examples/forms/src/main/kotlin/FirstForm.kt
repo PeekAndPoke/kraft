@@ -28,7 +28,11 @@ class FirstForm(ctx: NoProps) : PureComponent(ctx) {
 
         ui.segment {
             ui.form {
-                InputField(::input)
+                InputField(::input) {
+
+                    label { +"Input" }
+
+                }
             }
         }
     }
