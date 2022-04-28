@@ -13,13 +13,17 @@ import org.w3c.dom.get
 import org.w3c.dom.set
 import kotlin.reflect.KClass
 
-
 @Suppress("FunctionName")
-inline fun <reified PAYLOAD : Any> Tag.DndDropTarget(noinline builder: DndDropTargetBuilder<PAYLOAD>.() -> Unit) =
+inline fun <reified PAYLOAD : Any> Tag.DndDropTarget(
+    noinline builder: DndDropTargetBuilder<PAYLOAD>.() -> Unit,
+) =
     DndDropTarget(PAYLOAD::class, builder)
 
 @Suppress("FunctionName")
-fun <PAYLOAD : Any> Tag.DndDropTarget(payloadType: KClass<PAYLOAD>, builder: DndDropTargetBuilder<PAYLOAD>.() -> Unit) =
+fun <PAYLOAD : Any> Tag.DndDropTarget(
+    payloadType: KClass<PAYLOAD>,
+    builder: DndDropTargetBuilder<PAYLOAD>.() -> Unit,
+) =
     comp(DndDropTargetBuilder(payloadType).apply(builder).build()) { DndDropTargetComponent(it) }
 
 class DndDropTargetBuilder<PAYLOAD : Any>(private val payloadType: KClass<PAYLOAD>) {
