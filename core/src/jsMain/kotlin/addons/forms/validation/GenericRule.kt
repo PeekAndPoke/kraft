@@ -1,9 +1,13 @@
 package de.peekandpoke.kraft.addons.forms.validation
 
-class GenericRule<T>(
-    private val messageFn: (value: T) -> String,
-    private val checkFn: (value: T) -> Boolean
+data class GenericRule<T>(
+    private val checkFn: (value: T) -> Boolean,
+    private val messageFn: (value: T) -> String = { "Invalid input" }
 ) : Rule<T> {
+    operator fun invoke(message: (T) -> String): GenericRule<T> {
+        return copy(messageFn = message)
+    }
+
     override fun check(value: T): Boolean {
         return checkFn(value)
     }

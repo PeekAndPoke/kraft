@@ -1,10 +1,14 @@
 package de.peekandpoke.kraft.addons.semanticui.forms
 
-import de.peekandpoke.kraft.addons.forms.FormFieldComponent
+import de.peekandpoke.kraft.addons.forms.FormField
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.FlowContent
 
-fun <T, P : FormFieldComponent.Props<T>> renderErrors(field: FormFieldComponent<T, P>, flow: FlowContent) {
+fun <P> FormField<P>.renderErrors(flow: FlowContent) {
+    renderErrors(this, flow)
+}
+
+fun <P> renderErrors(field: FormField<P>, flow: FlowContent) {
     flow.apply {
         if (field.touched) {
             field.errors.filter { it.isNotBlank() }.forEach { error ->

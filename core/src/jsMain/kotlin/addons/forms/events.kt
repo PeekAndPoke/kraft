@@ -3,8 +3,8 @@ package de.peekandpoke.kraft.addons.forms
 import de.peekandpoke.kraft.messages.MessageBase
 
 
-class FormFieldInputChanged(val field: FormFieldComponent<*, *>) : MessageBase(field)
+class FormFieldInputChanged<P>(val field: FormField<P>) : MessageBase<FormField<P>>(field)
 
-class FormFieldMountedMessage(val field: FormFieldComponent<*, *>) : MessageBase(field)
+class FormFieldMountedMessage<P>(val field: FormField<P>) : MessageBase<FormField<P>>(field)
 
-class FormFieldUnmountedMessage(val field: FormFieldComponent<*, *>) : MessageBase(field)
+class FormFieldUnmountedMessage<P>(val field: FormField<P>) : MessageBase<FormField<P>>(field)

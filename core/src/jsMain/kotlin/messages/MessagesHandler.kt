@@ -4,11 +4,11 @@ import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
 
 class MessagesHandler {
-    private val _stream = StreamSource<Message?>(null)
+    private val _stream = StreamSource<Message<*>?>(null)
 
-    val stream: Stream<Message?> = _stream
+    val stream: Stream<Message<*>?> = _stream
 
-    fun send(message: Message) {
+    fun send(message: Message<*>) {
         _stream(message)
     }
 }

@@ -19,10 +19,12 @@ val Component<*>.messages: MessagesHandler
 /**
  * Listens for a [Message] of the given type [M].
  */
-inline fun <reified M : Message> Component<*>.onMessage(noinline handler: (M) -> Unit) {
-    messages.stream { message ->
-        (message as? M)?.let {
-            handler(it)
+inline fun <reified M : Message<*>> Component<*>.onMessage(noinline handler: (M) -> Unit) {
+    messages.stream { next ->
+        next?.let {
+            (next as? M)?.let {
+                handler(it)
+            }
         }
     }
 }
@@ -30,7 +32,7 @@ inline fun <reified M : Message> Component<*>.onMessage(noinline handler: (M) ->
 /**
  * Send the given [message].
  */
-fun <M : Message> Component<*>.sendMessage(message: M) {
+fun <M : Message<*>> Component<*>.sendMessage(message: M) {
 
     // We do not dispatch the message on the component that sent it
     if (message.sender != this) {

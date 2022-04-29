@@ -1,11 +1,9 @@
 package de.peekandpoke.kraft.messages
 
-import de.peekandpoke.kraft.components.Component
-
 /**
  * Base impl for [Message].
  */
-abstract class MessageBase(override val sender: Component<*>) : Message {
+abstract class MessageBase<S>(override val sender: S) : Message<S> {
     /** Property indicating if the propagation of the message was stopped */
     override val isStopped get() = _isStopped
 

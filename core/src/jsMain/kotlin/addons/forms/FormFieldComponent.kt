@@ -5,7 +5,9 @@ import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.messages.sendMessage
 
-abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(ctx: Ctx<P>) : Component<P>(ctx) {
+abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
+    ctx: Ctx<P>,
+) : FormField<P>, Component<P>(ctx) {
 
     ////  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,10 +30,8 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(ctx: Ctx<P
             else -> input.value
         }
 
-    var touched by value(false)
-    var errors by value<List<String>>(emptyList())
-
-    val hasErrors get() = errors.isNotEmpty()
+    override var touched by value(false)
+    override var errors by value<List<String>>(emptyList())
 
     ////  LIVE-CYCLE  /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,11 +80,15 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(ctx: Ctx<P
         }
     }
 
-    fun touch() {
+    override fun touch() {
         touched = true
     }
 
-    fun validate(): Boolean {
+    override fun untouch() {
+        touched = false
+    }
+
+    override fun validate(): Boolean {
         if (touched) {
             errors = props.rules
                 .filter { !it.check(currentValue) }

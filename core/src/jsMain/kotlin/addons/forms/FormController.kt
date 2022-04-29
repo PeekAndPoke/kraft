@@ -9,7 +9,7 @@ open class FormController(private val component: Component<*>, val stopEvents: B
         fun watcher(component: Component<*>) = FormController(component = component, stopEvents = false)
     }
 
-    private val _fields = mutableSetOf<FormFieldComponent<*, *>>()
+    private val _fields = mutableSetOf<FormField<*>>()
 
     val fields get() = _fields
 
@@ -68,7 +68,7 @@ open class FormController(private val component: Component<*>, val stopEvents: B
     }
 
     init {
-        component.onMessage<FormFieldInputChanged> {
+        component.onMessage<FormFieldInputChanged<*>> {
             component.triggerRedraw()
 
             if (stopEvents) {
@@ -76,7 +76,7 @@ open class FormController(private val component: Component<*>, val stopEvents: B
             }
         }
 
-        component.onMessage<FormFieldMountedMessage> {
+        component.onMessage<FormFieldMountedMessage<*>> {
             _fields.add(it.field)
 
             if (stopEvents) {
@@ -84,7 +84,7 @@ open class FormController(private val component: Component<*>, val stopEvents: B
             }
         }
 
-        component.onMessage<FormFieldUnmountedMessage> {
+        component.onMessage<FormFieldUnmountedMessage<*>> {
             _fields.remove(it.sender)
 
             if (stopEvents) {
