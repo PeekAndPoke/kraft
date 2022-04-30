@@ -54,8 +54,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib"))
-                implementation(Deps.kotlinx_coroutines_core)
+                api(Deps.kotlinx_coroutines_core)
+//                api(Deps.arrow_core)
                 api(Deps.ultra_common_mp)
             }
         }

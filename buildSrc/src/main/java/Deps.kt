@@ -26,6 +26,10 @@ object Deps {
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
     const val ultra_semanticui = "io.peekandpoke.ultra:semanticui:$ultra_version"
 
+//    // https://mvnrepository.com/artifact/io.arrow-kt/arrow-core
+//    private const val arrow_core_version = "1.0.1"
+//    const val arrow_core = "io.arrow-kt:arrow-core:$arrow_core_version"
+
     // https://kotlinlang.org/docs/releases.html#release-details
     private const val kotlinx_coroutines_version = "1.6.0"
     const val kotlinx_coroutines_core =

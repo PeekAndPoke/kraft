@@ -1,10 +1,6 @@
 package de.peekandpoke.kraft.addons.forms
 
-import de.peekandpoke.kraft.addons.forms.FormField.Settings.Companion.inputStep
-import de.peekandpoke.kraft.addons.forms.FormField.Settings.Companion.inputType
-import de.peekandpoke.kraft.addons.forms.FormField.Settings.Companion.label
-import de.peekandpoke.kraft.addons.forms.FormField.Settings.Companion.placeholder
-import de.peekandpoke.kraft.addons.forms.FormField.Settings.Companion.rules
+import addons.forms.Settings
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.vdom.VDom
@@ -18,7 +14,7 @@ fun <T> Tag.GenericFormField(
     onChange: (T) -> Unit,
     toStr: (T) -> String,
     fromStr: (String) -> T,
-    settings: FormField.Settings<T>,
+    settings: Settings<T>,
     render: GenericFormField<T>.(VDom) -> Unit,
 ) = comp(
     GenericFormField.Props(
@@ -42,11 +38,11 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
         val onChange: (T) -> Unit,
         val toStr: (T) -> String,
         val fromStr: (String) -> T,
-        val settings: FormField.Settings<T>,
+        val settings: Settings<T>,
         val render: GenericFormField<T>.(VDom) -> Unit,
     )
 
-    val settings: FormField.Settings<T> get() = props.settings
+    val settings: Settings<T> get() = props.settings
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -130,14 +126,6 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
         }
     }
 
-    // Tracking input fields
-
-    fun INPUT.track() {
-        onInput {
-            setInput((it.target as HTMLInputElement).value)
-        }
-    }
-
     // Label Helpers
 
     fun FlowContent.renderLabel(focusCssSelector: String? = null) {
@@ -161,9 +149,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
 
     fun INPUT.applyAll() {
         setValue()
+        track()
+
         applyType()
         applyPlaceholder()
         applyStep()
+    }
+
+    fun INPUT.track() {
+        onInput {
+            setInput((it.target as HTMLInputElement).value)
+        }
     }
 
     fun INPUT.setValue() {
@@ -171,7 +167,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
     }
 
     fun INPUT.applyType() {
-        settings.inputType?.let { type = it }
+        settings.input.type?.let { type = it }
     }
 
     fun INPUT.applyPlaceholder() {
@@ -181,7 +177,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
     }
 
     fun INPUT.applyStep() {
-        settings.inputStep?.let {
+        settings.input.step?.let {
             step = it.toString()
         }
     }

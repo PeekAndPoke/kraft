@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.addons.semanticui.forms.input
+package de.peekandpoke.kraft.addons.semanticui.forms.old.input
 
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.utils.*

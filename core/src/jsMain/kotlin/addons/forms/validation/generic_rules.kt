@@ -1,26 +1,26 @@
 package de.peekandpoke.kraft.addons.forms.validation
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> nonNull(message: String = "Must not be empty"): Rule<T> = GenericRule(
     messageFn = { message },
     checkFn = { it != null },
 )
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> equalTo(compareWith: () -> T, message: (T) -> String): Rule<T> = GenericRule(
     messageFn = message,
     checkFn = { it == compareWith() }
 )
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> equalTo(compareWith: () -> T, message: String = "Must be equal to '$compareWith()'"): Rule<T> =
     equalTo(compareWith) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> equalTo(compareWith: T, message: String = "Must be equal to '$compareWith()'"): Rule<T> =
     equalTo({ compareWith }) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> notEqualTo(
     compareWith: () -> T,
     message: (T) -> String = { "Must not be equal to '$compareWith()'" },
@@ -29,39 +29,39 @@ fun <T> notEqualTo(
     checkFn = { it != compareWith() }
 )
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> notEqualTo(compareWith: () -> T, message: String = "Must not be equal to '$compareWith()'"): Rule<T> =
     notEqualTo(compareWith) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> notEqualTo(compareWith: T, message: String = "Must not be equal to '$compareWith()'"): Rule<T> =
     notEqualTo({ compareWith }) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> anyOf(values: () -> Collection<T>, message: (T) -> String): Rule<T> = GenericRule(
     messageFn = message,
     checkFn = { it in values() },
 )
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> anyOf(values: Collection<T>, message: String = "Must be a valid input"): Rule<T> =
     anyOf({ values }) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> noneOf(values: () -> Collection<T>, message: (T) -> String): Rule<T> = GenericRule(
     messageFn = message,
     checkFn = { it !in values() },
 )
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> noneOf(values: () -> Collection<T>, message: String = "Must be a valid input"): Rule<T> =
     noneOf(values) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> noneOf(values: Collection<T>, message: String = "Must be a valid input"): Rule<T> =
     noneOf({ values }) { message }
 
-@FormRuleMarker
+@KraftFormsRuleDsl
 fun <T> given(
     check: (T) -> Boolean,
     message: (T) -> String = { "Must be a valid input" },

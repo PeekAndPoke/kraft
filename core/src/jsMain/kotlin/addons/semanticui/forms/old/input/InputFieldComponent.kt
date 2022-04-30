@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.addons.semanticui.forms.input
+package de.peekandpoke.kraft.addons.semanticui.forms.old.input
 
 import de.peekandpoke.kraft.addons.forms.FormFieldComponent
 import de.peekandpoke.kraft.addons.forms.validation.Rule

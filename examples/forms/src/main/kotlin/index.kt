@@ -10,9 +10,17 @@ fun main() {
 
     PreactVDomEngine(mountPoint) {
         ui.container {
-            ui.header H1 { +"KRAFT Forms" }
+            ui.dividing.header H1 { +"KRAFT Forms demo" }
 
-            FirstForm()
+            ui.segment {
+                ui.header H2 { +"A form with primitive values" }
+                FormWithPrimitives()
+            }
+
+            ui.segment {
+                ui.header H2 { +"A form with nullable primitive values" }
+                FormWithNullablePrimitives()
+            }
         }
     }
 }
