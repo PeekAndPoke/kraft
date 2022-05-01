@@ -68,6 +68,18 @@ class InputSettings {
     val attributes = MutableTypedAttributes.empty()
 
     @KraftFormsSettingDsl
+    fun asDateInput() {
+        type(InputType.date)
+        formatValue("yyyy-MM-dd")
+    }
+
+    @KraftFormsSettingDsl
+    fun asDateTimeInput() {
+        type(InputType.dateTime)
+        formatValue("yyyy-MM-ddTHH:mm:ss")
+    }
+
+    @KraftFormsSettingDsl
     val type get() = attributes[typeKey]
 
     @KraftFormsSettingDsl
@@ -90,7 +102,4 @@ class InputSettings {
     fun formatValue(formatValue: String) = apply {
         attributes[formatValueKey] = formatValue
     }
-
-    @KraftFormsSettingDsl
-    fun formatValueAsDate() = formatValue("yyyy-MM-dd")
 }

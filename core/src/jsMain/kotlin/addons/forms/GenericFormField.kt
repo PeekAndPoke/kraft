@@ -7,6 +7,7 @@ import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.common.datetime.MpLocalDate
+import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
 import kotlinx.html.*
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLInputElement
@@ -44,80 +45,210 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
     abstract class Renderer(override val tag: Tag, override val def: Definition) : RendererAware {
 
         interface ForStrings : RendererAware {
-            operator fun invoke(prop: KMutableProperty0<String>, builder: SettingsBuilder<String>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<String>,
+                builder: SettingsBuilder<String>,
+            ): ComponentRef<GenericFormField<String>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: String, onChange: (String) -> Unit, builder: SettingsBuilder<String>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: String,
+                onChange: (String) -> Unit,
+                builder: SettingsBuilder<String>,
+            ): ComponentRef<GenericFormField<String>> = def.run {
+                tag.render(value, onChange, ::stringToString, ::stringToString, builder)
+            }
 
-            operator fun invoke(prop: KMutableProperty0<String?>, builder: SettingsBuilder<String?>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<String?>,
+                builder: SettingsBuilder<String?>,
+            ): ComponentRef<GenericFormField<String?>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: String?, onChange: (String?) -> Unit, builder: SettingsBuilder<String?>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: String?,
+                onChange: (String?) -> Unit,
+                builder: SettingsBuilder<String?>,
+            ): ComponentRef<GenericFormField<String?>> = def.run {
+                tag.render(value, onChange, ::stringToString, ::stringToString, builder)
+            }
         }
 
         interface ForNumbers : RendererAware {
-            operator fun invoke(prop: KMutableProperty0<Int>, builder: SettingsBuilder<Int>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Int>,
+                builder: SettingsBuilder<Int>,
+            ): ComponentRef<GenericFormField<Int>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Int, onChange: (Int) -> Unit, builder: SettingsBuilder<Int>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Int,
+                onChange: (Int) -> Unit,
+                builder: SettingsBuilder<Int>,
+            ): ComponentRef<GenericFormField<Int>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToInt) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Int?>, builder: SettingsBuilder<Int?>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Int?>,
+                builder: SettingsBuilder<Int?>,
+            ): ComponentRef<GenericFormField<Int?>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Int?, onChange: (Int?) -> Unit, builder: SettingsBuilder<Int?>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Int?,
+                onChange: (Int?) -> Unit,
+                builder: SettingsBuilder<Int?>,
+            ): ComponentRef<GenericFormField<Int?>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToInt) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Float>, builder: SettingsBuilder<Float>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Float>,
+                builder: SettingsBuilder<Float>,
+            ): ComponentRef<GenericFormField<Float>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Float, onChange: (Float) -> Unit, builder: SettingsBuilder<Float>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Float,
+                onChange: (Float) -> Unit,
+                builder: SettingsBuilder<Float>,
+            ): ComponentRef<GenericFormField<Float>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToFloat) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Float?>, builder: SettingsBuilder<Float?>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Float?>,
+                builder: SettingsBuilder<Float?>,
+            ): ComponentRef<GenericFormField<Float?>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Float?, onChange: (Float?) -> Unit, builder: SettingsBuilder<Float?>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Float?,
+                onChange: (Float?) -> Unit,
+                builder: SettingsBuilder<Float?>,
+            ): ComponentRef<GenericFormField<Float?>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToFloat) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Double>, builder: SettingsBuilder<Double>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Double>,
+                builder: SettingsBuilder<Double>,
+            ): ComponentRef<GenericFormField<Double>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Double, onChange: (Double) -> Unit, builder: SettingsBuilder<Double>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Double,
+                onChange: (Double) -> Unit,
+                builder: SettingsBuilder<Double>,
+            ): ComponentRef<GenericFormField<Double>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToDouble) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Double?>, builder: SettingsBuilder<Double?>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Double?>,
+                builder: SettingsBuilder<Double?>,
+            ): ComponentRef<GenericFormField<Double?>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Double?, onChange: (Double?) -> Unit, builder: SettingsBuilder<Double?>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Double?,
+                onChange: (Double?) -> Unit,
+                builder: SettingsBuilder<Double?>,
+            ): ComponentRef<GenericFormField<Double?>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToDouble) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Number>, builder: SettingsBuilder<Number>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Number>,
+                builder: SettingsBuilder<Number>,
+            ): ComponentRef<GenericFormField<Number>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Number, onChange: (Number) -> Unit, builder: SettingsBuilder<Number>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Number,
+                onChange: (Number) -> Unit,
+                builder: SettingsBuilder<Number>,
+            ): ComponentRef<GenericFormField<Number>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToNumber) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
 
-            operator fun invoke(prop: KMutableProperty0<Number?>, builder: SettingsBuilder<Number?>) =
-                def.render(tag, prop(), prop::set, builder)
+            operator fun invoke(
+                prop: KMutableProperty0<Number?>,
+                builder: SettingsBuilder<Number?>,
+            ): ComponentRef<GenericFormField<Number?>> = invoke(prop(), prop::set, builder)
 
-            operator fun invoke(value: Number?, onChange: (Number?) -> Unit, builder: SettingsBuilder<Number?>) =
-                def.render(tag, value, onChange, builder)
+            operator fun invoke(
+                value: Number?,
+                onChange: (Number?) -> Unit,
+                builder: SettingsBuilder<Number?>,
+            ): ComponentRef<GenericFormField<Number?>> = def.run {
+                tag.render(value, onChange, ::numberToString, ::stringToNumber) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
         }
 
         interface ForDates : RendererAware {
             operator fun invoke(
+                prop: KMutableProperty0<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(prop(), prop::set, builder)
+
+            operator fun invoke(
                 value: MpLocalDate,
-                onChange: (MpLocalDate) -> Unit, builder:
-                SettingsBuilder<MpLocalDate>
-            ) =
-                def.render(tag, value, onChange) {
-                    input.type(InputType.date)
-                    input.formatValueAsDate()
+                onChange: (MpLocalDate) -> Unit,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> = def.run {
+                tag.render(value, onChange, ::dateToYmd, ::stringToDate) {
+                    input.asDateInput()
                     builder()
                 }
+            }
+
+            operator fun invoke(
+                value: MpLocalDateTime,
+                onChange: (MpLocalDateTime) -> Unit,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(
+                    value = value.toDate(),
+                    onChange = { onChange(it.atTime(value.toTime())) },
+                    builder = builder
+                )
+        }
+
+        interface ForDateTimes : RendererAware {
+            operator fun invoke(
+                prop: KMutableProperty0<MpLocalDateTime>,
+                builder: SettingsBuilder<MpLocalDateTime>,
+            ): ComponentRef<GenericFormField<MpLocalDateTime>> =
+                invoke(prop(), prop::set, builder)
+
+            operator fun invoke(
+                value: MpLocalDateTime,
+                onChange: (MpLocalDateTime) -> Unit,
+                builder: SettingsBuilder<MpLocalDateTime>,
+            ): ComponentRef<GenericFormField<MpLocalDateTime>> = def.run {
+                tag.render(value, onChange, ::dateTimeToYmdHms, ::stringToDateTime) {
+                    input.asDateTimeInput()
+                    builder()
+                }
+            }
         }
     }
 
@@ -128,8 +259,8 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             toStr: (T) -> String,
             fromStr: (String) -> T,
             settings: Settings<T>.() -> Unit,
-        ) {
-            comp(
+        ): ComponentRef<GenericFormField<T>> {
+            return comp(
                 Props(
                     value = value,
                     onChange = onChange,
@@ -146,110 +277,6 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
         }
 
         fun <T> GenericFormField<T>.content(vdom: VDom)
-
-        // Strings ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        fun render(tag: Tag, value: String, onChange: (String) -> Unit, builder: SettingsBuilder<String>) {
-            with(tag) {
-                render(value, onChange, ::stringToString, ::stringToString, builder)
-            }
-        }
-
-        fun render(tag: Tag, value: String?, onChange: (String?) -> Unit, builder: SettingsBuilder<String?>) {
-            with(tag) {
-                render(value, onChange, ::stringToString, ::stringToString, builder)
-            }
-        }
-
-        // Numbers ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        fun render(tag: Tag, value: Int, onChange: (Int) -> Unit, builder: SettingsBuilder<Int>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToInt) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Int?, onChange: (Int?) -> Unit, builder: SettingsBuilder<Int?>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToInt) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Float, onChange: (Float) -> Unit, builder: SettingsBuilder<Float>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToFloat) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Float?, onChange: (Float?) -> Unit, builder: SettingsBuilder<Float?>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToFloat) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Double, onChange: (Double) -> Unit, builder: SettingsBuilder<Double>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToDouble) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Double?, onChange: (Double?) -> Unit, builder: SettingsBuilder<Double?>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToDouble) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Number, onChange: (Number) -> Unit, builder: SettingsBuilder<Number>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToNumber) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        fun render(tag: Tag, value: Number?, onChange: (Number?) -> Unit, builder: SettingsBuilder<Number?>) {
-            with(tag) {
-                render(value, onChange, ::numberToString, ::stringToNumber) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
-
-        // Dates ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        fun render(
-            tag: Tag,
-            value: MpLocalDate,
-            onChange: (MpLocalDate) -> Unit,
-            builder: SettingsBuilder<MpLocalDate>
-        ) {
-            with(tag) {
-                render(value, onChange, ::dateToString, ::stringToDate) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-        }
     }
 
     //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////

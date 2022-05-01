@@ -126,41 +126,16 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.renderDataTable() {
 
-        ui.striped.celled.table Table {
-            thead {
-                tr {
-                    th { +"Field" }
-                    th { +"State" }
-                    th { +"Draft" }
-                }
-            }
-            tbody {
-                tr {
-                    td { +"textInput" }
-                    td { +state.textInput.toString() }
-                    td { +draft.textInput.toString() }
-                }
-                tr {
-                    td { +"intInput" }
-                    td { +state.intInput.toString() }
-                    td { +draft.intInput.toString() }
-                }
-                tr {
-                    td { +"floatInput" }
-                    td { +state.floatInput.toString() }
-                    td { +draft.floatInput.toString() }
-                }
-                tr {
-                    td { +"doubleInput" }
-                    td { +state.doubleInput.toString() }
-                    td { +draft.doubleInput.toString() }
-                }
-                tr {
-                    td { +"numberInput" }
-                    td { +state.numberInput.toString() }
-                    td { +draft.numberInput.toString() }
-                }
-            }
-        }
+        renderStateAndDraftTable(
+            state,
+            draft,
+            listOf(
+                State::textInput { it.toString() },
+                State::intInput { it.toString() },
+                State::floatInput { it.toString() },
+                State::doubleInput { it.toString() },
+                State::numberInput { it.toString() },
+            )
+        )
     }
 }

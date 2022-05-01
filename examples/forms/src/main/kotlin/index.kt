@@ -29,7 +29,7 @@ fun main() {
 
             ui.segment {
                 ui.header H2 { +"A form with dates and times" }
-                FormWithDatesAndTimes()
+                FormWithDates()
             }
         }
     }

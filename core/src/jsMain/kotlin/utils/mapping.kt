@@ -1,6 +1,7 @@
 package de.peekandpoke.kraft.utils
 
 import de.peekandpoke.ultra.common.datetime.MpLocalDate
+import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
 
 fun <T> identity(it: T): T = it
 
@@ -16,6 +17,10 @@ fun stringToDouble(it: String): Double = if (it.isBlank()) 0.0 else it.toDouble(
 
 fun stringToNumber(it: String): Number = if (it.isBlank()) 0.0 else it.toDouble()
 
-fun dateToString(it: MpLocalDate): String = it.format("yyyy-MM-dd")
+fun dateToYmd(it: MpLocalDate): String = it.format("yyyy-MM-dd")
 
 fun stringToDate(it: String): MpLocalDate = MpLocalDate.parse(it)
+
+fun dateTimeToYmdHms(it: MpLocalDateTime): String = it.atUTC().format("yyyy-MM-ddTHH:mm:ss")
+
+fun stringToDateTime(it: String): MpLocalDateTime = MpLocalDateTime.parse(it)

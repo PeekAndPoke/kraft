@@ -3,10 +3,10 @@ package de.peekandpoke.kraft.addons.forms
 import de.peekandpoke.kraft.components.Component
 
 @DslMarker
-annotation class KraftFormsSettingDsl
+annotation class KraftFormsDsl
 
 @DslMarker
-annotation class KraftFormsDsl
+annotation class KraftFormsSettingDsl
 
 @KraftFormsDsl
 fun Component<*>.formController(): FormController {

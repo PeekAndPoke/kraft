@@ -7,23 +7,25 @@ import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.MpInstant
+import de.peekandpoke.ultra.common.datetime.Kronos
 import de.peekandpoke.ultra.common.datetime.MpLocalDate
+import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.*
 
 
 @Suppress("FunctionName")
-fun Tag.FormWithDatesAndTimes() = comp {
-    FormWithDatesAndTimes(it)
+fun Tag.FormWithDates() = comp {
+    FormWithDates(it)
 }
 
-class FormWithDatesAndTimes(ctx: NoProps) : PureComponent(ctx) {
+class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val date: MpLocalDate = MpInstant.now().atSystemDefaultZone().toLocalDate(),
+        val localDate: MpLocalDate = Kronos.systemUtc.localDateTimeNow().toDate(),
+        val localDateTime: MpLocalDateTime = Kronos.systemUtc.localDateTimeNow(),
     )
 
     private var state by value(State())
@@ -31,7 +33,8 @@ class FormWithDatesAndTimes(ctx: NoProps) : PureComponent(ctx) {
 
     private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
 
-    private val modifyDate = modify<MpLocalDate> { copy(date = it) }
+    private val modifyDate = modify<MpLocalDate> { copy(localDate = it) }
+    private val modifyDateTime = modify<MpLocalDateTime> { copy(localDateTime = it) }
 
     private val formCtrl = formController()
 
@@ -42,8 +45,14 @@ class FormWithDatesAndTimes(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    UiDateField(state.date, modifyDate) {
-                        label { +"Date Input" }
+                    ui.three.fields {
+                        UiDateField(state.localDate, modifyDate) {
+                            label { +State::localDate.name }
+                        }
+
+                        UiDateField(state.localDateTime, modifyDateTime) {
+                            label { +State::localDateTime.name }
+                        }
                     }
                 }
 
@@ -63,27 +72,14 @@ class FormWithDatesAndTimes(ctx: NoProps) : PureComponent(ctx) {
             }
 
             ui.column {
-                renderDataTable()
-            }
-        }
-    }
-
-    private fun FlowContent.renderDataTable() {
-
-        ui.striped.celled.table Table {
-            thead {
-                tr {
-                    th { +"Field" }
-                    th { +"State" }
-                    th { +"Draft" }
-                }
-            }
-            tbody {
-                tr {
-                    td { +"input" }
-                    td { +state.date.toIsoString() }
-                    td { +draft.date.toIsoString() }
-                }
+                renderStateAndDraftTable(
+                    state,
+                    draft,
+                    listOf(
+                        State::localDate { it.toIsoString() },
+                        State::localDateTime { it.toIsoString() },
+                    )
+                )
             }
         }
     }

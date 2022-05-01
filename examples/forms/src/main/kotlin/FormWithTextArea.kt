@@ -69,21 +69,12 @@ class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.renderDataTable() {
 
-        ui.striped.celled.table Table {
-            thead {
-                tr {
-                    th { +"Field" }
-                    th { +"State" }
-                    th { +"Draft" }
-                }
-            }
-            tbody {
-                tr {
-                    td { +"input" }
-                    td { +state.input }
-                    td { +draft.input }
-                }
-            }
-        }
+        renderStateAndDraftTable(
+            state,
+            draft,
+            listOf(
+                State::input { it },
+            )
+        )
     }
 }
