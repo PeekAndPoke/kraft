@@ -21,6 +21,11 @@ fun main() {
                 ui.header H2 { +"A form with nullable primitive values" }
                 FormWithNullablePrimitives()
             }
+
+            ui.segment {
+                ui.header H2 { +"A form with a text area" }
+                FormWithTestArea()
+            }
         }
     }
 }

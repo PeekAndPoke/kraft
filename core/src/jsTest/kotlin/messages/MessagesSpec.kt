@@ -13,7 +13,7 @@ import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.h2
 
-private class TestMessage(sender: Component<*>) : MessageBase(sender) {
+private class TestMessage(sender: Component<*>) : MessageBase<Component<*>>(sender) {
     companion object {
         var receivedCounter = 0
     }

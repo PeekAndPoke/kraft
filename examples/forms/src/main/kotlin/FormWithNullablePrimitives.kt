@@ -3,8 +3,7 @@ package de.peekandpoke.kraft.examples.forms
 import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.forms.validation.numbers.greaterThan
 import de.peekandpoke.kraft.addons.forms.validation.numbers.lessThan
-import de.peekandpoke.kraft.addons.forms.validation.strings.notBlank
-import de.peekandpoke.kraft.addons.semanticui.forms.uiInputField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiInputField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -53,14 +52,12 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                 ui.form {
                     ui.three.fields {
 
-                        uiInputField(state.textInput, modifyString) {
+                        UiInputField(state.textInput, modifyString) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
-
-                            accepts(notBlank())
                         }
 
-                        uiInputField(state.intInput, modifyInt) {
+                        UiInputField(state.intInput, modifyInt) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
                             input.step(3)
@@ -71,7 +68,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                             )
                         }
 
-                        uiInputField(state.floatInput, modifyFloat) {
+                        UiInputField(state.floatInput, modifyFloat) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
 
@@ -83,7 +80,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                     }
 
                     ui.three.fields {
-                        uiInputField(state.doubleInput, modifyDouble) {
+                        UiInputField(state.doubleInput, modifyDouble) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             input.step(0.5)
@@ -94,7 +91,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                             )
                         }
 
-                        uiInputField(state.numberInput, modifyNumber) {
+                        UiInputField(state.numberInput, modifyNumber) {
                             label { +"Number Input" }
                             placeholder("Enter a number")
                             input.step(0.5)

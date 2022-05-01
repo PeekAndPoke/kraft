@@ -8,6 +8,8 @@ import de.peekandpoke.ultra.common.TypedKey
 import kotlinx.html.InputType
 import kotlinx.html.LABEL
 
+typealias SettingsBuilder<T> = Settings<T>.() -> Unit
+
 open class Settings<T> {
     companion object {
         private val RulesKey = TypedKey<MutableList<Rule<*>>>("rules")
