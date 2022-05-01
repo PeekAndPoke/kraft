@@ -6,6 +6,7 @@ import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.datetime.MpLocalDate
 import kotlinx.html.*
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLInputElement
@@ -105,6 +106,19 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(value: Number?, onChange: (Number?) -> Unit, builder: SettingsBuilder<Number?>) =
                 def.render(tag, value, onChange, builder)
         }
+
+        interface ForDates : RendererAware {
+            operator fun invoke(
+                value: MpLocalDate,
+                onChange: (MpLocalDate) -> Unit, builder:
+                SettingsBuilder<MpLocalDate>
+            ) =
+                def.render(tag, value, onChange) {
+                    input.type(InputType.date)
+                    input.formatValueAsDate()
+                    builder()
+                }
+        }
     }
 
     interface Definition {
@@ -133,6 +147,8 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
 
         fun <T> GenericFormField<T>.content(vdom: VDom)
 
+        // Strings ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         fun render(tag: Tag, value: String, onChange: (String) -> Unit, builder: SettingsBuilder<String>) {
             with(tag) {
                 render(value, onChange, ::stringToString, ::stringToString, builder)
@@ -144,6 +160,8 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 render(value, onChange, ::stringToString, ::stringToString, builder)
             }
         }
+
+        // Numbers ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         fun render(tag: Tag, value: Int, onChange: (Int) -> Unit, builder: SettingsBuilder<Int>) {
             with(tag) {
@@ -211,6 +229,22 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
         fun render(tag: Tag, value: Number?, onChange: (Number?) -> Unit, builder: SettingsBuilder<Number?>) {
             with(tag) {
                 render(value, onChange, ::numberToString, ::stringToNumber) {
+                    input.type(InputType.number)
+                    builder()
+                }
+            }
+        }
+
+        // Dates ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        fun render(
+            tag: Tag,
+            value: MpLocalDate,
+            onChange: (MpLocalDate) -> Unit,
+            builder: SettingsBuilder<MpLocalDate>
+        ) {
+            with(tag) {
+                render(value, onChange, ::dateToString, ::stringToDate) {
                     input.type(InputType.number)
                     builder()
                 }
@@ -342,6 +376,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
 
         applyType()
         applyStep()
+        applyFormatValue()
     }
 
     fun INPUT.track() {
@@ -367,6 +402,12 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
     fun INPUT.applyStep() {
         settings.input.step?.let {
             step = it.toString()
+        }
+    }
+
+    fun INPUT.applyFormatValue() {
+        settings.input.formatValue?.let {
+            attributes["format-value"] = it
         }
     }
 

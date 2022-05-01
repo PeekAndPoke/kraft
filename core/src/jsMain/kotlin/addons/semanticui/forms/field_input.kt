@@ -9,16 +9,23 @@ import kotlinx.html.Tag
 import kotlinx.html.input
 
 @KraftFormsDsl
-val Tag.UiInputField get() = UiInputFieldDef.Renderer(this)
+val Tag.UiInputField get() = UiInputFieldDef.InputRenderer(this)
+
+@KraftFormsDsl
+val Tag.UiDateField get() = UiInputFieldDef.DateRenderer(this)
 
 /**
  * Semantic ui input field definition
  */
 object UiInputFieldDef : GenericFormField.Definition {
 
-    class Renderer(tag: Tag) : GenericFormField.Renderer(tag, UiInputFieldDef),
+    class InputRenderer(tag: Tag) : GenericFormField.Renderer(tag, UiInputFieldDef),
         GenericFormField.Renderer.ForStrings,
         GenericFormField.Renderer.ForNumbers
+
+    class DateRenderer(tag: Tag) : GenericFormField.Renderer(tag, UiInputFieldDef),
+        GenericFormField.Renderer.ForStrings,
+        GenericFormField.Renderer.ForDates
 
     override fun <T> GenericFormField<T>.content(vdom: VDom) {
         with(vdom) {

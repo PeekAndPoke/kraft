@@ -62,6 +62,7 @@ class InputSettings {
     companion object {
         private val typeKey = TypedKey<InputType>("type")
         private val stepKey = TypedKey<Number>("step")
+        private val formatValueKey = TypedKey<String>("format-value")
     }
 
     val attributes = MutableTypedAttributes.empty()
@@ -81,4 +82,15 @@ class InputSettings {
     fun step(step: Number) = apply {
         attributes[stepKey] = step
     }
+
+    @KraftFormsSettingDsl
+    val formatValue get() = attributes[formatValueKey]
+
+    @KraftFormsSettingDsl
+    fun formatValue(formatValue: String) = apply {
+        attributes[formatValueKey] = formatValue
+    }
+
+    @KraftFormsSettingDsl
+    fun formatValueAsDate() = formatValue("yyyy-MM-dd")
 }
