@@ -12,7 +12,7 @@ import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
 import de.peekandpoke.ultra.common.datetime.MpTimezone
 import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.*
+import kotlinx.html.Tag
 
 
 @Suppress("FunctionName")
@@ -33,12 +33,6 @@ class FormWithNullableDates(ctx: NoProps) : PureComponent(ctx) {
     private var state by value(State())
     private var draft by value(state)
 
-    private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
-
-    private val modifyLocalDate = modify<MpLocalDate?> { copy(localDate = it) }
-    private val modifyLocalDateTime = modify<MpLocalDateTime?> { copy(localDateTime = it) }
-    private val modifyZonedDateTime = modify<MpZonedDateTime?> { copy(zonedDateTime = it) }
-
     private val formCtrl = formController()
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,15 +43,17 @@ class FormWithNullableDates(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiDateField(state.localDate, modifyLocalDate) {
+                        UiDateField.nullable(draft.localDate, { draft = draft.copy(localDate = it) }) {
                             label { +State::localDate.name }
                         }
 
-                        UiDateField(state.localDateTime, modifyLocalDateTime) {
+                        UiDateField.nullable(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
                             label { +State::localDateTime.name }
                         }
 
-                        UiDateField(state.zonedDateTime, MpTimezone.of("Europe/Berlin"), modifyZonedDateTime) {
+                        val tz = MpTimezone.of("Europe/Berlin")
+
+                        UiDateField.nullable(draft.zonedDateTime, tz, { draft = draft.copy(zonedDateTime = it) }) {
                             label { +State::zonedDateTime.name }
                         }
                     }

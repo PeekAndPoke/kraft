@@ -48,6 +48,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a String
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<String>,
                 builder: SettingsBuilder<String>,
@@ -56,6 +57,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a String
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: String,
                 onChange: (String) -> Unit,
@@ -67,15 +69,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable String
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<String?>,
                 builder: SettingsBuilder<String?>,
-            ): ComponentRef<GenericFormField<String?>> = invoke(prop(), prop::set, builder)
+            ): ComponentRef<GenericFormField<String?>> = nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable String
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: String?,
                 onChange: (String?) -> Unit,
                 builder: SettingsBuilder<String?>,
@@ -89,6 +93,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an Int
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<Int>,
                 builder: SettingsBuilder<Int>,
@@ -97,6 +102,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an Int
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: Int,
                 onChange: (Int) -> Unit,
@@ -111,15 +117,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable Int
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<Int?>,
                 builder: SettingsBuilder<Int?>,
-            ): ComponentRef<GenericFormField<Int?>> = invoke(prop(), prop::set, builder)
+            ): ComponentRef<GenericFormField<Int?>> = nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable Int
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: Int?,
                 onChange: (Int?) -> Unit,
                 builder: SettingsBuilder<Int?>,
@@ -133,6 +141,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a Float
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<Float>,
                 builder: SettingsBuilder<Float>,
@@ -141,6 +150,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a Float
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: Float,
                 onChange: (Float) -> Unit,
@@ -155,15 +165,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable Float
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<Float?>,
                 builder: SettingsBuilder<Float?>,
-            ): ComponentRef<GenericFormField<Float?>> = invoke(prop(), prop::set, builder)
+            ): ComponentRef<GenericFormField<Float?>> = nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable Float
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: Float?,
                 onChange: (Float?) -> Unit,
                 builder: SettingsBuilder<Float?>,
@@ -177,6 +189,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a Double
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<Double>,
                 builder: SettingsBuilder<Double>,
@@ -185,6 +198,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a Double
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: Double,
                 onChange: (Double) -> Unit,
@@ -199,64 +213,22 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable Double
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<Double?>,
                 builder: SettingsBuilder<Double?>,
-            ): ComponentRef<GenericFormField<Double?>> = invoke(prop(), prop::set, builder)
+            ): ComponentRef<GenericFormField<Double?>> = nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable Double
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: Double?,
                 onChange: (Double?) -> Unit,
                 builder: SettingsBuilder<Double?>,
             ): ComponentRef<GenericFormField<Double?>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToDouble) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-
-            /**
-             * Renders the field for a Number
-             */
-            operator fun invoke(
-                prop: KMutableProperty0<Number>,
-                builder: SettingsBuilder<Number>,
-            ): ComponentRef<GenericFormField<Number>> = invoke(prop(), prop::set, builder)
-
-            /**
-             * Renders the field for a Number
-             */
-            operator fun invoke(
-                value: Number,
-                onChange: (Number) -> Unit,
-                builder: SettingsBuilder<Number>,
-            ): ComponentRef<GenericFormField<Number>> = def.run {
-                tag.render(value, onChange, ::numberToString, ::stringToNumber) {
-                    input.type(InputType.number)
-                    builder()
-                }
-            }
-
-            /**
-             * Renders the field for a nullable Number
-             */
-            operator fun invoke(
-                prop: KMutableProperty0<Number?>,
-                builder: SettingsBuilder<Number?>,
-            ): ComponentRef<GenericFormField<Number?>> = invoke(prop(), prop::set, builder)
-
-            /**
-             * Renders the field for a nullable Number
-             */
-            operator fun invoke(
-                value: Number?,
-                onChange: (Number?) -> Unit,
-                builder: SettingsBuilder<Number?>,
-            ): ComponentRef<GenericFormField<Number?>> = def.run {
-                tag.render(value, onChange, ::numberToString, ::stringToNumber) {
                     input.type(InputType.number)
                     builder()
                 }
@@ -268,6 +240,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpLocalDate
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDate>,
                 builder: SettingsBuilder<MpLocalDate>,
@@ -277,6 +250,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpLocalDate
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpLocalDate,
                 onChange: (MpLocalDate) -> Unit,
@@ -291,16 +265,18 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable MpLocalDate
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<MpLocalDate?>,
                 builder: SettingsBuilder<MpLocalDate?>,
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
-                invoke(prop(), prop::set, builder)
+                nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable MpLocalDate
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: MpLocalDate?,
                 onChange: (MpLocalDate?) -> Unit,
                 builder: SettingsBuilder<MpLocalDate?>,
@@ -314,6 +290,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpLocalDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDateTime>,
                 builder: SettingsBuilder<MpLocalDate>,
@@ -323,6 +300,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpLocalDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpLocalDateTime,
                 onChange: (MpLocalDateTime) -> Unit,
@@ -337,21 +315,23 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable MpLocalDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<MpLocalDateTime?>,
                 builder: SettingsBuilder<MpLocalDate?>,
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
-                invoke(prop(), prop::set, builder)
+                nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable MpLocalDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: MpLocalDateTime?,
                 onChange: (MpLocalDateTime?) -> Unit,
                 builder: SettingsBuilder<MpLocalDate?>,
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
-                invoke(
+                nullable(
                     value = value?.toDate(),
                     onChange = {
                         onChange(
@@ -364,6 +344,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
                 builder: SettingsBuilder<MpLocalDate>,
@@ -373,6 +354,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpZonedDateTime,
                 onChange: (MpZonedDateTime) -> Unit,
@@ -388,6 +370,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
                 timezone: MpTimezone,
@@ -398,6 +381,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpZonedDateTime,
                 timezone: MpTimezone,
@@ -413,23 +397,25 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable MpZonedDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<MpZonedDateTime?>,
                 timezone: MpTimezone,
                 builder: SettingsBuilder<MpLocalDate?>,
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
-                invoke(prop(), timezone, prop::set, builder)
+                nullable(prop(), timezone, prop::set, builder)
 
             /**
              * Renders the field for a nullable MpZonedDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: MpZonedDateTime?,
                 timezone: MpTimezone,
                 onChange: (MpZonedDateTime?) -> Unit,
                 builder: SettingsBuilder<MpLocalDate?>,
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
-                invoke(
+                nullable(
                     value = value?.toLocalDate(),
                     onChange = {
                         onChange(
@@ -445,6 +431,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpLocalDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDateTime>,
                 builder: SettingsBuilder<MpLocalDateTime>,
@@ -454,6 +441,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpLocalDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpLocalDateTime,
                 onChange: (MpLocalDateTime) -> Unit,
@@ -468,16 +456,18 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable MpLocalDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<MpLocalDateTime?>,
                 builder: SettingsBuilder<MpLocalDateTime?>,
             ): ComponentRef<GenericFormField<MpLocalDateTime?>> =
-                invoke(prop(), prop::set, builder)
+                nullable(prop(), prop::set, builder)
 
             /**
              * Renders the field for a nullable MpLocalDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: MpLocalDateTime?,
                 onChange: (MpLocalDateTime?) -> Unit,
                 builder: SettingsBuilder<MpLocalDateTime?>,
@@ -491,6 +481,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
                 builder: SettingsBuilder<MpZonedDateTime>,
@@ -500,6 +491,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpZonedDateTime,
                 onChange: (MpZonedDateTime) -> Unit,
@@ -510,6 +502,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
                 timezone: MpTimezone,
@@ -520,6 +513,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for an MpZonedDateTime
              */
+            @KraftFormsDsl
             operator fun invoke(
                 value: MpZonedDateTime,
                 timezone: MpTimezone,
@@ -540,17 +534,19 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             /**
              * Renders the field for a nullable MpZonedDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 prop: KMutableProperty0<MpZonedDateTime?>,
                 timezone: MpTimezone,
                 builder: SettingsBuilder<MpZonedDateTime?>,
             ): ComponentRef<GenericFormField<MpZonedDateTime?>> =
-                invoke(prop(), timezone, prop::set, builder)
+                nullable(prop(), timezone, prop::set, builder)
 
             /**
              * Renders the field for a nullable MpZonedDateTime
              */
-            operator fun invoke(
+            @KraftFormsDsl
+            fun nullable(
                 value: MpZonedDateTime?,
                 timezone: MpTimezone,
                 onChange: (MpZonedDateTime?) -> Unit,
@@ -567,14 +563,40 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
         }
+
+        interface ForTimes : RendererAware {
+            @KraftFormsDsl
+            operator fun invoke(
+                value: MpLocalTime,
+                onChange: (MpLocalTime) -> Unit,
+                builder: SettingsBuilder<MpLocalTime>,
+            ) = def.run {
+                tag.render(value, onChange, ::timeToHms, ::stringToLocalTime) {
+                    input.asTimeInput()
+                    builder()
+                }
+            }
+
+            @KraftFormsDsl
+            fun nullable(
+                value: MpLocalTime?,
+                onChange: (MpLocalTime?) -> Unit,
+                builder: SettingsBuilder<MpLocalTime?>,
+            ) = def.run {
+                tag.render(value, onChange, ::timeToHms, ::stringToLocalTime) {
+                    input.asTimeInput()
+                    builder()
+                }
+            }
+        }
     }
 
     interface Definition {
         fun <T> Tag.render(
             value: T,
             onChange: (T) -> Unit,
-            toStr: (T) -> String,
-            fromStr: (String) -> T,
+            toStr: (T) -> String = { "" },
+            fromStr: (String) -> T = { value },
             settings: Settings<T>.() -> Unit,
         ): ComponentRef<GenericFormField<T>> {
             return comp(

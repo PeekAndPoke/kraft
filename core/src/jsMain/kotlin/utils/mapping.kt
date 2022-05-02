@@ -2,6 +2,7 @@ package de.peekandpoke.kraft.utils
 
 import de.peekandpoke.ultra.common.datetime.MpLocalDate
 import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
+import de.peekandpoke.ultra.common.datetime.MpLocalTime
 import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 
 fun <T> identity(it: T): T = it
@@ -26,6 +27,10 @@ fun dateTimeToYmdHms(it: MpLocalDateTime?): String = it?.atUTC()?.format("yyyy-M
 
 fun dateTimeToYmdHms(it: MpZonedDateTime?): String = it?.format("yyyy-MM-ddTHH:mm:ss") ?: ""
 
+fun timeToHms(it: MpLocalTime?): String = it?.format("HH:mm:ss") ?: ""
+
 fun stringToLocalDateTime(it: String): MpLocalDateTime = MpLocalDateTime.parse(it)
 
 fun stringToZonedDateTime(it: String): MpZonedDateTime = MpZonedDateTime.parse(it)
+
+fun stringToLocalTime(it: String): MpLocalTime = MpLocalTime.parse(it)

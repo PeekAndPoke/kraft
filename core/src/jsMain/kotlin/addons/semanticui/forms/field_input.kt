@@ -17,6 +17,9 @@ val Tag.UiDateField get() = UiInputFieldDef.DateRenderer(this)
 @KraftFormsDsl
 val Tag.UiDateTimeField get() = UiInputFieldDef.DateTimeRenderer(this)
 
+@KraftFormsDsl
+val Tag.UiTimeField get() = UiInputFieldDef.TimeRenderer(this)
+
 /**
  * Semantic ui input field definition
  */
@@ -33,6 +36,10 @@ object UiInputFieldDef : GenericFormField.Definition {
     class DateTimeRenderer(tag: Tag) : GenericFormField.Renderer(tag, UiInputFieldDef),
         GenericFormField.Renderer.ForStrings,
         GenericFormField.Renderer.ForDateTimes
+
+    class TimeRenderer(tag: Tag) : GenericFormField.Renderer(tag, UiInputFieldDef),
+        GenericFormField.Renderer.ForStrings,
+        GenericFormField.Renderer.ForTimes
 
     override fun <T> GenericFormField<T>.content(vdom: VDom) {
         with(vdom) {

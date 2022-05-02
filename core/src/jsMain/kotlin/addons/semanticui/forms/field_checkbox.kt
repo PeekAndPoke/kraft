@@ -31,7 +31,7 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
             onChange: (Boolean) -> Unit,
             builder: SettingsBuilder<Boolean>,
         ): ComponentRef<GenericFormField<Boolean>> = def.run {
-            tag.render(value, onChange, { "" }, { false }) {
+            tag.render(value, onChange) {
                 semantic.checkbox.options(off = false, on = true)
                 builder()
             }
@@ -42,12 +42,13 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
          */
         operator fun <T> invoke(
             value: T,
-            options: Pair<T, T>,
+            on: T,
+            off: T,
             onChange: (T) -> Unit,
             builder: SettingsBuilder<T>,
         ): ComponentRef<GenericFormField<T>> = def.run {
-            tag.render(value, onChange, { "" }, { options.first }) {
-                semantic.checkbox.options(off = options.first, on = options.second)
+            tag.render(value, onChange) {
+                semantic.checkbox.options(off = off, on = on)
                 builder()
             }
         }
@@ -75,8 +76,6 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
                         }
 
                         renderLabel {
-
-                            console.log(currentValue, currentValue == onValue, currentValue == offValue)
 
                             when (currentValue) {
                                 onValue -> offValue

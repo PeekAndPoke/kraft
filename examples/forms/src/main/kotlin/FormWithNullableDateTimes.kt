@@ -12,7 +12,7 @@ import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
 import de.peekandpoke.ultra.common.datetime.MpTimezone
 import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.*
+import kotlinx.html.Tag
 
 
 @Suppress("FunctionName")
@@ -32,11 +32,6 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
     private var state by value(State())
     private var draft by value(state)
 
-    private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
-
-    private val modifyLocalDateTime = modify<MpLocalDateTime?> { copy(localDateTime = it) }
-    private val modifyZonedDateTime = modify<MpZonedDateTime?> { copy(zonedDateTime = it) }
-
     private val formCtrl = formController()
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,12 +42,14 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiDateTimeField(state.localDateTime, modifyLocalDateTime) {
+                        UiDateTimeField.nullable(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
                             label { +State::localDateTime.name }
                             accepts(nonNull())
                         }
 
-                        UiDateTimeField(state.zonedDateTime, MpTimezone.of("Europe/Berlin"), modifyZonedDateTime) {
+                        val tz = MpTimezone.of("Europe/Berlin")
+
+                        UiDateTimeField.nullable(draft.zonedDateTime, tz, { draft = draft.copy(zonedDateTime = it) }) {
                             label { +State::zonedDateTime.name }
                             accepts(nonNull())
                         }

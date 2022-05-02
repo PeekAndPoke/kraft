@@ -1,7 +1,6 @@
 package de.peekandpoke.kraft.examples.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.forms.validation.equalTo
 import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckboxField
 import de.peekandpoke.kraft.addons.semanticui.forms.semantic
 import de.peekandpoke.kraft.components.NoProps
@@ -10,7 +9,7 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.*
+import kotlinx.html.Tag
 
 @Suppress("FunctionName")
 fun Tag.FormWithCheckboxes() = comp {
@@ -32,12 +31,6 @@ class FormWithCheckboxes(ctx: NoProps) : PureComponent(ctx) {
     private var state by value(State())
     private var draft by value(state)
 
-    private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
-
-    private val modifyBoolean = modify<Boolean> { copy(boolean = it) }
-    private val modifyString = modify<String> { copy(string = it) }
-    private val modifyObj = modify<Obj> { copy(obj = it) }
-
     private val formCtrl = formController()
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,17 +41,26 @@ class FormWithCheckboxes(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiCheckboxField(state.boolean, modifyBoolean) {
+                        UiCheckboxField(draft.boolean, { draft = draft.copy(boolean = it) }) {
                             label { +State::boolean.name }
-                            accepts(equalTo(true, "Please check"))
                         }
 
-                        UiCheckboxField(state.string, "no" to "yes", modifyString) {
+                        UiCheckboxField(
+                            value = draft.string,
+                            off = "no",
+                            on = "yes",
+                            onChange = { draft = draft.copy(string = it) },
+                        ) {
                             label { +State::string.name }
                             semantic.checkbox.toggle()
                         }
 
-                        UiCheckboxField(state.obj, Obj("no") to Obj("yes"), modifyObj) {
+                        UiCheckboxField(
+                            value = draft.obj,
+                            off = Obj("no"),
+                            on = Obj("yes"),
+                            onChange = { draft = draft.copy(obj = it) },
+                        ) {
                             label { +State::obj.name }
                             semantic.checkbox.slider()
                         }

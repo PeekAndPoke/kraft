@@ -11,7 +11,8 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.*
+import kotlinx.html.FlowContent
+import kotlinx.html.Tag
 
 @Suppress("FunctionName")
 fun Tag.FormWithPrimitives() = comp {
@@ -27,19 +28,10 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
         val intInput: Int = 0,
         val floatInput: Float = 0.0f,
         val doubleInput: Double = 0.0,
-        val numberInput: Number = 0,
     )
 
     private var state by value(State())
     private var draft by value(state)
-
-    private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
-
-    private val modifyString = modify<String> { copy(textInput = it) }
-    private val modifyInt = modify<Int> { copy(intInput = it) }
-    private val modifyFloat = modify<Float> { copy(floatInput = it) }
-    private val modifyDouble = modify<Double> { copy(doubleInput = it) }
-    private val modifyNumber = modify<Number> { copy(numberInput = it) }
 
     private val formCtrl = formController()
 
@@ -50,16 +42,15 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    ui.three.fields {
-
-                        UiInputField(state.textInput, modifyString) {
+                    ui.two.fields {
+                        UiInputField(draft.textInput, { draft = draft.copy(textInput = it) }) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
 
                             accepts(notBlank())
                         }
 
-                        UiInputField(state.intInput, modifyInt) {
+                        UiInputField(draft.intInput, { draft = draft.copy(intInput = it) }) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
                             input.step(3)
@@ -69,8 +60,10 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                                 lessThan(20.0)
                             )
                         }
+                    }
 
-                        UiInputField(state.floatInput, modifyFloat) {
+                    ui.two.fields {
+                        UiInputField(draft.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
 
@@ -79,26 +72,14 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                                 lessThan(20.0)
                             )
                         }
-                    }
 
-                    ui.three.fields {
-                        UiInputField(state.doubleInput, modifyDouble) {
+                        UiInputField(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             input.step(0.5)
 
                             accepts(
                                 greaterThan(3.0),
-                                lessThan(20.0)
-                            )
-                        }
-
-                        UiInputField(state.numberInput, modifyNumber) {
-                            label { +"Number Input" }
-                            placeholder("Enter a number")
-
-                            accepts(
-                                greaterThan(5.0),
                                 lessThan(20.0)
                             )
                         }
@@ -136,7 +117,6 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                 State::intInput { it.toString() },
                 State::floatInput { it.toString() },
                 State::doubleInput { it.toString() },
-                State::numberInput { it.toString() },
             )
         )
     }

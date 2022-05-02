@@ -10,7 +10,8 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.*
+import kotlinx.html.FlowContent
+import kotlinx.html.Tag
 
 
 @Suppress("FunctionName")
@@ -27,19 +28,10 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
         val intInput: Int? = null,
         val floatInput: Float? = null,
         val doubleInput: Double? = null,
-        val numberInput: Number? = null,
     )
 
     private var state by value(State())
     private var draft by value(state)
-
-    private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
-
-    private val modifyString = modify<String?> { copy(textInput = it) }
-    private val modifyInt = modify<Int?> { copy(intInput = it) }
-    private val modifyFloat = modify<Float?> { copy(floatInput = it) }
-    private val modifyDouble = modify<Double?> { copy(doubleInput = it) }
-    private val modifyNumber = modify<Number?> { copy(numberInput = it) }
 
     private val formCtrl = formController()
 
@@ -51,13 +43,12 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-
-                        UiInputField(state.textInput, modifyString) {
+                        UiInputField.nullable(draft.textInput, { draft = draft.copy(textInput = it) }) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
                         }
 
-                        UiInputField(state.intInput, modifyInt) {
+                        UiInputField.nullable(draft.intInput, { draft = draft.copy(intInput = it) }) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
                             input.step(3)
@@ -67,8 +58,10 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                                 lessThan(15.0)
                             )
                         }
+                    }
 
-                        UiInputField(state.floatInput, modifyFloat) {
+                    ui.two.fields {
+                        UiInputField.nullable(state.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
 
@@ -77,24 +70,12 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                                 lessThan(20.0)
                             )
                         }
-                    }
 
-                    ui.three.fields {
-                        UiInputField(state.doubleInput, modifyDouble) {
+                        UiInputField.nullable(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             input.step(0.5)
 
-                            accepts(
-                                greaterThan(3.0),
-                                lessThan(10.0)
-                            )
-                        }
-
-                        UiInputField(state.numberInput, modifyNumber) {
-                            label { +"Number Input" }
-                            placeholder("Enter a number")
-                            input.step(0.5)
                             accepts(
                                 greaterThan(3.0),
                                 lessThan(10.0)
@@ -134,7 +115,6 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                 State::intInput { it.toString() },
                 State::floatInput { it.toString() },
                 State::doubleInput { it.toString() },
-                State::numberInput { it.toString() },
             )
         )
     }

@@ -8,7 +8,8 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.*
+import kotlinx.html.FlowContent
+import kotlinx.html.Tag
 
 
 @Suppress("FunctionName")
@@ -27,10 +28,6 @@ class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
     private var state by value(State())
     private var draft by value(state)
 
-    private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
-
-    private val modifyInput = modify<String> { copy(input = it) }
-
     private val formCtrl = formController()
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +37,7 @@ class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    UiTextArea(state.input, modifyInput) {
+                    UiTextArea(draft.input, { draft = draft.copy(input = it) }) {
                         label { +"Text Input" }
                         placeholder("Enter some text")
                     }

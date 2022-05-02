@@ -51,6 +51,11 @@ fun main() {
                 ui.header H2 { +"A form with nullable DateTimes" }
                 FormWithNullableDateTimes()
             }
+
+            ui.segment {
+                ui.header H2 { +"A form with Times" }
+                FormWithTimes()
+            }
         }
     }
 }

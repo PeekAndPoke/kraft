@@ -101,6 +101,12 @@ class InputSettings<T> : SettingsBase<T>() {
     }
 
     @KraftFormsSettingDsl
+    fun asTimeInput() {
+        type(InputType.time)
+        formatValue("HH:mm:ss")
+    }
+
+    @KraftFormsSettingDsl
     fun type(type: InputType) = apply {
         this.type = type
     }
