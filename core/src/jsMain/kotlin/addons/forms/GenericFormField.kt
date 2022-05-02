@@ -599,20 +599,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fromStr: (String) -> T = { value },
             settings: Settings<T>.() -> Unit,
         ): ComponentRef<GenericFormField<T>> {
-            return comp(
-                Props(
-                    value = value,
-                    onChange = onChange,
-                    toStr = toStr,
-                    fromStr = fromStr,
-                    settings = Settings<T>().apply {
-                        settings()
-                    },
-                    render = { content(it) },
-                )
-            ) {
-                GenericFormField(it)
-            }
+
+            return GenericFormField(
+                value = value,
+                onChange = onChange,
+                toStr = toStr,
+                fromStr = fromStr,
+                settings = Settings<T>().apply {
+                    settings()
+                },
+                render = { content(it) },
+            )
         }
 
         fun <T> GenericFormField<T>.content(vdom: VDom)
