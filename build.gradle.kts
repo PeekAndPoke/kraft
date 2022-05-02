@@ -1,5 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
 plugins {
-    id("io.kotest.multiplatform") version Deps.Test.kotest_version apply false
+    idea
+    kotlin("jvm")
+
+    id("org.jetbrains.dokka") version Deps.dokkaVersion apply false
     id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion apply false
 }
 
@@ -17,3 +26,5 @@ allprojects {
         maven("https://jitpack.io")
     }
 }
+
+dependencies { }

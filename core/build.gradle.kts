@@ -5,7 +5,7 @@ import Deps.Test.jvmTestDeps
 
 plugins {
     kotlin("multiplatform")
-    id("io.kotest.multiplatform")
+    id("io.kotest.multiplatform") version Deps.Test.kotest_version
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
     id("org.jetbrains.dokka") version Deps.dokkaVersion
 }
@@ -96,3 +96,5 @@ kotlin {
 tasks {
     configureJvmTests()
 }
+
+apply(from = "./../maven.publish.gradle.kts")
