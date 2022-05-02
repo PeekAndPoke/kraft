@@ -1,9 +1,5 @@
 package de.peekandpoke.kraft.utils
 
-import kotlinx.browser.window
-import org.w3c.dom.Window
-
-
 /**
  * Helper class implementing a debouncing timer.
  *
@@ -36,21 +32,5 @@ class DebouncingTimer(private val delayMs: Int, private val delayFirstMs: Int = 
             timerId = null
             block()
         }
-    }
-
-    /**
-     * Helper function for a nicer use of [Window.setTimeout] returning an Int.
-     *
-     * @return The timer id
-     */
-    private fun setTimeout(timeMs: Int, block: () -> Unit): Int {
-        return window.setTimeout(block, timeMs)
-    }
-
-    /**
-     * Helper function for a nicer use of [Window.clearTimeout].
-     */
-    private fun clearTimeout(timerId: Int) {
-        window.clearTimeout(timerId)
     }
 }
