@@ -1,5 +1,5 @@
 plugins {
-    id("io.kotest.multiplatform") version Deps.Test.kotest_version
+    id("io.kotest.multiplatform") version Deps.Test.kotest_version apply false
     id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion apply false
 }
 
