@@ -49,7 +49,7 @@ object UiTextAreaDef : GenericFormField.Definition {
             }
 
             // Apply automatic vertical resize
-            if (settings.ui.verticalAutoResize) {
+            if (settings.semantic.textArea.verticalAutoResize) {
                 window.requestAnimationFrame {
                     launch {
                         delay(10) // NOTE: this is a bit hacky...

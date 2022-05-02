@@ -6,12 +6,12 @@ import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.MpLocalDate
-import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
+import de.peekandpoke.ultra.common.datetime.*
 import kotlinx.html.*
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.HTMLTextAreaElement
+import org.w3c.dom.events.MouseEvent
 import kotlin.reflect.KMutableProperty0
 
 @Suppress("FunctionName")
@@ -45,11 +45,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
     abstract class Renderer(override val tag: Tag, override val def: Definition) : RendererAware {
 
         interface ForStrings : RendererAware {
+            /**
+             * Renders the field for a String
+             */
             operator fun invoke(
                 prop: KMutableProperty0<String>,
                 builder: SettingsBuilder<String>,
             ): ComponentRef<GenericFormField<String>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a String
+             */
             operator fun invoke(
                 value: String,
                 onChange: (String) -> Unit,
@@ -58,11 +64,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 tag.render(value, onChange, ::stringToString, ::stringToString, builder)
             }
 
+            /**
+             * Renders the field for a nullable String
+             */
             operator fun invoke(
                 prop: KMutableProperty0<String?>,
                 builder: SettingsBuilder<String?>,
             ): ComponentRef<GenericFormField<String?>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a nullable String
+             */
             operator fun invoke(
                 value: String?,
                 onChange: (String?) -> Unit,
@@ -73,11 +85,18 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
         }
 
         interface ForNumbers : RendererAware {
+
+            /**
+             * Renders the field for an Int
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Int>,
                 builder: SettingsBuilder<Int>,
             ): ComponentRef<GenericFormField<Int>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for an Int
+             */
             operator fun invoke(
                 value: Int,
                 onChange: (Int) -> Unit,
@@ -89,11 +108,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a nullable Int
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Int?>,
                 builder: SettingsBuilder<Int?>,
             ): ComponentRef<GenericFormField<Int?>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a nullable Int
+             */
             operator fun invoke(
                 value: Int?,
                 onChange: (Int?) -> Unit,
@@ -105,11 +130,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a Float
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Float>,
                 builder: SettingsBuilder<Float>,
             ): ComponentRef<GenericFormField<Float>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a Float
+             */
             operator fun invoke(
                 value: Float,
                 onChange: (Float) -> Unit,
@@ -121,11 +152,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a nullable Float
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Float?>,
                 builder: SettingsBuilder<Float?>,
             ): ComponentRef<GenericFormField<Float?>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a nullable Float
+             */
             operator fun invoke(
                 value: Float?,
                 onChange: (Float?) -> Unit,
@@ -137,11 +174,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a Double
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Double>,
                 builder: SettingsBuilder<Double>,
             ): ComponentRef<GenericFormField<Double>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a Double
+             */
             operator fun invoke(
                 value: Double,
                 onChange: (Double) -> Unit,
@@ -153,11 +196,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a nullable Double
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Double?>,
                 builder: SettingsBuilder<Double?>,
             ): ComponentRef<GenericFormField<Double?>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a nullable Double
+             */
             operator fun invoke(
                 value: Double?,
                 onChange: (Double?) -> Unit,
@@ -169,11 +218,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a Number
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Number>,
                 builder: SettingsBuilder<Number>,
             ): ComponentRef<GenericFormField<Number>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a Number
+             */
             operator fun invoke(
                 value: Number,
                 onChange: (Number) -> Unit,
@@ -185,11 +240,17 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a nullable Number
+             */
             operator fun invoke(
                 prop: KMutableProperty0<Number?>,
                 builder: SettingsBuilder<Number?>,
             ): ComponentRef<GenericFormField<Number?>> = invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for a nullable Number
+             */
             operator fun invoke(
                 value: Number?,
                 onChange: (Number?) -> Unit,
@@ -203,12 +264,19 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
         }
 
         interface ForDates : RendererAware {
+
+            /**
+             * Renders the field for an MpLocalDate
+             */
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDate>,
                 builder: SettingsBuilder<MpLocalDate>,
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for an MpLocalDate
+             */
             operator fun invoke(
                 value: MpLocalDate,
                 onChange: (MpLocalDate) -> Unit,
@@ -220,6 +288,41 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 }
             }
 
+            /**
+             * Renders the field for a nullable MpLocalDate
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?>,
+            ): ComponentRef<GenericFormField<MpLocalDate?>> =
+                invoke(prop(), prop::set, builder)
+
+            /**
+             * Renders the field for a nullable MpLocalDate
+             */
+            operator fun invoke(
+                value: MpLocalDate?,
+                onChange: (MpLocalDate?) -> Unit,
+                builder: SettingsBuilder<MpLocalDate?>,
+            ): ComponentRef<GenericFormField<MpLocalDate?>> = def.run {
+                tag.render(value, onChange, ::dateToYmd, ::stringToDate) {
+                    input.asDateInput()
+                    builder()
+                }
+            }
+
+            /**
+             * Renders the field for an MpLocalDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpLocalDateTime>,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(prop(), prop::set, builder)
+
+            /**
+             * Renders the field for an MpLocalDateTime
+             */
             operator fun invoke(
                 value: MpLocalDateTime,
                 onChange: (MpLocalDateTime) -> Unit,
@@ -230,21 +333,235 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                     onChange = { onChange(it.atTime(value.toTime())) },
                     builder = builder
                 )
+
+            /**
+             * Renders the field for a nullable MpLocalDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpLocalDateTime?>,
+                builder: SettingsBuilder<MpLocalDate?>,
+            ): ComponentRef<GenericFormField<MpLocalDate?>> =
+                invoke(prop(), prop::set, builder)
+
+            /**
+             * Renders the field for a nullable MpLocalDateTime
+             */
+            operator fun invoke(
+                value: MpLocalDateTime?,
+                onChange: (MpLocalDateTime?) -> Unit,
+                builder: SettingsBuilder<MpLocalDate?>,
+            ): ComponentRef<GenericFormField<MpLocalDate?>> =
+                invoke(
+                    value = value?.toDate(),
+                    onChange = {
+                        onChange(
+                            it?.atTime(value?.toTime() ?: MpLocalTime.Min)
+                        )
+                    },
+                    builder = builder
+                )
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpZonedDateTime>,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(prop(), prop::set, builder)
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                value: MpZonedDateTime,
+                onChange: (MpZonedDateTime) -> Unit,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(
+                    value = value,
+                    timezone = value.timezone,
+                    onChange = onChange,
+                    builder = builder
+                )
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpZonedDateTime>,
+                timezone: MpTimezone,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(prop(), timezone, prop::set, builder)
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                value: MpZonedDateTime,
+                timezone: MpTimezone,
+                onChange: (MpZonedDateTime) -> Unit,
+                builder: SettingsBuilder<MpLocalDate>,
+            ): ComponentRef<GenericFormField<MpLocalDate>> =
+                invoke(
+                    value = value.toLocalDate(),
+                    onChange = { onChange(it.atStartOfDay(timezone).atTime(value.toLocalTime())) },
+                    builder = builder
+                )
+
+            /**
+             * Renders the field for a nullable MpZonedDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpZonedDateTime?>,
+                timezone: MpTimezone,
+                builder: SettingsBuilder<MpLocalDate?>,
+            ): ComponentRef<GenericFormField<MpLocalDate?>> =
+                invoke(prop(), timezone, prop::set, builder)
+
+            /**
+             * Renders the field for a nullable MpZonedDateTime
+             */
+            operator fun invoke(
+                value: MpZonedDateTime?,
+                timezone: MpTimezone,
+                onChange: (MpZonedDateTime?) -> Unit,
+                builder: SettingsBuilder<MpLocalDate?>,
+            ): ComponentRef<GenericFormField<MpLocalDate?>> =
+                invoke(
+                    value = value?.toLocalDate(),
+                    onChange = {
+                        onChange(
+                            it?.atStartOfDay(timezone)?.atTime(value?.toLocalTime() ?: MpLocalTime.Min)
+                        )
+                    },
+                    builder = builder
+                )
         }
 
         interface ForDateTimes : RendererAware {
+
+            /**
+             * Renders the field for an MpLocalDateTime
+             */
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDateTime>,
                 builder: SettingsBuilder<MpLocalDateTime>,
             ): ComponentRef<GenericFormField<MpLocalDateTime>> =
                 invoke(prop(), prop::set, builder)
 
+            /**
+             * Renders the field for an MpLocalDateTime
+             */
             operator fun invoke(
                 value: MpLocalDateTime,
                 onChange: (MpLocalDateTime) -> Unit,
                 builder: SettingsBuilder<MpLocalDateTime>,
             ): ComponentRef<GenericFormField<MpLocalDateTime>> = def.run {
-                tag.render(value, onChange, ::dateTimeToYmdHms, ::stringToDateTime) {
+                tag.render(value, onChange, ::dateTimeToYmdHms, ::stringToLocalDateTime) {
+                    input.asDateTimeInput()
+                    builder()
+                }
+            }
+
+            /**
+             * Renders the field for a nullable MpLocalDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpLocalDateTime?>,
+                builder: SettingsBuilder<MpLocalDateTime?>,
+            ): ComponentRef<GenericFormField<MpLocalDateTime?>> =
+                invoke(prop(), prop::set, builder)
+
+            /**
+             * Renders the field for a nullable MpLocalDateTime
+             */
+            operator fun invoke(
+                value: MpLocalDateTime?,
+                onChange: (MpLocalDateTime?) -> Unit,
+                builder: SettingsBuilder<MpLocalDateTime?>,
+            ): ComponentRef<GenericFormField<MpLocalDateTime?>> = def.run {
+                tag.render(value, onChange, ::dateTimeToYmdHms, ::stringToLocalDateTime) {
+                    input.asDateTimeInput()
+                    builder()
+                }
+            }
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpZonedDateTime>,
+                builder: SettingsBuilder<MpZonedDateTime>,
+            ): ComponentRef<GenericFormField<MpZonedDateTime>> =
+                invoke(prop(), prop::set, builder)
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                value: MpZonedDateTime,
+                onChange: (MpZonedDateTime) -> Unit,
+                builder: SettingsBuilder<MpZonedDateTime>,
+            ): ComponentRef<GenericFormField<MpZonedDateTime>> =
+                invoke(value, value.timezone, onChange, builder)
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpZonedDateTime>,
+                timezone: MpTimezone,
+                builder: SettingsBuilder<MpZonedDateTime>,
+            ): ComponentRef<GenericFormField<MpZonedDateTime>> =
+                invoke(prop(), timezone, prop::set, builder)
+
+            /**
+             * Renders the field for an MpZonedDateTime
+             */
+            operator fun invoke(
+                value: MpZonedDateTime,
+                timezone: MpTimezone,
+                onChange: (MpZonedDateTime) -> Unit,
+                builder: SettingsBuilder<MpZonedDateTime>,
+            ): ComponentRef<GenericFormField<MpZonedDateTime>> = def.run {
+                tag.render(
+                    value,
+                    onChange,
+                    ::dateTimeToYmdHms,
+                    { stringToZonedDateTime(it).copy(timezone = timezone) },
+                ) {
+                    input.asDateTimeInput()
+                    builder()
+                }
+            }
+
+            /**
+             * Renders the field for a nullable MpZonedDateTime
+             */
+            operator fun invoke(
+                prop: KMutableProperty0<MpZonedDateTime?>,
+                timezone: MpTimezone,
+                builder: SettingsBuilder<MpZonedDateTime?>,
+            ): ComponentRef<GenericFormField<MpZonedDateTime?>> =
+                invoke(prop(), timezone, prop::set, builder)
+
+            /**
+             * Renders the field for a nullable MpZonedDateTime
+             */
+            operator fun invoke(
+                value: MpZonedDateTime?,
+                timezone: MpTimezone,
+                onChange: (MpZonedDateTime?) -> Unit,
+                builder: SettingsBuilder<MpZonedDateTime?>,
+            ): ComponentRef<GenericFormField<MpZonedDateTime?>> = def.run {
+                tag.render(
+                    value,
+                    onChange,
+                    ::dateTimeToYmdHms,
+                    { stringToZonedDateTime(it).copy(timezone = timezone) },
+                ) {
                     input.asDateTimeInput()
                     builder()
                 }
@@ -377,19 +694,25 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
     // Label Helpers
 
     fun FlowContent.renderLabel(focusCssSelector: String? = null) {
+
+        renderLabel(
+            onClick = focusCssSelector?.let { sel ->
+                { focus(sel) }
+            }
+        )
+    }
+
+    fun FlowContent.renderLabel(onClick: ((evt: MouseEvent) -> Unit)? = null) {
         settings.label?.let { l ->
             label {
                 l()
-                focusCssSelector?.let { selector ->
-                    focusOnClick(selector)
+
+                onClick?.let { on ->
+                    onClick { evt ->
+                        on(evt)
+                    }
                 }
             }
-        }
-    }
-
-    fun LABEL.focusOnClick(cssSelector: String) {
-        onClick {
-            focus(cssSelector)
         }
     }
 

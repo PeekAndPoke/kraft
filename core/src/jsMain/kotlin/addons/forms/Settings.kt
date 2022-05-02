@@ -10,22 +10,37 @@ import kotlinx.html.LABEL
 
 typealias SettingsBuilder<T> = Settings<T>.() -> Unit
 
-open class Settings<T> {
-    companion object {
-        private val RulesKey = TypedKey<MutableList<Rule<*>>>("rules")
-        private val LabelKey = TypedKey<RenderFunc<LABEL>>("label")
-        private val PlaceholderKey = TypedKey<String>("placeholder")
-        private val InputSettingsKey = TypedKey<InputSettings>("input")
+abstract class SettingsBase<T> {
+    private val attributes: MutableTypedAttributes = MutableTypedAttributes.empty()
+
+    fun <X> set(key: TypedKey<X>, value: X) {
+        attributes[key] = value
     }
 
-    val attributes: MutableTypedAttributes = MutableTypedAttributes.empty()
+    fun <X> get(key: TypedKey<X>): X? {
+        return attributes[key]
+    }
+
+    fun <X> getOrPut(key: TypedKey<X>, produce: () -> X): X {
+        return attributes.getOrPut(key, produce)
+    }
+}
+
+open class Settings<T> : SettingsBase<T>() {
+    companion object {
+        private val InputSettingsKey = TypedKey<InputSettings<*>>("input")
+    }
 
     @KraftFormsSettingDsl
-    val rules: MutableList<Rule<T>>
-        get() {
-            @Suppress("UNCHECKED_CAST")
-            return attributes.getOrPut(RulesKey) { mutableListOf() } as MutableList<Rule<T>>
-        }
+    val rules: MutableList<Rule<T>> = mutableListOf()
+
+    @KraftFormsSettingDsl
+    var label: RenderFunc<LABEL>? = null
+        private set
+
+    @KraftFormsSettingDsl
+    var placeholder: String? = null
+        private set
 
     /** Adds a validation rule */
     @KraftFormsSettingDsl
@@ -34,38 +49,44 @@ open class Settings<T> {
     }
 
     @KraftFormsSettingDsl
-    val label get() = attributes[LabelKey]
-
-    @KraftFormsSettingDsl
     fun label(render: RenderFunc<LABEL>) = apply {
-        attributes[LabelKey] = render
+        label = render
     }
 
     @KraftFormsSettingDsl
-    fun label(label: String) = apply {
-        attributes[LabelKey] = { +label }
-    }
-
-    @KraftFormsSettingDsl
-    val placeholder get() = attributes[PlaceholderKey]
+    fun label(label: String) = label { +label }
 
     @KraftFormsSettingDsl
     fun placeholder(placeholder: String) = apply {
-        attributes[PlaceholderKey] = placeholder
+        this.placeholder = placeholder
     }
 
     @KraftFormsSettingDsl
-    val input get(): InputSettings = attributes.getOrPut(InputSettingsKey) { InputSettings() }
+    val input
+        get(): InputSettings<T> {
+            @Suppress("UNCHECKED_CAST")
+            return getOrPut(InputSettingsKey) { InputSettings<T>() } as InputSettings<T>
+        }
 }
 
-class InputSettings {
+class InputSettings<T> : SettingsBase<T>() {
     companion object {
         private val typeKey = TypedKey<InputType>("type")
         private val stepKey = TypedKey<Number>("step")
         private val formatValueKey = TypedKey<String>("format-value")
     }
 
-    val attributes = MutableTypedAttributes.empty()
+    @KraftFormsSettingDsl
+    var type: InputType? = null
+        private set
+
+    @KraftFormsSettingDsl
+    var step: Number? = null
+        private set
+
+    @KraftFormsSettingDsl
+    var formatValue: String? = null
+        private set
 
     @KraftFormsSettingDsl
     fun asDateInput() {
@@ -75,31 +96,22 @@ class InputSettings {
 
     @KraftFormsSettingDsl
     fun asDateTimeInput() {
-        type(InputType.dateTime)
+        type(InputType.dateTimeLocal)
         formatValue("yyyy-MM-ddTHH:mm:ss")
     }
 
     @KraftFormsSettingDsl
-    val type get() = attributes[typeKey]
-
-    @KraftFormsSettingDsl
     fun type(type: InputType) = apply {
-        attributes[typeKey] = type
+        this.type = type
     }
-
-    @KraftFormsSettingDsl
-    val step get() = attributes[stepKey]
 
     @KraftFormsSettingDsl
     fun step(step: Number) = apply {
-        attributes[stepKey] = step
+        this.step = step
     }
 
     @KraftFormsSettingDsl
-    val formatValue get() = attributes[formatValueKey]
-
-    @KraftFormsSettingDsl
     fun formatValue(formatValue: String) = apply {
-        attributes[formatValueKey] = formatValue
+        this.formatValue = formatValue
     }
 }

@@ -15,7 +15,7 @@ val Tag.UiInputField get() = UiInputFieldDef.InputRenderer(this)
 val Tag.UiDateField get() = UiInputFieldDef.DateRenderer(this)
 
 @KraftFormsDsl
-val Tag.UiDateTimeField get() = UiInputFieldDef.DateRenderer(this)
+val Tag.UiDateTimeField get() = UiInputFieldDef.DateTimeRenderer(this)
 
 /**
  * Semantic ui input field definition
@@ -37,7 +37,7 @@ object UiInputFieldDef : GenericFormField.Definition {
     override fun <T> GenericFormField<T>.content(vdom: VDom) {
         with(vdom) {
 
-            val appear: SemanticFn = settings.ui.appear
+            val appear: SemanticFn = settings.semantic.appear
 
             ui.appear().given(hasErrors) { error }.field {
 

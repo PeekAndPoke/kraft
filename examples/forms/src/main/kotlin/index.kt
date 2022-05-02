@@ -9,7 +9,7 @@ fun main() {
     val mountPoint = document.getElementById("spa") as HTMLElement
 
     PreactVDomEngine(mountPoint) {
-        ui.container {
+        ui.basic.padded.segment {
             ui.dividing.header H1 { +"KRAFT Forms demo" }
 
             ui.segment {
@@ -23,13 +23,33 @@ fun main() {
             }
 
             ui.segment {
+                ui.header H2 { +"A form with checkboxes" }
+                FormWithCheckboxes()
+            }
+
+            ui.segment {
                 ui.header H2 { +"A form with a text area" }
                 FormWithTestArea()
             }
 
             ui.segment {
-                ui.header H2 { +"A form with dates and times" }
+                ui.header H2 { +"A form with Dates " }
                 FormWithDates()
+            }
+
+            ui.segment {
+                ui.header H2 { +"A form with nullable Dates" }
+                FormWithDates()
+            }
+
+            ui.segment {
+                ui.header H2 { +"A form with DateTimes" }
+                FormWithDateTimes()
+            }
+
+            ui.segment {
+                ui.header H2 { +"A form with nullable DateTimes" }
+                FormWithNullableDateTimes()
             }
         }
     }

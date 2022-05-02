@@ -8,14 +8,14 @@ import kotlin.reflect.KProperty1
 
 data class PropRenderer<T, V>(
     val prop: KProperty1<T, V>,
-    val toStr: (V) -> String,
+    val toStr: (V) -> String?,
 ) {
     fun render(obj: T): String? {
         return prop.get(obj)?.let { toStr(it) }
     }
 }
 
-operator fun <T, V> KProperty1<T, V>.invoke(toStr: (V) -> String) = PropRenderer(this, toStr)
+operator fun <T, V> KProperty1<T, V>.invoke(toStr: (V) -> String?) = PropRenderer(this, toStr)
 
 fun <T> FlowContent.renderStateAndDraftTable(
     state: T,

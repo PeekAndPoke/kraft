@@ -1,30 +1,34 @@
 package de.peekandpoke.kraft.examples.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.semanticui.forms.UiDateField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiDateTimeField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.*
+import de.peekandpoke.ultra.common.datetime.Kronos
+import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
+import de.peekandpoke.ultra.common.datetime.MpTimezone
+import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.*
 
 
 @Suppress("FunctionName")
-fun Tag.FormWithDates() = comp {
-    FormWithDates(it)
+fun Tag.FormWithDateTimes() = comp {
+    FormWithDateTimes(it)
 }
 
-class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
+class FormWithDateTimes(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val localDate: MpLocalDate = Kronos.systemUtc.localDateTimeNow().toDate(),
-        val localDateTime: MpLocalDateTime = Kronos.systemUtc.localDateTimeNow(),
-        val zonedDateTime: MpZonedDateTime = Kronos.systemUtc.zonedDateTimeNow(MpTimezone.of("Europe/Berlin")),
+        val localDateTime: MpLocalDateTime =
+            Kronos.systemUtc.localDateTimeNow(),
+        val zonedDateTime: MpZonedDateTime =
+            Kronos.systemUtc.zonedDateTimeNow(MpTimezone.of("Europe/Berlin")).atStartOfHour(),
     )
 
     private var state by value(State())
@@ -32,7 +36,6 @@ class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
 
     private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
 
-    private val modifyLocalDate = modify<MpLocalDate> { copy(localDate = it) }
     private val modifyLocalDateTime = modify<MpLocalDateTime> { copy(localDateTime = it) }
     private val modifyZonedDateTime = modify<MpZonedDateTime> { copy(zonedDateTime = it) }
 
@@ -46,15 +49,11 @@ class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiDateField(state.localDate, modifyLocalDate) {
-                            label { +State::localDate.name }
-                        }
-
-                        UiDateField(state.localDateTime, modifyLocalDateTime) {
+                        UiDateTimeField(state.localDateTime, modifyLocalDateTime) {
                             label { +State::localDateTime.name }
                         }
 
-                        UiDateField(state.zonedDateTime, modifyZonedDateTime) {
+                        UiDateTimeField(state.zonedDateTime, modifyZonedDateTime) {
                             label { +State::zonedDateTime.name }
                         }
                     }
@@ -80,7 +79,6 @@ class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
                     state,
                     draft,
                     listOf(
-                        State::localDate { it.toIsoString() },
                         State::localDateTime { it.toIsoString() },
                         State::zonedDateTime { it.toIsoString() },
                     )

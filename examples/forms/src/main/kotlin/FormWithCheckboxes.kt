@@ -1,30 +1,32 @@
 package de.peekandpoke.kraft.examples.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.semanticui.forms.UiDateField
+import de.peekandpoke.kraft.addons.forms.validation.equalTo
+import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckboxField
+import de.peekandpoke.kraft.addons.semanticui.forms.semantic
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.*
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.*
 
-
 @Suppress("FunctionName")
-fun Tag.FormWithDates() = comp {
-    FormWithDates(it)
+fun Tag.FormWithCheckboxes() = comp {
+    FormWithCheckboxes(it)
 }
 
-class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
+class FormWithCheckboxes(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
+    data class Obj(val x: String)
+
     data class State(
-        val localDate: MpLocalDate = Kronos.systemUtc.localDateTimeNow().toDate(),
-        val localDateTime: MpLocalDateTime = Kronos.systemUtc.localDateTimeNow(),
-        val zonedDateTime: MpZonedDateTime = Kronos.systemUtc.zonedDateTimeNow(MpTimezone.of("Europe/Berlin")),
+        val boolean: Boolean = false,
+        val string: String = "yes",
+        val obj: Obj = Obj("yes"),
     )
 
     private var state by value(State())
@@ -32,9 +34,9 @@ class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
 
     private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
 
-    private val modifyLocalDate = modify<MpLocalDate> { copy(localDate = it) }
-    private val modifyLocalDateTime = modify<MpLocalDateTime> { copy(localDateTime = it) }
-    private val modifyZonedDateTime = modify<MpZonedDateTime> { copy(zonedDateTime = it) }
+    private val modifyBoolean = modify<Boolean> { copy(boolean = it) }
+    private val modifyString = modify<String> { copy(string = it) }
+    private val modifyObj = modify<Obj> { copy(obj = it) }
 
     private val formCtrl = formController()
 
@@ -46,16 +48,19 @@ class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiDateField(state.localDate, modifyLocalDate) {
-                            label { +State::localDate.name }
+                        UiCheckboxField(state.boolean, modifyBoolean) {
+                            label { +State::boolean.name }
+                            accepts(equalTo(true, "Please check"))
                         }
 
-                        UiDateField(state.localDateTime, modifyLocalDateTime) {
-                            label { +State::localDateTime.name }
+                        UiCheckboxField(state.string, "no" to "yes", modifyString) {
+                            label { +State::string.name }
+                            semantic.checkbox.toggle()
                         }
 
-                        UiDateField(state.zonedDateTime, modifyZonedDateTime) {
-                            label { +State::zonedDateTime.name }
+                        UiCheckboxField(state.obj, Obj("no") to Obj("yes"), modifyObj) {
+                            label { +State::obj.name }
+                            semantic.checkbox.slider()
                         }
                     }
                 }
@@ -80,9 +85,9 @@ class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
                     state,
                     draft,
                     listOf(
-                        State::localDate { it.toIsoString() },
-                        State::localDateTime { it.toIsoString() },
-                        State::zonedDateTime { it.toIsoString() },
+                        State::boolean { it.toString() },
+                        State::string { it },
+                        State::obj { it.toString() },
                     )
                 )
             }
