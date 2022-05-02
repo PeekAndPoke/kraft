@@ -33,6 +33,11 @@ fun main() {
             }
 
             ui.segment {
+                ui.header H2 { +"A form with passwords" }
+                FormWithPasswords()
+            }
+
+            ui.segment {
                 ui.header H2 { +"A form with Dates " }
                 FormWithDates()
             }

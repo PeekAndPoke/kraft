@@ -12,6 +12,7 @@ import kotlinx.html.Tag
 import kotlinx.html.div
 import kotlinx.html.input
 import org.w3c.dom.HTMLInputElement
+import kotlin.reflect.KMutableProperty0
 
 @KraftFormsDsl
 val Tag.UiCheckboxField get() = UiCheckboxFieldDef.InputRenderer(this)
@@ -24,7 +25,15 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
     class InputRenderer(tag: Tag) : GenericFormField.Renderer(tag, UiCheckboxFieldDef) {
 
         /**
-         * Renders the field for an Int
+         * Renders the field for a Boolean
+         */
+        operator fun invoke(
+            prop: KMutableProperty0<Boolean>,
+            builder: SettingsBuilder<Boolean>,
+        ) = invoke(prop(), prop::set, builder)
+
+        /**
+         * Renders the field for a Boolean
          */
         operator fun invoke(
             value: Boolean,
@@ -38,7 +47,7 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
         }
 
         /**
-         * Renders the field for an Int
+         * Renders the field for an the type [T]
          */
         operator fun <T> invoke(
             value: T,
