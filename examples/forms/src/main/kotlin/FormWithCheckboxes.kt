@@ -2,7 +2,6 @@ package de.peekandpoke.kraft.examples.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckboxField
-import de.peekandpoke.kraft.addons.semanticui.forms.semantic
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -52,7 +51,7 @@ class FormWithCheckboxes(ctx: NoProps) : PureComponent(ctx) {
                             onChange = { draft = draft.copy(string = it) },
                         ) {
                             label { +State::string.name }
-                            semantic.checkbox.toggle()
+                            toggle()
                         }
 
                         UiCheckboxField(
@@ -62,7 +61,7 @@ class FormWithCheckboxes(ctx: NoProps) : PureComponent(ctx) {
                             onChange = { draft = draft.copy(obj = it) },
                         ) {
                             label { +State::obj.name }
-                            semantic.checkbox.slider()
+                            slider()
                         }
                     }
                 }

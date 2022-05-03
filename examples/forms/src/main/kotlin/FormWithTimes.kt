@@ -62,7 +62,7 @@ class FormWithTimes(ctx: NoProps) : PureComponent(ctx) {
                             value = draft.datetime.toTime(),
                             onChange = { modifyDateTime(draft.datetime.toDate().atTime(it)) }
                         ) {
-                            label { +"${State::datetime.name} - date" }
+                            label { +"${State::datetime.name} - time" }
                         }
 
 //                        UiDateField(state.zonedDateTime, modifyZonedDateTime) {

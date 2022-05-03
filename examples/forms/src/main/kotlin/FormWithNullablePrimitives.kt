@@ -42,7 +42,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    ui.three.fields {
+                    ui.two.fields {
                         UiInputField.nullable(draft.textInput, { draft = draft.copy(textInput = it) }) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
@@ -51,7 +51,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField.nullable(draft.intInput, { draft = draft.copy(intInput = it) }) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
-                            input.step(3)
+                            step(3)
 
                             accepts(
                                 greaterThan(6.0),
@@ -74,7 +74,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField.nullable(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
-                            input.step(0.5)
+                            step(0.5)
 
                             accepts(
                                 greaterThan(3.0),

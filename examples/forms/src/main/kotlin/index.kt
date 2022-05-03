@@ -44,7 +44,7 @@ fun main() {
 
             ui.segment {
                 ui.header H2 { +"A form with nullable Dates" }
-                FormWithDates()
+                FormWithNullableDates()
             }
 
             ui.segment {

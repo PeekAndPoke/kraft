@@ -41,7 +41,7 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    ui.three.fields {
+                    ui.two.fields {
                         UiDateTimeField.nullable(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
                             label { +State::localDateTime.name }
                             accepts(nonNull())
