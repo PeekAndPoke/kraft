@@ -27,18 +27,20 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
         /**
          * Renders the field for a Boolean
          */
+        @KraftFormsDsl
         operator fun invoke(
             prop: KMutableProperty0<Boolean>,
-            builder: SettingsBuilder<Boolean>,
+            builder: SettingsBuilder<Boolean> = {},
         ) = invoke(prop(), prop::set, builder)
 
         /**
          * Renders the field for a Boolean
          */
+        @KraftFormsDsl
         operator fun invoke(
             value: Boolean,
             onChange: (Boolean) -> Unit,
-            builder: SettingsBuilder<Boolean>,
+            builder: SettingsBuilder<Boolean> = {},
         ): ComponentRef<GenericFormField<Boolean>> = def.run {
             tag.render(value, onChange) {
                 semantic.checkbox.options(off = false, on = true)
@@ -49,12 +51,13 @@ object UiCheckboxFieldDef : GenericFormField.Definition {
         /**
          * Renders the field for an the type [T]
          */
+        @KraftFormsDsl
         operator fun <T> invoke(
             value: T,
             on: T,
             off: T,
             onChange: (T) -> Unit,
-            builder: SettingsBuilder<T>,
+            builder: SettingsBuilder<T> = {},
         ): ComponentRef<GenericFormField<T>> = def.run {
             tag.render(value, onChange) {
                 semantic.checkbox.options(off = off, on = on)

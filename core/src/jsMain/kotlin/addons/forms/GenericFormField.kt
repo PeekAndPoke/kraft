@@ -51,7 +51,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<String>,
-                builder: SettingsBuilder<String>,
+                builder: SettingsBuilder<String> = {},
             ): ComponentRef<GenericFormField<String>> = invoke(prop(), prop::set, builder)
 
             /**
@@ -61,7 +61,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: String,
                 onChange: (String) -> Unit,
-                builder: SettingsBuilder<String>,
+                builder: SettingsBuilder<String> = {},
             ): ComponentRef<GenericFormField<String>> = def.run {
                 tag.render(value, onChange, ::stringToString, ::stringToString, builder)
             }
@@ -72,7 +72,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<String?>,
-                builder: SettingsBuilder<String?>,
+                builder: SettingsBuilder<String?> = {},
             ): ComponentRef<GenericFormField<String?>> = nullable(prop(), prop::set, builder)
 
             /**
@@ -82,7 +82,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: String?,
                 onChange: (String?) -> Unit,
-                builder: SettingsBuilder<String?>,
+                builder: SettingsBuilder<String?> = {},
             ): ComponentRef<GenericFormField<String?>> = def.run {
                 tag.render(value, onChange, ::stringToString, ::stringToString, builder)
             }
@@ -96,7 +96,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<Int>,
-                builder: SettingsBuilder<Int>,
+                builder: SettingsBuilder<Int> = {},
             ): ComponentRef<GenericFormField<Int>> = invoke(prop(), prop::set, builder)
 
             /**
@@ -106,7 +106,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: Int,
                 onChange: (Int) -> Unit,
-                builder: SettingsBuilder<Int>,
+                builder: SettingsBuilder<Int> = {},
             ): ComponentRef<GenericFormField<Int>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToInt) {
                     input.type(InputType.number)
@@ -120,7 +120,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<Int?>,
-                builder: SettingsBuilder<Int?>,
+                builder: SettingsBuilder<Int?> = {},
             ): ComponentRef<GenericFormField<Int?>> = nullable(prop(), prop::set, builder)
 
             /**
@@ -130,7 +130,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: Int?,
                 onChange: (Int?) -> Unit,
-                builder: SettingsBuilder<Int?>,
+                builder: SettingsBuilder<Int?> = {},
             ): ComponentRef<GenericFormField<Int?>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToInt) {
                     input.type(InputType.number)
@@ -144,7 +144,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<Float>,
-                builder: SettingsBuilder<Float>,
+                builder: SettingsBuilder<Float> = {},
             ): ComponentRef<GenericFormField<Float>> = invoke(prop(), prop::set, builder)
 
             /**
@@ -154,7 +154,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: Float,
                 onChange: (Float) -> Unit,
-                builder: SettingsBuilder<Float>,
+                builder: SettingsBuilder<Float> = {},
             ): ComponentRef<GenericFormField<Float>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToFloat) {
                     input.type(InputType.number)
@@ -168,7 +168,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<Float?>,
-                builder: SettingsBuilder<Float?>,
+                builder: SettingsBuilder<Float?> = {},
             ): ComponentRef<GenericFormField<Float?>> = nullable(prop(), prop::set, builder)
 
             /**
@@ -178,7 +178,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: Float?,
                 onChange: (Float?) -> Unit,
-                builder: SettingsBuilder<Float?>,
+                builder: SettingsBuilder<Float?> = {},
             ): ComponentRef<GenericFormField<Float?>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToFloat) {
                     input.type(InputType.number)
@@ -192,7 +192,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<Double>,
-                builder: SettingsBuilder<Double>,
+                builder: SettingsBuilder<Double> = {},
             ): ComponentRef<GenericFormField<Double>> = invoke(prop(), prop::set, builder)
 
             /**
@@ -202,7 +202,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: Double,
                 onChange: (Double) -> Unit,
-                builder: SettingsBuilder<Double>,
+                builder: SettingsBuilder<Double> = {},
             ): ComponentRef<GenericFormField<Double>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToDouble) {
                     input.type(InputType.number)
@@ -216,7 +216,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<Double?>,
-                builder: SettingsBuilder<Double?>,
+                builder: SettingsBuilder<Double?> = {},
             ): ComponentRef<GenericFormField<Double?>> = nullable(prop(), prop::set, builder)
 
             /**
@@ -226,7 +226,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: Double?,
                 onChange: (Double?) -> Unit,
-                builder: SettingsBuilder<Double?>,
+                builder: SettingsBuilder<Double?> = {},
             ): ComponentRef<GenericFormField<Double?>> = def.run {
                 tag.render(value, onChange, ::numberToString, ::stringToDouble) {
                     input.type(InputType.number)
@@ -243,7 +243,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDate>,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(prop(), prop::set, builder)
 
@@ -254,7 +254,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: MpLocalDate,
                 onChange: (MpLocalDate) -> Unit,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> = def.run {
                 tag.render(value, onChange, ::dateToYmd, ::stringToDate) {
                     input.asDateInput()
@@ -268,7 +268,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<MpLocalDate?>,
-                builder: SettingsBuilder<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?> = {},
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
                 nullable(prop(), prop::set, builder)
 
@@ -279,7 +279,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: MpLocalDate?,
                 onChange: (MpLocalDate?) -> Unit,
-                builder: SettingsBuilder<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?> = {},
             ): ComponentRef<GenericFormField<MpLocalDate?>> = def.run {
                 tag.render(value, onChange, ::dateToYmd, ::stringToDate) {
                     input.asDateInput()
@@ -293,7 +293,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDateTime>,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(prop(), prop::set, builder)
 
@@ -304,7 +304,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: MpLocalDateTime,
                 onChange: (MpLocalDateTime) -> Unit,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(
                     value = value.toDate(),
@@ -318,7 +318,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<MpLocalDateTime?>,
-                builder: SettingsBuilder<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?> = {},
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
                 nullable(prop(), prop::set, builder)
 
@@ -329,7 +329,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: MpLocalDateTime?,
                 onChange: (MpLocalDateTime?) -> Unit,
-                builder: SettingsBuilder<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?> = {},
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
                 nullable(
                     value = value?.toDate(),
@@ -347,7 +347,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(prop(), prop::set, builder)
 
@@ -358,7 +358,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: MpZonedDateTime,
                 onChange: (MpZonedDateTime) -> Unit,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(
                     value = value,
@@ -374,7 +374,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
                 timezone: MpTimezone,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(prop(), timezone, prop::set, builder)
 
@@ -386,7 +386,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 value: MpZonedDateTime,
                 timezone: MpTimezone,
                 onChange: (MpZonedDateTime) -> Unit,
-                builder: SettingsBuilder<MpLocalDate>,
+                builder: SettingsBuilder<MpLocalDate> = {},
             ): ComponentRef<GenericFormField<MpLocalDate>> =
                 invoke(
                     value = value.toLocalDate(),
@@ -401,7 +401,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 prop: KMutableProperty0<MpZonedDateTime?>,
                 timezone: MpTimezone,
-                builder: SettingsBuilder<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?> = {},
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
                 nullable(prop(), timezone, prop::set, builder)
 
@@ -413,7 +413,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 value: MpZonedDateTime?,
                 timezone: MpTimezone,
                 onChange: (MpZonedDateTime?) -> Unit,
-                builder: SettingsBuilder<MpLocalDate?>,
+                builder: SettingsBuilder<MpLocalDate?> = {},
             ): ComponentRef<GenericFormField<MpLocalDate?>> =
                 nullable(
                     value = value?.toLocalDate(),
@@ -434,7 +434,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpLocalDateTime>,
-                builder: SettingsBuilder<MpLocalDateTime>,
+                builder: SettingsBuilder<MpLocalDateTime> = {},
             ): ComponentRef<GenericFormField<MpLocalDateTime>> =
                 invoke(prop(), prop::set, builder)
 
@@ -445,7 +445,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: MpLocalDateTime,
                 onChange: (MpLocalDateTime) -> Unit,
-                builder: SettingsBuilder<MpLocalDateTime>,
+                builder: SettingsBuilder<MpLocalDateTime> = {},
             ): ComponentRef<GenericFormField<MpLocalDateTime>> = def.run {
                 tag.render(value, onChange, ::dateTimeToYmdHms, ::stringToLocalDateTime) {
                     input.asDateTimeInput()
@@ -459,7 +459,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             fun nullable(
                 prop: KMutableProperty0<MpLocalDateTime?>,
-                builder: SettingsBuilder<MpLocalDateTime?>,
+                builder: SettingsBuilder<MpLocalDateTime?> = {},
             ): ComponentRef<GenericFormField<MpLocalDateTime?>> =
                 nullable(prop(), prop::set, builder)
 
@@ -470,7 +470,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: MpLocalDateTime?,
                 onChange: (MpLocalDateTime?) -> Unit,
-                builder: SettingsBuilder<MpLocalDateTime?>,
+                builder: SettingsBuilder<MpLocalDateTime?> = {},
             ): ComponentRef<GenericFormField<MpLocalDateTime?>> = def.run {
                 tag.render(value, onChange, ::dateTimeToYmdHms, ::stringToLocalDateTime) {
                     input.asDateTimeInput()
@@ -484,7 +484,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             @KraftFormsDsl
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
-                builder: SettingsBuilder<MpZonedDateTime>,
+                builder: SettingsBuilder<MpZonedDateTime> = {},
             ): ComponentRef<GenericFormField<MpZonedDateTime>> =
                 invoke(prop(), prop::set, builder)
 
@@ -495,7 +495,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: MpZonedDateTime,
                 onChange: (MpZonedDateTime) -> Unit,
-                builder: SettingsBuilder<MpZonedDateTime>,
+                builder: SettingsBuilder<MpZonedDateTime> = {},
             ): ComponentRef<GenericFormField<MpZonedDateTime>> =
                 invoke(value, value.timezone, onChange, builder)
 
@@ -506,7 +506,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 prop: KMutableProperty0<MpZonedDateTime>,
                 timezone: MpTimezone,
-                builder: SettingsBuilder<MpZonedDateTime>,
+                builder: SettingsBuilder<MpZonedDateTime> = {},
             ): ComponentRef<GenericFormField<MpZonedDateTime>> =
                 invoke(prop(), timezone, prop::set, builder)
 
@@ -518,7 +518,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 value: MpZonedDateTime,
                 timezone: MpTimezone,
                 onChange: (MpZonedDateTime) -> Unit,
-                builder: SettingsBuilder<MpZonedDateTime>,
+                builder: SettingsBuilder<MpZonedDateTime> = {},
             ): ComponentRef<GenericFormField<MpZonedDateTime>> = def.run {
                 tag.render(
                     value,
@@ -538,7 +538,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 prop: KMutableProperty0<MpZonedDateTime?>,
                 timezone: MpTimezone,
-                builder: SettingsBuilder<MpZonedDateTime?>,
+                builder: SettingsBuilder<MpZonedDateTime?> = {},
             ): ComponentRef<GenericFormField<MpZonedDateTime?>> =
                 nullable(prop(), timezone, prop::set, builder)
 
@@ -550,7 +550,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
                 value: MpZonedDateTime?,
                 timezone: MpTimezone,
                 onChange: (MpZonedDateTime?) -> Unit,
-                builder: SettingsBuilder<MpZonedDateTime?>,
+                builder: SettingsBuilder<MpZonedDateTime?> = {},
             ): ComponentRef<GenericFormField<MpZonedDateTime?>> = def.run {
                 tag.render(
                     value,
@@ -569,7 +569,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             operator fun invoke(
                 value: MpLocalTime,
                 onChange: (MpLocalTime) -> Unit,
-                builder: SettingsBuilder<MpLocalTime>,
+                builder: SettingsBuilder<MpLocalTime> = {},
             ) = def.run {
                 tag.render(value, onChange, ::timeToHms, ::stringToLocalTime) {
                     input.asTimeInput()
@@ -581,7 +581,7 @@ class GenericFormField<T>(ctx: Ctx<Props<T>>) : FormField<T>, Component<GenericF
             fun nullable(
                 value: MpLocalTime?,
                 onChange: (MpLocalTime?) -> Unit,
-                builder: SettingsBuilder<MpLocalTime?>,
+                builder: SettingsBuilder<MpLocalTime?> = {},
             ) = def.run {
                 tag.render(value, onChange, ::timeToHms, ::stringToLocalTime) {
                     input.asTimeInput()
