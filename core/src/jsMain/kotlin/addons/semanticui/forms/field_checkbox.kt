@@ -25,7 +25,7 @@ fun <T> Tag.UiCheckboxField(
     onChange: (T) -> Unit,
     off: T,
     on: T,
-    builder: Options<T>.() -> Unit,
+    builder: Options<T>.() -> Unit = {},
 ) = comp(
     UiCheckBoxComponent.Props(
         value = value,

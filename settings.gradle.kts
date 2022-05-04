@@ -5,6 +5,7 @@ include(
     ":core",
 
     // Examples
-    ":examples:forms",
     ":examples:hello-world",
+    ":examples:semantic-forms",
+    ":examples:semantic-icons",
 )

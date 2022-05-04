@@ -1,29 +1,29 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.forms.validation.equalTo
-import de.peekandpoke.kraft.addons.semanticui.forms.UiPasswordField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiDateField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.datetime.*
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.Tag
 
-
 @Suppress("FunctionName")
-fun Tag.FormWithPasswords() = comp {
-    FormWithPasswords(it)
+fun Tag.FormWithDates() = comp {
+    FormWithDates(it)
 }
 
-class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
+class FormWithDates(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val password: String = "",
-        val repeat: String = "",
+        val localDate: MpLocalDate = Kronos.systemUtc.localDateTimeNow().toDate(),
+        val localDateTime: MpLocalDateTime = Kronos.systemUtc.localDateTimeNow(),
+        val zonedDateTime: MpZonedDateTime = Kronos.systemUtc.zonedDateTimeNow(MpTimezone.of("Europe/Berlin")),
     )
 
     private var state by value(State())
@@ -39,14 +39,16 @@ class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiPasswordField(draft.password, { draft = draft.copy(password = it) }) {
-                            label { +"Password" }
+                        UiDateField(draft.localDate, { draft = draft.copy(localDate = it) }) {
+                            label { +State::localDate.name }
                         }
 
-                        UiPasswordField(draft.repeat, { draft = draft.copy(repeat = it) }) {
-                            label { +"Repeat" }
+                        UiDateField(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
+                            label { +State::localDateTime.name }
+                        }
 
-                            accepts(equalTo({ draft.password }, "Passwords must match"))
+                        UiDateField(draft.zonedDateTime, { draft = draft.copy(zonedDateTime = it) }) {
+                            label { +State::zonedDateTime.name }
                         }
                     }
                 }
@@ -71,8 +73,9 @@ class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
                     state,
                     draft,
                     listOf(
-                        State::password { it },
-                        State::repeat { it },
+                        State::localDate { it.toIsoString() },
+                        State::localDateTime { it.toIsoString() },
+                        State::zonedDateTime { it.toIsoString() },
                     )
                 )
             }

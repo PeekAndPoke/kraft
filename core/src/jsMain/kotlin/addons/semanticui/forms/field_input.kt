@@ -38,7 +38,7 @@ fun <T> Tag.UiInputField(
     onChange: (T) -> Unit,
     toStr: (T) -> String,
     fromStr: (String) -> T,
-    builder: Options<T>.() -> Unit,
+    builder: Options<T>.() -> Unit = {},
 ) = comp(
     UiInputFieldComponent.Props(
         value = value,

@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.components.key
 import de.peekandpoke.ultra.semanticui.noui

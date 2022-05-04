@@ -1,32 +1,33 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.forms.validation.nonNull
 import de.peekandpoke.kraft.addons.semanticui.forms.UiDateTimeField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.datetime.Kronos
 import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
 import de.peekandpoke.ultra.common.datetime.MpTimezone
 import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.Tag
 
-
 @Suppress("FunctionName")
-fun Tag.FormWithNullableDateTimes() = comp {
-    FormWithNullableDateTimes(it)
+fun Tag.FormWithDateTimes() = comp {
+    FormWithDateTimes(it)
 }
 
-class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
+class FormWithDateTimes(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val localDateTime: MpLocalDateTime? = null,
-        val zonedDateTime: MpZonedDateTime? = null,
+        val localDateTime: MpLocalDateTime =
+            Kronos.systemUtc.localDateTimeNow(),
+        val zonedDateTime: MpZonedDateTime =
+            Kronos.systemUtc.zonedDateTimeNow(MpTimezone.of("Europe/Berlin")).atStartOfHour(),
     )
 
     private var state by value(State())
@@ -42,16 +43,12 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.two.fields {
-                        UiDateTimeField.nullable(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
+                        UiDateTimeField(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
                             label { +State::localDateTime.name }
-                            accepts(nonNull())
                         }
 
-                        val tz = MpTimezone.of("Europe/Berlin")
-
-                        UiDateTimeField.nullable(draft.zonedDateTime, tz, { draft = draft.copy(zonedDateTime = it) }) {
+                        UiDateTimeField(draft.zonedDateTime, { draft = draft.copy(zonedDateTime = it) }) {
                             label { +State::zonedDateTime.name }
-                            accepts(nonNull())
                         }
                     }
                 }
@@ -76,8 +73,8 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
                     state,
                     draft,
                     listOf(
-                        State::localDateTime { it?.toIsoString() },
-                        State::zonedDateTime { it?.toIsoString() },
+                        State::localDateTime { it.toIsoString() },
+                        State::zonedDateTime { it.toIsoString() },
                     )
                 )
             }

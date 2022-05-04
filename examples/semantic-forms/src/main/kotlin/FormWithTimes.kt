@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.semanticui.forms.UiDateField

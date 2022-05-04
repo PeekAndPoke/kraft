@@ -2,13 +2,13 @@
 <module version="4">
   <component name="FacetManager">
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="5" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="true" externalProjectId=":examples:forms">
+      <configuration version="5" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="true" externalProjectId=":examples:semantic-forms">
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <externalSystemTestTasks>
-          <externalSystemTestTask>browserTest|:examples:forms|js</externalSystemTestTask>
+          <externalSystemTestTask>browserTest|:examples:semantic-forms|js</externalSystemTestTask>
         </externalSystemTestTasks>
         <compilerSettings>
-          <option name="additionalArguments" value="-Xir-module-name=io.peekandpoke.kraft.examples:forms_test -Xir-only -Xir-per-module-output-name=kraft-forms-test -Xir-produce-klib-dir" />
+          <option name="additionalArguments" value="-Xir-module-name=io.peekandpoke.kraft.examples:semantic-forms_test -Xir-only -Xir-per-module-output-name=kraft-semantic-forms-test -Xir-produce-klib-dir" />
         </compilerSettings>
         <compilerArguments>
           <flagArguments>
@@ -19,7 +19,7 @@
           <stringArguments>
             <stringArg name="main" arg="call" />
             <stringArg name="moduleKind" arg="umd" />
-            <stringArg name="outputFile" arg="$MODULE_DIR$/../../../../examples/forms/build/classes/kotlin/test" />
+            <stringArg name="outputFile" arg="$MODULE_DIR$/../../../../examples/semantic-forms/build/classes/kotlin/test" />
             <stringArg name="sourceMapEmbedSources" arg="never" />
             <stringArg name="target" arg="v5" />
             <stringArg name="apiVersion" arg="1.6" />

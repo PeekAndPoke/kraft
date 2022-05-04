@@ -1,9 +1,8 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.forms.validation.numbers.greaterThan
 import de.peekandpoke.kraft.addons.forms.validation.numbers.lessThan
-import de.peekandpoke.kraft.addons.forms.validation.strings.notBlank
 import de.peekandpoke.kraft.addons.semanticui.forms.UiInputField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
@@ -15,19 +14,19 @@ import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.FormWithPrimitives() = comp {
-    FormWithPrimitives(it)
+fun Tag.FormWithNullablePrimitives() = comp {
+    FormWithNullablePrimitives(it)
 }
 
-class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
+class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val textInput: String = "",
-        val intInput: Int = 0,
-        val floatInput: Float = 0.0f,
-        val doubleInput: Double = 0.0,
+        val textInput: String? = null,
+        val intInput: Int? = null,
+        val floatInput: Float? = null,
+        val doubleInput: Double? = null,
     )
 
     private var state by value(State())
@@ -43,27 +42,25 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.two.fields {
-                        UiInputField(draft.textInput, { draft = draft.copy(textInput = it) }) {
+                        UiInputField.nullable(draft.textInput, { draft = draft.copy(textInput = it) }) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
-
-                            accepts(notBlank())
                         }
 
-                        UiInputField(draft.intInput, { draft = draft.copy(intInput = it) }) {
+                        UiInputField.nullable(draft.intInput, { draft = draft.copy(intInput = it) }) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
                             step(3)
 
                             accepts(
                                 greaterThan(6.0),
-                                lessThan(20.0)
+                                lessThan(15.0)
                             )
                         }
                     }
 
                     ui.two.fields {
-                        UiInputField(draft.floatInput, { draft = draft.copy(floatInput = it) }) {
+                        UiInputField.nullable(state.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
 
@@ -73,14 +70,14 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             )
                         }
 
-                        UiInputField(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
+                        UiInputField.nullable(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             step(0.5)
 
                             accepts(
                                 greaterThan(3.0),
-                                lessThan(20.0)
+                                lessThan(10.0)
                             )
                         }
                     }
@@ -113,7 +110,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
             state,
             draft,
             listOf(
-                State::textInput { it },
+                State::textInput { it.toString() },
                 State::intInput { it.toString() },
                 State::floatInput { it.toString() },
                 State::doubleInput { it.toString() },

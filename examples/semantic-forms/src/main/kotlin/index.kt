@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
 import de.peekandpoke.ultra.semanticui.ui
@@ -10,7 +10,7 @@ fun main() {
 
     PreactVDomEngine(mountPoint) {
         ui.basic.padded.segment {
-            ui.dividing.header H1 { +"KRAFT Forms demo" }
+            ui.dividing.header H1 { +"KRAFT SemanticUi Forms demo" }
 
             ui.segment {
                 ui.header H2 { +"A form with primitive values" }

@@ -1,28 +1,28 @@
-package de.peekandpoke.kraft.examples.forms
+package de.peekandpoke.kraft.examples.semantic.forms
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.semanticui.forms.UiTextArea
+import de.peekandpoke.kraft.addons.forms.validation.equalTo
+import de.peekandpoke.kraft.addons.semanticui.forms.UiPasswordField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 
-
 @Suppress("FunctionName")
-fun Tag.FormWithTestArea() = comp {
-    FormWithTestArea(it)
+fun Tag.FormWithPasswords() = comp {
+    FormWithPasswords(it)
 }
 
-class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
+class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val input: String = "",
+        val password: String = "",
+        val repeat: String = "",
     )
 
     private var state by value(State())
@@ -37,9 +37,16 @@ class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    UiTextArea(draft.input, { draft = draft.copy(input = it) }) {
-                        label { +"Text Input" }
-                        placeholder("Enter some text")
+                    ui.three.fields {
+                        UiPasswordField(draft.password, { draft = draft.copy(password = it) }) {
+                            label { +"Password" }
+                        }
+
+                        UiPasswordField(draft.repeat, { draft = draft.copy(repeat = it) }) {
+                            label { +"Repeat" }
+
+                            accepts(equalTo({ draft.password }, "Passwords must match"))
+                        }
                     }
                 }
 
@@ -59,19 +66,15 @@ class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
             }
 
             ui.column {
-                renderDataTable()
+                renderStateAndDraftTable(
+                    state,
+                    draft,
+                    listOf(
+                        State::password { it },
+                        State::repeat { it },
+                    )
+                )
             }
         }
-    }
-
-    private fun FlowContent.renderDataTable() {
-
-        renderStateAndDraftTable(
-            state,
-            draft,
-            listOf(
-                State::input { it },
-            )
-        )
     }
 }

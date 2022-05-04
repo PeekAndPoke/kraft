@@ -28,7 +28,7 @@ import org.w3c.dom.HTMLTextAreaElement
 fun Tag.UiTextArea(
     value: String,
     onChange: (String) -> Unit,
-    builder: Options.() -> Unit,
+    builder: Options.() -> Unit = {},
 ) = comp(
     UiTextAreaComponent.Props(
         value = value,
