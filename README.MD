@@ -10,8 +10,8 @@
 
 Run the Hello World example
 
-> ./gradlew -t :examples:hello-world:run
+> ./gradlew -t --parallel --configure-on-demand :examples:hello-world:run
 
 Run the SemanticUI / FomanticUI examples
 
-> ./gradlew -t :examples:semanticui:run
+> ./gradlew -t --parallel --configure-on-demand :examples:semanticui:run

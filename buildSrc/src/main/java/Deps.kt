@@ -22,7 +22,7 @@ object Deps {
     // //////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.44.0-SNAPSHOT"
+    private const val ultra_version = "0.44.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
     const val ultra_semanticui = "io.peekandpoke.ultra:semanticui:$ultra_version"
 
