@@ -2,7 +2,7 @@
 <module version="4">
   <component name="FacetManager">
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="5" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="false" externalProjectId=":examples:hello-world">
+      <configuration version="5" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="false" externalProjectId=":examples:hello-world" isHmppProject="true">
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <compilerSettings>
           <option name="additionalArguments" value="-Xir-module-name=io.peekandpoke.kraft.examples:hello-world -Xir-only -Xir-per-module-output-name=kraft-hello-world -Xir-produce-klib-dir" />

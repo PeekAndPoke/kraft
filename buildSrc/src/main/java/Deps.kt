@@ -9,7 +9,7 @@ object Deps {
     }
 
     // //////////////////////////////////////////////////////////////////
-    const val kotlinVersion = "1.6.10"
+    const val kotlinVersion = "1.6.21"
     // //////////////////////////////////////////////////////////////////
 
     // Publishing //////////////////////////////////////////////////////
@@ -18,11 +18,11 @@ object Deps {
 
     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
     // Dokka gradle plugin org.jetbrains.dokka
-    const val dokkaVersion = "1.6.10"
+    const val dokkaVersion = "1.6.21"
     // //////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.43.4"
+    private const val ultra_version = "0.44.0-SNAPSHOT"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
     const val ultra_semanticui = "io.peekandpoke.ultra:semanticui:$ultra_version"
 
@@ -43,13 +43,9 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.325-kotlin-1.6.10"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.332-kotlin-1.6.21"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
-
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    private const val slf4j_version = "1.7.36"
-    const val slf4j_api = "org.slf4j:slf4j-api:$slf4j_version"
 
     // // NPM dependencies /////////////////////////////////////////////////////////////////////////
 
@@ -66,7 +62,7 @@ object Deps {
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
-        const val kotest_version = "5.0.3"
+        const val kotest_version = "5.3.0"
         const val kotest_assertions_core = "io.kotest:kotest-assertions-core:$kotest_version"
         const val kotest_framework_engine = "io.kotest:kotest-framework-engine:$kotest_version"
         const val kotest_framework_datatest = "io.kotest:kotest-framework-datatest:$kotest_version"
@@ -108,15 +104,15 @@ object Deps {
                     isFailOnNoMatchingTests = false
                 }
 
-                testLogging {
-                    showExceptions = true
-                    showStandardStreams = true
-                    events = setOf(
-                        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
-                        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-                    )
-                    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-                }
+//                testLogging {
+//                    showExceptions = true
+//                    showStandardStreams = true
+//                    events = setOf(
+//                        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
+//                        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+//                    )
+//                    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+//                }
 
                 configure()
             }
