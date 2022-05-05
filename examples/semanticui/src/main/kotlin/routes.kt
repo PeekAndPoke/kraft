@@ -8,6 +8,7 @@ import de.peekandpoke.kraft.examples.semanticui.pages.elements.header.HeaderPage
 import de.peekandpoke.kraft.examples.semanticui.pages.elements.icon.IconPage
 import de.peekandpoke.kraft.examples.semanticui.pages.forms.demo.FormDemosPage
 import de.peekandpoke.kraft.examples.semanticui.pages.home.HomePage
+import de.peekandpoke.kraft.examples.semanticui.pages.views.card.CardPage
 
 class Routes {
     val home = Static("/")
@@ -18,6 +19,8 @@ class Routes {
     val elementsIcon = Static("/elements/icon")
 
     val formDemos = Static("/form/demos")
+
+    val viewsCard = Static("/views/card")
 }
 
 fun RouterBuilder.mount(routes: Routes) {
@@ -29,4 +32,6 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.elementsIcon) { IconPage() }
 
     mount(routes.formDemos) { FormDemosPage() }
+
+    mount(routes.viewsCard) { CardPage() }
 }

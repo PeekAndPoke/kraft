@@ -32,25 +32,26 @@ fun FlowContent.shortParagraphWireFrame() {
     }
 }
 
+fun PRE.applyCodeBlockStyle() {
+    css {
+        padding(16.px)
+        backgroundColor = Color("#FAFAFA")
+        border(1.px, BorderStyle.solid, Color("#E0E0E0"))
+        borderRadius = 5.px
+    }
+}
+
 fun FlowContent.kotlinToHtml(
     kotlin: String,
     html: String,
 ) {
-    fun PRE.style() {
-        css {
-            padding(16.px)
-            backgroundColor = Color("#FAFAFA")
-            border(1.px, BorderStyle.solid, Color("#E0E0E0"))
-            borderRadius = 5.px
-        }
-    }
 
     ui.segment {
         ui.two.column.very.relaxed.grid {
             noui.column {
                 ui.header { +"Kotlin" }
                 pre {
-                    style()
+                    applyCodeBlockStyle()
                     +kotlin
                 }
             }
@@ -58,7 +59,7 @@ fun FlowContent.kotlinToHtml(
             noui.column {
                 ui.header { +"HTML" }
                 pre {
-                    style()
+                    applyCodeBlockStyle()
                     +html
                 }
             }

@@ -12,13 +12,13 @@ fun Tag.Collapsable(builder: CollapsableComponent.Builder.() -> Unit) =
 class CollapsableComponent(ctx: Ctx<Props>) : Component<CollapsableComponent.Props>(ctx) {
 
     data class Props(
-        val header: DIV.(HeaderCtx) -> Unit,
+        val header: (DIV.(HeaderCtx) -> Unit)?,
         val content: RenderFn,
         val collapsed: Boolean
     )
 
     class Builder(
-        var header: DIV.(HeaderCtx) -> Unit = {},
+        var header: (DIV.(HeaderCtx) -> Unit)? = null,
         var content: RenderFn = {},
         var collapsed: Boolean = true
     ) {
@@ -53,14 +53,18 @@ class CollapsableComponent(ctx: Ctx<Props>) : Component<CollapsableComponent.Pro
         return super.shouldRedraw(nextProps)
     }
 
+    fun toggle() {
+        collapsed = !collapsed
+        transitioning = true
+    }
+
     override fun VDom.render() {
 
         div {
             div {
-                props.header(this, HeaderCtx(collapsed) {
-                    collapsed = !collapsed
-                    transitioning = true
-                })
+                props.header?.let { header ->
+                    header(this, HeaderCtx(collapsed, ::toggle))
+                }
             }
 
             div {

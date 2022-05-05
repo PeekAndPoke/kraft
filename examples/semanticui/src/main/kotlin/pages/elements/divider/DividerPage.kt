@@ -3,7 +3,7 @@ package de.peekandpoke.kraft.examples.semanticui.pages.elements.divider
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.examples.semanticui.helpers.example
+import de.peekandpoke.kraft.examples.semanticui.helpers.ExampleWithCode
 import de.peekandpoke.kraft.examples.semanticui.helpers.readTheDocs
 import de.peekandpoke.kraft.examples.semanticui.helpers.shortParagraphWireFrame
 import de.peekandpoke.kraft.vdom.VDom
@@ -36,7 +36,11 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderStandard() {
-        example {
+        ExampleWithCode(
+            """
+                ui.divider {}
+            """.trimIndent()
+        ) {
             ui.header H2 { +"Standard Divider" }
 
             shortParagraphWireFrame()
@@ -46,7 +50,23 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderVertical() {
-        example {
+        ExampleWithCode(
+            """
+                ui.segment {
+                    ui.two.column.very.relaxed.grid {
+                        noui.column {
+                            p {}
+                            p {}
+                        }
+                        noui.column {
+                            p {}
+                            p {}
+                        }
+                    }
+                    ui.vertical.divider { +"and" }
+                }
+            """.trimIndent()
+        ) {
             ui.header H2 { +"Vertical Divider" }
 
             ui.segment {
@@ -55,7 +75,6 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
                         shortParagraphWireFrame()
                         shortParagraphWireFrame()
                     }
-
                     noui.column {
                         shortParagraphWireFrame()
                         shortParagraphWireFrame()

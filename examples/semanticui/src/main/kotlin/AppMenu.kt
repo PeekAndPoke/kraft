@@ -69,6 +69,17 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                     }
                 }
             }
+
+            noui.item {
+                noui.header { +"Views" }
+                noui.menu {
+                    noui.item A {
+                        href = routes.viewsCard()
+                        +"Card"
+                        ui.tiny.red.label { +"Todo" }
+                    }
+                }
+            }
         }
     }
 }

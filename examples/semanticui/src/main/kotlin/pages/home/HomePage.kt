@@ -10,6 +10,7 @@ import de.peekandpoke.ultra.semanticui.icon
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
+import kotlinx.html.p
 
 @Suppress("FunctionName")
 fun Tag.HomePage() = comp {
@@ -52,8 +53,10 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
         example {
             ui.header H2 { +"Intro to the DSL" }
 
-            +"Fomantic-UI often times needs the css classes to be prefixed with "
-            ui.basic.label { +"ui" }
+            p {
+                +"Fomantic-UI often times needs the css classes to be prefixed with "
+                ui.basic.label { +"ui" }
+            }
 
             kotlinToHtml(
                 kotlin = """
@@ -68,8 +71,10 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                 """.trimIndent()
             )
 
-            +"But there are also cases where you want to omit this prefix. Then you can use "
-            ui.basic.label { +"noui" }
+            p {
+                +"But there are also cases where you want to omit this prefix. Then you can use "
+                ui.basic.label { +"noui" }
+            }
 
             kotlinToHtml(
                 kotlin = """
@@ -84,7 +89,9 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                 """.trimIndent()
             )
 
-            +"Sometimes you want to change the html tag from div to something else"
+            p {
+                +"Sometimes you want to change the html tag from div to something else"
+            }
 
             kotlinToHtml(
                 kotlin = """
