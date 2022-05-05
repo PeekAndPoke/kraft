@@ -46,7 +46,7 @@ class IconExamples(ctx: NoProps) : PureComponent(ctx) {
         ui.segment {
             ui.header H3 { +"Sizes" }
 
-            ui.eight.column.grid {
+            ui.eight.column.middle.aligned.grid {
                 ui.center.aligned.column {
                     icon.mini.chess()
                     div { +"mini" }
@@ -74,6 +74,10 @@ class IconExamples(ctx: NoProps) : PureComponent(ctx) {
                 ui.center.aligned.column {
                     icon.huge.chess()
                     div { +"huge" }
+                }
+                ui.center.aligned.column {
+                    icon.massive.chess()
+                    div { +"massive" }
                 }
             }
         }
@@ -168,7 +172,7 @@ class IconExamples(ctx: NoProps) : PureComponent(ctx) {
 
                 ui.center.aligned.column {
                     +"Fitted"
-                    icon.with("fitted").globe()
+                    icon.fitted.globe()
                     +"icon"
                 }
                 ui.center.aligned.column {
@@ -176,13 +180,13 @@ class IconExamples(ctx: NoProps) : PureComponent(ctx) {
                     div { +"link" }
                 }
                 ui.center.aligned.column {
-                    icon.big.with("horizontally flipped").question()
-                    icon.big.with("vertically flipped").question()
+                    icon.big.horizontally.flipped.question()
+                    icon.big.vertically.flipped.question()
                     div { +"flipped" }
                 }
                 ui.center.aligned.column {
-                    icon.big.with("clockwise rotated").question()
-                    icon.big.with("counterclockwise rotated").question()
+                    icon.big.clockwise.rotated.question()
+                    icon.big.counterclockwise.rotated.question()
                     div { +"rotated" }
                 }
                 ui.center.aligned.column {
@@ -222,45 +226,45 @@ class IconExamples(ctx: NoProps) : PureComponent(ctx) {
 
             ui.eight.column.grid {
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
+                    ui.big.icons I {
                         icon.big.green.circle_outline()
                         icon.user()
                     }
                 }
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
-                        icon.big.red.with("dont").render()
+                    ui.big.icons I {
+                        icon.big.red.dont.render()
                         icon.user()
                     }
                 }
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
+                    ui.big.icons I {
                         icon.user()
-                        icon.with("top left corner").plus()
+                        icon.top.left.corner.plus()
                     }
                 }
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
+                    ui.big.icons I {
                         icon.user()
-                        icon.with("top right corner").plus()
+                        icon.top.right.corner.plus()
                     }
                 }
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
+                    ui.big.icons I {
                         icon.user()
-                        icon.with("bottom right corner").plus()
+                        icon.bottom.right.corner.plus()
                     }
                 }
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
+                    ui.big.icons I {
                         icon.user()
-                        icon.with("bottom left corner").plus()
+                        icon.bottom.left.corner.plus()
                     }
                 }
                 ui.center.aligned.column {
-                    ui.big.with("icons") I {
+                    ui.big.icons I {
                         icon.twitter()
-                        icon.with("bottom right corner").inverted.plus()
+                        icon.bottom.right.corner.inverted.plus()
                     }
                 }
             }
