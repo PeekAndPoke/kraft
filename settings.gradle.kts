@@ -6,6 +6,5 @@ include(
 
     // Examples
     ":examples:hello-world",
-    ":examples:semantic-forms",
-    ":examples:semantic-icons",
+    ":examples:semanticui",
 )

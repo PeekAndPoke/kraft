@@ -15,8 +15,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/examples" />
             <option value="$PROJECT_DIR$/examples/hello-world" />
-            <option value="$PROJECT_DIR$/examples/semantic-forms" />
-            <option value="$PROJECT_DIR$/examples/semantic-icons" />
+            <option value="$PROJECT_DIR$/examples/semanticui" />
           </set>
         </option>
       </GradleProjectSettings>
