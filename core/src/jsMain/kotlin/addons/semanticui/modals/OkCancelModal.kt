@@ -2,9 +2,9 @@ package de.peekandpoke.kraft.addons.semanticui.modals
 
 import de.peekandpoke.kraft.addons.modal.ModalsManager
 import de.peekandpoke.kraft.components.Ctx
-import de.peekandpoke.kraft.components.RenderFn
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
+import de.peekandpoke.ultra.semanticui.RenderFn
 import de.peekandpoke.ultra.semanticui.SemanticTag
 import de.peekandpoke.ultra.semanticui.noui
 import de.peekandpoke.ultra.semanticui.ui

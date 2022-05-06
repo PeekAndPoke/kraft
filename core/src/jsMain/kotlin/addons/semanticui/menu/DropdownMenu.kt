@@ -3,10 +3,7 @@ package de.peekandpoke.kraft.addons.semanticui.menu
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.utils.async
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.SemanticTag
-import de.peekandpoke.ultra.semanticui.icon
-import de.peekandpoke.ultra.semanticui.noui
-import de.peekandpoke.ultra.semanticui.ui
+import de.peekandpoke.ultra.semanticui.*
 import kotlinx.browser.window
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

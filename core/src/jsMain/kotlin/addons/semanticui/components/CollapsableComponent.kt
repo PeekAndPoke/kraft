@@ -1,7 +1,11 @@
 package de.peekandpoke.kraft.addons.semanticui.components
 
-import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.components.Component
+import de.peekandpoke.kraft.components.Ctx
+import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.onAnimationEnd
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.semanticui.RenderFn
 import kotlinx.html.*
 import org.w3c.dom.HTMLElement
 
