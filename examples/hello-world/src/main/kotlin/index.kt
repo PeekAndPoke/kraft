@@ -21,6 +21,10 @@ fun main() {
 
         CounterComponent(10)
 
+        h2 { +"Component storing data in local storage" }
+
+        LocalStorageComponent("INITIAL")
+
         ui.divider {}
 
         ui.header H2 { +"Playground ..." }

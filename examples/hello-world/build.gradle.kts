@@ -1,5 +1,6 @@
 plugins {
     kotlin("js")
+    id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
 }
 
 val GROUP = "io.peekandpoke.kraft.examples"

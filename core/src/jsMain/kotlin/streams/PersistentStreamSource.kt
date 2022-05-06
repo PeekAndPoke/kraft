@@ -9,7 +9,7 @@ package de.peekandpoke.kraft.streams
 internal class PersistentStreamSource<T>(
     private val storage: StreamStorage<T>,
     private val wrapped: StreamSource<T>,
-) : StreamSource<T> by wrapped {
+) : StreamSource<T> {
 
     init {
         try {
@@ -18,9 +18,27 @@ internal class PersistentStreamSource<T>(
                 wrapped(it)
             }
         } catch (e: Throwable) {
-            println(e)
+            console.error("Could not read from storage", e)
         }
     }
+
+    /**
+     * Gets all subscriptions
+     */
+    override val subscriptions: Set<StreamHandler<T>>
+        get() = wrapped.subscriptions
+
+    /**
+     * Removes all subscriptions
+     */
+    override fun removeAllSubscriptions() {
+        wrapped.removeAllSubscriptions()
+    }
+
+    /**
+     * Getting values is forwarded to the [wrapped] stream source.
+     */
+    override fun invoke(): T = wrapped()
 
     /**
      * Incoming values are stored and forwarded to the [wrapped] stream source.
@@ -30,4 +48,9 @@ internal class PersistentStreamSource<T>(
 
         return wrapped(next)
     }
+
+    /**
+     * Subscribes to the stream source.
+     */
+    override fun subscribeToStream(sub: (T) -> Unit): Unsubscribe = wrapped.subscribeToStream(sub)
 }

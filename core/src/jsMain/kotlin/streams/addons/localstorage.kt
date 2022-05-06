@@ -56,11 +56,10 @@ class LocalStorageStreamStorage<T>(
     private var lastValue: T? = null
 
     override fun read(): T? {
-        lastValue = try {
-            fromStr(window.localStorage[storageKey])
+        try {
+            lastValue = fromStr(window.localStorage[storageKey])
         } catch (e: Throwable) {
             console.warn(e)
-            lastValue
         }
 
         return lastValue
