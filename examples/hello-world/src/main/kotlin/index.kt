@@ -15,6 +15,9 @@ fun main() {
 
         h2 { +"First Counter" }
 
+        h2 { +"AAAAA" }
+
+
         CounterComponent(0)
 
         h2 { +"Another Counter" }
