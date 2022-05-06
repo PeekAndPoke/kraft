@@ -67,7 +67,6 @@ class ObservableComponentProperty<T>(
 ) : ObservableProperty<T>(initialValue) {
 
     override fun afterChange(property: KProperty<*>, oldValue: T, newValue: T) {
-
         if (oldValue != newValue) {
             // notify about the change and trigger redraw
             onChange?.invoke(newValue)
