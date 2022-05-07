@@ -27,3 +27,10 @@ kotlin {
         binaries.executable()
     }
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile>().configureEach {
+    kotlinOptions {
+        metaInfo = false
+        sourceMap = false
+    }
+}

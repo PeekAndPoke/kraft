@@ -4,8 +4,8 @@ if (devServer) {
 
     config.mode = "development"
 
-    // config.devtool = false
-    config.devtool = "source-map"
+    config.devtool = false
+    // config.devtool = "source-map"
 
     config.stats = {
         errors: true,
