@@ -71,7 +71,6 @@ kotlin {
                 api(Deps.ultra_semanticui)
 
                 // External Javascript libraries
-                api(npm("preact", "10.5.14"))
                 // Preact VDOM engine
                 api(npm("preact", "10.5.14"))
                 // JWT
@@ -84,7 +83,6 @@ kotlin {
                 api(npm("@nx-js/compiler-util", "2.0.0"))
                 // Chart.js
                 api(npm("chart.js", "3.6.0"))
-
             }
         }
 
