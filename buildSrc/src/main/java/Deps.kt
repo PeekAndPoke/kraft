@@ -31,7 +31,7 @@ object Deps {
 //    const val arrow_core = "io.arrow-kt:arrow-core:$arrow_core_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
-    private const val kotlinx_coroutines_version = "1.6.1"
+    private const val kotlinx_coroutines_version = "1.6.0"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
 
