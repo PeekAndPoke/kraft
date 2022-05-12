@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.addons.semanticui.forms
 
+import de.peekandpoke.kraft.addons.forms.CheckboxOptions
 import de.peekandpoke.kraft.addons.forms.FieldOptions
 import de.peekandpoke.kraft.addons.forms.KraftFormsSettingDsl
 import de.peekandpoke.ultra.common.TypedKey
@@ -11,7 +12,7 @@ interface SemanticOptions<T> : FieldOptions<T> {
         val appearKey = TypedKey<SemanticFn>("appear")
     }
 
-    interface Checkbox<T> : FieldOptions<T> {
+    interface Checkbox<T> : CheckboxOptions<T> {
 
         companion object {
             val styleKey = TypedKey<SemanticFn>("style")

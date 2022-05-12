@@ -50,6 +50,12 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         override val options: Options,
     ) : GenericFormField.Props<String, Options>
 
+    override fun onMount() {
+        options.autofocusValue()?.takeIf { it }?.let {
+            focus("textarea")
+        }
+    }
+
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
 

@@ -92,22 +92,44 @@ interface FieldOptions<T> {
     fun <X> access(key: TypedKey<X>) = Access(this, key)
 }
 
+interface CheckboxOptions<T> : FieldOptions<T> {
+    companion object {
+        private val autofocusKey = TypedKey<Boolean>("autofocus")
+    }
+
+    @KraftFormsSettingDsl
+    val autofocusValue get() = access(autofocusKey)
+
+    @KraftFormsSettingDsl
+    fun autofocus(focus: Boolean = true) {
+        autofocusValue(focus)
+    }
+}
 
 interface InputOptions<T> : FieldOptions<T> {
     companion object {
-        private val typeKey = TypedKey<InputType>("type")
+        private val autofocusKey = TypedKey<Boolean>("autofocus")
         private val stepKey = TypedKey<Number>("step")
+        private val typeKey = TypedKey<InputType>("type")
         private val formatValueKey = TypedKey<String>("format-value")
     }
 
     @KraftFormsSettingDsl
-    val type get() = access(typeKey)
+    val autofocusValue get() = access(autofocusKey)
+
+    @KraftFormsSettingDsl
+    val formatValue get() = access(formatValueKey)
 
     @KraftFormsSettingDsl
     val step get() = access(stepKey)
 
     @KraftFormsSettingDsl
-    val formatValue get() = access(formatValueKey)
+    val type get() = access(typeKey)
+
+    @KraftFormsSettingDsl
+    fun autofocus(focus: Boolean = true) {
+        autofocusValue(focus)
+    }
 
     @KraftFormsSettingDsl
     fun asDateInput() {
@@ -131,9 +153,18 @@ interface InputOptions<T> : FieldOptions<T> {
 interface TextAreaOptions<T> : FieldOptions<T> {
 
     companion object {
-        val verticalAutoResizeKey = TypedKey<Boolean>("verticalAutoResize")
+        private val autofocusKey = TypedKey<Boolean>("autofocus")
+        private val verticalAutoResizeKey = TypedKey<Boolean>("verticalAutoResize")
     }
 
     @KraftFormsSettingDsl
+    val autofocusValue get() = access(autofocusKey)
+
+    @KraftFormsSettingDsl
     val verticalAutoResize get() = access(verticalAutoResizeKey)
+
+    @KraftFormsSettingDsl
+    fun autofocus(focus: Boolean = true) {
+        autofocusValue(focus)
+    }
 }

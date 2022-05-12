@@ -77,6 +77,12 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         }
     }
 
+    override fun onMount() {
+        options.autofocusValue()?.takeIf { it }?.let {
+            focus("input")
+        }
+    }
+
     fun setInput(input: String) {
         try {
             val newValue = props.fromStr(input)
@@ -100,11 +106,10 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         setValue()
         track()
 
-        applyPlaceholder()
-
-        applyType()
-        applyStep()
         applyFormatValue()
+        applyPlaceholder()
+        applyStep()
+        applyType()
     }
 
     private fun INPUT.track() {
@@ -117,28 +122,20 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         value = valueAsString()
     }
 
-    private fun INPUT.applyPlaceholder() {
-        options.placeholder()?.takeIf { it.isNotBlank() }?.let {
-            placeholder = it
-        }
+    private fun INPUT.applyFormatValue() {
+        options.formatValue()?.let { attributes["format-value"] = it }
     }
 
-    private fun INPUT.applyType() {
-        options.type()?.let {
-            type = it
-        }
+    private fun INPUT.applyPlaceholder() {
+        options.placeholder()?.takeIf { it.isNotBlank() }?.let { placeholder = it }
     }
 
     private fun INPUT.applyStep() {
-        options.step()?.let {
-            step = it.toString()
-        }
+        options.step()?.let { step = it.toString() }
     }
 
-    private fun INPUT.applyFormatValue() {
-        options.formatValue()?.let {
-            attributes["format-value"] = it
-        }
+    private fun INPUT.applyType() {
+        options.type()?.let { type = it }
     }
 }
 

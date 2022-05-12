@@ -9,10 +9,7 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onChange
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.InputType
-import kotlinx.html.Tag
-import kotlinx.html.div
-import kotlinx.html.input
+import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 import kotlin.reflect.KMutableProperty0
 
@@ -51,6 +48,12 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
         val off: X,
     ) : GenericFormField.Props<X, Options<X>>
 
+    override fun onMount() {
+        options.autofocusValue()?.takeIf { it }?.let {
+            focus("input")
+        }
+    }
+
     override fun VDom.render() {
 
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
@@ -65,6 +68,8 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
                         }
                         type = InputType.checkBox
                         checked = currentValue == props.on
+
+                        options.autofocusValue()?.let { autoFocus = it }
                     }
 
                     renderLabel {

@@ -48,6 +48,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField(draft.textInput, { draft = draft.copy(textInput = it) }) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
+                            autofocus()
 
                             accepts(notBlank())
                         }
