@@ -25,6 +25,7 @@ class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
     data class State(
         val password: String = "",
         val repeat: String = "",
+        val reveal: String = "bad-password"
     )
 
     private var state by value(State())
@@ -46,6 +47,14 @@ class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
 
                         UiPasswordField(draft.repeat, { draft = draft.copy(repeat = it) }) {
                             label { +"Repeat" }
+
+                            accepts(equalTo({ draft.password }, "Passwords must match"))
+                        }
+
+                        UiPasswordField(draft.reveal, { draft = draft.copy(reveal = it) }) {
+                            label { +"Reveal" }
+
+                            revealRevealPasswordIcon()
 
                             accepts(equalTo({ draft.password }, "Passwords must match"))
                         }

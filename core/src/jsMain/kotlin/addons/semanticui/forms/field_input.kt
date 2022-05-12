@@ -10,10 +10,7 @@ import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.common.datetime.*
 import de.peekandpoke.ultra.semanticui.ui
-import kotlinx.html.INPUT
-import kotlinx.html.InputType
-import kotlinx.html.Tag
-import kotlinx.html.input
+import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 import kotlin.reflect.KMutableProperty0
 
@@ -54,7 +51,7 @@ fun <T> Tag.UiInputField(
 class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) :
     GenericFormField<T, Options<T>, P>(ctx) {
 
-    class Options<T> : FieldOptions.Base<T>(), InputOptions<T>, SemanticOptions<T>
+    class Options<T> : FieldOptions.Base<T>(), SemanticOptions<T>, SemanticOptions.Input<T>
 
     data class Props<X>(
         override val value: X,
@@ -64,16 +61,36 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         val fromStr: (String) -> X,
     ) : GenericFormField.Props<X, Options<X>>
 
+    internal var typeOverride: InputType? by value(null)
+
+    internal val effectiveType: InputType? get() = typeOverride ?: options.type()
+
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
 
             renderLabel("input")
 
-            input {
-                applyAll()
+            val wrap = options.wrapFieldWith()
+
+            when {
+                wrap != null -> ui.wrap().then {
+                    options.renderBeforeField()?.let { it(this, this@UiInputFieldComponent) }
+
+                    renderField()
+
+                    options.renderAfterField()?.let { it(this, this@UiInputFieldComponent) }
+                }
+
+                else -> renderField()
             }
 
             renderErrors(this)
+        }
+    }
+
+    private fun FlowContent.renderField() {
+        input {
+            applyAll()
         }
     }
 
@@ -137,7 +154,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
     }
 
     private fun INPUT.applyType() {
-        options.type()?.let { type = it }
+        effectiveType?.let { type = it }
     }
 }
 

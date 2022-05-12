@@ -12,6 +12,7 @@ import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.examples.semanticui.helpers.invoke
 import de.peekandpoke.kraft.examples.semanticui.helpers.renderStateAndDraftTable
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.semanticui.icon
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
@@ -49,6 +50,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
                             autofocus()
+                            rightClearingIcon()
 
                             accepts(notBlank())
                         }
@@ -57,6 +59,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
                             step(3)
+                            leftIcon { green.percent }
 
                             accepts(
                                 greaterThan(6.0),
@@ -69,6 +72,12 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField(draft.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
+                            rightLabel {
+                                ui.blue.label {
+                                    icon.dollar_sign()
+                                    +"USD"
+                                }
+                            }
 
                             accepts(
                                 greaterThan(5.0),
@@ -80,6 +89,12 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             step(0.5)
+                            leftLabel {
+                                ui.label {
+                                    icon.euro_sign()
+                                    +"EUR"
+                                }
+                            }
 
                             accepts(
                                 greaterThan(3.0),

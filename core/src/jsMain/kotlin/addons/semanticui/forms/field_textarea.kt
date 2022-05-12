@@ -9,11 +9,9 @@ import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onInput
-import de.peekandpoke.kraft.utils.launch
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.browser.window
-import kotlinx.coroutines.delay
 import kotlinx.css.Overflow
 import kotlinx.css.maxHeight
 import kotlinx.css.overflowY
@@ -58,6 +56,8 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         }
     }
 
+    private val isVerticalAutoResize get() = options.verticalAutoResize.getOrDefault(true)
+
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
 
@@ -78,19 +78,13 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         }
 
         // Apply automatic vertical resize
-        if (options.verticalAutoResize.getOrDefault(true)) {
+        if (isVerticalAutoResize) {
             window.requestAnimationFrame {
-                launch {
-                    delay(10) // NOTE: this is a bit hacky...
+                val textarea = dom?.querySelector("textarea") as? HTMLTextAreaElement
 
-                    val textarea = dom
-                        ?.getElementsByTagName("textarea")
-                        ?.item(0) as? HTMLTextAreaElement
-
-                    textarea?.let { t ->
-                        t.style.height = "0"
-                        t.style.height = "${t.scrollHeight + 6}px"
-                    }
+                textarea?.let { t ->
+                    t.style.height = "auto"
+                    t.style.height = "${t.scrollHeight + 2}px"
                 }
             }
         }
@@ -103,7 +97,14 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
 
     fun TEXTAREA.track() {
         onInput {
-            setValue((it.target as HTMLTextAreaElement).value)
+            val target = it.target as HTMLTextAreaElement
+
+//            if (options.verticalAutoResize() == true) {
+//                target.style.height = "auto"
+//                target.style.height = "${target.scrollHeight + 6}px"
+//            }
+
+            setValue(target.value)
         }
     }
 
