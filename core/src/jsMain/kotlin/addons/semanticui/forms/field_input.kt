@@ -78,6 +78,8 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
     }
 
     override fun onMount() {
+        super.onMount()
+
         options.autofocusValue()?.takeIf { it }?.let {
             focus("input")
         }

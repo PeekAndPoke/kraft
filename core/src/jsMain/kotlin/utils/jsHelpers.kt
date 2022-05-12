@@ -7,18 +7,18 @@ fun jsIsObject(o: dynamic): Boolean = jsTypeOf(o) == "object"
 @Suppress("UNUSED_PARAMETER")
 fun jsIsArray(o: dynamic): Boolean = js("(Array.isArray(o))") as Boolean
 
-val jsObject: dynamic get() = js("({})")
-val jsArray: dynamic get() = js("([])")
+fun jsObject(): dynamic = js("({})")
+fun jsArray(): dynamic = js("([])")
 
 fun <T> jsObject(block: T.() -> Unit): T {
     @Suppress("UNCHECKED_CAST")
-    val obj = jsObject as T
+    val obj = jsObject() as T
     block(obj)
     return obj
 }
 
 fun jsObjectOf(vararg pairs: Pair<String, dynamic>): dynamic {
-    val obj = jsObject
+    val obj = jsObject()
 
     pairs.forEach { (k, v) -> obj[k] = v }
 
@@ -62,7 +62,7 @@ fun jsToKotlin(it: dynamic): Any? {
  */
 val <T> Map<String, T>.js
     get() : dynamic {
-        val obj = jsObject
+        val obj = jsObject()
 
         forEach { (k, v) -> obj[k] = v }
 
@@ -71,7 +71,7 @@ val <T> Map<String, T>.js
 
 val <T> List<T>.js
     get(): dynamic {
-        val arr = jsArray
+        val arr = jsArray()
 
         @Suppress("UnsafeCastFromDynamic")
         forEach { arr.push(it) }

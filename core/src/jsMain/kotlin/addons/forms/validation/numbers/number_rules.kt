@@ -38,7 +38,7 @@ fun <T : Number?> greaterThan(
     value: Number,
     message: String = "Must be greater than $value",
 ): Rule<T> =
-    greaterThanOrEqual(value) { message }
+    greaterThan(value) { message }
 
 @KraftFormsRuleDsl
 fun <T : Number?> greaterThanOrEqual(

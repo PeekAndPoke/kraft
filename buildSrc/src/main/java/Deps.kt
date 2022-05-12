@@ -22,7 +22,7 @@ object Deps {
     // //////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.44.2"
+    private const val ultra_version = "0.44.3"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
     const val ultra_semanticui = "io.peekandpoke.ultra:semanticui:$ultra_version"
 
@@ -31,7 +31,7 @@ object Deps {
 //    const val arrow_core = "io.arrow-kt:arrow-core:$arrow_core_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
-    private const val kotlinx_coroutines_version = "1.6.0"
+    private const val kotlinx_coroutines_version = "1.6.1"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
 
@@ -78,7 +78,9 @@ object Deps {
         }
 
         fun KotlinDependencyHandler.jsTestDeps() {
-            implementation(kotlin("test-js"))
+            implementation(kotest_assertions_core)
+            implementation(kotest_framework_engine)
+            implementation(kotest_framework_datatest)
         }
 
         fun KotlinDependencyHandler.jvmTestDeps() {

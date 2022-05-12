@@ -51,6 +51,8 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
     ) : GenericFormField.Props<String, Options>
 
     override fun onMount() {
+        super.onMount()
+
         options.autofocusValue()?.takeIf { it }?.let {
             focus("textarea")
         }

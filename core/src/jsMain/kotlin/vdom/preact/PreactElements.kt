@@ -33,7 +33,7 @@ internal interface PreactElements {
         }
 
         override fun render(): dynamic {
-            val result = jsArray
+            val result = jsArray()
 
             for (child in children) {
                 result.push(child.render())
@@ -93,7 +93,7 @@ internal interface PreactElements {
             val attrs = tag.attributes.js
 
             // Create a low level array for the render results of the children
-            val childArr = jsArray
+            val childArr = jsArray()
 
             // map the children to a native array
             for (child in children) {

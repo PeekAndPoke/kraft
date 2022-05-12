@@ -12,7 +12,9 @@
         </compilerSettings>
         <compilerArguments>
           <flagArguments>
+            <flagArg name="metaInfo" arg="true" />
             <flagArg name="noStdlib" arg="true" />
+            <flagArg name="sourceMap" arg="true" />
           </flagArguments>
           <stringArguments>
             <stringArg name="main" arg="call" />

@@ -30,6 +30,6 @@ class PreactVDomEngine : VDomEngine {
     }
 
     override fun triggerRedraw(component: KraftComponent<*>) {
-        (component.lowLevelBridgeComponent as? PreactComponent)?.setState(jsObject)
+        (component.lowLevelBridgeComponent as? PreactComponent)?.setState(jsObject())
     }
 }
