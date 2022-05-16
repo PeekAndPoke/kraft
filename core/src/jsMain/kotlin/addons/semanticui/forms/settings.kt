@@ -54,7 +54,7 @@ interface SemanticOptions<T> : FieldOptions<T> {
 
         @JsName("clearingRightIcon")
         @KraftFormsSettingDsl
-        fun rightClearingIcon(iconFn: SemanticIconFn = { times }) {
+        fun rightClearingIcon(iconFn: SemanticIconFn = { grey.times }) {
             attributes[wrapFieldWithKey] = semantic { right.icon.input }
 
             val fn: DIV.(UiInputFieldComponent<*, *>) -> Unit = {

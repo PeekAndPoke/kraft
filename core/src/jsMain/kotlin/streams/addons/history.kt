@@ -10,3 +10,12 @@ fun <T> Stream<T>.history(capacity: Int): Stream<List<T>> {
         acc.plus(next).takeLast(capacity)
     }
 }
+
+/**
+ * Records the latest incoming values that are not null up to the given [capacity].
+ */
+fun <T> Stream<T?>.historyOfNonNull(capacity: Int): Stream<List<T>> {
+    return foldNotNull(emptyList()) { acc, next ->
+        acc.plus(next).takeLast(capacity)
+    }
+}
