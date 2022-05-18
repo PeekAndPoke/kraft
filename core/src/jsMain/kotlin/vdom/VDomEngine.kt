@@ -7,7 +7,11 @@ interface VDomEngine {
 
     data class Options(
         val debugMode: Boolean = false,
-    )
+    ) {
+        companion object {
+            val default = Options()
+        }
+    }
 
     val options: Options
 

@@ -6,18 +6,34 @@ import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
 import kotlinx.browser.document
 import kotlinx.coroutines.delay
 import kotlinx.dom.appendElement
-import org.w3c.dom.*
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLBodyElement
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.get
 
 class TestBed<E : VDomEngine> private constructor(
     private val engine: E,
 ) {
     companion object {
-        fun preact(): TestBed<PreactVDomEngine> {
-            return TestBed(engine = PreactVDomEngine())
+
+        val defaultVDomEngineOptions: VDomEngine.Options = VDomEngine.Options(
+            debugMode = true,
+        )
+
+        fun preact(
+            options: VDomEngine.Options = defaultVDomEngineOptions,
+        ): TestBed<PreactVDomEngine> {
+            return TestBed(
+                engine = PreactVDomEngine(options = options),
+            )
         }
 
-        suspend fun preact(view: VDom.() -> Any?, test: suspend (element: KQuery<Element>) -> Unit) {
-            preact().render(view, test)
+        suspend fun preact(
+            view: VDom.() -> Any?,
+            options: VDomEngine.Options = defaultVDomEngineOptions,
+            test: suspend (element: KQuery<Element>) -> Unit
+        ) {
+            preact(options = options).render(view, test)
         }
     }
 
