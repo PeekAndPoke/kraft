@@ -5,6 +5,12 @@ import org.w3c.dom.HTMLElement
 
 interface VDomEngine {
 
+    data class Options(
+        val debugMode: Boolean = false,
+    )
+
+    val options: Options
+
     fun mount(element: HTMLElement, view: VDom.() -> Any?)
 
     fun createTagConsumer(host: Component<*>?): VDomTagConsumer

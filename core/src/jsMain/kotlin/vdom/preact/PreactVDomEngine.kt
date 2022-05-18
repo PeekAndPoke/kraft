@@ -8,11 +8,15 @@ import org.w3c.dom.HTMLElement
 import de.peekandpoke.kraft.components.Component as KraftComponent
 import preact.Component as PreactComponent
 
-class PreactVDomEngine : VDomEngine {
+class PreactVDomEngine private constructor(override val options: VDomEngine.Options) : VDomEngine {
 
     companion object {
-        operator fun invoke(element: HTMLElement, view: VDom.() -> Any?): PreactVDomEngine {
-            return PreactVDomEngine().apply {
+        operator fun invoke(
+            element: HTMLElement,
+            options: VDomEngine.Options,
+            view: VDom.() -> Any?,
+        ): PreactVDomEngine {
+            return PreactVDomEngine(options).apply {
                 mount(element, view)
             }
         }

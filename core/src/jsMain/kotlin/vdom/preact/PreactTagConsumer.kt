@@ -17,17 +17,18 @@ import kotlin.reflect.KClass
  * see: https://mithril.js.org
  */
 internal class PreactTagConsumer(
-    private val engine: PreactVDomEngine,
-    private val host: Component<*>?,
+    override val engine: PreactVDomEngine,
+    override val host: Component<*>?,
 ) : VDomTagConsumer {
+
+    /** Flag whether the debug mode is enabled */
+    override val isDebugMode: Boolean = engine.options.debugMode
 
     /** The root element */
     private val root = PreactElements.RootElement()
 
     /** The stack of elements we are visiting */
-    private val stack = mutableListOf<VDomElement>(
-        root
-    )
+    private val stack = mutableListOf<VDomElement>(root)
 
     override fun <P, C : Component<P>> onComponent(
         props: P,

@@ -8,6 +8,12 @@ import kotlin.reflect.KClass
 
 interface VDomTagConsumer : TagConsumer<VDomElement> {
 
+    val engine: VDomEngine
+
+    val host: Component<*>?
+
+    val isDebugMode: Boolean get() = engine.options.debugMode
+
     fun <P, C : Component<P>> onComponent(
         props: P,
         creatorFn: (Ctx<P>) -> C,

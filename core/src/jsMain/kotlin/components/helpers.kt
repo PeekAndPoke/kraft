@@ -14,6 +14,20 @@ var CommonAttributeGroupFacade.key: String
     }
 
 /**
+ * Gets the "debug-id" attribute
+ */
+fun CommonAttributeGroupFacade.debugId(): String? = attributes["debug-id"]
+
+/**
+ * Sets the "debug-id" attribute to [id]
+ */
+fun CommonAttributeGroupFacade.debugId(id: String) {
+    (consumer as? VDomTagConsumer)
+        ?.takeIf { it.isDebugMode }
+        ?.let { attributes["debug-id"] = id }
+}
+
+/**
  * Gets the "data-[id]" attribute
  */
 fun CommonAttributeGroupFacade.data(id: String): String? = attributes["data-$id"]
