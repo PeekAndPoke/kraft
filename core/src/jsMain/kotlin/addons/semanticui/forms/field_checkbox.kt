@@ -71,7 +71,7 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
                         type = InputType.checkBox
                         checked = currentValue == props.on
 
-                        options.autofocusValue()?.let { autoFocus = it }
+                        applyName()
                     }
 
                     renderLabel {
@@ -87,6 +87,10 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
 
             renderErrors(this)
         }
+    }
+
+    private fun INPUT.applyName() {
+        options.placeholder()?.let { name = it }
     }
 }
 

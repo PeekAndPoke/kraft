@@ -126,6 +126,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         track()
 
         applyFormatValue()
+        applyName()
         applyPlaceholder()
         applyStep()
         applyType()
@@ -147,6 +148,10 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     private fun INPUT.applyPlaceholder() {
         options.placeholder()?.takeIf { it.isNotBlank() }?.let { placeholder = it }
+    }
+
+    private fun INPUT.applyName() {
+        options.name()?.let { name = it }
     }
 
     private fun INPUT.applyStep() {

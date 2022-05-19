@@ -92,6 +92,8 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
 
     fun TEXTAREA.applyAll() {
         track()
+
+        applyName()
         applyPlaceholder()
     }
 
@@ -108,7 +110,11 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         }
     }
 
-    fun TEXTAREA.applyPlaceholder() {
+    private fun TEXTAREA.applyName() {
+        options.placeholder()?.let { name = it }
+    }
+
+    private fun TEXTAREA.applyPlaceholder() {
         options.placeholder()?.takeIf { it.isNotBlank() }?.let {
             placeholder = it
         }

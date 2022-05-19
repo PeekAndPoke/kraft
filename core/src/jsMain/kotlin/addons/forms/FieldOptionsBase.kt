@@ -15,6 +15,7 @@ interface FieldOptions<T> {
 
         private val labelKey = TypedKey<RenderFunc<LABEL>>("label")
         private val placeholderKey = TypedKey<String>("placeholder")
+        private val nameKey = TypedKey<String>("name")
     }
 
     open class Base<T> : FieldOptions<T> {
@@ -69,6 +70,9 @@ interface FieldOptions<T> {
 
     @KraftFormsSettingDsl
     val placeholder get() = access(placeholderKey)
+
+    @KraftFormsSettingDsl
+    val name get() = access(nameKey)
 
     /** Adds a validation rule */
     @KraftFormsSettingDsl
