@@ -6,6 +6,7 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.semanticui.noui
 import kotlinx.html.*
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
@@ -120,7 +121,7 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
 
     fun FlowContent.renderLabel(onClick: ((evt: MouseEvent) -> Unit)? = null) {
         options.label()?.let { l ->
-            label {
+            noui Label {
                 l()
 
                 onClick?.let { on ->
