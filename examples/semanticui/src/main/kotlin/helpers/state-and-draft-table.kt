@@ -1,8 +1,8 @@
 package de.peekandpoke.kraft.examples.semanticui.helpers
 
 import de.peekandpoke.kraft.components.key
-import de.peekandpoke.ultra.semanticui.noui
-import de.peekandpoke.ultra.semanticui.ui
+import de.peekandpoke.kraft.semanticui.noui
+import de.peekandpoke.kraft.semanticui.ui
 import kotlinx.html.*
 import kotlin.reflect.KProperty1
 

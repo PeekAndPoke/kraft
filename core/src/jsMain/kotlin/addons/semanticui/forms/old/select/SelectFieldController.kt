@@ -1,6 +1,6 @@
 package de.peekandpoke.kraft.addons.semanticui.forms.old.select
 
-import de.peekandpoke.ultra.semanticui.SemanticTag
+import de.peekandpoke.kraft.semanticui.SemanticTag
 
 internal class SelectFieldController<T>(component: SelectFieldComponent<T>) {
 

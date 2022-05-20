@@ -9,8 +9,8 @@ import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onInput
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.browser.window
 import kotlinx.css.Overflow
 import kotlinx.css.maxHeight

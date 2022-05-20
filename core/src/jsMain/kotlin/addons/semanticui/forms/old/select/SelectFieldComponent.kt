@@ -5,13 +5,13 @@ import de.peekandpoke.kraft.addons.forms.validation.Rule
 import de.peekandpoke.kraft.addons.semanticui.forms.renderErrors
 import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.semanticui.flowContent
+import de.peekandpoke.kraft.semanticui.icon
+import de.peekandpoke.kraft.semanticui.noui
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.streams.addons.debounce
 import de.peekandpoke.kraft.utils.launch
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.flowContent
-import de.peekandpoke.ultra.semanticui.icon
-import de.peekandpoke.ultra.semanticui.noui
-import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.browser.window
 import kotlinx.coroutines.flow.Flow
 import kotlinx.css.CssBuilder

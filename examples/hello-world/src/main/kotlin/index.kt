@@ -1,7 +1,7 @@
 package de.peekandpoke.kraft.examples.helloworld
 
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
-import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.browser.document
 import kotlinx.html.h1
 import kotlinx.html.h2

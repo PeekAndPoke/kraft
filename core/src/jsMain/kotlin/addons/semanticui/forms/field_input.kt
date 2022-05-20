@@ -6,10 +6,10 @@ import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onInput
 import de.peekandpoke.kraft.messages.sendMessage
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.common.datetime.*
-import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 import kotlin.reflect.KMutableProperty0

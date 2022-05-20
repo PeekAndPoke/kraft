@@ -4,8 +4,8 @@ import de.peekandpoke.kraft.addons.forms.FormFieldComponent
 import de.peekandpoke.kraft.addons.forms.validation.Rule
 import de.peekandpoke.kraft.addons.semanticui.forms.renderErrors
 import de.peekandpoke.kraft.components.Ctx
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.ui
 
 open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, NoInputFieldComponent.Props<T>>(ctx) {
 

@@ -7,8 +7,8 @@ import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckBoxComponent.Options
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onChange
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 import kotlin.reflect.KMutableProperty0

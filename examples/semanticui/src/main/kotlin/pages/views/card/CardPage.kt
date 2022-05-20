@@ -5,10 +5,10 @@ import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.examples.semanticui.helpers.ExampleWithCode
 import de.peekandpoke.kraft.examples.semanticui.helpers.readTheDocs
+import de.peekandpoke.kraft.semanticui.icon
+import de.peekandpoke.kraft.semanticui.noui
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.icon
-import de.peekandpoke.ultra.semanticui.noui
-import de.peekandpoke.ultra.semanticui.ui
 import kotlinx.html.*
 
 @Suppress("FunctionName")

@@ -68,7 +68,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(Deps.kotlinx_wrappers_extensions)
-                api(Deps.ultra_semanticui)
+                api(project(":semanticui"))
 
                 // External Javascript libraries
                 // Preact VDOM engine

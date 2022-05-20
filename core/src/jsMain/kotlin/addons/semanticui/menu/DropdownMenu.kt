@@ -1,9 +1,9 @@
 package de.peekandpoke.kraft.addons.semanticui.menu
 
 import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.semanticui.*
 import de.peekandpoke.kraft.utils.async
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.semanticui.*
 import kotlinx.browser.window
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

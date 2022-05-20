@@ -1,9 +1,9 @@
 package de.peekandpoke.kraft.examples.semanticui.helpers
 
 import de.peekandpoke.kraft.addons.styling.css
-import de.peekandpoke.ultra.semanticui.icon
-import de.peekandpoke.ultra.semanticui.noui
-import de.peekandpoke.ultra.semanticui.ui
+import de.peekandpoke.kraft.semanticui.icon
+import de.peekandpoke.kraft.semanticui.noui
+import de.peekandpoke.kraft.semanticui.ui
 import kotlinx.css.*
 import kotlinx.css.properties.border
 import kotlinx.html.*

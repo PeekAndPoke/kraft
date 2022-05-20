@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/examples" />
             <option value="$PROJECT_DIR$/examples/hello-world" />
             <option value="$PROJECT_DIR$/examples/semanticui" />
+            <option value="$PROJECT_DIR$/semanticui" />
           </set>
         </option>
       </GradleProjectSettings>
