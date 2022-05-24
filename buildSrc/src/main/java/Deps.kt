@@ -25,9 +25,13 @@ object Deps {
     private const val ultra_version = "0.46.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
-    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
-    private const val kotlinx_html_version = "0.7.5.1-SNAPSHOT"
-    const val kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$kotlinx_html_version"
+//    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
+//    private const val kotlinx_html_version = "0.7.5.1-SNAPSHOT"
+//    const val kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$kotlinx_html_version"
+
+    // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
+    private const val kotlinx_html_version = "0.7.5"
+    const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
     private const val kotlinx_wrappers_css_version = "1.0.0-pre.332-kotlin-1.6.21"
