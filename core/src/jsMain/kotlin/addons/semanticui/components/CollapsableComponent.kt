@@ -4,9 +4,12 @@ import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onAnimationEnd
-import de.peekandpoke.kraft.semanticui.RenderFn
+import de.peekandpoke.kraft.semanticui.RenderFunc
 import de.peekandpoke.kraft.vdom.VDom
-import kotlinx.html.*
+import kotlinx.html.DIV
+import kotlinx.html.Tag
+import kotlinx.html.div
+import kotlinx.html.style
 import org.w3c.dom.HTMLElement
 
 @Suppress("FunctionName")
@@ -17,22 +20,22 @@ class CollapsableComponent(ctx: Ctx<Props>) : Component<CollapsableComponent.Pro
 
     data class Props(
         val header: (DIV.(HeaderCtx) -> Unit)?,
-        val content: RenderFn,
+        val content: RenderFunc<DIV>,
         val collapsed: Boolean
     )
 
     class Builder(
         var header: (DIV.(HeaderCtx) -> Unit)? = null,
-        var content: RenderFn = {},
+        var content: RenderFunc<DIV> = {},
         var collapsed: Boolean = true
     ) {
         internal fun build() = Props(header, content, collapsed)
 
-        fun header(block: FlowContent.(HeaderCtx) -> Unit) {
+        fun header(block: DIV.(HeaderCtx) -> Unit) {
             header = block
         }
 
-        fun content(block: RenderFn) {
+        fun content(block: RenderFunc<DIV>) {
             content = block
         }
     }
