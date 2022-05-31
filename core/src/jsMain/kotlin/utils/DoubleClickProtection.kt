@@ -1,6 +1,7 @@
 package de.peekandpoke.kraft.utils
 
 import de.peekandpoke.kraft.components.Component
+import kotlinx.coroutines.Deferred
 
 class DoubleClickProtection(component: Component<*>) {
 
@@ -10,16 +11,18 @@ class DoubleClickProtection(component: Component<*>) {
 
     val cannotRun: Boolean get() = !canRun
 
-    operator fun invoke(block: suspend () -> Unit) = runAsync(block)
+    operator fun <T> invoke(block: suspend () -> T): Deferred<T>? {
+        return runAsync(block)
+    }
 
-    fun runAsync(block: suspend () -> Unit) {
+    fun <T> runAsync(block: suspend () -> T): Deferred<T>? {
         if (cannotRun) {
-            return
+            return null
         }
 
         counter++
 
-        launch {
+        return async {
             try {
                 block()
             } catch (e: Throwable) {
