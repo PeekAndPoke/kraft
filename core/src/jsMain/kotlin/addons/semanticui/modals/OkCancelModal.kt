@@ -3,6 +3,7 @@ package de.peekandpoke.kraft.addons.semanticui.modals
 import de.peekandpoke.kraft.addons.modal.ModalsManager
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.debugId
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.semanticui.RenderFn
 import de.peekandpoke.kraft.semanticui.SemanticTag
@@ -126,10 +127,13 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
 
     override fun FlowContent.renderContent() {
         ui.run(view.appearance).modal.transition.visible.active.front {
+            debugId("ok-cancel-modal")
+
             view.header(this)
             view.content(this)
             noui.actions {
                 ui.negative.button {
+                    debugId("cancel-button")
                     onClick {
                         close()
                         props.onResult(Result.Cancel)
@@ -137,6 +141,7 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
                     view.cancelText(this)
                 }
                 ui.positive.button {
+                    debugId("ok-button")
                     onClick {
                         close()
                         props.onResult(Result.Ok)
