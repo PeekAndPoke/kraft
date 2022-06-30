@@ -62,7 +62,6 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                api(Deps.kotlinx_html)
                 api(Deps.kotlinx_wrappers_css)
             }
         }
@@ -75,6 +74,7 @@ kotlin {
 
         js().compilations["main"].defaultSourceSet {
             dependencies {
+                api(Deps.peekandpoke_kotlinx_html)
             }
         }
 
@@ -86,6 +86,7 @@ kotlin {
 
         jvm().compilations["main"].defaultSourceSet {
             dependencies {
+                api(Deps.kotlinx_html)
             }
         }
 

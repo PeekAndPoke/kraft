@@ -35,6 +35,9 @@ object Deps {
     private const val kotlinx_html_version = "0.7.5"
     const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
+    private const val peekandpoke_kotlinx_html_version = "0.7.5.2-SNAPSHOT"
+    const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
+
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
     private const val kotlinx_wrappers_css_version = "1.0.0-pre.348"
     const val kotlinx_wrappers_css =
