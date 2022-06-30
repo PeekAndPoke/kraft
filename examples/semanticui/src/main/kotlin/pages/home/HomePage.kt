@@ -26,7 +26,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     override fun VDom.render() {
         ui.basic.segment {
             ui.header H1 {
-                +"FomanticUI + K.R.A.F.T. = 123"
+                +"FomanticUI + K.R.A.F.T. = "
                 icon.red.heart_outline()
             }
 
