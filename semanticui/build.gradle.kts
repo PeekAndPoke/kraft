@@ -7,7 +7,7 @@ import Deps.Test.jvmTestDeps
 
 plugins {
     kotlin("multiplatform")
-    id("io.kotest.multiplatform") version Deps.Test.kotest_version
+    id("io.kotest.multiplatform") version Deps.Test.kotest_plugin_version
     id("org.jetbrains.dokka")
 }
 
@@ -19,6 +19,9 @@ version = VERSION_NAME
 
 repositories {
     mavenCentral()
+
+    // Snapshots
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 kotlin {
