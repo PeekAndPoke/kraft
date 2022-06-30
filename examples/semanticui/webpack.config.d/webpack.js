@@ -21,7 +21,7 @@ if (devServer) {
 
     // config.plugins = []
 
-    devServer.port = 57238
+    devServer.port = 57202
     devServer.open = true
     devServer.hot = false
 }

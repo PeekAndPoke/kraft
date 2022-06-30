@@ -19,9 +19,6 @@ version = VERSION_NAME
 
 repositories {
     mavenCentral()
-
-    // Snapshots
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 kotlin {
