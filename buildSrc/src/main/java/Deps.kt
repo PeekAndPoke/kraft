@@ -20,7 +20,7 @@ object Deps {
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
     // TODO: Upgrade to 0.15.x -> Beware: configuration changes are necessary
-    const val mavenPublishVersion = "0.14.2"
+    const val mavenPublishVersion = "0.20.0"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
