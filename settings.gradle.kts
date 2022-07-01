@@ -6,6 +6,7 @@ include(
     ":semanticui",
 
     // Addons
+    ":addons:chartjs",
     ":addons:konva",
 
     // Examples

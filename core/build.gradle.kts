@@ -82,8 +82,6 @@ kotlin {
                 api(npm("marked", "1.1.0"))
                 // Javascript sandbox
                 api(npm("@nx-js/compiler-util", "2.0.0"))
-                // Chart.js
-                api(npm("chart.js", "3.6.0"))
             }
         }
 

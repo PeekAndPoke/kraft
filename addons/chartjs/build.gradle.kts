@@ -56,7 +56,8 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(npm("konva", "8.3.10"))
+                // Chart.js
+                api(npm("chart.js", "3.8.0"))
             }
         }
 
