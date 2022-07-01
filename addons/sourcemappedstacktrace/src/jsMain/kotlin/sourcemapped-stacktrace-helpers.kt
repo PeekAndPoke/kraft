@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.jsbridges.sourcemappedstacktrace
+package de.peekandpoke.kraft.addons.sourcemappedstacktrace
 
 import de.peekandpoke.kraft.utils.js
 

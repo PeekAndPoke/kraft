@@ -56,7 +56,6 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                // Chart.js
                 api(npm("chart.js", "3.8.0"))
             }
         }
