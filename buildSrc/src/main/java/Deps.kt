@@ -43,10 +43,6 @@ object Deps {
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
-//    // https://mvnrepository.com/artifact/io.arrow-kt/arrow-core
-//    private const val arrow_core_version = "1.0.1"
-//    const val arrow_core = "io.arrow-kt:arrow-core:$arrow_core_version"
-
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
     private const val kotlinx_coroutines_version = "1.6.3"
@@ -67,6 +63,33 @@ object Deps {
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
     // // NPM dependencies /////////////////////////////////////////////////////////////////////////
+
+    object Npm {
+        operator fun <T> invoke(block: Npm.() -> T): T {
+            return this.block()
+        }
+
+        // https://www.npmjs.com/package/chart.js
+        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "3.8.0")
+
+        // https://www.npmjs.com/package/jwt-decode
+        fun KotlinDependencyHandler.jwtDecode() = npm("jwt-decode", "3.1.2")
+
+        // https://www.npmjs.com/package/konva
+        fun KotlinDependencyHandler.konva() = npm("konva", "8.3.10")
+
+        // https://www.npmjs.com/package/marked
+        fun KotlinDependencyHandler.marked() = npm("marked", "4.0.17")
+
+        // https://www.npmjs.com/package/@nx-js/compiler-util
+        fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
+
+        // https://www.npmjs.com/package/preact
+        fun KotlinDependencyHandler.preact() = npm("preact", "10.8.2")
+
+        // https://www.npmjs.com/package/sourcemapped-stacktrace
+        fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
+    }
 
     // // Test dependencies ////////////////////////////////////////////////////////////////////////
 

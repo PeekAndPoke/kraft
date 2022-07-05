@@ -56,7 +56,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(npm("marked", "4.0.17"))
+                api(Deps.Npm { marked() })
             }
         }
 

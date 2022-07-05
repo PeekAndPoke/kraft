@@ -56,7 +56,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(npm("sourcemapped-stacktrace", "1.1.11"))
+                api(Deps.Npm { sourcemappedStacktrace() })
             }
         }
 

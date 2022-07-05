@@ -56,7 +56,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(npm("@nx-js/compiler-util", "2.0.0"))
+                api(Deps.Npm { nxJsCompilerUtil() })
             }
         }
 

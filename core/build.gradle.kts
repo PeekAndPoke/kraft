@@ -71,11 +71,10 @@ kotlin {
                 api(Deps.kotlinx_wrappers_extensions)
                 api(project(":semanticui"))
 
-                // External Javascript libraries
                 // Preact VDOM engine
-                api(npm("preact", "10.5.14"))
-                // JWT
-                api(npm("jwt-decode", "2.2.0"))
+                api(Deps.Npm { preact() })
+                // JWT decode
+                api(Deps.Npm { jwtDecode() })
             }
         }
 
