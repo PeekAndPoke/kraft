@@ -21,6 +21,8 @@ class Examples(ctx: NoProps) : PureComponent(ctx) {
 
     override fun VDom.render() {
 
+        JwtDecodeExample()
+
         ChartJsExample()
 
         KonvaExample()
