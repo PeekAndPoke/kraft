@@ -44,8 +44,9 @@ kotlin {
 // https://stackoverflow.com/questions/72731436/kotlin-multiplatform-gradle-task-jsrun-gives-error-webpack-cli-typeerror-c/72731728
 // Fixes webpack-cli incompatibility by pinning the newest version.
 rootProject.plugins.withType<YarnPlugin> {
-    val ext = rootProject.extensions.findByType<YarnRootExtension>()
-    ext?.resolution("webpack-cli", "^4.10.0")
+    rootProject.extensions.findByType<YarnRootExtension>()?.let { ext ->
+//        ext.resolution("webpack-cli", "^4.10.0")
+    }
 }
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
