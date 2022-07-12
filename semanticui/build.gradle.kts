@@ -7,8 +7,10 @@ import Deps.Test.jvmTestDeps
 
 plugins {
     kotlin("multiplatform")
-    id("io.kotest.multiplatform") version Deps.Test.kotest_version
-    id("org.jetbrains.dokka")
+    id("io.kotest.multiplatform") version Deps.Test.kotest_plugin_version
+    id("org.jetbrains.dokka") version Deps.dokkaVersion
+    id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion
+
 }
 
 val GROUP: String by project
@@ -62,8 +64,8 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                api(Deps.kotlinx_html)
                 api(Deps.kotlinx_wrappers_css)
+                api(Deps.kotlinx_html)
             }
         }
 
@@ -100,5 +102,3 @@ kotlin {
 tasks {
     configureJvmTests()
 }
-
-apply(from = "./../maven.publish.gradle.kts")

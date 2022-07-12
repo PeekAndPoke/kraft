@@ -5,9 +5,10 @@ import Deps.Test.jvmTestDeps
 
 plugins {
     kotlin("multiplatform")
-    id("io.kotest.multiplatform") version Deps.Test.kotest_version
+    id("io.kotest.multiplatform") version Deps.Test.kotest_plugin_version
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
     id("org.jetbrains.dokka") version Deps.dokkaVersion
+    id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion
 }
 
 val GROUP: String by project
@@ -70,19 +71,10 @@ kotlin {
                 api(Deps.kotlinx_wrappers_extensions)
                 api(project(":semanticui"))
 
-                // External Javascript libraries
                 // Preact VDOM engine
-                api(npm("preact", "10.5.14"))
-                // JWT
-                api(npm("jwt-decode", "2.2.0"))
-                // External Javascript libraries
-                api(npm("sourcemapped-stacktrace", "1.1.11"))
-                // Markdown to HTML
-                api(npm("marked", "1.1.0"))
-                // Javascript sandbox
-                api(npm("@nx-js/compiler-util", "2.0.0"))
-                // Chart.js
-                api(npm("chart.js", "3.6.0"))
+                api(Deps.Npm { preact() })
+                // JWT decode
+                api(Deps.Npm { jwtDecode() })
             }
         }
 
@@ -106,5 +98,3 @@ kotlin {
 tasks {
     configureJvmTests()
 }
-
-apply(from = "./../maven.publish.gradle.kts")

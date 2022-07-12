@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.jsbridges.nxcompile
+package de.peekandpoke.kraft.addons.nxcompile
 
 // see https://blog.risingstack.com/writing-a-javascript-framework-sandboxed-code-evaluation/
 

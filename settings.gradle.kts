@@ -5,7 +5,15 @@ include(
     ":core",
     ":semanticui",
 
+    // Addons
+    ":addons:chartjs",
+    ":addons:konva",
+    ":addons:marked",
+    ":addons:nxcompile",
+    ":addons:sourcemappedstacktrace",
+
     // Examples
     ":examples:hello-world",
+    ":examples:js-addons",
     ":examples:semanticui",
 )

@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.jsbridges.chartjs
+package de.peekandpoke.kraft.addons.chartjs
 
 import kotlinx.css.Color
 
