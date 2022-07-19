@@ -65,7 +65,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                     }
                 """.trimIndent(),
                 html = """
-                    <div class="ui basic segment>
+                    <div class="ui basic segment">
                         Hello World
                     </div>
                 """.trimIndent()
@@ -83,7 +83,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                     }
                 """.trimIndent(),
                 html = """
-                    <div class="basic item>
+                    <div class="basic item">
                         Hello World
                     </div>
                 """.trimIndent()

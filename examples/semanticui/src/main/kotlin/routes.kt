@@ -11,7 +11,8 @@ import de.peekandpoke.kraft.examples.semanticui.pages.home.HomePage
 import de.peekandpoke.kraft.examples.semanticui.pages.views.card.CardPage
 
 class Routes {
-    val home = Static("/")
+    val home = Static("")
+    val homeSlash = Static("/")
 
     val elementsButton = Static("/elements/button")
     val elementsDivider = Static("/elements/divider")
@@ -25,6 +26,7 @@ class Routes {
 
 fun RouterBuilder.mount(routes: Routes) {
     mount(routes.home) { HomePage() }
+    mount(routes.homeSlash) { HomePage() }
 
     mount(routes.elementsButton) { ButtonPage() }
     mount(routes.elementsDivider) { DividerPage() }

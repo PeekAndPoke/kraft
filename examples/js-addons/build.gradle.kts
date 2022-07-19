@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":addons:konva"))
     implementation(project(":addons:marked"))
     implementation(project(":addons:nxcompile"))
+    implementation(project(":addons:prismjs"))
     implementation(project(":addons:sourcemappedstacktrace"))
 }
 

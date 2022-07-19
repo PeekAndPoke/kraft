@@ -7,9 +7,6 @@ import kotlinx.js.Object
  * Decodes the [jwt] and returns a javascript object
  */
 fun decodeJwt(jwt: String): Object? {
-
-    console.log(jwt_decode)
-
     return jwt_decode.default(jwt)
 }
 

@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/addons/konva" />
             <option value="$PROJECT_DIR$/addons/marked" />
             <option value="$PROJECT_DIR$/addons/nxcompile" />
+            <option value="$PROJECT_DIR$/addons/prismjs" />
             <option value="$PROJECT_DIR$/addons/sourcemappedstacktrace" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />

@@ -10,6 +10,7 @@ include(
     ":addons:konva",
     ":addons:marked",
     ":addons:nxcompile",
+    ":addons:prismjs",
     ":addons:sourcemappedstacktrace",
 
     // Examples

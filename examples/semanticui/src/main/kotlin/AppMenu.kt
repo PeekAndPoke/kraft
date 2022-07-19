@@ -26,11 +26,11 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
         ui.vertical.inverted.menu {
             noui.item {
                 ui.with("logo").icon.image A {
-                    href = routes.home()
+                    href = routes.homeSlash()
                     img(src = "https://fomantic-ui.com/images/logo.png")
                 }
 
-                a(href = routes.home()) {
+                a(href = routes.homeSlash()) {
                     b { +"FomanticUI + KRAFT" }
                 }
             }

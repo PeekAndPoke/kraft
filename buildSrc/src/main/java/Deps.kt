@@ -86,6 +86,9 @@ object Deps {
         // https://www.npmjs.com/package/preact
         fun KotlinDependencyHandler.preact() = npm("preact", "10.8.2")
 
+        // https://www.npmjs.com/package/prismjs
+        fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.28.0")
+
         // https://www.npmjs.com/package/sourcemapped-stacktrace
         fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
     }

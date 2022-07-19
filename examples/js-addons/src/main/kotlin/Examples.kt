@@ -28,13 +28,8 @@ class Examples(ctx: NoProps) : PureComponent(ctx) {
         KonvaExample()
 
         markedExample()
-    }
 
-    private fun FlowContent.graphJsExample() {
-        ui.segment {
-            ui.header { +"Graph JS" }
-
-        }
+        PrismJsExample()
     }
 
     private fun FlowContent.markedExample() {

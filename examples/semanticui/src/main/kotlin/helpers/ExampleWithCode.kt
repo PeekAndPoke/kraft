@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.semanticui.helpers
 
+import de.peekandpoke.kraft.addons.prismjs.PrismKotlin
 import de.peekandpoke.kraft.addons.semanticui.components.Collapsable
 import de.peekandpoke.kraft.addons.semanticui.components.CollapsableComponent
 import de.peekandpoke.kraft.components.*
@@ -7,7 +8,6 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 import kotlinx.html.a
-import kotlinx.html.pre
 
 @Suppress("FunctionName")
 fun Tag.ExampleWithCode(
@@ -54,10 +54,7 @@ class ExampleWithCode(ctx: Ctx<Props>) : Component<ExampleWithCode.Props>(ctx) {
                     }
                 }
                 content {
-                    pre {
-                        applyCodeBlockStyle()
-                        +props.code.trimIndent()
-                    }
+                    PrismKotlin(props.code.trimIndent())
                 }
             }.trackRef(tracker)
         }
