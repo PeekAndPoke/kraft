@@ -5,18 +5,30 @@ import Deps.Test.jsTestDeps
 plugins {
     kotlin("multiplatform")
     id("io.kotest.multiplatform") version Deps.Test.kotest_plugin_version
-    id("org.jetbrains.dokka") version Deps.dokkaVersion
+//    id("org.jetbrains.dokka") version Deps.dokkaVersion
     id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion
 }
 
 val GROUP: String by project
 val VERSION_NAME: String by project
+val POM_ARTIFACT_ID: String by project
 
 group = GROUP
 version = VERSION_NAME
 
 repositories {
     mavenCentral()
+}
+
+tasks.register<Copy>("copyEmptySources") {
+    val fromDir = File("").absolutePath
+    val intoDir = File(buildDir, "/libs")
+
+    from(fromDir)
+    into(intoDir)
+
+    include("empty-javadoc.jar")
+    rename("empty-javadoc.jar", "${project.name}-$version-javadoc.jar")
 }
 
 kotlin {
