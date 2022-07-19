@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Examples: run js-addons" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Examples: run addons" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,7 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value=":examples:js-addons:run" />
+          <option value=":examples:addons:run" />
         </list>
       </option>
       <option name="vmOptions" />

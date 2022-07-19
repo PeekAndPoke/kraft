@@ -21,8 +21,8 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/examples" />
+            <option value="$PROJECT_DIR$/examples/addons" />
             <option value="$PROJECT_DIR$/examples/hello-world" />
-            <option value="$PROJECT_DIR$/examples/js-addons" />
             <option value="$PROJECT_DIR$/examples/semanticui" />
             <option value="$PROJECT_DIR$/semanticui" />
           </set>

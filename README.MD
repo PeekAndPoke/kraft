@@ -12,7 +12,11 @@
 
 ## Hello-World example
 
-[Check it out](./docs/examples/hello-world/index.html)
+[Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/hello-world/index.html)
+
+## Addon examples
+
+[Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html)
 
 # Run the examples
 

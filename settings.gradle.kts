@@ -14,7 +14,7 @@ include(
     ":addons:sourcemappedstacktrace",
 
     // Examples
+    ":examples:addons",
     ":examples:hello-world",
-    ":examples:js-addons",
     ":examples:semanticui",
 )
