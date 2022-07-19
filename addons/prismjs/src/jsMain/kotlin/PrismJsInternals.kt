@@ -9,6 +9,9 @@ import org.w3c.dom.HTMLLinkElement
 import kotlin.js.Date
 import kotlin.js.Promise
 
+/**
+ * See: https://cdnjs.com/libraries/prism for available assets
+ */
 class PrismJsInternals {
 
     internal class StylesLoader {
@@ -17,7 +20,6 @@ class PrismJsInternals {
 
         private val head: HTMLHeadElement?
             get() = document.getElementsByTagName("head").item(0) as? HTMLHeadElement
-
 
         fun loadDefaultTheme() {
             loadStyle(
