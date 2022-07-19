@@ -41,7 +41,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     /** Backing field for the [dom] */
     private var _dom: HTMLElement? = null
 
-    /** Flag indicating if the component needs a redraw */
+    /** Flag indicating if the component needs to be redrawn */
     private var needsRedraw = true
 
     /** Render cache with the last render result */

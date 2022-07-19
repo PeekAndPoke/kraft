@@ -30,22 +30,22 @@ kotlin {
             }
         }
 
-//        jvm {
-//            compilations.all {
-//                kotlinOptions {
-//                    verbose = true
-//                    jvmTarget = "1.8"
-//                }
-//            }
-//        }
+        jvm {
+            compilations.all {
+                kotlinOptions {
+                    verbose = true
+                    jvmTarget = "1.8"
+                }
+            }
+        }
     }
 
     @Suppress("UNUSED_VARIABLE")
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Deps.kotlinx_coroutines_core)
-                api(project(":core"))
+//                implementation(Deps.kotlinx_coroutines_core)
+                implementation(project(":core"))
             }
         }
 
