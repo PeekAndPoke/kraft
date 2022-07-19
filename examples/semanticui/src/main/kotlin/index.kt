@@ -19,5 +19,9 @@ fun main() {
         App()
     }
 
+    router.current.subscribeToStream {
+        console.log("Current route: ${it.route} | ${it.matchedRoute.route.pattern}")
+    }
+
     router.resolveCurrentRoute()
 }
