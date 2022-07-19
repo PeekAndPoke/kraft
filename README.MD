@@ -18,7 +18,11 @@
 
 [Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html)
 
-# Run the examples
+## SemanticUi / FomanticUi examples
+
+[Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/semanticui/index.html)
+
+# Run the examples locally
 
 Run the Hello World example
 
