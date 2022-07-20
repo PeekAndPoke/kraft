@@ -32,4 +32,4 @@ Run it locally
 [See the code](./examples/fomanticui)
 
 Run it locally
-> ./gradlew -t --parallel :examples:semanticui:run
+> ./gradlew -t --parallel :examples:fomanticui:run
