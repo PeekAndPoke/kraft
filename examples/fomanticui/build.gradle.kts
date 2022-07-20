@@ -1,3 +1,5 @@
+apply<ExtractExampleCodePlugin>()
+
 plugins {
     kotlin("js")
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
@@ -29,7 +31,14 @@ kotlin {
 
         binaries.executable()
     }
+
+    sourceSets {
+        main {
+            kotlin.srcDir("build/generated/extracted-code-blocks")
+        }
+    }
 }
+
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -9,6 +9,7 @@ import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import generated.ExtractedCodeBlocks
 import kotlinx.html.*
 
 @Suppress("FunctionName")
@@ -40,29 +41,9 @@ class CardPage(ctx: NoProps) : PureComponent(ctx) {
         }
 
         ExampleWithCode(
-            """
-                ui.card {
-                    noui.image {
-                        img(src = "images/avatar2/large/kristy.png")
-                    }
-                    noui.content {
-                        noui.header A { +"Kristy" }
-                        noui.meta {
-                            +"Joined in 2022"
-                        }
-                        noui.description {
-                            +"Kristy is an art director living in Leipzig."
-                        }
-                    }
-                    noui.extra.content {
-                        a {
-                            icon.user()
-                            +"22 Friends"
-                        }
-                    }
-                }
-            """.trimIndent()
+            ExtractedCodeBlocks.pages_views_card_CardPage_kt_renderSingleCard,
         ) {
+            // <CodeBlock renderSingleCard>
             ui.card {
                 noui.image {
                     img(src = "images/avatar2/large/kristy.png")
@@ -83,6 +64,7 @@ class CardPage(ctx: NoProps) : PureComponent(ctx) {
                     }
                 }
             }
+            // </CodeBlock>
         }
 
         ExampleWithCode(
