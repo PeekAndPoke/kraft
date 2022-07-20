@@ -8,6 +8,7 @@ div.full.height > .toc {
 .toc .ui.menu {
     width: auto;
 }
+
 .toc .ui.menu .item .ui.logo.image {
     width: 35px;
     margin-right: 1em;
