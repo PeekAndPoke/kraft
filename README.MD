@@ -33,13 +33,3 @@ Run it locally
 
 Run it locally
 > ./gradlew -t --parallel :examples:semanticui:run
-
-# Run the examples locally
-
-Run the Hello World example
-
-> ./gradlew -t --parallel --configure-on-demand :examples:hello-world:run
-
-Run the SemanticUI / FomanticUI examples
-
-> ./gradlew -t --parallel --configure-on-demand :examples:semanticui:run
