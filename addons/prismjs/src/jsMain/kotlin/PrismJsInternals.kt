@@ -10,7 +10,7 @@ import kotlin.js.Date
 import kotlin.js.Promise
 
 /**
- * See: https://cdnjs.com/libraries/prism for available assets
+ * See: https://cdnjs.com/libraries/prism/1.28.0 for available assets
  */
 class PrismJsInternals {
 
@@ -211,22 +211,16 @@ class PrismJsInternals {
 
         private val loaded = mutableMapOf<String, Promise<dynamic>>()
 
-        suspend fun load(plugin: String): dynamic {
-            return when (val existing = PrismJsDefinition.plugins[plugin]) {
-                null -> try {
-                    when (plugin) {
-                        "line-numbers" -> loadLineNumbers()
-                        // fallback
-                        else -> null
-                    }
-                } catch (t: Throwable) {
-                    console.error("Could not load PrismJs plugin '$plugin'", t)
-                }
-                else -> existing
+        // Plugin loaders //////////////////////////////////////////////////////////////////////////////////////////////
+
+        suspend fun loadCopyToClipboard(): dynamic {
+            // Depends on the Toolbar plugin to be loaded
+            loadToolbar()
+
+            return load("copyToClipboard", { _, duration -> duration < 100 }) {
+                js("import('prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard')") as Promise<Module<*>>
             }
         }
-
-        // Plugin loaders //////////////////////////////////////////////////////////////////////////////////////////////
 
         suspend fun loadInlineColor(): dynamic {
             styles.loadInlineColor()
@@ -245,7 +239,7 @@ class PrismJsInternals {
         }
 
         suspend fun loadShowLanguage(): dynamic {
-            // needs the toolbar to be loaded
+            // Depends on the Toolbar plugin to be loaded
             loadToolbar()
 
             return load("showLanguage", { _, duration -> duration < 10 }) {
@@ -270,16 +264,14 @@ class PrismJsInternals {
         ): dynamic {
 
             loaded.getOrPut(plugin) {
-                val p = promise()
+                promise()
+            }
 
-                val start = Date.now()
+            val start = Date.now()
 
-                @Suppress("UnsafeCastFromDynamic")
-                while (isLoading(plugin, Date.now() - start)) {
-                    delay(100)
-                }
-
-                p
+            @Suppress("UnsafeCastFromDynamic")
+            while (isLoading(plugin, Date.now() - start)) {
+                delay(10)
             }
 
             return PrismJsDefinition.plugins[plugin]

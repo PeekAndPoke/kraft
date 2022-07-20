@@ -1,0 +1,28 @@
+div.full.height > .toc {
+    height: 100vh;
+    position: fixed;
+    background-color: #1b1c1d;
+    width: 250px;
+}
+
+.toc .ui.menu {
+    width: auto;
+}
+.toc .ui.menu .item .ui.logo.image {
+    width: 35px;
+    margin-right: 1em;
+}
+
+.pusher > .article {
+    margin-left: 250px;
+}
+
+.article .example {
+    margin: 2em 0em;
+    padding: 2em 0em;
+    position: relative;
+}
+
+.article .example .wireframe.image {
+    opacity: 0.5;
+}

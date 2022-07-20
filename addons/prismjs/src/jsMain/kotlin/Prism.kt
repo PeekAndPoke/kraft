@@ -16,91 +16,97 @@ import kotlinx.html.pre
 import org.intellij.lang.annotations.Language
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLPreElement
-import org.w3c.dom.set
 
-fun Tag.Prism(language: String, code: String, plugins: List<Prism.Plugin>) =
-    comp(Prism.Props(language = language, code = code, plugins = plugins)) { Prism(it) }
+typealias PrismOptsBuilder = Prism.OptionsBuilder.() -> Unit
 
-inline fun Tag.PrismAtom(@Language("atom") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "atom", code = code, plugins = plugins.toList())
+fun Tag.Prism(language: String, code: String, options: PrismOptsBuilder) = comp(
+    Prism.Props(
+        language = language,
+        code = code,
+        options = Prism.OptionsBuilder().apply(options).build()
+    )
+) { Prism(it) }
 
-inline fun Tag.PrismCLike(@Language("c") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "clike", code = code, plugins = plugins.toList())
+inline fun Tag.PrismAtom(@Language("atom") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "atom", code = code, options = options)
 
-inline fun Tag.PrismCss(@Language("css") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "css", code = code, plugins = plugins.toList())
+inline fun Tag.PrismCLike(@Language("c") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "clike", code = code, options = options)
 
-inline fun Tag.PrismDart(@Language("dart") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "dart", code = code, plugins = plugins.toList())
+inline fun Tag.PrismCss(@Language("css") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "css", code = code, options = options)
 
-inline fun Tag.PrismHtml(@Language("html") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "html", code = code, plugins = plugins.toList())
+inline fun Tag.PrismDart(@Language("dart") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "dart", code = code, options = options)
 
-inline fun Tag.PrismKotlin(@Language("kotlin") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "kotlin", code = code, plugins = plugins.toList())
+inline fun Tag.PrismHtml(@Language("html") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "html", code = code, options = options)
 
-inline fun Tag.PrismKotlinScript(@Language("kts") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "kts", code = code, plugins = plugins.toList())
+inline fun Tag.PrismKotlin(@Language("kotlin") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "kotlin", code = code, options = options)
 
-inline fun Tag.PrismJava(@Language("java") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "java", code = code, plugins = plugins.toList())
+inline fun Tag.PrismKotlinScript(@Language("kts") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "kts", code = code, options = options)
 
-inline fun Tag.PrismJavascript(@Language("javascript") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "javascript", code = code, plugins = plugins.toList())
+inline fun Tag.PrismJava(@Language("java") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "java", code = code, options = options)
 
-inline fun Tag.PrismJson(@Language("json") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "json", code = code, plugins = plugins.toList())
+inline fun Tag.PrismJavascript(@Language("javascript") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "javascript", code = code, options = options)
 
-inline fun Tag.PrismJson5(@Language("json5") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "json5", code = code, plugins = plugins.toList())
+inline fun Tag.PrismJson(@Language("json") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "json", code = code, options = options)
 
-inline fun Tag.PrismJsonp(@Language("jsonp") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "jsonp", code = code, plugins = plugins.toList())
+inline fun Tag.PrismJson5(@Language("json5") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "json5", code = code, options = options)
 
-inline fun Tag.PrismLess(@Language("less") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "less", code = code, plugins = plugins.toList())
+inline fun Tag.PrismJsonp(@Language("jsonp") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "jsonp", code = code, options = options)
 
-inline fun Tag.PrismMarkup(@Language("markup") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "markup", code = code, plugins = plugins.toList())
+inline fun Tag.PrismLess(@Language("less") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "less", code = code, options = options)
 
-inline fun Tag.PrismPhp(@Language("php") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "php", code = code, plugins = plugins.toList())
+inline fun Tag.PrismMarkup(@Language("markup") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "markup", code = code, options = options)
 
-inline fun Tag.PrismPlain(code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "plain", code = code, plugins = plugins.toList())
+inline fun Tag.PrismPhp(@Language("php") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "php", code = code, options = options)
 
-inline fun Tag.PrismRegex(@Language("regex") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "regex", code = code, plugins = plugins.toList())
+inline fun Tag.PrismPlain(code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "plain", code = code, options = options)
 
-inline fun Tag.PrismRuby(@Language("ruby") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "ruby", code = code, plugins = plugins.toList())
+inline fun Tag.PrismRegex(@Language("regex") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "regex", code = code, options = options)
 
-inline fun Tag.PrismRust(@Language("rust") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "rust", code = code, plugins = plugins.toList())
+inline fun Tag.PrismRuby(@Language("ruby") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "ruby", code = code, options = options)
 
-inline fun Tag.PrismRss(@Language("rss") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "rss", code = code, plugins = plugins.toList())
+inline fun Tag.PrismRust(@Language("rust") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "rust", code = code, options = options)
 
-inline fun Tag.PrismSass(@Language("sass") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "sass", code = code, plugins = plugins.toList())
+inline fun Tag.PrismRss(@Language("rss") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "rss", code = code, options = options)
 
-inline fun Tag.PrismScss(@Language("scss") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "scss", code = code, plugins = plugins.toList())
+inline fun Tag.PrismSass(@Language("sass") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "sass", code = code, options = options)
 
-inline fun Tag.PrismSsml(@Language("ssml") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "ssml", code = code, plugins = plugins.toList())
+inline fun Tag.PrismScss(@Language("scss") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "scss", code = code, options = options)
 
-inline fun Tag.PrismSvg(@Language("svg") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "svg", code = code, plugins = plugins.toList())
+inline fun Tag.PrismSsml(@Language("ssml") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "ssml", code = code, options = options)
 
-inline fun Tag.PrismText(code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "text", code = code, plugins = plugins.toList())
+inline fun Tag.PrismSvg(@Language("svg") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "svg", code = code, options = options)
 
-inline fun Tag.PrismTypescript(@Language("typescript") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "typescript", code = code, plugins = plugins.toList())
+inline fun Tag.PrismText(code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "text", code = code, options = options)
 
-inline fun Tag.PrismXml(@Language("xml") code: String, vararg plugins: Prism.Plugin) =
-    Prism(language = "xml", code = code, plugins = plugins.toList())
+inline fun Tag.PrismTypescript(@Language("typescript") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "typescript", code = code, options = options)
+
+inline fun Tag.PrismXml(@Language("xml") code: String, noinline options: PrismOptsBuilder = {}) =
+    Prism(language = "xml", code = code, options = options)
 
 class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
 
@@ -109,54 +115,22 @@ class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
     data class Props(
         val language: String,
         val code: String,
-        val plugins: List<Plugin>,
+        val options: Options,
     )
 
-    sealed class Plugin {
+    data class Options(
+        val plugins: List<PrismPlugin>,
+    )
 
-        abstract suspend fun load()
-        abstract fun applyTo(pre: HTMLPreElement)
+    class OptionsBuilder internal constructor() {
+        private val plugins = mutableListOf<PrismPlugin>()
 
-        object InlineColor : Plugin() {
-            override suspend fun load() {
-                prismJsInternals.plugins.loadInlineColor()
-            }
+        internal fun build() = Options(
+            plugins = plugins,
+        )
 
-            override fun applyTo(pre: HTMLPreElement) {
-                pre.className += " inline-color"
-            }
-        }
-
-        data class LineNumbers(
-            val softWrap: Boolean = false,
-            val start: Int = 1,
-        ) : Plugin() {
-            override suspend fun load() {
-                prismJsInternals.plugins.loadLineNumbers()
-            }
-
-            override fun applyTo(pre: HTMLPreElement) {
-                pre.className += " line-numbers"
-                pre.dataset["start"] = start.toString()
-                if (softWrap) {
-                    pre.style.whiteSpace = "pre-wrap"
-                }
-            }
-        }
-
-        data class ShowLanguage(
-            val language: String? = null,
-        ) : Plugin() {
-            override suspend fun load() {
-                prismJsInternals.plugins.loadShowLanguage()
-            }
-
-            override fun applyTo(pre: HTMLPreElement) {
-                pre.className += " show-language"
-                language?.let {
-                    pre.dataset["language"] = it
-                }
-            }
+        fun usePlugin(plugin: PrismPlugin) {
+            plugins.add(plugin)
         }
     }
 
@@ -168,7 +142,7 @@ class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
         launch {
             prismJsInternals.styles.loadDefaultTheme()
 
-            props.plugins.forEach { it.load() }
+            props.options.plugins.forEach { it.load() }
 
             prismJsInternals.languages.load(props.language)
 
@@ -181,9 +155,9 @@ class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
         dom?.let { d ->
             val pre = (document.createElement("pre") as HTMLPreElement).also { pre ->
 
-                pre.className = "language-${props.language}"
+                pre.className = "language-${props.language} copy-to-clipboard"
 
-                props.plugins.forEach { it.applyTo(pre) }
+                props.options.plugins.forEach { it.applyTo(pre) }
 
                 (document.createElement("code") as HTMLElement).also { code ->
 
@@ -204,7 +178,8 @@ class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
     override fun VDom.render() {
         // Initially we create a placeholder which is filled by [createContent]
         div("prism") {
-            pre("language-${props.language}") {
+
+        pre("language-${props.language}") {
                 code {
                     +props.code
                 }

@@ -18,14 +18,14 @@ repositories {
 
 dependencies {
     // project deps
-    implementation(project(":core"))
+    api(project(":core"))
     // addons
-    implementation(project(":addons:chartjs"))
-    implementation(project(":addons:konva"))
-    implementation(project(":addons:marked"))
-    implementation(project(":addons:nxcompile"))
-    implementation(project(":addons:prismjs"))
-    implementation(project(":addons:sourcemappedstacktrace"))
+    api(project(":addons:chartjs"))
+    api(project(":addons:konva"))
+    api(project(":addons:marked"))
+    api(project(":addons:nxcompile"))
+    api(project(":addons:prismjs"))
+    api(project(":addons:sourcemappedstacktrace"))
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

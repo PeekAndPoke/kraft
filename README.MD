@@ -8,19 +8,31 @@
                                                              
 ```
 
-# See the examples in action
+# Check out the examples
 
 ## Hello-World example
 
-[Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/hello-world/index.html)
+[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/hello-world/index.html) |
+[See the code](./examples/hello-world)
+
+Run it locally
+> ./gradlew -t --parallel :examples:hello-world:run
 
 ## Addon examples
 
-[Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html)
+[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html) |
+[See the code](./examples/addons)
+
+Run it locally
+> ./gradlew -t --parallel :examples:addons:run
 
 ## SemanticUi / FomanticUi examples
 
-[Check it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/semanticui/index.html)
+[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/semanticui/index.html)
+[See the code](./examples/semanticui)
+
+Run it locally
+> ./gradlew -t --parallel :examples:semanticui:run
 
 # Run the examples locally
 

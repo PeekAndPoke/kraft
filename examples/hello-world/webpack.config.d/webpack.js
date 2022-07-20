@@ -26,6 +26,4 @@ if (devServer) {
     devServer.hot = false
 }
 
-console.error(config)
-
-// throw new Error(JSON.stringify(config))
+console.log(config)

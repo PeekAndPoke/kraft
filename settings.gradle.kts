@@ -16,5 +16,5 @@ include(
     // Examples
     ":examples:addons",
     ":examples:hello-world",
-    ":examples:semanticui",
+    ":examples:fomanticui",
 )
