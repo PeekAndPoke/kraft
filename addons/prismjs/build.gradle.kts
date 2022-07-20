@@ -11,7 +11,6 @@ plugins {
 
 val GROUP: String by project
 val VERSION_NAME: String by project
-val POM_ARTIFACT_ID: String by project
 
 group = GROUP
 version = VERSION_NAME
@@ -20,16 +19,20 @@ repositories {
     mavenCentral()
 }
 
-tasks.register<Copy>("copyEmptySources") {
-    val fromDir = File("").absolutePath
-    val intoDir = File(buildDir, "/libs")
-
-    from(fromDir)
-    into(intoDir)
-
-    include("empty-javadoc.jar")
-    rename("empty-javadoc.jar", "${project.name}-$version-javadoc.jar")
+Docs {
+    useEmptyJavadoc()
 }
+
+//tasks.register<Copy>("useEmptyJavadoc") {
+//    val fromDir = File("").absolutePath
+//    val intoDir = File(buildDir, "/libs")
+//
+//    from(fromDir)
+//    into(intoDir)
+//
+//    include("empty-javadoc.jar")
+//    rename("empty-javadoc.jar", "${project.name}-$version-javadoc.jar")
+//}
 
 kotlin {
     /**
