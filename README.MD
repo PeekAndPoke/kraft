@@ -28,8 +28,8 @@ Run it locally
 
 ## SemanticUi / FomanticUi examples
 
-[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/semanticui/index.html)
-[See the code](./examples/semanticui)
+[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/semanticui/index.html) |
+[See the code](./examples/fomanticui)
 
 Run it locally
 > ./gradlew -t --parallel :examples:semanticui:run
