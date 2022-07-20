@@ -1,4 +1,4 @@
-@file:Suppress("Detekt.TooManyFunctions", "unused")
+@file:Suppress("Detekt.TooManyFunctions", "unused", "UnsafeCastFromDynamic")
 
 package de.peekandpoke.kraft.components
 
@@ -14,7 +14,7 @@ import org.w3c.dom.events.*
  * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/animationend_event
  */
 fun CommonAttributeGroupFacade.onAnimationEnd(handler: (Event) -> Unit) {
-    consumer.onTagEvent(this, "onanimationend", handler)
+    consumer.onTagEvent(this, "onanimationend", handler.asDynamic())
 }
 
 /**
@@ -25,8 +25,7 @@ fun CommonAttributeGroupFacade.onAnimationEnd(handler: (Event) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event
  */
 fun CommonAttributeGroupFacade.onBlur(handler: (Event) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onBlurFunction = handler as (Event) -> Unit
+    onBlurFunction = handler.asDynamic()
 }
 
 /**
@@ -35,8 +34,7 @@ fun CommonAttributeGroupFacade.onBlur(handler: (Event) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
  */
 fun CommonAttributeGroupFacade.onChange(handler: (Event) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onChangeFunction = handler as (Event) -> Unit
+    onChangeFunction = handler.asDynamic()
 }
 
 /**
@@ -45,8 +43,7 @@ fun CommonAttributeGroupFacade.onChange(handler: (Event) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
  */
 fun CommonAttributeGroupFacade.onClick(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST")
-    onClickFunction = handler as (Event) -> Unit
+    onClickFunction = handler.asDynamic()
 }
 
 /**
@@ -55,8 +52,7 @@ fun CommonAttributeGroupFacade.onClick(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/error_event
  */
 fun CommonAttributeGroupFacade.onError(handler: (Event) -> Unit) {
-    @Suppress("UNCHECKED_CAST")
-    onErrorFunction = handler
+    onErrorFunction = handler.asDynamic()
 }
 
 /**
@@ -67,8 +63,7 @@ fun CommonAttributeGroupFacade.onError(handler: (Event) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event
  */
 fun CommonAttributeGroupFacade.onFocus(handler: (FocusEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST")
-    onFocusFunction = handler as (Event) -> Unit
+    onFocusFunction = handler.asDynamic()
 }
 
 /**
@@ -79,8 +74,7 @@ fun CommonAttributeGroupFacade.onFocus(handler: (FocusEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/focusin_event
  */
 fun CommonAttributeGroupFacade.onFocusIn(handler: (FocusEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST")
-    onFocusInFunction = handler as (Event) -> Unit
+    onFocusInFunction = handler.asDynamic()
 }
 
 /**
@@ -91,8 +85,7 @@ fun CommonAttributeGroupFacade.onFocusIn(handler: (FocusEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/focusout_event
  */
 fun CommonAttributeGroupFacade.onFocusOut(handler: (FocusEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST")
-    onFocusOutFunction = handler as (Event) -> Unit
+    onFocusOutFunction = handler.asDynamic()
 }
 
 /**
@@ -101,8 +94,7 @@ fun CommonAttributeGroupFacade.onFocusOut(handler: (FocusEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
  */
 fun CommonAttributeGroupFacade.onInput(handler: (InputEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onInputFunction = handler as (Event) -> Unit
+    onInputFunction = handler.asDynamic()
 }
 
 /**
@@ -111,8 +103,7 @@ fun CommonAttributeGroupFacade.onInput(handler: (InputEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event
  */
 fun CommonAttributeGroupFacade.onKeyDown(handler: (KeyboardEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onKeyDownFunction = handler as (Event) -> Unit
+    onKeyDownFunction = handler.asDynamic()
 }
 
 /**
@@ -122,8 +113,7 @@ fun CommonAttributeGroupFacade.onKeyDown(handler: (KeyboardEvent) -> Unit) {
  */
 @Deprecated("Use onKeyDown instead", ReplaceWith("onKeyDown"))
 fun CommonAttributeGroupFacade.onKeyPress(handler: (KeyboardEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onKeyPressFunction = handler as (Event) -> Unit
+    onKeyPressFunction = handler.asDynamic()
 }
 
 /**
@@ -132,8 +122,7 @@ fun CommonAttributeGroupFacade.onKeyPress(handler: (KeyboardEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Document/keyup_event
  */
 fun CommonAttributeGroupFacade.onKeyUp(handler: (KeyboardEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onKeyUpFunction = handler as (Event) -> Unit
+    onKeyUpFunction = handler.asDynamic()
 }
 
 /**
@@ -142,8 +131,7 @@ fun CommonAttributeGroupFacade.onKeyUp(handler: (KeyboardEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event
  */
 fun CommonAttributeGroupFacade.onMouseDown(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onMouseDownFunction = handler as (Event) -> Unit
+    onMouseDownFunction = handler.asDynamic()
 }
 
 /**
@@ -152,8 +140,7 @@ fun CommonAttributeGroupFacade.onMouseDown(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event
  */
 fun CommonAttributeGroupFacade.onMouseEnter(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    consumer.onTagEvent(this, "onmouseenter", handler as (Event) -> Unit)
+    consumer.onTagEvent(this, "onmouseenter", handler.asDynamic())
 }
 
 /**
@@ -162,8 +149,7 @@ fun CommonAttributeGroupFacade.onMouseEnter(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event
  */
 fun CommonAttributeGroupFacade.onMouseLeave(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    consumer.onTagEvent(this, "onmouseleave", handler as (Event) -> Unit)
+    consumer.onTagEvent(this, "onmouseleave", handler.asDynamic())
 }
 
 /**
@@ -172,8 +158,7 @@ fun CommonAttributeGroupFacade.onMouseLeave(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
  */
 fun CommonAttributeGroupFacade.onMouseMove(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onMouseMoveFunction = handler as (Event) -> Unit
+    onMouseMoveFunction = handler.asDynamic()
 }
 
 /**
@@ -182,8 +167,7 @@ fun CommonAttributeGroupFacade.onMouseMove(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event
  */
 fun CommonAttributeGroupFacade.onMouseOver(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onMouseOverFunction = handler as (Event) -> Unit
+    onMouseOverFunction = handler.asDynamic()
 }
 
 /**
@@ -192,8 +176,7 @@ fun CommonAttributeGroupFacade.onMouseOver(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event
  */
 fun CommonAttributeGroupFacade.onMouseOut(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onMouseOutFunction = handler as (Event) -> Unit
+    onMouseOutFunction = handler.asDynamic()
 }
 
 /**
@@ -202,8 +185,7 @@ fun CommonAttributeGroupFacade.onMouseOut(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event
  */
 fun CommonAttributeGroupFacade.onMouseUp(handler: (MouseEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onMouseUpFunction = handler as (Event) -> Unit
+    onMouseUpFunction = handler.asDynamic()
 }
 
 /**
@@ -212,17 +194,15 @@ fun CommonAttributeGroupFacade.onMouseUp(handler: (MouseEvent) -> Unit) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/select_event
  */
 fun CommonAttributeGroupFacade.onSelect(handler: (InputEvent) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
-    onSelectFunction = handler as (Event) -> Unit
+    onSelectFunction = handler.asDynamic()
 }
 
 /**
  * onSubmit handler
  */
 fun CommonAttributeGroupFacade.onSubmit(handler: (Event) -> Unit) {
-    @Suppress("UNCHECKED_CAST", "USELESS_CAST")
     onSubmitFunction = {
         it.preventDefault()
-        handler(it)
+        handler(it.asDynamic())
     }
 }

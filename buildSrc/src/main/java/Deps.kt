@@ -31,7 +31,7 @@ object Deps {
 //    const val kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$kotlinx_html_version"
 
     // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
-    private const val kotlinx_html_version = "0.7.5"
+    private const val kotlinx_html_version = "0.8.0"
     const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
     private const val peekandpoke_kotlinx_html_version = "0.7.5.2-SNAPSHOT"

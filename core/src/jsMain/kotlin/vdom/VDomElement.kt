@@ -1,6 +1,6 @@
 package de.peekandpoke.kraft.vdom
 
-import org.w3c.dom.events.Event
+import kotlinx.html.org.w3c.dom.events.Event
 
 interface VDomElement {
 

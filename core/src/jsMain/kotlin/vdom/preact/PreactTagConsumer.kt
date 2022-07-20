@@ -8,7 +8,7 @@ import de.peekandpoke.kraft.vdom.VDomTagConsumer
 import kotlinx.html.Entities
 import kotlinx.html.Tag
 import kotlinx.html.Unsafe
-import org.w3c.dom.events.Event
+import kotlinx.html.org.w3c.dom.events.Event
 import kotlin.reflect.KClass
 
 /**

@@ -9,7 +9,7 @@ import de.peekandpoke.kraft.utils.jsObject
 import de.peekandpoke.kraft.vdom.VDomElement
 import kotlinx.html.Tag
 import kotlinx.html.Unsafe
-import org.w3c.dom.events.Event
+import kotlinx.html.org.w3c.dom.events.Event
 import preact.h
 import kotlin.reflect.KClass
 
