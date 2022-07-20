@@ -4,10 +4,12 @@ import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
+import de.peekandpoke.kraft.examples.fomanticui.helpers.ContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
 import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import generated.ExtractedCodeBlocks
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 import kotlinx.html.p
@@ -37,21 +39,27 @@ class ButtonPage(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.renderStandardButton() {
 
+        ui.header { +"Button" }
+
         example {
-            ui.header { +"Button" }
 
             p { +"A standard Button" }
 
-            ui.button {
-                onClick {
-                    buttonState = !buttonState
-                    console.log("buttonState", buttonState)
-                }
+            ContentAndCode(
+                ExtractedCodeBlocks.pages_elements_button_ButtonPage_kt_standardButton,
+            ) {
+                // <CodeBlock standardButton>
+                ui.button {
+                    onClick {
+                        buttonState = !buttonState
+                    }
 
-                when (buttonState) {
-                    false -> +"Follow"
-                    else -> +"Following"
+                    when (buttonState) {
+                        true -> +"Following"
+                        false -> +"Follow"
+                    }
                 }
+                // </CodeBlock>
             }
         }
     }

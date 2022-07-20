@@ -1,5 +1,7 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
 import java.io.File
 
 class ExtractExampleCodePlugin : Plugin<Project> {
@@ -23,19 +25,26 @@ class ExtractExampleCodePlugin : Plugin<Project> {
         val outputDir = "/build/generated/extracted-code-blocks"
         val outputFileName = "extracted-code-blocks.kt"
 
+        target.extensions.configure<KotlinJsProjectExtension>() {
+            sourceSets.configureEach {
+                kotlin.srcDir(outputDir.trim('/'))
+            }
+        }
+
         val projectDir = target.projectDir.absoluteFile
 
         val ktFiles = projectDir.walkTopDown()
             .filter { it.isFile && it.extension == "kt" }
 
-        val startExampleRegex = "// <CodeBlock ([^>]+)>(.*?)".toRegex()
+        val startExampleRegex = "<CodeBlock ([^>]+)>".toRegex()
+        val alphaNumRegex = "[^a-zA-Z0-9]+".toRegex()
 
         val entries = ktFiles.flatMap { file ->
 
             val entryPrefix = file.absoluteFile.toString()
                 .replaceFirst(projectDir.absolutePath, "")
                 .replaceFirst(sourcesDir, "")
-                .replace("[^a-zA-Z0-9]+".toRegex(), "_")
+                .replace(alphaNumRegex, "_")
                 .trim('_')
 
             val fileContent = file.readText()
@@ -44,9 +53,9 @@ class ExtractExampleCodePlugin : Plugin<Project> {
 //            println("found file: ${file.absolutePath}")
 
             matches.mapNotNull { match ->
-                val name = match.groupValues[1]
+                val name = match.groupValues[1].trim().replace(alphaNumRegex, "_")
                 val startIdx = match.range.last
-                val endIdx = fileContent.indexOf("// </CodeBlock>", startIdx)
+                val endIdx = fileContent.indexOf("</CodeBlock>", startIdx)
 
                 if (endIdx != -1) {
                     val content = fileContent.substring(startIdx, endIdx)
@@ -63,10 +72,10 @@ class ExtractExampleCodePlugin : Plugin<Project> {
             }
         }
 
-        entries.forEach { entry ->
-            println("==== Found entry ${entry.prefix} ${entry.name} ================================")
-            println(entry.content)
-        }
+//        entries.forEach { entry ->
+//            println("==== Found entry ${entry.prefix} ${entry.name} ================================")
+//            println(entry.content)
+//        }
 
         val examplesCodeFile = StringBuilder().apply {
 
@@ -78,7 +87,13 @@ class ExtractExampleCodePlugin : Plugin<Project> {
 
             entries.forEach { entry ->
                 appendLine("    const val ${entry.prefix}_${entry.name} = \"\"\"")
-                append(entry.content)
+                appendLine(
+                    entry.content
+                        // escape multiple quotes
+                        .replace("\"\"\"", "\\\"\\\"\\\"")
+                        // escape $ signs
+                        .replace("$", "${"$"}{\"${"$"}\"}")
+                )
                 appendLine("\"\"\"")
                 appendLine()
             }

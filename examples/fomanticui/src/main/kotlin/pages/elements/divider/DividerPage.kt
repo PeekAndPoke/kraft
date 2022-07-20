@@ -3,12 +3,14 @@ package de.peekandpoke.kraft.examples.fomanticui.pages.elements.divider
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.examples.fomanticui.helpers.ExampleWithCode
+import de.peekandpoke.kraft.examples.fomanticui.helpers.ContentAndCode
+import de.peekandpoke.kraft.examples.fomanticui.helpers.example
 import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
 import de.peekandpoke.kraft.examples.fomanticui.helpers.shortParagraphWireFrame
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import generated.ExtractedCodeBlocks
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 
@@ -36,52 +38,48 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderStandard() {
-        ExampleWithCode(
-            """
-                ui.divider {}
-            """.trimIndent()
-        ) {
+        example {
             ui.header H2 { +"Standard Divider" }
 
-            shortParagraphWireFrame()
-            ui.divider {}
-            shortParagraphWireFrame()
+            ContentAndCode(
+                ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderStandard
+            ) {
+                // <CodeBlock renderStandard>
+                ui.segment {
+                    shortParagraphWireFrame()
+                    ui.divider {}
+                    shortParagraphWireFrame()
+                }
+                // </CodeBlock>
+            }
         }
     }
 
     private fun FlowContent.renderVertical() {
-        ExampleWithCode(
-            """
+
+        example {
+            ui.header H2 { +"Vertical Divider" }
+
+            ContentAndCode(
+                ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderVertical,
+            ) {
+                // <CodeBlock renderVertical>
                 ui.segment {
                     ui.two.column.very.relaxed.grid {
                         noui.column {
-                            p {}
-                            p {}
+                            shortParagraphWireFrame()
+                            shortParagraphWireFrame()
                         }
                         noui.column {
-                            p {}
-                            p {}
+                            shortParagraphWireFrame()
+                            shortParagraphWireFrame()
                         }
                     }
                     ui.vertical.divider { +"and" }
                 }
-            """.trimIndent()
-        ) {
-            ui.header H2 { +"Vertical Divider" }
-
-            ui.segment {
-                ui.two.column.very.relaxed.grid {
-                    noui.column {
-                        shortParagraphWireFrame()
-                        shortParagraphWireFrame()
-                    }
-                    noui.column {
-                        shortParagraphWireFrame()
-                        shortParagraphWireFrame()
-                    }
-                }
-                ui.vertical.divider { +"and" }
+                // </CodeBlock>
             }
         }
+
     }
 }
