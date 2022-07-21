@@ -27,7 +27,11 @@ class ExtractExampleCodePlugin : Plugin<Project> {
 
         target.extensions.configure<KotlinJsProjectExtension>() {
             sourceSets.configureEach {
-                kotlin.srcDir(outputDir.trim('/'))
+                val dir = File(target.projectDir, outputDir.trim('/'))
+
+                if (kotlin.srcDirs.none { it.absolutePath == dir.absolutePath }) {
+                    kotlin.srcDir(dir)
+                }
             }
         }
 

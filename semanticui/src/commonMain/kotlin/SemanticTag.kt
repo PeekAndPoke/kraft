@@ -411,6 +411,9 @@ class SemanticTag(
     val loading: SemanticTag get() = this + "loading"
 
     @SemanticUiCssMarker
+    val usual: SemanticTag get() = this + "usual"
+
+    @SemanticUiCssMarker
     val message: SemanticTag get() = this + "message"
 
     @SemanticUiCssMarker

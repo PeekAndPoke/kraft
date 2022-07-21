@@ -75,7 +75,6 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                     noui.item A {
                         href = routes.viewsCard()
                         +"Card"
-                        ui.tiny.red.label { +"Todo" }
                     }
                 }
             }
