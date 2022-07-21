@@ -5,7 +5,8 @@
 /.idea/misc.xml
 /.idea/ClojureProjectResolveSettings.xml
 /.idea/artifacts
-#/.idea/modules
+/.idea/libraries
+/.idea/modules
 dataSources.ids
 datasources.xml
 
