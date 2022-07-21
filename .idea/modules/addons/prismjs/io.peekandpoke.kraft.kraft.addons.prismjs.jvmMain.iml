@@ -20,6 +20,7 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../../core/build/libs/core-jvm-0.9.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.3/b2c2f0c8e99eac632a8db723b365bd59067cf7bd/kotlinx-coroutines-core-jvm-1.6.3.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.peekandpoke.ultra/commonmp-jvm/0.52.0/15fc3aa464228145789ab127743a86eb7d42ab34/commonmp-jvm-0.52.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.7.10/d70d7d2c56371f7aa18f32e984e3e2e998fe9081/kotlin-stdlib-jdk8-1.7.10.jar</arg>
@@ -61,7 +62,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.addons.prismjs.commonMain" />
     <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.core.jvmMain" />
-    <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.core.commonMain" />
     <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.core.commonMain" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10" level="project" />
     <orderEntry type="module-library">

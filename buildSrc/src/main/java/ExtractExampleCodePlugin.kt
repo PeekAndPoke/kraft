@@ -26,12 +26,15 @@ class ExtractExampleCodePlugin : Plugin<Project> {
         val outputFileName = "extracted-code-blocks.kt"
 
         target.extensions.configure<KotlinJsProjectExtension>() {
-            sourceSets.configureEach {
+            val sets = listOfNotNull(
+                sourceSets.findByName("commonMain"),
+                sourceSets.findByName("main")
+            )
+
+            sets.firstOrNull()?.let {
                 val dir = File(target.projectDir, outputDir.trim('/'))
 
-                if (kotlin.srcDirs.none { it.absolutePath == dir.absolutePath }) {
-                    kotlin.srcDir(dir)
-                }
+                it.kotlin.srcDir(dir)
             }
         }
 

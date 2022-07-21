@@ -23,6 +23,7 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../semanticui/build/classes/kotlin/jvm/main</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-runner-junit5-jvm/5.4.0.1035-SNAPSHOT/bdf35f3ec2ea964124f453740c1e3dd1584af361/kotest-runner-junit5-jvm-5.4.0.1035-SNAPSHOT.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-engine-jvm/5.4.0.1035-SNAPSHOT/a3b006c579a3bc26f760b4a171174f2b544a2e37/kotest-framework-engine-jvm-5.4.0.1035-SNAPSHOT.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin-wrappers/kotlin-css-jvm/1.0.0-pre.358/42503543a7d537daed9e12eb00c03bf790166d47/kotlin-css-jvm-1.0.0-pre.358.jar</arg>

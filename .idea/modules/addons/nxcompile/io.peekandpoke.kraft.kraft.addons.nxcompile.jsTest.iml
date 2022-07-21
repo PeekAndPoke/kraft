@@ -57,6 +57,15 @@
     <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.addons.nxcompile.commonTest" scope="TEST" production-on-test="" />
     <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.addons.nxcompile.jsMain" scope="TEST" />
     <orderEntry type="module" module-name="io.peekandpoke.kraft.kraft.addons.nxcompile.jsMain" scope="RUNTIME" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library name="Gradle: io.peekandpoke.kraft:nxcompile">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../../addons/nxcompile/build/classes/kotlin/js/main" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>

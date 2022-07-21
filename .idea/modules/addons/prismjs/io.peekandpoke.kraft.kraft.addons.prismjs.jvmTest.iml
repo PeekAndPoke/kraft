@@ -23,6 +23,7 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../../core/build/libs/core-jvm-0.9.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-assertions-core-jvm/5.4.0.1035-SNAPSHOT/e5170a39626e6c60f7e4d7f81d5f5135b879821f/kotest-assertions-core-jvm-5.4.0.1035-SNAPSHOT.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-api-jvm/5.4.0.1035-SNAPSHOT/f8e9989523d54f9dd277fb89748eb819c367c12a/kotest-framework-api-jvm-5.4.0.1035-SNAPSHOT.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-datatest-jvm/5.4.0.1035-SNAPSHOT/f8f2456d541b402e2e2998643767ae57f5ec9cfa/kotest-framework-datatest-jvm-5.4.0.1035-SNAPSHOT.jar</arg>
