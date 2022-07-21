@@ -1,11 +1,11 @@
 <component name="libraryTable">
-  <library name="Gradle: io.peekandpoke.ultra:commonmp:commonMain:0.52.0" type="kotlin.common">
+  <library name="Gradle: io.peekandpoke.ultra:commonmp:commonMain:0.52.1" type="kotlin.common">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/.gradle/kotlin/sourceSetMetadata/chartjs.addons.kraft/commonMain/implementation/io.peekandpoke.ultra-commonmp/io.peekandpoke.ultra-commonmp-commonMain.klib!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.peekandpoke.ultra/commonmp/0.52.0/c8e9b8c56dcef8a8719497f0f45d7580c2fdd14c/commonmp-0.52.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.peekandpoke.ultra/commonmp/0.52.1/8e47d318b83690ac31b96a9ccd16d04c4d9515c2/commonmp-0.52.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

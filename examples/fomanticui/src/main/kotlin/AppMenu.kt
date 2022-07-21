@@ -23,6 +23,7 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+
         ui.vertical.inverted.menu {
             noui.item {
                 ui.with("logo").icon.image A {
