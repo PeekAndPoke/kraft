@@ -3,7 +3,7 @@ package de.peekandpoke.kraft.examples.fomanticui.pages.elements.divider
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.examples.fomanticui.helpers.ContentAndCode
+import de.peekandpoke.kraft.examples.fomanticui.helpers.HorizontalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
 import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
 import de.peekandpoke.kraft.examples.fomanticui.helpers.shortParagraphWireFrame
@@ -37,49 +37,43 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
         }
     }
 
-    private fun FlowContent.renderStandard() {
-        example {
-            ui.header H2 { +"Standard Divider" }
+    private fun FlowContent.renderStandard() = example {
+        ui.header H2 { +"Standard Divider" }
 
-            ContentAndCode(
-                ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderStandard
-            ) {
-                // <CodeBlock renderStandard>
-                ui.segment {
-                    shortParagraphWireFrame()
-                    ui.divider {}
-                    shortParagraphWireFrame()
-                }
-                // </CodeBlock>
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderStandard
+        ) {
+            // <CodeBlock renderStandard>
+            ui.segment {
+                shortParagraphWireFrame()
+                ui.divider {}
+                shortParagraphWireFrame()
             }
+            // </CodeBlock>
         }
     }
 
-    private fun FlowContent.renderVertical() {
+    private fun FlowContent.renderVertical() = example {
+        ui.header H2 { +"Vertical Divider" }
 
-        example {
-            ui.header H2 { +"Vertical Divider" }
-
-            ContentAndCode(
-                ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderVertical,
-            ) {
-                // <CodeBlock renderVertical>
-                ui.segment {
-                    ui.two.column.very.relaxed.grid {
-                        noui.column {
-                            shortParagraphWireFrame()
-                            shortParagraphWireFrame()
-                        }
-                        noui.column {
-                            shortParagraphWireFrame()
-                            shortParagraphWireFrame()
-                        }
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderVertical,
+        ) {
+            // <CodeBlock renderVertical>
+            ui.segment {
+                ui.two.column.very.relaxed.grid {
+                    noui.column {
+                        shortParagraphWireFrame()
+                        shortParagraphWireFrame()
                     }
-                    ui.vertical.divider { +"and" }
+                    noui.column {
+                        shortParagraphWireFrame()
+                        shortParagraphWireFrame()
+                    }
                 }
-                // </CodeBlock>
+                ui.vertical.divider { +"and" }
             }
+            // </CodeBlock>
         }
-
     }
 }

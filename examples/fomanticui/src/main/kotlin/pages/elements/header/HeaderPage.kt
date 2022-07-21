@@ -3,7 +3,7 @@ package de.peekandpoke.kraft.examples.fomanticui.pages.elements.header
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.examples.fomanticui.helpers.ContentAndCode
+import de.peekandpoke.kraft.examples.fomanticui.helpers.HorizontalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
 import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
 import de.peekandpoke.kraft.examples.fomanticui.helpers.shortParagraphWireFrame
@@ -34,31 +34,28 @@ class HeaderPage(ctx: NoProps) : PureComponent(ctx) {
         }
     }
 
-    private fun FlowContent.renderPageHeaders() {
-        example {
-            ui.dividing.header H2 { +"Page headers" }
+    private fun FlowContent.renderPageHeaders() = example {
+        ui.dividing.header H2 { +"Page headers" }
 
-            ContentAndCode(
-                ExtractedCodeBlocks.pages_elements_header_HeaderPage_kt_renderPageHeaders,
-            ) {
-                // <CodeBlock renderPageHeaders>
-                ui.header H1 { +"First header" }
-                shortParagraphWireFrame()
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_header_HeaderPage_kt_renderPageHeaders,
+        ) {
+            // <CodeBlock renderPageHeaders>
+            ui.header H1 { +"First header" }
+            shortParagraphWireFrame()
 
-                ui.header H2 { +"Seconds header" }
-                shortParagraphWireFrame()
+            ui.header H2 { +"Seconds header" }
+            shortParagraphWireFrame()
 
-                ui.header H3 { +"Third header" }
-                shortParagraphWireFrame()
+            ui.header H3 { +"Third header" }
+            shortParagraphWireFrame()
 
-                ui.header H4 { +"Fourth header" }
-                shortParagraphWireFrame()
+            ui.header H4 { +"Fourth header" }
+            shortParagraphWireFrame()
 
-                ui.header H5 { +"Fifth header" }
-                shortParagraphWireFrame()
-                // </CodeBlock>
-            }
+            ui.header H5 { +"Fifth header" }
+            shortParagraphWireFrame()
+            // </CodeBlock>
         }
-
     }
 }

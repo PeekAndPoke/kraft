@@ -41,7 +41,6 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                     noui.item A {
                         href = routes.elementsButton()
                         +"Button"
-                        ui.tiny.red.label { +"Todo" }
                     }
                     noui.item A {
                         href = routes.elementsDivider()
