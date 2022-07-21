@@ -12,7 +12,7 @@
 
 ## Hello-World example
 
-[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/hello-world/index.html) |
+[Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/hello-world/index.html) |
 [See the code](./examples/hello-world)
 
 Run it locally
@@ -20,7 +20,7 @@ Run it locally
 
 ## Addon examples
 
-[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html) |
+[Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html) |
 [See the code](./examples/addons)
 
 Run it locally
@@ -28,7 +28,7 @@ Run it locally
 
 ## SemanticUi / FomanticUi examples
 
-[Try it out](https://rawgit.com/PeekAndPoke/kraft/master/docs/examples/fomanticui/index.html) |
+[Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/fomanticui/index.html) |
 [See the code](./examples/fomanticui)
 
 Run it locally
