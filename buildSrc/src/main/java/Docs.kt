@@ -51,9 +51,9 @@ object Docs {
             val fromDir = File(buildDir, "distributions")
             val intoDir = File(rootProject.projectDir, "docs/examples/${project.name}")
 
-//            println("distributeJsExample")
-//            println("from: $fromDir")
-//            println("into: $intoDir")
+            println("== distributeJsExample '${project.name}' ===========================================")
+            println("from: $fromDir")
+            println("into: $intoDir")
 
             from(fromDir)
             into(intoDir)
