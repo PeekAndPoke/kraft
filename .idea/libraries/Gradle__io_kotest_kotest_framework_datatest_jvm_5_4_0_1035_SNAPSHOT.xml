@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.kotest:kotest-framework-datatest-jvm:5.4.0.1035-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-datatest-jvm/5.4.0.1035-SNAPSHOT/f8f2456d541b402e2e2998643767ae57f5ec9cfa/kotest-framework-datatest-jvm-5.4.0.1035-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-datatest-jvm/5.4.0.1035-SNAPSHOT/7c466c508211f35a4215b84d5320e3e65a6a18e1/kotest-framework-datatest-jvm-5.4.0.1035-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

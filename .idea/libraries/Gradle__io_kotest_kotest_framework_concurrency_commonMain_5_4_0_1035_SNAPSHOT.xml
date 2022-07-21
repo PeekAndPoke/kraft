@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.kotest:kotest-framework-concurrency:commonMain:5.4.0.1035-SNAPSHOT" type="kotlin.common">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.gradle/kotlin/sourceSetMetadata/semanticui.kraft/jvmTest/implementation/io.kotest-kotest-framework-concurrency/io.kotest-kotest-framework-concurrency-commonMain.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-concurrency/5.4.0.1035-SNAPSHOT/d2e1eefe40d26ff3f478a7c3a06fae407ff0b3de/kotest-framework-concurrency-5.4.0.1035-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

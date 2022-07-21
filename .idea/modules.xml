@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/kraft.iml" filepath="$PROJECT_DIR$/.idea/kraft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/kraft.addons.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/kraft.addons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/chartjs/kraft.addons.chartjs.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/konva/kraft.addons.konva.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/marked/kraft.addons.marked.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/nxcompile/kraft.addons.nxcompile.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jvmMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/prismjs/kraft.addons.prismjs.jvmTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/addons/sourcemappedstacktrace/kraft.addons.sourcemappedstacktrace.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kraft.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/kraft.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kraft.buildSrc.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kraft.buildSrc.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kraft.buildSrc.test.iml" filepath="$PROJECT_DIR$/.idea/modules/kraft.buildSrc.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.jvmMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/kraft.core.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/kraft.core.jvmTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/kraft.examples.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/kraft.examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/hello-world/kraft.examples.hello-world.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/hello-world/kraft.examples.hello-world.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/hello-world/kraft.examples.hello-world.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/hello-world/kraft.examples.hello-world.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/hello-world/kraft.examples.hello-world.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/hello-world/kraft.examples.hello-world.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/kraft.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jsMain.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jsMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jsTest.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jsTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jvmMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/semanticui/kraft.semanticui.jvmTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kraft.test.iml" filepath="$PROJECT_DIR$/.idea/modules/kraft.test.iml" />
+    </modules>
+  </component>
+</project>
