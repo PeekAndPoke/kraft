@@ -1671,7 +1671,12 @@ class SemanticIcon(private val parent: FlowContent) {
             "zhihu"
         )
             // custom things
-            .plus("dont")
+            .plus(
+                arrayOf(
+                    "dont",
+                    "delete",
+                ),
+            )
 
         fun cssClassOf(block: SemanticIcon.() -> SemanticIcon): String {
             return cssClassOfAsList(block).joinToString(" ")
@@ -1880,6 +1885,9 @@ class SemanticIcon(private val parent: FlowContent) {
 
     @SemanticIconMarker
     inline val dont: SemanticIcon get() = this + "dont"
+
+    @SemanticIconMarker
+    inline val delete: SemanticIcon get() = this + "delete"
 
     // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Icons ///////////////////////////////////////////////////////////////////////////////////////////////////////////

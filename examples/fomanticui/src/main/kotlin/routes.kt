@@ -9,6 +9,7 @@ import de.peekandpoke.kraft.examples.fomanticui.pages.elements.flag.FlagPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.header.HeaderPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.icon.IconPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.image.ImagePage
+import de.peekandpoke.kraft.examples.fomanticui.pages.elements.label.LabelPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo.FormDemosPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.home.HomePage
 import de.peekandpoke.kraft.examples.fomanticui.pages.views.card.CardPage
@@ -24,6 +25,7 @@ class Routes {
     val elementsHeader = Static("/elements/header")
     val elementsIcon = Static("/elements/icon")
     val elementsImage = Static("/elements/image")
+    val elementsLabel = Static("/elements/label")
 
     val formDemos = Static("/form/demos")
 
@@ -41,6 +43,7 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.elementsHeader) { HeaderPage() }
     mount(routes.elementsIcon) { IconPage() }
     mount(routes.elementsImage) { ImagePage() }
+    mount(routes.elementsLabel) { LabelPage() }
 
     mount(routes.formDemos) { FormDemosPage() }
 

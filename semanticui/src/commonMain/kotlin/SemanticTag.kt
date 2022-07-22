@@ -321,7 +321,9 @@ class SemanticTag(
     @SemanticUiCssMarker
     val youtube: SemanticTag get() = this + "youtube"
 
-    // Semantic UI Words
+    // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Semantic UI Words ///////////////////////////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @SemanticUiCssMarker
     val icons: SemanticTag get() = this + "icons"
@@ -406,6 +408,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val images: SemanticTag get() = this + "images"
+
+    @SemanticUiCssMarker
+    val detail: SemanticTag get() = this + "detail"
 
     @SemanticUiCssMarker
     val line: SemanticTag get() = this + "line"
