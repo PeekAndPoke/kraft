@@ -5,7 +5,7 @@ import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.examples.fomanticui.helpers.HorizontalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
-import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
+import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheFomanticUiDocs
 import de.peekandpoke.kraft.examples.fomanticui.helpers.shortParagraphWireFrame
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
@@ -28,7 +28,7 @@ class HeaderPage(ctx: NoProps) : PureComponent(ctx) {
         ui.basic.segment {
             ui.dividing.header H1 { +"Header" }
 
-            readTheDocs("https://fomantic-ui.com/elements/header.html")
+            readTheFomanticUiDocs("https://fomantic-ui.com/elements/header.html")
 
             renderPageHeaders()
         }

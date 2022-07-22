@@ -8,7 +8,7 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.examples.fomanticui.helpers.VerticalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
-import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
+import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheFomanticUiDocs
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
@@ -36,7 +36,7 @@ class ButtonPage(ctx: NoProps) : PureComponent(ctx) {
         ui.basic.segment {
             ui.dividing.header H1 { +"Button" }
 
-            readTheDocs("https://fomantic-ui.com/elements/button.html#/definition")
+            readTheFomanticUiDocs("https://fomantic-ui.com/elements/button.html#/definition")
 
             ui.dividing.header H2 { +"Types" }
 

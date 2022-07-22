@@ -7,7 +7,7 @@ import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.examples.fomanticui.helpers.VerticalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
-import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
+import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheFomanticUiDocs
 import de.peekandpoke.kraft.examples.fomanticui.helpers.shortParagraphWireFrame
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
@@ -31,7 +31,7 @@ class CardPage(ctx: NoProps) : PureComponent(ctx) {
         ui.basic.segment {
             ui.dividing.header H1 { +"Card" }
 
-            readTheDocs("https://fomantic-ui.com/views/card.html")
+            readTheFomanticUiDocs("https://fomantic-ui.com/views/card.html")
 
             ui.dividing.header H2 { +"Types" }
 

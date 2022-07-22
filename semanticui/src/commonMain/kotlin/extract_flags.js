@@ -1,13 +1,13 @@
 // noinspection JSJQueryEfficiency,ES6ConvertVarToLetConst
 
-// Use this snippet to extract icons from https://fomantic-ui.com/elements/icon.html#/icon
+// Use this snippet to extract icons from https://fomantic-ui.com/elements/flag.html
 
 // Extract as getters
 console.log(
-    $("i[class$='icon']").map((idx, it) => {
-        var classes = $(it).attr("class").split(" ").filter(it => it !== "icon");
+    $("table i[class$='flag']").map((idx, it) => {
+        var classes = $(it).attr("class").split(" ").filter(it => it !== "flag");
         var prop = classes.map(it => it.replaceAll("-", "")).join("_")
-        return `@SemanticIconMarker inline val ${prop}: SemanticIcon\n    get() = this + "${classes.join(" ")}"`;
+        return `@SemanticFlagMarker inline val ${prop}: SemanticFlag\n    get() = this + "${classes.join(" ")}"`;
     }).get()
         // Distinct
         .filter((value, index, self) => self.indexOf(value) === index)
@@ -17,8 +17,8 @@ console.log(
 
 // Extract as class strings
 console.log(
-    $("i[class$='icon']").map((idx, it) => {
-        var classes = $(it).attr("class").split(" ").filter(it => it !== "icon");
+    $("table i[class$='flag']").map((idx, it) => {
+        var classes = $(it).attr("class").split(" ").filter(it => it !== "flag");
         return `"${classes.join(" ")}"`;
     }).get()
         // Distinct

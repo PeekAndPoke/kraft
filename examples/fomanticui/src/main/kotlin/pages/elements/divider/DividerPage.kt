@@ -5,7 +5,7 @@ import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.examples.fomanticui.helpers.HorizontalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
-import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheDocs
+import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheFomanticUiDocs
 import de.peekandpoke.kraft.examples.fomanticui.helpers.shortParagraphWireFrame
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
@@ -15,6 +15,7 @@ import de.peekandpoke.ultra.common.fixture.LoremIpsum
 import generated.ExtractedCodeBlocks
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
+import kotlinx.html.p
 
 @Suppress("FunctionName")
 fun Tag.DividerPage() = comp {
@@ -31,7 +32,7 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
         ui.basic.segment {
             ui.header H1 { +"Divider" }
 
-            readTheDocs("https://fomantic-ui.com/elements/divider.html#/definition")
+            readTheFomanticUiDocs("https://fomantic-ui.com/elements/divider.html#/definition")
 
             ui.dividing.header H2 { +"Types" }
 
@@ -44,6 +45,9 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
 
             renderInverted()
             renderFitted()
+            renderHidden()
+            renderSection()
+            renderClearing()
         }
     }
 
@@ -90,6 +94,8 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
     private fun FlowContent.renderHorizontal() = example {
         ui.header H2 { +"Horizontal Divider" }
 
+        p { +"A divider can segment content horizontally" }
+
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderHorizontal_1,
         ) {
@@ -126,6 +132,8 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
     private fun FlowContent.renderHorizontalAlignment() = example {
         ui.header H2 { +"Horizontal Alignment" }
 
+        p { +"A horizontal divider can be aligned" }
+
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderHorizontalAlignment_1,
         ) {
@@ -148,6 +156,8 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.renderInverted() = example {
         ui.header H2 { +"Inverted" }
+
+        p { +"A divider can have its colors inverted" }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderInverted_1,
@@ -172,6 +182,8 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
     private fun FlowContent.renderFitted() = example {
         ui.header H2 { +"Fitted" }
 
+        p { +"A divider can be fitted, without any space above or below it." }
+
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderFitted,
         ) {
@@ -181,6 +193,60 @@ class DividerPage(ctx: NoProps) : PureComponent(ctx) {
             ui.fitted.divider { }
 
             +LoremIpsum(words = 50)
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderHidden() = example {
+        ui.header H2 { +"Hidden" }
+
+        p { +"A hidden divider divides content without creating a dividing line" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderHidden,
+        ) {
+            // <CodeBlock renderHidden>
+            +LoremIpsum(words = 50)
+
+            ui.hidden.divider { }
+
+            +LoremIpsum(words = 50)
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderSection() = example {
+        ui.header H2 { +"Section" }
+
+        p { +"A divider can provide greater margins to divide sections of content" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderSection,
+        ) {
+            // <CodeBlock renderSection>
+            +LoremIpsum(words = 50)
+
+            ui.section.divider { }
+
+            +LoremIpsum(words = 50)
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderClearing() = example {
+        ui.header H2 { +"Clearing" }
+
+        p { +"A divider can clear the contents above it" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_divider_DividerPage_kt_renderClearing,
+        ) {
+            // <CodeBlock renderClearing>
+            ui.segment {
+                ui.right.floated.header { +"Right floated" }
+                ui.clearing.divider {}
+                shortParagraphWireFrame()
+            }
             // </CodeBlock>
         }
     }

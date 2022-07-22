@@ -4,6 +4,7 @@ import de.peekandpoke.kraft.addons.routing.RouterBuilder
 import de.peekandpoke.kraft.addons.routing.Static
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.button.ButtonPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.divider.DividerPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.elements.flag.FlagPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.header.HeaderPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.icon.IconPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo.FormDemosPage
@@ -16,6 +17,7 @@ class Routes {
 
     val elementsButton = Static("/elements/button")
     val elementsDivider = Static("/elements/divider")
+    val elementsFlag = Static("/elements/flag")
     val elementsHeader = Static("/elements/header")
     val elementsIcon = Static("/elements/icon")
 
@@ -30,6 +32,7 @@ fun RouterBuilder.mount(routes: Routes) {
 
     mount(routes.elementsButton) { ButtonPage() }
     mount(routes.elementsDivider) { DividerPage() }
+    mount(routes.elementsFlag) { FlagPage() }
     mount(routes.elementsHeader) { HeaderPage() }
     mount(routes.elementsIcon) { IconPage() }
 

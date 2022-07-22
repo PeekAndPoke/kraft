@@ -10,12 +10,12 @@ import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import kotlinx.html.*
 
-fun FlowContent.readTheDocs(url: String) {
-    ui.message {
+fun FlowContent.readTheFomanticUiDocs(url: String) {
+    ui.positive.message {
         icon.book()
 
         a(href = url, target = "_blank") {
-            +"Read the docs in Fomantic-UI"
+            +"Read the docs in Fomantic-UI at $url"
         }
     }
 }

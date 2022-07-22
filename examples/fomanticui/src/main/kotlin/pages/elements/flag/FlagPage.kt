@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.examples.fomanticui.pages.elements.icon
+package de.peekandpoke.kraft.examples.fomanticui.pages.elements.flag
 
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
@@ -9,11 +9,11 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.IconPage() = comp {
-    IconPage(it)
+fun Tag.FlagPage() = comp {
+    FlagPage(it)
 }
 
-class IconPage(ctx: NoProps) : PureComponent(ctx) {
+class FlagPage(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,14 +21,15 @@ class IconPage(ctx: NoProps) : PureComponent(ctx) {
 
     override fun VDom.render() {
         ui.basic.segment {
-            ui.dividing.header H1 { +"Icon" }
+            ui.dividing.header H1 { +"Flag" }
 
-            readTheFomanticUiDocs("https://fomantic-ui.com/elements/icon.html#/definition")
+            readTheFomanticUiDocs("https://fomantic-ui.com/elements/flag.html")
 
-            IconExamples()
+            ui.dividing.header H2 { +"Simple Usage" }
+            FlagExamples()
 
-            ui.dividing.header H2 { +"Icon search" }
-            IconSearch()
+            ui.dividing.header H2 { +"Flag search" }
+            FlagSearch()
         }
     }
 }

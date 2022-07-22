@@ -681,6 +681,9 @@ class SemanticTag(
     val hidden: SemanticTag get() = this + "hidden"
 
     @SemanticUiCssMarker
+    val section: SemanticTag get() = this + "section"
+
+    @SemanticUiCssMarker
     val label: SemanticTag get() = this + "label"
 
     @SemanticUiCssMarker
