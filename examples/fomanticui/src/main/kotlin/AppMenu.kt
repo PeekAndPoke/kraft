@@ -40,10 +40,12 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                 noui.header { +"Elements" }
                 noui.menu {
                     noui.item A { href = routes.elementsButton(); +"Button" }
+                    noui.item A { href = routes.elementsContainer(); +"Container" }
                     noui.item A { href = routes.elementsDivider(); +"Divider" }
                     noui.item A { href = routes.elementsFlag(); +"Flag" }
                     noui.item A { href = routes.elementsHeader(); +"Header" }
                     noui.item A { href = routes.elementsIcon(); +"Icon" }
+                    noui.item A { href = routes.elementsImage(); +"Image" }
                 }
             }
 

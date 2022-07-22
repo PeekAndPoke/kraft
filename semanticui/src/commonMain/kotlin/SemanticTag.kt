@@ -378,6 +378,12 @@ class SemanticTag(
     val flowing: SemanticTag get() = this + "flowing"
 
     @SemanticUiCssMarker
+    val rounded: SemanticTag get() = this + "rounded"
+
+    @SemanticUiCssMarker
+    val spaced: SemanticTag get() = this + "spaced"
+
+    @SemanticUiCssMarker
     val piled: SemanticTag get() = this + "piled"
 
     @SemanticUiCssMarker
@@ -397,6 +403,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val image: SemanticTag get() = this + "image"
+
+    @SemanticUiCssMarker
+    val images: SemanticTag get() = this + "images"
 
     @SemanticUiCssMarker
     val line: SemanticTag get() = this + "line"
