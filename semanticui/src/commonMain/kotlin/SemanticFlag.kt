@@ -257,7 +257,11 @@ class SemanticFlag(private val parent: FlowContent) {
             "zimbabwe",
         )
 
-        fun cssClassOf(block: SemanticFlag.() -> SemanticFlag): List<String> {
+        fun cssClassOf(block: SemanticFlag.() -> SemanticFlag): String {
+            return cssClassOfAsList(block).joinToString(" ")
+        }
+
+        fun cssClassOfAsList(block: SemanticFlag.() -> SemanticFlag): List<String> {
             lateinit var classes: List<String>
 
             createHTML().body {

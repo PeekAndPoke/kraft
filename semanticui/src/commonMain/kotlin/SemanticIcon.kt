@@ -1673,7 +1673,11 @@ class SemanticIcon(private val parent: FlowContent) {
             // custom things
             .plus("dont")
 
-        fun cssClassOf(block: SemanticIcon.() -> SemanticIcon): List<String> {
+        fun cssClassOf(block: SemanticIcon.() -> SemanticIcon): String {
+            return cssClassOfAsList(block).joinToString(" ")
+        }
+
+        fun cssClassOfAsList(block: SemanticIcon.() -> SemanticIcon): List<String> {
             lateinit var classes: List<String>
 
             createHTML().body {
