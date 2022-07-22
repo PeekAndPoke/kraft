@@ -34,6 +34,14 @@ fun FlowContent.shortParagraphWireFrame() {
     }
 }
 
+fun FlowContent.mediaParagraphWireFrame() {
+    p {
+        ui.with("wireframe").image Img {
+            src = "images/wireframe/media-paragraph.png"
+        }
+    }
+}
+
 fun FlowContent.kotlinToHtml(
     kotlin: String,
     html: String,

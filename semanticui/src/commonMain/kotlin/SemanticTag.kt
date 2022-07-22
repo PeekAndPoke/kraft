@@ -387,6 +387,12 @@ class SemanticTag(
     val header: SemanticTag get() = this + "header"
 
     @SemanticUiCssMarker
+    val sub: SemanticTag get() = this + "sub"
+
+    @SemanticUiCssMarker
+    val block: SemanticTag get() = this + "block"
+
+    @SemanticUiCssMarker
     val icon: SemanticTag get() = this + "icon"
 
     @SemanticUiCssMarker
@@ -616,6 +622,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val aligned: SemanticTag get() = this + "aligned"
+
+    @SemanticUiCssMarker
+    val justified: SemanticTag get() = this + "justified"
 
     @SemanticUiCssMarker
     val fitted: SemanticTag get() = this + "fitted"
