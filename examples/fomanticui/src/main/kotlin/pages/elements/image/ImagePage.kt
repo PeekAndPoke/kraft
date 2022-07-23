@@ -268,9 +268,9 @@ class ImagePage(ctx: NoProps) : PureComponent(ctx) {
         ) {
             // <CodeBlock renderCenteredImage>
             ui.segment {
-                ui.medium.center.aligned.image Img { src = "images/wireframe/image.png" }
+                ui.medium.centered.image Img { src = "images/wireframe/image.png" }
                 +LoremIpsum.words(50)
-                ui.small.center.aligned.image Img { src = "images/wireframe/image.png" }
+                ui.small.centered.image Img { src = "images/wireframe/image.png" }
                 +LoremIpsum.words(50)
             }
             // </CodeBlock>
