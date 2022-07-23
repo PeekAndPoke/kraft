@@ -46,7 +46,16 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                     noui.item A { href = routes.elementsHeader(); +"Header" }
                     noui.item A { href = routes.elementsIcon(); +"Icon" }
                     noui.item A { href = routes.elementsImage(); +"Image" }
+                    noui.item A { href = routes.elementsInput(); +"Input"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.elementsLabel(); +"Label" }
+                    noui.item A { href = routes.elementsList(); +"List"; }
+                    noui.item A { href = routes.elementsLoader(); +"Loader"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsPlaceholder(); +"Placeholder"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsRail(); +"Rail"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsReveal(); +"Reveal"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsSegment(); +"Segment"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsStep(); +"Step"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsText(); +"Text"; ui.red.label { +"TODO" } }
                 }
             }
 

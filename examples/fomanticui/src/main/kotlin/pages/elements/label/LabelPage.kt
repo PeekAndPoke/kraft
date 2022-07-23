@@ -64,6 +64,16 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             renderSizedLabel()
 
             ui.dividing.header H2 { +"Groups" }
+
+            renderGroupSize()
+            renderColoredGroup()
+            renderBasicGroup()
+            renderTagGroup()
+            renderCircularGroup()
+
+            ui.dividing.header H2 { +"Inverted" }
+
+            renderInvertedVariants()
         }
     }
 
@@ -858,7 +868,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
 
         p { +"A label can have different colors" }
 
-        VerticalContentAndCode(
+        HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderColoredLabel,
         ) {
             // <CodeBlock renderColoredLabel>
@@ -887,7 +897,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
 
         p { +"A label can be small or large" }
 
-        VerticalContentAndCode(
+        HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderSizedLabel,
         ) {
             // <CodeBlock renderSizedLabel>
@@ -898,6 +908,156 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             ui.large.label { +"large" }
             ui.huge.label { +"huge" }
             ui.massive.label { +"massive" }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderGroupSize() = example {
+        ui.header H3 { +"Group Size" }
+
+        p { +"Labels can share sizes together" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderGroupSize,
+        ) {
+            // <CodeBlock renderGroupSize>
+            ui.huge.labels {
+                ui.label { +"Fun" }
+                ui.label { +"Happy" }
+                ui.label { +"Smart" }
+                ui.label { +"Witty" }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderColoredGroup() = example {
+        ui.header H3 { +"Colored Group" }
+
+        p { +"Labels can share colors together" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderColoredGroup,
+        ) {
+            // <CodeBlock renderColoredGroup>
+            ui.blue.labels {
+                ui.label { +"Fun" }
+                ui.label { +"Happy" }
+                ui.label { +"Smart" }
+                ui.label { +"Witty" }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderBasicGroup() = example {
+        ui.header H3 { +"Basic Group" }
+
+        p { +"Labels can share their style together" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderBasicGroup,
+        ) {
+            // <CodeBlock renderBasicGroup>
+            ui.basic.labels {
+                ui.label { +"Fun" }
+                ui.label { +"Happy" }
+                ui.label { +"Smart" }
+                ui.label { +"Witty" }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderTagGroup() = example {
+        ui.header H3 { +"Tag Group" }
+
+        p { +"Labels can share tag formatting" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderTagGroup,
+        ) {
+            // <CodeBlock renderTagGroup>
+            ui.tag.labels {
+                ui.label { +"Fun" }
+                ui.label { +"Happy" }
+                ui.label { +"Smart" }
+                ui.label { +"Witty" }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderCircularGroup() = example {
+        ui.header H3 { +"Circular Group" }
+
+        p { +"Labels can share shapes" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderCircularGroup,
+        ) {
+            // <CodeBlock renderCircularGroup>
+            ui.circular.labels {
+                ui.label { +"Fun" }
+                ui.label { +"Happy" }
+                ui.label { +"Smart" }
+                ui.label { +"Witty" }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderInvertedVariants() = example {
+        ui.header H3 { +"All variants can be inverted" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderInvertedVariants,
+        ) {
+            // <CodeBlock renderInvertedVariants>
+            ui.inverted.segment {
+                ui.primary.inverted.label { +"primary" }
+                ui.secondary.inverted.label { +"secondary" }
+                ui.red.inverted.label { +"red" }
+                ui.orange.inverted.label { +"orange" }
+                ui.yellow.inverted.label { +"yellow" }
+                ui.olive.inverted.label { +"olive" }
+                ui.green.inverted.label { +"green" }
+                ui.violet.inverted.label { +"violet" }
+                ui.purple.inverted.label { +"purple" }
+                ui.brown.inverted.label { +"brown" }
+                ui.black.inverted.label { +"black" }
+                ui.white.inverted.label { +"white" }
+
+                ui.hidden.divider()
+
+                ui.basic.primary.inverted.label { +"primary" }
+                ui.basic.secondary.inverted.label { +"secondary" }
+                ui.basic.red.inverted.label { +"red" }
+                ui.basic.orange.inverted.label { +"orange" }
+                ui.basic.yellow.inverted.label { +"yellow" }
+                ui.basic.olive.inverted.label { +"olive" }
+                ui.basic.green.inverted.label { +"green" }
+                ui.basic.violet.inverted.label { +"violet" }
+                ui.basic.purple.inverted.label { +"purple" }
+                ui.basic.brown.inverted.label { +"brown" }
+                ui.basic.black.inverted.label { +"black" }
+                ui.basic.white.inverted.label { +"white" }
+
+                ui.hidden.divider()
+
+                ui.primary.inverted.tag.label { +"primary" }
+                ui.secondary.inverted.tag.label { +"secondary" }
+                ui.red.inverted.tag.label { +"red" }
+                ui.orange.inverted.tag.label { +"orange" }
+                ui.yellow.inverted.tag.label { +"yellow" }
+                ui.olive.inverted.tag.label { +"olive" }
+                ui.green.inverted.tag.label { +"green" }
+                ui.violet.inverted.tag.label { +"violet" }
+                ui.purple.inverted.tag.label { +"purple" }
+                ui.brown.inverted.tag.label { +"brown" }
+                ui.black.inverted.tag.label { +"black" }
+                ui.white.inverted.tag.label { +"white" }
+            }
             // </CodeBlock>
         }
     }

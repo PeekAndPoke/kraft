@@ -64,6 +64,9 @@ class SemanticTag(
     infix fun Label(block: LABEL.() -> Unit): Unit = LABEL(attrs(), parent.consumer).visitNoInline(block)
 
     @SemanticUiTagMarker
+    infix fun Ol(block: OL.() -> Unit): Unit = OL(attrs(), parent.consumer).visitNoInline(block)
+
+    @SemanticUiTagMarker
     infix fun P(block: P.() -> Unit): Unit = P(attrs(), parent.consumer).visitNoInline(block)
 
     @SemanticUiTagMarker
@@ -74,6 +77,9 @@ class SemanticTag(
 
     @SemanticUiTagMarker
     infix fun Table(block: TABLE.() -> Unit): Unit = TABLE(attrs(), parent.consumer).visitNoInline(block)
+
+    @SemanticUiTagMarker
+    infix fun Ul(block: UL.() -> Unit): Unit = UL(attrs(), parent.consumer).visitNoInline(block)
 
     // Adding Css Classes //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -714,6 +720,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val section: SemanticTag get() = this + "section"
+
+    @SemanticUiCssMarker
+    val labels: SemanticTag get() = this + "labels"
 
     @SemanticUiCssMarker
     val label: SemanticTag get() = this + "label"
