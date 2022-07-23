@@ -1,3 +1,10 @@
+@file:Suppress(
+    "DuplicatedCode",
+    "Detekt:TooManyFunctions",
+    "Detekt:LargeClass",
+    "Detekt:LongMethod",
+)
+
 package de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo
 
 import de.peekandpoke.kraft.addons.forms.formController

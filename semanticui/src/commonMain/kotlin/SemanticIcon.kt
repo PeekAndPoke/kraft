@@ -1,4 +1,9 @@
-@file:Suppress("Detekt:LargeClass", "Detekt:VariableNaming")
+@file:Suppress(
+    "Detekt:TooManyFunctions",
+    "Detekt:LargeClass",
+    "Detekt:LongMethod",
+    "Detekt:VariableNaming",
+)
 
 package de.peekandpoke.kraft.semanticui
 

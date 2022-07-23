@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.examples.fomanticui.pages
+package de.peekandpoke.kraft.examples.fomanticui.helpers
 
 import de.peekandpoke.kraft.semanticui.SemanticFn
 

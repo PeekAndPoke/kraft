@@ -1,3 +1,10 @@
+@file:Suppress(
+    "DuplicatedCode",
+    "Detekt:TooManyFunctions",
+    "Detekt:LargeClass",
+    "Detekt:LongMethod",
+)
+
 package de.peekandpoke.kraft.examples.fomanticui.pages.elements.flag
 
 import de.peekandpoke.kraft.components.NoProps

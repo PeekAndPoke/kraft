@@ -1,3 +1,10 @@
+@file:Suppress(
+    "Detekt:TooManyFunctions",
+    "Detekt:LargeClass",
+    "Detekt:LongMethod",
+    "Detekt:VariableNaming",
+)
+
 package de.peekandpoke.kraft.semanticui
 
 import kotlinx.html.*
@@ -87,8 +94,7 @@ class SemanticTag(
     operator fun plus(cls: String): SemanticTag = apply { cssClasses.add(cls) }
 
     @SemanticUiCssMarker
-    operator fun plus(classes: Array<out String>): SemanticTag =
-        apply { cssClasses.addAll(classes) }
+    operator fun plus(classes: Array<out String>): SemanticTag = apply { cssClasses.addAll(classes) }
 
     @SemanticUiCssMarker
     inline fun with(block: SemanticTag.() -> SemanticTag): SemanticTag = this.run(block)
@@ -97,8 +103,7 @@ class SemanticTag(
     fun with(vararg cls: String): SemanticTag = this + cls
 
     @SemanticUiCssMarker
-    fun with(vararg cls: String, flow: DIV.() -> Unit): Unit =
-        (this + cls).invoke(flow)
+    fun with(vararg cls: String, flow: DIV.() -> Unit): Unit = (this + cls).invoke(flow)
 
     // Conditional classes
 
@@ -126,15 +131,13 @@ class SemanticTag(
     fun number(int: Int): SemanticTag = number(SemanticNumber.of(int))
 
     @SemanticUiCssMarker
-    fun number(int: Int, flow: DIV.() -> Unit): Unit =
-        number(SemanticNumber.of(int), flow)
+    fun number(int: Int, flow: DIV.() -> Unit): Unit = number(SemanticNumber.of(int), flow)
 
     @SemanticUiCssMarker
     fun number(number: SemanticNumber): SemanticTag = this + number.toString()
 
     @SemanticUiCssMarker
-    fun number(number: SemanticNumber, flow: DIV.() -> Unit): Unit =
-        with(number.toString(), flow = flow)
+    fun number(number: SemanticNumber, flow: DIV.() -> Unit): Unit = with(number.toString(), flow = flow)
 
     @SemanticUiCssMarker
     val one: SemanticTag get() = this + "one"
@@ -195,8 +198,7 @@ class SemanticTag(
 
     @SemanticUiCssMarker
 
-    fun color(color: SemanticColor, flow: DIV.() -> Unit): Unit =
-        with(color.toString(), flow = flow)
+    fun color(color: SemanticColor, flow: DIV.() -> Unit): Unit = with(color.toString(), flow = flow)
 
     @SemanticUiCssMarker
     val color: SemanticTag get() = this + "color"

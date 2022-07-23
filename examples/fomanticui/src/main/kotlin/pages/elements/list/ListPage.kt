@@ -1,4 +1,9 @@
-@file:Suppress("DuplicatedCode")
+@file:Suppress(
+    "DuplicatedCode",
+    "Detekt:TooManyFunctions",
+    "Detekt:LargeClass",
+    "Detekt:LongMethod",
+)
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.elements.list
 
@@ -6,9 +11,9 @@ import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.examples.fomanticui.helpers.HorizontalContentAndCode
+import de.peekandpoke.kraft.examples.fomanticui.helpers.allSizes
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
 import de.peekandpoke.kraft.examples.fomanticui.helpers.readTheFomanticUiDocs
-import de.peekandpoke.kraft.examples.fomanticui.pages.allSizes
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
@@ -1044,12 +1049,12 @@ class ListPage(ctx: NoProps) : PureComponent(ctx) {
             ui.right.floated.horizontal.list {
                 noui.disabled.item { +"© GitHub, Inc." }
                 noui.item A { href = "https://example.com"; +"Terms" }
-                noui.item A { href = "https://example.com";+"Privacy" }
-                noui.item A { href = "https://example.com";+"Contact" }
+                noui.item A { href = "https://example.com"; +"Privacy" }
+                noui.item A { href = "https://example.com"; +"Contact" }
             }
             ui.horizontal.list {
-                noui.item A { href = "https://example.com";+"About Us" }
-                noui.item A { href = "https://example.com";+"Jobs" }
+                noui.item A { href = "https://example.com"; +"About Us" }
+                noui.item A { href = "https://example.com"; +"Jobs" }
             }
             // </CodeBlock>
         }
