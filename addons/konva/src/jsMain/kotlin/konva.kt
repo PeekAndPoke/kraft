@@ -18,6 +18,7 @@ to make it work.
     "PropertyName",
     "Detekt:TooManyFunctions",
     "Detekt:LongParameterList",
+    "Detekt:ParameterListWrapping",
 )
 
 @file:JsModule("konva")
