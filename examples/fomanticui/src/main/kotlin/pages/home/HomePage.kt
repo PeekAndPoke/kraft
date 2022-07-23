@@ -40,7 +40,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
         ui.header H2 { +"FomanticUI + Kraft code examples" }
 
         ui.big.green.basic.button A {
-            href = "https://github.com/PeekAndPoke/kraft/tree/master/examples/semanticui"
+            href = "https://github.com/PeekAndPoke/kraft/tree/master/examples/fomanticui"
             target = "_blank"
             icon.github()
             +"Show me the code!"
