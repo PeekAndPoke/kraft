@@ -1,9 +1,7 @@
 /*
-
 Generated from konva.d.ts with ts2kt command line tool.
 Afterwards, commented out @JsQualifier and added @JsModule annotation
 to make it work.
-
  */
 
 @file:Suppress(
@@ -13,7 +11,13 @@ to make it work.
     "CONFLICTING_OVERLOADS",
     "EXTERNAL_DELEGATION",
     "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-    "PackageDirectoryMismatch", "unused", "FunctionName", "ClassName", "PropertyName",
+    "PackageDirectoryMismatch",
+    "unused",
+    "FunctionName",
+    "ClassName",
+    "PropertyName",
+    "Detekt:TooManyFunctions",
+    "Detekt:LongParameterList",
 )
 
 @file:JsModule("konva")
@@ -197,11 +201,8 @@ open external class Node(config: NodeConfig) {
     ): Array<Node> = definedExternally
 
     open fun fire(
-        eventType: String,
-        evt: Any? = definedExternally /* null */,
-        bubble: Boolean? = definedExternally /* null */
-    ): Node /* this */ =
-        definedExternally
+        eventType: String, evt: Any? = definedExternally /* null */, bubble: Boolean? = definedExternally /* null */
+    ): Node /* this */ = definedExternally
 
     open fun getAbsoluteOpacity(): Number = definedExternally
     open fun getAbsolutePosition(): Vector2d = definedExternally
@@ -614,8 +615,7 @@ open external class Context {
         startAngle: Number,
         endAngle: Number,
         anticlockwise: Boolean? = definedExternally /* null */
-    ): Unit =
-        definedExternally
+    ): Unit = definedExternally
 
     open fun beginPath(): Unit = definedExternally
     open fun bezierCurveTo(cp1x: Number, cp1y: Number, cp2x: Number, cp2y: Number, x: Number, y: Number): Unit =
@@ -635,12 +635,7 @@ open external class Context {
     open fun createPattern(image: HTMLCanvasElement, repetition: String): CanvasPattern = definedExternally
     open fun createPattern(image: HTMLVideoElement, repetition: String): CanvasPattern = definedExternally
     open fun createRadialGradient(
-        x0: Number,
-        y0: Number,
-        r0: Number,
-        x1: Number,
-        y1: Number,
-        r1: Number
+        x0: Number, y0: Number, r0: Number, x1: Number, y1: Number, r1: Number
     ): CanvasGradient = definedExternally
 
     open fun drawImage(image: HTMLImageElement, dstX: Number, dstY: Number): Unit = definedExternally
