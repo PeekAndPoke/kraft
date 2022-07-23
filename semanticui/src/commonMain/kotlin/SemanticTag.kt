@@ -16,7 +16,7 @@ class SemanticTag(
     private fun attrs() = attributesMapOf("class", _cssClasses())
 
     @SemanticUiCssMarker
-    operator fun invoke(block: DIV.() -> Unit): Unit = Div(block)
+    operator fun invoke(block: DIV.() -> Unit = {}): Unit = Div(block)
 
     @SemanticUiTagMarker
     infix fun H1(block: H1.() -> Unit): Unit = H1(attrs(), parent.consumer).visitNoInline(block)
@@ -353,6 +353,9 @@ class SemanticTag(
     val circular: SemanticTag get() = this + "circular"
 
     @SemanticUiCssMarker
+    val empty: SemanticTag get() = this + "empty"
+
+    @SemanticUiCssMarker
     val compact: SemanticTag get() = this + "compact"
 
     @SemanticUiCssMarker
@@ -441,6 +444,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val pointing: SemanticTag get() = this + "pointing"
+
+    @SemanticUiCssMarker
+    val below: SemanticTag get() = this + "below"
 
     @SemanticUiCssMarker
     val scale: SemanticTag get() = this + "scale"
@@ -597,6 +603,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val right: SemanticTag get() = this + "right"
+
+    @SemanticUiCssMarker
+    val corner: SemanticTag get() = this + "corner"
 
     @SemanticUiCssMarker
     val ribbon: SemanticTag get() = this + "ribbon"
