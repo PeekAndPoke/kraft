@@ -349,6 +349,21 @@ class SemanticTag(
     val active: SemanticTag get() = this + "active"
 
     @SemanticUiCssMarker
+    val slow: SemanticTag get() = this + "slow"
+
+    @SemanticUiCssMarker
+    val fast: SemanticTag get() = this + "fast"
+
+    @SemanticUiCssMarker
+    val double: SemanticTag get() = this + "double"
+
+    @SemanticUiCssMarker
+    val elastic: SemanticTag get() = this + "elastic"
+
+    @SemanticUiCssMarker
+    val indeterminate: SemanticTag get() = this + "indeterminate"
+
+    @SemanticUiCssMarker
     val basic: SemanticTag get() = this + "basic"
 
     @SemanticUiCssMarker
