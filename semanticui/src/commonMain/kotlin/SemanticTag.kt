@@ -257,6 +257,9 @@ class SemanticTag(
     val long: SemanticTag get() = this + "long"
 
     @SemanticUiCssMarker
+    val tall: SemanticTag get() = this + "tall"
+
+    @SemanticUiCssMarker
     val mini: SemanticTag get() = this + "mini"
 
     @SemanticUiCssMarker
@@ -514,6 +517,9 @@ class SemanticTag(
     val raised: SemanticTag get() = this + "raised"
 
     @SemanticUiCssMarker
+    val stacked: SemanticTag get() = this + "stacked"
+
+    @SemanticUiCssMarker
     val meta: SemanticTag get() = this + "meta"
 
     @SemanticUiCssMarker
@@ -622,6 +628,9 @@ class SemanticTag(
     val horizontal: SemanticTag get() = this + "horizontal"
 
     @SemanticUiCssMarker
+    val horizontally: SemanticTag get() = this + "horizontally"
+
+    @SemanticUiCssMarker
     val equal: SemanticTag get() = this + "equal"
 
     @SemanticUiCssMarker
@@ -629,6 +638,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val vertical: SemanticTag get() = this + "vertical"
+
+    @SemanticUiCssMarker
+    val vertically: SemanticTag get() = this + "vertically"
 
     @SemanticUiCssMarker
     val row: SemanticTag get() = this + "row"

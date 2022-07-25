@@ -4,4 +4,5 @@ pre[class*=language-] {
     border-radius: 5px;
 
     max-height: 33vh;
+    margin: 0 !important;
 }

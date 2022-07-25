@@ -53,7 +53,7 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                     noui.item A { href = routes.elementsPlaceholder(); +"Placeholder"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.elementsRail(); +"Rail"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.elementsReveal(); +"Reveal"; ui.red.label { +"TODO" } }
-                    noui.item A { href = routes.elementsSegment(); +"Segment"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.elementsSegment(); +"Segment"; }
                     noui.item A { href = routes.elementsStep(); +"Step"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.elementsText(); +"Text"; ui.red.label { +"TODO" } }
                 }

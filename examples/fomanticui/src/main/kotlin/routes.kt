@@ -2,6 +2,7 @@ package de.peekandpoke.kraft.examples.fomanticui
 
 import de.peekandpoke.kraft.addons.routing.RouterBuilder
 import de.peekandpoke.kraft.addons.routing.Static
+import de.peekandpoke.kraft.examples.fomanticui.pages.collections.message.MessagePage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.button.ButtonPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.container.ContainerPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.divider.DividerPage
@@ -45,6 +46,8 @@ class Routes {
     val elementsStep = Static("/elements/step")
     val elementsText = Static("/elements/text")
 
+    val collectionsMessage = Static("/collections/message")
+
     val formDemos = Static("/form/demos")
 
     val viewsCard = Static("/views/card")
@@ -71,6 +74,8 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.elementsSegment) { SegmentPage() }
     mount(routes.elementsStep) { StepPage() }
     mount(routes.elementsText) { TextPage() }
+
+    mount(routes.collectionsMessage) { MessagePage() }
 
     mount(routes.formDemos) { FormDemosPage() }
 
