@@ -5,10 +5,10 @@
     "Detekt:LongMethod",
 )
 
-package de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo
+package de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.semanticui.forms.UiDateField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckboxField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -17,25 +17,23 @@ import de.peekandpoke.kraft.examples.fomanticui.helpers.invoke
 import de.peekandpoke.kraft.examples.fomanticui.helpers.renderStateAndDraftTable
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.MpLocalDate
-import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
-import de.peekandpoke.ultra.common.datetime.MpTimezone
-import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.FormWithNullableDates() = comp {
-    FormWithNullableDates(it)
+fun Tag.FormWithCheckboxes() = comp {
+    FormWithCheckboxes(it)
 }
 
-class FormWithNullableDates(ctx: NoProps) : PureComponent(ctx) {
+class FormWithCheckboxes(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
+    data class Obj(val x: String)
+
     data class State(
-        val localDate: MpLocalDate? = null,
-        val localDateTime: MpLocalDateTime? = null,
-        val zonedDateTime: MpZonedDateTime? = null,
+        val boolean: Boolean = false,
+        val string: String = "yes",
+        val obj: Obj = Obj("yes"),
     )
 
     private var state by value(State())
@@ -51,18 +49,28 @@ class FormWithNullableDates(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiDateField.nullable(draft.localDate, { draft = draft.copy(localDate = it) }) {
-                            label { +State::localDate.name }
+                        UiCheckboxField(draft.boolean, { draft = draft.copy(boolean = it) }) {
+                            label { +State::boolean.name }
                         }
 
-                        UiDateField.nullable(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
-                            label { +State::localDateTime.name }
+                        UiCheckboxField(
+                            value = draft.string,
+                            off = "no",
+                            on = "yes",
+                            onChange = { draft = draft.copy(string = it) },
+                        ) {
+                            label { +State::string.name }
+                            toggle()
                         }
 
-                        val tz = MpTimezone.of("Europe/Berlin")
-
-                        UiDateField.nullable(draft.zonedDateTime, tz, { draft = draft.copy(zonedDateTime = it) }) {
-                            label { +State::zonedDateTime.name }
+                        UiCheckboxField(
+                            value = draft.obj,
+                            off = Obj("no"),
+                            on = Obj("yes"),
+                            onChange = { draft = draft.copy(obj = it) },
+                        ) {
+                            label { +State::obj.name }
+                            slider()
                         }
                     }
                 }
@@ -84,10 +92,12 @@ class FormWithNullableDates(ctx: NoProps) : PureComponent(ctx) {
 
             ui.column {
                 renderStateAndDraftTable(
-                    state, draft, listOf(
-                        State::localDate { it?.toIsoString() },
-                        State::localDateTime { it?.toIsoString() },
-                        State::zonedDateTime { it?.toIsoString() },
+                    state,
+                    draft,
+                    listOf(
+                        State::boolean { it.toString() },
+                        State::string { it },
+                        State::obj { it.toString() },
                     )
                 )
             }

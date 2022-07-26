@@ -5,7 +5,7 @@
     "Detekt:LongMethod",
 )
 
-package de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo
+package de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo
 
 import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.forms.validation.equalTo

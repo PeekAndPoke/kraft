@@ -1,7 +1,8 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.gradle.dsl.KotlinJsProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import java.io.File
 
 class ExtractExampleCodePlugin : Plugin<Project> {
@@ -13,7 +14,7 @@ class ExtractExampleCodePlugin : Plugin<Project> {
         val content: String,
     )
 
-    override fun apply(target: Project) {
+    override fun apply(project: Project) {
 
 //        val ktFiles = FileUtils.listFiles(
 //            target.projectDir,
@@ -25,99 +26,130 @@ class ExtractExampleCodePlugin : Plugin<Project> {
         val outputDir = "/build/generated/extracted-code-blocks"
         val outputFileName = "extracted-code-blocks.kt"
 
-        target.extensions.configure<KotlinJsProjectExtension>() {
-            val sets = listOfNotNull(
+        project.extensions.configure<KotlinProjectExtension>() {
+            val mainSet = listOfNotNull(
+                sourceSets.findByName("main"),
                 sourceSets.findByName("commonMain"),
-                sourceSets.findByName("main")
-            )
+                sourceSets.findByName("jsMain"),
+                sourceSets.findByName("jvmMain")
+            ).firstOrNull()
 
-            sets.firstOrNull()?.let {
-                val dir = File(target.projectDir, outputDir.trim('/'))
+            val sets = listOfNotNull(mainSet)
+
+            sets.forEach {
+                val dir = File(project.projectDir, outputDir.trim('/'))
 
                 it.kotlin.srcDir(dir)
             }
         }
 
-        val projectDir = target.projectDir.absoluteFile
+        project.tasks.create("extractCodeBlocks") {
+            implementExtractCodeBlocks(
+                sourcesDir = sourcesDir,
+                outputDir = outputDir,
+                outputFileName = outputFileName,
+            )
+        }
 
-        val ktFiles = projectDir.walkTopDown()
-            .filter { it.isFile && it.extension == "kt" }
+        val tasksTheNeedCode = listOf(
+            "mainClasses", "testClasses", "compileKotlinJs",
+        )
 
-        val startExampleRegex = "<CodeBlock ([^>]+)>".toRegex()
-        val alphaNumRegex = "[^a-zA-Z0-9]+".toRegex()
+        tasksTheNeedCode.forEach { name ->
+            project.tasks.findByName(name)?.let { task ->
+                task.dependsOn(project.tasks.getByName("extractCodeBlocks"))
+            }
+        }
+    }
 
-        val entries = ktFiles.flatMap { file ->
+    private fun Task.implementExtractCodeBlocks(
+        sourcesDir: String,
+        outputDir: String,
+        outputFileName: String,
+    ) {
+        group = "extractCodeBlocks"
 
-            val entryPrefix = file.absoluteFile.toString()
-                .replaceFirst(projectDir.absolutePath, "")
-                .replaceFirst(sourcesDir, "")
-                .replace(alphaNumRegex, "_")
-                .trim('_')
+        doFirst {
+            val projectDir = project.projectDir.absoluteFile
 
-            val fileContent = file.readText()
-            val matches = startExampleRegex.findAll(fileContent)
+            val ktFiles = projectDir.walkTopDown().filter { it.isFile && it.extension == "kt" }
+
+            val startExampleRegex = "<CodeBlock ([^>]+)>".toRegex()
+            val alphaNumRegex = "[^a-zA-Z0-9]+".toRegex()
+
+            val entries = ktFiles.flatMap { file ->
+
+                val entryPrefix = file.absoluteFile.toString()
+                    .replaceFirst(projectDir.absolutePath, "")
+                    .replaceFirst(sourcesDir, "")
+                    .replace(alphaNumRegex, "_")
+                    .trim('_')
+
+                val fileContent = file.readText()
+                val matches = startExampleRegex.findAll(fileContent)
 
 //            println("found file: ${file.absolutePath}")
 
-            matches.mapNotNull { match ->
-                val name = match.groupValues[1].trim().replace(alphaNumRegex, "_")
-                val startIdx = match.range.last
-                val endIdx = fileContent.indexOf("</CodeBlock>", startIdx)
+                matches.mapNotNull { match ->
+                    val name = match.groupValues[1].trim().replace(alphaNumRegex, "_")
+                    val startIdx = match.range.last + 1
+                    val endIdx = fileContent.indexOf("</CodeBlock>", startIdx) - 3
 
-                if (endIdx != -1) {
-                    val content = fileContent.substring(startIdx, endIdx)
-                        .lines()
-                        .drop(1)
-                        .dropLast(1)
-                        .joinToString("\n")
-                        .trimIndent()
+                    if (endIdx >= 0) {
+                        val content = fileContent.substring(startIdx, endIdx)
+                            .trimIndent()
+                            .lines()
+                            .dropWhile { it.isBlank() }
+                            .dropLastWhile { it.isBlank() }
+                            .joinToString("\n")
 
-                    Entry(file = file, prefix = entryPrefix, name = name, content = content)
-                } else {
-                    null
+                        Entry(file = file, prefix = entryPrefix, name = name, content = content)
+                    } else {
+                        null
+                    }
                 }
             }
-        }
 
 //        entries.forEach { entry ->
 //            println("==== Found entry ${entry.prefix} ${entry.name} ================================")
 //            println(entry.content)
 //        }
 
-        val examplesCodeFile = StringBuilder().apply {
+            val examplesCodeFile = StringBuilder().apply {
 
-            appendLine("@file:Suppress(\"unused\", \"PackageDirectoryMismatch\")")
-            appendLine("package generated")
-            appendLine()
-
-            appendLine("object ExtractedCodeBlocks {")
-
-            entries.forEach { entry ->
-                appendLine("    const val ${entry.prefix}_${entry.name} = \"\"\"")
-                appendLine(
-                    entry.content
-                        // escape multiple quotes
-                        .replace("\"\"\"", "\\\"\\\"\\\"")
-                        // escape $ signs
-                        .replace("$", "${"$"}{\"${"$"}\"}")
-                )
-                appendLine("\"\"\"")
+                appendLine("@file:Suppress(\"unused\", \"PackageDirectoryMismatch\")")
+                appendLine("package generated")
                 appendLine()
+
+                appendLine("object ExtractedCodeBlocks {")
+
+                entries.forEach { entry ->
+                    appendLine("    const val ${entry.prefix}_${entry.name} = \"\"\"")
+                    appendLine(
+                        entry.content
+                            // escape multiple quotes
+                            .replace("\"\"\"", "\\\"\\\"\\\"")
+                            // escape $ signs
+                            .replace("$", "${"$"}{\"${"$"}\"}")
+                    )
+                    appendLine("\"\"\"")
+                    appendLine()
+                }
+
+                appendLine("}")
             }
 
-            appendLine("}")
-        }
+            val exampleFileContent = examplesCodeFile.toString()
 
-        val exampleFileContent = examplesCodeFile.toString()
-
-        val targetDir = File(projectDir, outputDir).also {
-            if (!it.exists()) {
-                it.mkdirs()
+            val targetDir = File(projectDir, outputDir).also {
+                if (!it.exists()) {
+                    it.mkdirs()
+                }
             }
+
+            val targetFile: File = File(targetDir, outputFileName)
+
+            targetFile.writeText(exampleFileContent)
         }
-
-        val targetFile: File = File(targetDir, outputFileName)
-
-        targetFile.writeText(exampleFileContent)
     }
 }

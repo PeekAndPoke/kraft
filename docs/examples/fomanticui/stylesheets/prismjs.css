@@ -3,6 +3,9 @@ pre[class*=language-] {
     border: 1px solid #E0E0E0;
     border-radius: 5px;
 
-    max-height: 33vh;
-    margin: 0 !important;
+    max-height: 40vh;
+}
+
+* > pre[class*=language-]:first-child {
+    margin-top: 0 !important;
 }

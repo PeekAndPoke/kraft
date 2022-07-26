@@ -5,11 +5,10 @@
     "Detekt:LongMethod",
 )
 
-package de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo
+package de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.forms.validation.nonNull
-import de.peekandpoke.kraft.addons.semanticui.forms.UiDateTimeField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiTextArea
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -18,23 +17,20 @@ import de.peekandpoke.kraft.examples.fomanticui.helpers.invoke
 import de.peekandpoke.kraft.examples.fomanticui.helpers.renderStateAndDraftTable
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
-import de.peekandpoke.ultra.common.datetime.MpTimezone
-import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
+import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.FormWithNullableDateTimes() = comp {
-    FormWithNullableDateTimes(it)
+fun Tag.FormWithTestArea() = comp {
+    FormWithTestArea(it)
 }
 
-class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
+class FormWithTestArea(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val localDateTime: MpLocalDateTime? = null,
-        val zonedDateTime: MpZonedDateTime? = null,
+        val input: String = "",
     )
 
     private var state by value(State())
@@ -49,18 +45,9 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
         ui.two.column.grid {
             ui.column {
                 ui.form {
-                    ui.two.fields {
-                        UiDateTimeField.nullable(draft.localDateTime, { draft = draft.copy(localDateTime = it) }) {
-                            label { +State::localDateTime.name }
-                            accepts(nonNull())
-                        }
-
-                        val tz = MpTimezone.of("Europe/Berlin")
-
-                        UiDateTimeField.nullable(draft.zonedDateTime, tz, { draft = draft.copy(zonedDateTime = it) }) {
-                            label { +State::zonedDateTime.name }
-                            accepts(nonNull())
-                        }
+                    UiTextArea(draft.input, { draft = draft.copy(input = it) }) {
+                        label { +"Text Input" }
+                        placeholder("Enter some text")
                     }
                 }
 
@@ -80,15 +67,19 @@ class FormWithNullableDateTimes(ctx: NoProps) : PureComponent(ctx) {
             }
 
             ui.column {
-                renderStateAndDraftTable(
-                    state,
-                    draft,
-                    listOf(
-                        State::localDateTime { it?.toIsoString() },
-                        State::zonedDateTime { it?.toIsoString() },
-                    )
-                )
+                renderDataTable()
             }
         }
+    }
+
+    private fun FlowContent.renderDataTable() {
+
+        renderStateAndDraftTable(
+            state,
+            draft,
+            listOf(
+                State::input { it },
+            )
+        )
     }
 }

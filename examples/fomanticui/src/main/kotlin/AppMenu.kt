@@ -37,12 +37,18 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.item {
-                noui.header { +"Form Demos" }
+                noui.header { +"Kraft Howto" }
                 noui.menu {
-                    noui.item A {
-                        href = routes.formDemos()
-                        +"Demos"
-                    }
+                    noui.item A { href = routes.howtoKraftGettingStarted(); +"Getting started" }
+                    noui.item A { href = routes.howtoKraftComponentBasics(); +"Component Basics" }
+                    noui.item A { href = routes.howtoKraftComponentState(); +"Component State" }
+                }
+            }
+
+            noui.item {
+                noui.header { +"Forms Howto" }
+                noui.menu {
+                    noui.item A { href = routes.howtoFormsDemo(); +"Demo" }
                 }
             }
 

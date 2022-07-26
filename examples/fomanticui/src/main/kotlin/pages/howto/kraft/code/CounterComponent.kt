@@ -1,4 +1,5 @@
-package de.peekandpoke.kraft.examples.helloworld
+// <CodeBlock code>
+package de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code
 
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
@@ -22,15 +23,18 @@ class CounterComponent(ctx: Ctx<Props>) : Component<CounterComponent.Props>(ctx)
         val start: Int,
     )
 
+    /** Here we define a property that will trigger a redraw when it's value is changed */
     private var counter: Int by value(props.start)
 
     override fun VDom.render() {
         div {
             div { +"Value: $counter" }
             div {
+                /** Below we change our property, triggering a redraw */
                 button { onClick { counter-- }; +"Minus" }
                 button { onClick { counter++ }; +"Plus" }
             }
         }
     }
 }
+// </CodeBlock>

@@ -25,8 +25,11 @@ import de.peekandpoke.kraft.examples.fomanticui.pages.elements.reveal.RevealPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.segment.SegmentPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.step.StepPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.text.TextPage
-import de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo.FormDemosPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.home.HomePage
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo.FormDemosPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.KraftComponentBasicsPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.KraftComponentStatePage
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.KraftGettingStartedPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.views.advertisement.AdvertisementPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.views.card.CardPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.views.comment.CommentPage
@@ -38,7 +41,11 @@ class Routes {
     val home = Static("")
     val homeSlash = Static("/")
 
-    val formDemos = Static("/form/demos")
+    val howtoKraftGettingStarted = Static("/howto/kraft/getting-started")
+    val howtoKraftComponentBasics = Static("/howto/kraft/components/basics")
+    val howtoKraftComponentState = Static("/howto/kraft/components/state")
+
+    val howtoFormsDemo = Static("/howto/forms/demo")
 
     val elementsButton = Static("/elements/button")
     val elementsContainer = Static("/elements/container")
@@ -77,7 +84,11 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.home) { HomePage() }
     mount(routes.homeSlash) { HomePage() }
 
-    mount(routes.formDemos) { FormDemosPage() }
+    mount(routes.howtoKraftGettingStarted) { KraftGettingStartedPage() }
+    mount(routes.howtoKraftComponentBasics) { KraftComponentBasicsPage() }
+    mount(routes.howtoKraftComponentState) { KraftComponentStatePage() }
+
+    mount(routes.howtoFormsDemo) { FormDemosPage() }
 
     mount(routes.elementsButton) { ButtonPage() }
     mount(routes.elementsContainer) { ContainerPage() }

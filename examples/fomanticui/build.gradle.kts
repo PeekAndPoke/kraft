@@ -6,8 +6,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
 }
 
-apply<ExtractExampleCodePlugin>()
-
 val GROUP = "io.peekandpoke.kraft.examples"
 val VERSION_NAME: String by project
 
@@ -35,6 +33,8 @@ kotlin {
         binaries.executable()
     }
 }
+
+apply<ExtractExampleCodePlugin>()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
