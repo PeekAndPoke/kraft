@@ -50,7 +50,7 @@ class KraftComponentsPage(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.pureComponentsExample() = example {
 
-        ui.dividing.header H2 { +"Pure Component" }
+        ui.dividing.header H2 { +"Pure component" }
 
         p { +"A pure component does not get props passed to it." }
         p { +"A pure component is defined like follows:" }
@@ -79,7 +79,7 @@ class KraftComponentsPage(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.propsComponentsExample() = example {
 
-        ui.dividing.header H2 { +"Parameterized Component with Props" }
+        ui.dividing.header H2 { +"Parameterized component with Props" }
 
         p { +"A component can accept parameters, so called Props." }
         p { +"A component with Props is defined like follows:" }
@@ -108,7 +108,7 @@ class KraftComponentsPage(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.functionalPureComponentsExample() = example {
 
-        ui.dividing.header H2 { +"Functional Pure Component" }
+        ui.dividing.header H2 { +"Functional pure component" }
 
         p { +"A pure component can be defined in a functional way:" }
 
@@ -136,9 +136,9 @@ class KraftComponentsPage(ctx: NoProps) : PureComponent(ctx) {
 
     private fun FlowContent.functionalPropsComponentsExample() = example {
 
-        ui.dividing.header H2 { +"Function parameterized Component" }
+        ui.dividing.header H2 { +"Functional component with Props" }
 
-        p { +"A functional component can take up to 10 parameters" }
+        p { +"A functional component can take up to 10 parameters." }
         p { +"A functional component with parameters is defined as follows:" }
 
         PrismKotlin(
