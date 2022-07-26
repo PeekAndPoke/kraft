@@ -11,12 +11,12 @@ import kotlinx.html.*
 
 @Suppress("FunctionName", "PropertyName", "unused", "Detekt:TooManyFunctions", "Detekt:VariableNaming")
 class SemanticTag(
-    @PublishedApi internal val parent: FlowContent,
+    @PublishedApi internal val parent: Tag,
     @PublishedApi internal val cssClasses: MutableList<String>,
 ) {
     fun _cssClasses(): String = cssClasses.filter { it.isNotBlank() }.joinToString(" ")
 
-    fun _renderAsTag(block: FlowContent.() -> Unit) {
+    fun _renderAsTag(block: Tag.() -> Unit) {
         block(parent)
     }
 
@@ -694,6 +694,9 @@ class SemanticTag(
     val stackable: SemanticTag get() = this + "stackable"
 
     @SemanticUiCssMarker
+    val unstackable: SemanticTag get() = this + "unstackable"
+
+    @SemanticUiCssMarker
     val stretched: SemanticTag get() = this + "stretched"
 
     @SemanticUiCssMarker
@@ -715,10 +718,16 @@ class SemanticTag(
     val divided: SemanticTag get() = this + "divided"
 
     @SemanticUiCssMarker
+    val definition: SemanticTag get() = this + "definition"
+
+    @SemanticUiCssMarker
     val striped: SemanticTag get() = this + "striped"
 
     @SemanticUiCssMarker
     val celled: SemanticTag get() = this + "celled"
+
+    @SemanticUiCssMarker
+    val collapsing: SemanticTag get() = this + "collapsing"
 
     @SemanticUiCssMarker
     val selectable: SemanticTag get() = this + "selectable"

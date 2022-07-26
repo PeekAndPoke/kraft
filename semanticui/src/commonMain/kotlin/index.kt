@@ -5,11 +5,11 @@ import kotlinx.html.Tag
 import kotlin.jvm.JvmName
 
 @SemanticUiDslMarker
-val FlowContent.ui: SemanticTag
+val Tag.ui: SemanticTag
     get() = SemanticTag(this, mutableListOf("ui"))
 
 @SemanticUiDslMarker
-val FlowContent.noui: SemanticTag
+val Tag.noui: SemanticTag
     get() = SemanticTag(this, mutableListOf(""))
 
 @SemanticIconMarker
