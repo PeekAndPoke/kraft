@@ -76,14 +76,16 @@ class KraftComponentStatePage(ctx: NoProps) : PureComponent(ctx) {
     private fun FlowContent.byValueExample() = example {
         ui.dividing.header H3 { +"by value" }
 
-        p { +"State can be stored by delegating a property using something similar to" }
+        p { +"State can be stored by using:" }
 
         PrismKotlin(
             "var x by value(100)"
         )
 
-        p { +"So whenever 'x' is changed the component will be redrawn." }
-        p { +"A component can be have multiple properties defined like this." }
+        p {
+            +"So whenever 'x' is changed the component will be redrawn. "
+            +"A component can be have multiple properties defined like this."
+        }
 
         p { +"Below you will find an example using this method:" }
 
@@ -112,7 +114,7 @@ class KraftComponentStatePage(ctx: NoProps) : PureComponent(ctx) {
 
         p {
             +"Components can subscribe to streams. "
-            +"Every time the stream publishes a new value, the component will be redrawn."
+            +"Every time the stream publishes a new value the component will be redrawn."
         }
 
         p {
