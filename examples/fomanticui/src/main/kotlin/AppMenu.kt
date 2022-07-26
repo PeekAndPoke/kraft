@@ -37,7 +37,7 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.item {
-                noui.header { +"Kraft Howto" }
+                noui.header { +"KRAFT Howto" }
                 noui.menu {
                     noui.item A { href = routes.howtoKraftGettingStarted(); +"Getting started" }
                     noui.item A { href = routes.howtoKraftComponentBasics(); +"Component Basics" }
