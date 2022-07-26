@@ -64,7 +64,7 @@ class KraftComponentStatePage(ctx: NoProps) : PureComponent(ctx) {
             +" that has to be called when the state of a component is changed."
         }
         p {
-            +"setState() has to be called to tell VDOM that the component needs to be redrawn."
+            +"setState() has to be called so underlying framework knows that the component needs to be redrawn."
         }
 
         p {
