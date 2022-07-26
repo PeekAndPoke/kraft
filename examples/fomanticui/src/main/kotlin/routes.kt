@@ -2,7 +2,12 @@ package de.peekandpoke.kraft.examples.fomanticui
 
 import de.peekandpoke.kraft.addons.routing.RouterBuilder
 import de.peekandpoke.kraft.addons.routing.Static
+import de.peekandpoke.kraft.examples.fomanticui.pages.collections.breadcrumb.BreadcrumbPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.collections.form.FormPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.collections.grid.GridPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.collections.menu.MenuPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.collections.message.MessagePage
+import de.peekandpoke.kraft.examples.fomanticui.pages.collections.table.TablePage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.button.ButtonPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.container.ContainerPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.divider.DividerPage
@@ -22,11 +27,18 @@ import de.peekandpoke.kraft.examples.fomanticui.pages.elements.step.StepPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.text.TextPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.forms.demo.FormDemosPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.home.HomePage
+import de.peekandpoke.kraft.examples.fomanticui.pages.views.advertisement.AdvertisementPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.views.card.CardPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.views.comment.CommentPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.views.feed.FeedPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.views.item.ItemPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.views.statistic.StatisticPage
 
 class Routes {
     val home = Static("")
     val homeSlash = Static("/")
+
+    val formDemos = Static("/form/demos")
 
     val elementsButton = Static("/elements/button")
     val elementsContainer = Static("/elements/container")
@@ -46,16 +58,26 @@ class Routes {
     val elementsStep = Static("/elements/step")
     val elementsText = Static("/elements/text")
 
+    val collectionsBreadcrumb = Static("/collections/breadcrumb")
+    val collectionsForm = Static("/collections/form")
+    val collectionsGrid = Static("/collections/grid")
+    val collectionsMenu = Static("/collections/menu")
     val collectionsMessage = Static("/collections/message")
+    val collectionsTable = Static("/collections/table")
 
-    val formDemos = Static("/form/demos")
-
+    val viewsAdvertisement = Static("/views/advertisement")
     val viewsCard = Static("/views/card")
+    val viewsComment = Static("/views/comment")
+    val viewsFeed = Static("/views/feed")
+    val viewsItem = Static("/views/item")
+    val viewsStatistic = Static("/views/statistic")
 }
 
 fun RouterBuilder.mount(routes: Routes) {
     mount(routes.home) { HomePage() }
     mount(routes.homeSlash) { HomePage() }
+
+    mount(routes.formDemos) { FormDemosPage() }
 
     mount(routes.elementsButton) { ButtonPage() }
     mount(routes.elementsContainer) { ContainerPage() }
@@ -75,9 +97,17 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.elementsStep) { StepPage() }
     mount(routes.elementsText) { TextPage() }
 
+    mount(routes.collectionsBreadcrumb) { BreadcrumbPage() }
+    mount(routes.collectionsForm) { FormPage() }
+    mount(routes.collectionsGrid) { GridPage() }
+    mount(routes.collectionsMenu) { MenuPage() }
     mount(routes.collectionsMessage) { MessagePage() }
+    mount(routes.collectionsTable) { TablePage() }
 
-    mount(routes.formDemos) { FormDemosPage() }
-
+    mount(routes.viewsAdvertisement) { AdvertisementPage() }
     mount(routes.viewsCard) { CardPage() }
+    mount(routes.viewsComment) { CommentPage() }
+    mount(routes.viewsFeed) { FeedPage() }
+    mount(routes.viewsItem) { ItemPage() }
+    mount(routes.viewsStatistic) { StatisticPage() }
 }

@@ -37,6 +37,16 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.item {
+                noui.header { +"Form Demos" }
+                noui.menu {
+                    noui.item A {
+                        href = routes.formDemos()
+                        +"Demos"
+                    }
+                }
+            }
+
+            noui.item {
                 noui.header { +"Elements" }
                 noui.menu {
                     noui.item A { href = routes.elementsButton(); +"Button" }
@@ -60,22 +70,26 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.item {
-                noui.header { +"Forms" }
+                noui.header { +"Collections" }
                 noui.menu {
-                    noui.item A {
-                        href = routes.formDemos()
-                        +"Demos"
-                    }
+                    noui.item A { href = routes.collectionsBreadcrumb(); +"Breadcrumb"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.collectionsForm(); +"Form"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.collectionsGrid(); +"Grid"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.collectionsMenu(); +"Menu"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.collectionsMessage(); +"Message"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.collectionsTable(); +"Table"; ui.red.label { +"TODO" } }
                 }
             }
 
             noui.item {
                 noui.header { +"Views" }
                 noui.menu {
-                    noui.item A {
-                        href = routes.viewsCard()
-                        +"Card"
-                    }
+                    noui.item A { href = routes.viewsAdvertisement(); +"Advertisement"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.viewsCard(); +"Card" }
+                    noui.item A { href = routes.viewsComment(); +"Comment"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.viewsFeed(); +"Feed"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.viewsItem(); +"Item"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.viewsStatistic(); +"Statistic"; ui.red.label { +"TODO" } }
                 }
             }
         }

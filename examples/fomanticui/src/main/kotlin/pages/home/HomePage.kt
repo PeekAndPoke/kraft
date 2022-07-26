@@ -17,7 +17,6 @@ import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
-import kotlinx.html.p
 
 @Suppress("FunctionName")
 fun Tag.HomePage() = comp {
@@ -57,7 +56,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     private fun FlowContent.renderDslIntro() = example {
         ui.header H2 { +"Intro to the DSL" }
 
-        p {
+        ui.info.message {
             +"Fomantic-UI often times needs the css classes to be prefixed with "
             ui.basic.label { +"ui" }
         }
@@ -75,7 +74,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             """.trimIndent()
         )
 
-        p {
+        ui.info.message {
             +"But there are also cases where you want to omit this prefix. Then you can use "
             ui.basic.label { +"noui" }
         }
@@ -93,7 +92,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             """.trimIndent()
         )
 
-        p {
+        ui.info.message {
             +"Sometimes you want to change the html tag from div to something else"
         }
 
@@ -106,6 +105,70 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             """.trimIndent(),
             html = """
                 <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
+                    K.R.A.F.T.
+                </a>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you might want to add custom css class. You can use "
+            ui.basic.label { +"with(...)" }
+            +" to achieve this"
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                no.basic.with("my-custom-class").item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"K.R.A.F.T."
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic my-custom-class item" href="https://github.com/PeekAndPoke/kraft">
+                    K.R.A.F.T.
+                </a>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you only want to set a css class when a condition is met. You can use "
+            ui.basic.label { +"given(...) { ... }" }
+            +" to achieve this."
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                val myCondition = false
+                
+                no.basic.given(myCondition) { disabled }.item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"K.R.A.F.T."
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
+                    K.R.A.F.T.
+                </a>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you only want to set a css class when a condition is NOT met. You can use "
+            ui.basic.label { +"givenNot(...) { ... }" }
+            +" to achieve this."
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                val myCondition = false
+                
+                no.basic.givenNot(myCondition) { disabled }.item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"K.R.A.F.T."
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic disabled item" href="https://github.com/PeekAndPoke/kraft">
                     K.R.A.F.T.
                 </a>
             """.trimIndent()
