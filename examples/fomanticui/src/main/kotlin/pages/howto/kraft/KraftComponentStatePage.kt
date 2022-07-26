@@ -16,6 +16,8 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.examples.fomanticui.helpers.HorizontalContentAndCode
 import de.peekandpoke.kraft.examples.fomanticui.helpers.example
 import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code.CounterComponent
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code.FunctionalCounterComponent
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code.FunctionalTickerComponent
 import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code.TickerComponent
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
@@ -42,10 +44,15 @@ class KraftComponentStatePage(ctx: NoProps) : PureComponent(ctx) {
             ui.dividing.header H2 { +"Introduction" }
             introduction()
 
-            ui.dividing.header H2 { +"Examples" }
+            ui.dividing.header H2 { +"Examples for class components" }
 
             byValueExample()
             bySubscribingToExample()
+
+            ui.dividing.header H2 { +"Examples for functional components" }
+
+            functionalByValueExample()
+            functionalBySubscribingToExample()
         }
     }
 
@@ -137,6 +144,68 @@ class KraftComponentStatePage(ctx: NoProps) : PureComponent(ctx) {
             // <CodeBlock bySubscribingToExample>
             ui.segment {
                 TickerComponent(100)
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.functionalByValueExample() = example {
+        ui.dividing.header H3 { +"by value" }
+
+        p { +"Functional Components can store state as well:" }
+
+        PrismKotlin(
+            "var x by value(100)"
+        )
+
+        p { +"Below you will find an example using this method:" }
+
+        PrismKotlin(
+            ExtractedCodeBlocks.pages_howto_kraft_code_FunctionalCounterComponent_kt_code,
+        ) {
+            lineNumbers()
+            copyToClipboard()
+        }
+
+        p { +"And here is the FunctionalCounterComponent in action" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_howto_kraft_KraftComponentStatePage_kt_functionalByValueExample,
+        ) {
+            // <CodeBlock functionalByValueExample>
+            ui.segment {
+                FunctionalCounterComponent(100)
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.functionalBySubscribingToExample() = example {
+        ui.dividing.header H3 { +"by subscribingTo" }
+
+        p { +"Functional Components can subscribe to streams as well:" }
+
+        PrismKotlin(
+            "val x by subscribingTo(someStream)"
+        )
+
+        p { +"Below you will find an example using this method:" }
+
+        PrismKotlin(
+            ExtractedCodeBlocks.pages_howto_kraft_code_FunctionalTickerComponent_kt_code,
+        ) {
+            lineNumbers()
+            copyToClipboard()
+        }
+
+        p { +"And here is the FunctionalTickerComponent in action" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_howto_kraft_KraftComponentStatePage_kt_functionalBySubscribingToExample,
+        ) {
+            // <CodeBlock functionalBySubscribingToExample>
+            ui.segment {
+                FunctionalTickerComponent(100)
             }
             // </CodeBlock>
         }

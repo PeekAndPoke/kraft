@@ -3,6 +3,7 @@ div.full.height > .toc {
     position: fixed;
     background-color: #1b1c1d;
     width: 250px;
+    overflow-y: scroll;
 }
 
 .toc .ui.menu {

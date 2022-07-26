@@ -31,8 +31,8 @@ class CounterComponent(ctx: Ctx<Props>) : Component<CounterComponent.Props>(ctx)
             div { +"Value: $counter" }
             div {
                 /** Below we change our property, triggering a redraw */
-                button { onClick { counter-- }; +"Minus" }
-                button { onClick { counter++ }; +"Plus" }
+                button { onClick { counter-- }; +" - " }
+                button { onClick { counter++ }; +" + " }
             }
         }
     }
