@@ -538,7 +538,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message { +"Label can be floating to the left" }
+        ui.info.message { +"Label can be floating to the left" }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderFloatingLabel_2,
@@ -559,7 +559,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message { +"Label can be floating at the bottom" }
+        ui.info.message { +"Label can be floating at the bottom" }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderFloatingLabel_3,
@@ -580,7 +580,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message { +"Label can be floating at the bottom left" }
+        ui.info.message { +"Label can be floating at the bottom left" }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderFloatingLabel_4,
@@ -601,7 +601,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message { +"Floating Labels containing large text can be aligned to the left or right" }
+        ui.info.message { +"Floating Labels containing large text can be aligned to the left or right" }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderFloatingLabel_5,
@@ -622,7 +622,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message { +"Floating Labels containing large text can be aligned to the bottom left or right" }
+        ui.info.message { +"Floating Labels containing large text can be aligned to the bottom left or right" }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderFloatingLabel_6,
@@ -682,9 +682,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message {
-            +"Icons can be placed to the right inside a label."
-        }
+        ui.info.message { +"Icons can be placed to the right inside a label." }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderIconContentLabel_2,
@@ -697,9 +695,7 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message {
-            +"Labels can contain individual icons without text."
-        }
+        ui.info.message { +"Labels can contain individual icons without text." }
 
         HorizontalContentAndCode(
             ExtractedCodeBlocks.pages_elements_label_LabelPage_kt_renderIconContentLabel_3,

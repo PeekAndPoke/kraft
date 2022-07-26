@@ -245,7 +245,7 @@ class ListPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message {
+        ui.info.message {
             +"For convenience, a simple bulleted list can also use "
             ui.label { +"ul" }
             +" tag."
@@ -271,7 +271,7 @@ class ListPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message {
+        ui.info.message {
             +"A bulleted list can be horizontal"
         }
 
@@ -313,7 +313,7 @@ class ListPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.teal.message {
+        ui.info.message {
             +"For convenience, a simple bulleted list can also use "
             ui.label { +"ol" }
             +" tag."
@@ -644,7 +644,7 @@ class ListPage(ctx: NoProps) : PureComponent(ctx) {
 
         p { +"A list can animate to set the current item apart from the list" }
 
-        ui.teal.message {
+        ui.info.message {
             +"Be sure content can fit on one line when using the animated variation, "
             +"otherwise text content will reflow when hovered. "
         }

@@ -28,7 +28,7 @@ fun FlowContent.example(block: DIV.() -> Unit) {
 
 fun FlowContent.shortParagraphWireFrame() {
     p {
-        ui.with("wireframe").image Img {
+        ui.wireframe.image Img {
             src = "images/wireframe/short-paragraph.png"
         }
     }
@@ -36,7 +36,7 @@ fun FlowContent.shortParagraphWireFrame() {
 
 fun FlowContent.mediaParagraphWireFrame() {
     p {
-        ui.with("wireframe").image Img {
+        ui.wireframe.image Img {
             src = "images/wireframe/media-paragraph.png"
         }
     }

@@ -118,7 +118,7 @@ class SegmentPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.blue.message {
+        ui.info.message {
             +"To use inline-block content inside a placeholder, wrap the content in "
             ui.label { +"inline" }
         }
@@ -589,7 +589,7 @@ class SegmentPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.blue.message {
+        ui.info.message {
             +"The loader inherits the color of the segment, if you want to prevent this, add the "
             ui.label { +"usual" }
             +" class, so the loader color stays default, while the segment still gets its color"
@@ -631,7 +631,7 @@ class SegmentPage(ctx: NoProps) : PureComponent(ctx) {
 
         p { +"A segment can be attached to other content on a page" }
 
-        ui.blue.message {
+        ui.info.message {
             +"Attached segments are designed to be used with other attached variations like "
             b { a(href = routes.elementsHeader()) { +"attached headers" } }
             +" or "

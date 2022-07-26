@@ -257,6 +257,9 @@ class SemanticTag(
     val long: SemanticTag get() = this + "long"
 
     @SemanticUiCssMarker
+    val full: SemanticTag get() = this + "full"
+
+    @SemanticUiCssMarker
     val tall: SemanticTag get() = this + "tall"
 
     @SemanticUiCssMarker
@@ -349,6 +352,9 @@ class SemanticTag(
     val active: SemanticTag get() = this + "active"
 
     @SemanticUiCssMarker
+    val instant: SemanticTag get() = this + "instant"
+
+    @SemanticUiCssMarker
     val slow: SemanticTag get() = this + "slow"
 
     @SemanticUiCssMarker
@@ -392,9 +398,6 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val dividing: SemanticTag get() = this + "dividing"
-
-    @SemanticUiCssMarker
-    val down: SemanticTag get() = this + "down"
 
     @SemanticUiCssMarker
     val floated: SemanticTag get() = this + "floated"
@@ -443,6 +446,12 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val line: SemanticTag get() = this + "line"
+
+    @SemanticUiCssMarker
+    val square: SemanticTag get() = this + "square"
+
+    @SemanticUiCssMarker
+    val rectangular: SemanticTag get() = this + "rectangular"
 
     @SemanticUiCssMarker
     val link: SemanticTag get() = this + "link"
@@ -556,6 +565,9 @@ class SemanticTag(
     val slider: SemanticTag get() = this + "slider"
 
     @SemanticUiCssMarker
+    val info: SemanticTag get() = this + "info"
+
+    @SemanticUiCssMarker
     val success: SemanticTag get() = this + "success"
 
     @SemanticUiCssMarker
@@ -632,6 +644,12 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val right: SemanticTag get() = this + "right"
+
+    @SemanticUiCssMarker
+    val up: SemanticTag get() = this + "up"
+
+    @SemanticUiCssMarker
+    val down: SemanticTag get() = this + "down"
 
     @SemanticUiCssMarker
     val corner: SemanticTag get() = this + "corner"
@@ -721,7 +739,16 @@ class SemanticTag(
     val animating: SemanticTag get() = this + "animating"
 
     @SemanticUiCssMarker
+    val reveal: SemanticTag get() = this + "reveal"
+
+    @SemanticUiCssMarker
     val fade: SemanticTag get() = this + "fade"
+
+    @SemanticUiCssMarker
+    val rotate: SemanticTag get() = this + "rotate"
+
+    @SemanticUiCssMarker
+    val move: SemanticTag get() = this + "move"
 
     @SemanticUiCssMarker
     val out: SemanticTag get() = this + "out"

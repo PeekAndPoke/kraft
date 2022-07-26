@@ -63,11 +63,11 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderLoader() = example {
-        ui.dividing.header H2 { +"Loader" }
+        ui.dividing.header H3 { +"Loader" }
 
         p { +"A loader" }
 
-        ui.blue.message {
+        ui.info.message {
             +"Loaders are hidden unless "
             ui.label { +"active" }
             +" or inside an "
@@ -100,7 +100,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderTextLoader() = example {
-        ui.dividing.header H2 { +"Text Loader" }
+        ui.dividing.header H3 { +"Text Loader" }
 
         p { +"A loader can contain text" }
 
@@ -136,7 +136,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderIntermediateLoader() = example {
-        ui.dividing.header H2 { +"Intermediate" }
+        ui.dividing.header H3 { +"Intermediate" }
 
         p { +"A loader can show it's unsure of how long a task will take" }
 
@@ -157,7 +157,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderActiveLoader() = example {
-        ui.dividing.header H2 { +"Active" }
+        ui.dividing.header H3 { +"Active" }
 
         p { +"A loader can be active or visible" }
 
@@ -174,7 +174,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderDisabledLoader() = example {
-        ui.dividing.header H2 { +"Disabled" }
+        ui.dividing.header H3 { +"Disabled" }
 
         p { +"A loader can be disabled or hidden" }
 
@@ -191,7 +191,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderInlineLoader() = example {
-        ui.dividing.header H2 { +"Inline" }
+        ui.dividing.header H3 { +"Inline" }
 
         p { +"Loaders can appear inline with content" }
 
@@ -205,7 +205,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderInlineCenteredLoader() = example {
-        ui.dividing.header H2 { +"Inline centered" }
+        ui.dividing.header H3 { +"Inline centered" }
 
         p { +"Loaders can appear inline centered with content" }
 
@@ -219,7 +219,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderSpeedLoader() = example {
-        ui.dividing.header H2 { +"Speed" }
+        ui.dividing.header H3 { +"Speed" }
 
         p { +"Loaders can appear slow, normal or fast" }
 
@@ -235,7 +235,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderColorsLoader() = example {
-        ui.dividing.header H2 { +"Colors" }
+        ui.dividing.header H3 { +"Colors" }
 
         p { +"Loaders can be different colors" }
 
@@ -264,7 +264,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderSizedLoader() = example {
-        ui.dividing.header H2 { +"Size" }
+        ui.dividing.header H3 { +"Size" }
 
         p { +"Loaders can have different sizes" }
 
@@ -325,7 +325,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderInvertedLoader() = example {
-        ui.dividing.header H2 { +"Inverted" }
+        ui.dividing.header H3 { +"Inverted" }
 
         p { +"Loaders can have their colors inverted." }
 
@@ -343,7 +343,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
             // </CodeBlock>
         }
 
-        ui.blue.message {
+        ui.info.message {
             +"Loaders will automatically be inverted inside "
             ui.label { +"inverted dimmer" }
         }
@@ -363,7 +363,7 @@ class LoaderPage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderStylesLoader() = example {
-        ui.dividing.header H2 { +"Styles" }
+        ui.dividing.header H3 { +"Styles" }
 
         p {
             +"Loaders can also appear in "
