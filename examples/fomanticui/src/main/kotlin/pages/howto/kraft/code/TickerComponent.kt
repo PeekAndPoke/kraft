@@ -1,6 +1,8 @@
-// <CodeBlock code>
+@file:Suppress("FunctionName")
+
 package de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code
 
+// <CodeBlock code>
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
@@ -9,7 +11,6 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.Tag
 import kotlinx.html.div
 
-@Suppress("FunctionName")
 fun Tag.TickerComponent(delay: Int) = comp(
     TickerComponent.Props(delay = delay)
 ) {

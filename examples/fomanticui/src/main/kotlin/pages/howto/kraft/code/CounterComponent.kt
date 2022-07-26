@@ -1,6 +1,8 @@
-// <CodeBlock code>
+@file:Suppress("FunctionName")
+
 package de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.code
 
+// <CodeBlock code>
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
@@ -10,7 +12,6 @@ import kotlinx.html.Tag
 import kotlinx.html.button
 import kotlinx.html.div
 
-@Suppress("FunctionName")
 fun Tag.CounterComponent(start: Int) = comp(
     CounterComponent.Props(start = start)
 ) {
