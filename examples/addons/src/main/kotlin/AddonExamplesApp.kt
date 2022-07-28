@@ -27,7 +27,7 @@ class AddonExamplesApp(ctx: NoProps) : PureComponent(ctx) {
         ui.container {
 
             ui.basic.segment {
-                ui.header H1 { +"K.R.A.F.T. addon examples" }
+                ui.header H1 { +"KRAFT addon examples" }
             }
 
             ui.basic.segment {

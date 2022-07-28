@@ -32,8 +32,8 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     override fun VDom.render() {
         ui.basic.segment {
             ui.header H1 {
-                +"FomanticUI + K.R.A.F.T. = "
-                icon.red.heart_outline()
+                +"FomanticUI + KRAFT = "
+                icon.red.heart()
             }
 
             renderFomanticUiExamplesLink()
@@ -100,12 +100,12 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             kotlin = """
                 no.basic.item A {
                     href = "https://github.com/PeekAndPoke/kraft"
-                    +"K.R.A.F.T."
+                    +"KRAFT"
                 }
             """.trimIndent(),
             html = """
                 <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
-                    K.R.A.F.T.
+                    KRAFT
                 </a>
             """.trimIndent()
         )
@@ -120,12 +120,12 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             kotlin = """
                 no.basic.with("my-custom-class").item A {
                     href = "https://github.com/PeekAndPoke/kraft"
-                    +"K.R.A.F.T."
+                    +"KRAFT"
                 }
             """.trimIndent(),
             html = """
                 <a class="basic my-custom-class item" href="https://github.com/PeekAndPoke/kraft">
-                    K.R.A.F.T.
+                    KRAFT
                 </a>
             """.trimIndent()
         )
@@ -142,12 +142,12 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                 
                 no.basic.given(myCondition) { disabled }.item A {
                     href = "https://github.com/PeekAndPoke/kraft"
-                    +"K.R.A.F.T."
+                    +"KRAFT"
                 }
             """.trimIndent(),
             html = """
                 <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
-                    K.R.A.F.T.
+                    KRAFT
                 </a>
             """.trimIndent()
         )
@@ -164,12 +164,12 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                 
                 no.basic.givenNot(myCondition) { disabled }.item A {
                     href = "https://github.com/PeekAndPoke/kraft"
-                    +"K.R.A.F.T."
+                    +"KRAFT"
                 }
             """.trimIndent(),
             html = """
                 <a class="basic disabled item" href="https://github.com/PeekAndPoke/kraft">
-                    K.R.A.F.T.
+                    KRAFT
                 </a>
             """.trimIndent()
         )

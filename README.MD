@@ -13,6 +13,17 @@
 [![Maven Central](https://shields.io/maven-central/v/io.peekandpoke.kraft/core)](https://search.maven.org/search?q=io.peekandpoke.kraft)
 [![Snapshot](https://shields.io/nexus/s/io.peekandpoke.kraft/core?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/peekandpoke/kraft/)
 
+K.R.A.F.T. = Kotlin Rapid App Framework & Toolkit
+
+Build single page apps with pure Kotlin.
+
+KRAFT bridges the gap between Kotlin code and the DOM by using Javascript VDom-engines like
+the very light-weight [Preact](https://preactjs.com).
+
+It uses [kotlinx/html](https://github.com/Kotlin/kotlinx.html) for markup-rendering, so no template engine is needed.
+
+It comes with a handy DSL for the [FomanticUI Css Framework](https://fomantic-ui.com/).
+
 # Check out the examples
 
 ## Hello-World example
@@ -23,7 +34,22 @@
 Run it locally
 > ./gradlew -t --parallel :examples:hello-world:run
 
+## SemanticUi / FomanticUi examples
+
+Writing beautiful web-app without a css framework is very hard. KRAFT comes with a handy DSL
+from the [FomanticUI Css Framework](https://fomantic-ui.com/).
+
+Check out the examples, with lots of example code waiting to be copied and pasted.
+
+[Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/fomanticui/index.html) |
+[See the code](./examples/fomanticui)
+
+Run it locally
+> ./gradlew -t --parallel :examples:fomanticui:run
+
 ## Addon examples
+
+The addon examples show the usage of other Javascript libraries within a KRAFT-App.
 
 [Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html) |
 [See the code](./examples/addons)
@@ -31,10 +57,31 @@ Run it locally
 Run it locally
 > ./gradlew -t --parallel :examples:addons:run
 
-## SemanticUi / FomanticUi examples
+# Motivations for this project
 
-[Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/fomanticui/index.html) |
-[See the code](./examples/fomanticui)
+## Why KRAFT ?
 
-Run it locally
-> ./gradlew -t --parallel :examples:fomanticui:run
+Why KRAFT when there already is [KotlinJS/React](https://github.com/JetBrains/create-react-kotlin-app)?
+
+This project takes a different approach. It does not try to wrap around React.
+Instead, it uses very light weight VDom-engines like [Preact](https://preactjs.com).
+
+This reduces the Javascript dependencies to a minimum. In fact, Preact has zero dependencies of its own!
+This makes the whole project much more stable in the long run.
+
+## Why FomanticUI ?
+
+This project currently focuses on FomanticUI (previously SemanticUI) as a css framework.
+FomanticUI / SemanticUI uses a very "semantic" approach to writing styled markup. And as it turns out,
+this perfectly maps to a Kotlin DSL:
+
+```kotlin
+ui.segment {
+    ui.button {
+        +"Click me"
+    }
+}
+```
+
+Working with **kotlinx/html** happily removes the necessity for a template engine! _Great!_  
+**KRAFT/Fomantic** adds a typesafe and IDE-assisted DSL on top of that. _Sweet!_    

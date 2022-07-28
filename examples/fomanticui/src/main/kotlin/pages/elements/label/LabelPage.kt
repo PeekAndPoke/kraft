@@ -610,12 +610,12 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             ui.compact.menu {
                 noui.item A {
                     icon.mail()
-                    +"Messages from K.R.A.F.T. users"
+                    +"Messages from KRAFT users"
                     ui.left.aligned.floating.red.label { +"23 Mails unread" }
                 }
                 noui.item A {
                     icon.users()
-                    +"Friends of the K.R.A.F.T. community"
+                    +"Friends of the KRAFT community"
                     ui.right.aligned.floating.pink.label { +"22 Friends online" }
                 }
             }
@@ -631,12 +631,12 @@ class LabelPage(ctx: NoProps) : PureComponent(ctx) {
             ui.compact.menu {
                 noui.item A {
                     icon.mail()
-                    +"Messages from K.R.A.F.T. users"
+                    +"Messages from KRAFT users"
                     ui.bottom.left.aligned.floating.red.label { +"23 Mails unread" }
                 }
                 noui.item A {
                     icon.users()
-                    +"Friends of the K.R.A.F.T. community"
+                    +"Friends of the KRAFT community"
                     ui.bottom.right.aligned.floating.pink.label { +"22 Friends online" }
                 }
             }

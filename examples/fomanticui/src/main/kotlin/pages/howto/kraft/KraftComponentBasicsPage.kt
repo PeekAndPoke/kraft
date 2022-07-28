@@ -100,7 +100,7 @@ class KraftComponentsPage(ctx: NoProps) : PureComponent(ctx) {
         ) {
             // <CodeBlock propsComponentsExample>
             ui.segment {
-                PropsExampleComponent("K.R.A.F.T.")
+                PropsExampleComponent("KRAFT")
             }
             // </CodeBlock>
         }

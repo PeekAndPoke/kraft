@@ -35,7 +35,7 @@ class KraftGettingStartedPage(ctx: NoProps) : PureComponent(ctx) {
 
     override fun VDom.render() {
         ui.basic.padded.segment {
-            ui.dividing.header H1 { +"K.R.A.F.T. getting started" }
+            ui.dividing.header H1 { +"KRAFT - getting started" }
 
             ui.info.message {
                 p {
