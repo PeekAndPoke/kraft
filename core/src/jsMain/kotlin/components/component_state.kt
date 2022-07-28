@@ -8,8 +8,13 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 import kotlin.reflect.KType
 
-class InlineStateForValue<P>(val component: Component<*>, val initial: P, val type: KType) :
-    ObservableProperty<P>(initial) {
+class InlineStateForValue<P>(
+    val component: Component<*>,
+    val initial: P,
+    type: KType,
+) : ObservableProperty<P>(initial) {
+
+    private val typeStr: String = type.toString()
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): P {
         @Suppress("UNCHECKED_CAST")
@@ -28,14 +33,16 @@ class InlineStateForValue<P>(val component: Component<*>, val initial: P, val ty
         }
     }
 
-    private fun KProperty<*>.getFullName() = "value::$name::$type"
+    private fun KProperty<*>.getFullName() = "value::$name::$typeStr"
 }
 
 class InlineStateForStreamSubscription<T>(
     val component: Component<*>,
     val stream: Stream<T>,
-    val type: KType,
+    type: KType,
 ) : ReadOnlyProperty<Any?, T> {
+
+    private val typeStr: String = type.toString()
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
 
@@ -57,13 +64,13 @@ class InlineStateForStreamSubscription<T>(
         return stream()
     }
 
-    private fun KProperty<*>.getFullName() = "sub::$name::$type"
+    private fun KProperty<*>.getFullName() = "sub::$name::$typeStr"
 }
 
 class ObservableComponentProperty<T>(
     private val component: Component<*>,
     private val initialValue: T,
-    private val onChange: ((T) -> Unit)? = null
+    private val onChange: ((T) -> Unit)? = null,
 ) : ObservableProperty<T>(initialValue) {
 
     override fun afterChange(property: KProperty<*>, oldValue: T, newValue: T) {
