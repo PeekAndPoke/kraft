@@ -11,6 +11,7 @@ import de.peekandpoke.kraft.examples.fomanticui.pages.collections.table.TablePag
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.button.ButtonPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.container.ContainerPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.divider.DividerPage
+import de.peekandpoke.kraft.examples.fomanticui.pages.elements.emoji.EmojiPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.flag.FlagPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.header.HeaderPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.icon.IconPage
@@ -50,6 +51,7 @@ class Routes {
     val elementsButton = Static("/elements/button")
     val elementsContainer = Static("/elements/container")
     val elementsDivider = Static("/elements/divider")
+    val elementsEmoji = Static("/elements/emoji")
     val elementsFlag = Static("/elements/flag")
     val elementsHeader = Static("/elements/header")
     val elementsIcon = Static("/elements/icon")
@@ -93,6 +95,7 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.elementsButton) { ButtonPage() }
     mount(routes.elementsContainer) { ContainerPage() }
     mount(routes.elementsDivider) { DividerPage() }
+    mount(routes.elementsEmoji) { EmojiPage() }
     mount(routes.elementsFlag) { FlagPage() }
     mount(routes.elementsHeader) { HeaderPage() }
     mount(routes.elementsIcon) { IconPage() }
