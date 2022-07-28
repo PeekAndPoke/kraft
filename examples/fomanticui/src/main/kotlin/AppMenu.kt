@@ -80,7 +80,7 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                 noui.menu {
                     noui.item A { href = routes.collectionsBreadcrumb(); +"Breadcrumb"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.collectionsForm(); +"Form"; ui.red.label { +"TODO" } }
-                    noui.item A { href = routes.collectionsGrid(); +"Grid"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.collectionsGrid(); +"Grid" }
                     noui.item A { href = routes.collectionsMenu(); +"Menu"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.collectionsMessage(); +"Message" }
                     noui.item A {
