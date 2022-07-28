@@ -17,7 +17,7 @@ K.R.A.F.T. = Kotlin Rapid App Framework & Toolkit
 
 Build single page apps with pure Kotlin.
 
-KRAFT bridges the gap between Kotlin code and the DOM by using Javascript VDom-engines like
+Kraft bridges the gap between Kotlin code and the DOM by using Javascript VDom-engines like
 the very light-weight [Preact](https://preactjs.com).
 
 It uses [kotlinx/html](https://github.com/Kotlin/kotlinx.html) for markup-rendering, so no template engine is needed.
@@ -29,39 +29,36 @@ It comes with a handy DSL for the [FomanticUI Css Framework](https://fomantic-ui
 ## Hello-World example
 
 [Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/hello-world/index.html) |
-[See the code](./examples/hello-world)
-
-Run it locally
+[See the code](./examples/hello-world) |
+Or run it locally
 > ./gradlew -t --parallel :examples:hello-world:run
 
 ## SemanticUi / FomanticUi examples
 
-Writing beautiful web-app without a css framework is very hard. KRAFT comes with a handy DSL
+Writing beautiful web-apps without a css framework is very hard. Kraft comes with a handy DSL
 from the [FomanticUI Css Framework](https://fomantic-ui.com/).
 
 Check out the examples, with lots of example code waiting to be copied and pasted.
 
 [Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/fomanticui/index.html) |
-[See the code](./examples/fomanticui)
-
-Run it locally
+[See the code](./examples/fomanticui) |
+Or run it locally
 > ./gradlew -t --parallel :examples:fomanticui:run
 
 ## Addon examples
 
-The addon examples show the usage of other Javascript libraries within a KRAFT-App.
+The addon examples show the usage of other Javascript libraries within a Kraft-App.
 
 [Try it out](https://raw.githack.com/PeekAndPoke/kraft/master/docs/examples/addons/index.html) |
-[See the code](./examples/addons)
-
-Run it locally
+[See the code](./examples/addons) |
+Or run it locally
 > ./gradlew -t --parallel :examples:addons:run
 
 # Motivations for this project
 
-## Why KRAFT ?
+## Why Kraft ?
 
-Why KRAFT when there already is [KotlinJS/React](https://github.com/JetBrains/create-react-kotlin-app)?
+Why Kraft when there already is [KotlinJS/React](https://github.com/JetBrains/create-react-kotlin-app)?
 
 This project takes a different approach. It does not try to wrap around React.
 Instead, it uses very light weight VDom-engines like [Preact](https://preactjs.com).
@@ -84,4 +81,4 @@ ui.segment {
 ```
 
 Working with **kotlinx/html** happily removes the necessity for a template engine! _Great!_  
-**KRAFT/Fomantic** adds a typesafe and IDE-assisted DSL on top of that. _Sweet!_    
+**Kraft::Fomantic** adds another typesafe and IDE-assisted layer on top of that. _Sweet!_    
