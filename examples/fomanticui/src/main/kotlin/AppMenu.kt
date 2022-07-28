@@ -94,7 +94,7 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
                 noui.menu {
                     noui.item A { href = routes.viewsAdvertisement(); +"Advertisement"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.viewsCard(); +"Card" }
-                    noui.item A { href = routes.viewsComment(); +"Comment"; ui.red.label { +"TODO" } }
+                    noui.item A { href = routes.viewsComment(); +"Comment" }
                     noui.item A { href = routes.viewsFeed(); +"Feed"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.viewsItem(); +"Item"; ui.red.label { +"TODO" } }
                     noui.item A { href = routes.viewsStatistic(); +"Statistic"; ui.red.label { +"TODO" } }

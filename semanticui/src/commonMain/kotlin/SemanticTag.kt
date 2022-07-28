@@ -538,6 +538,21 @@ class SemanticTag(
     val card: SemanticTag get() = this + "card"
 
     @SemanticUiCssMarker
+    val comments: SemanticTag get() = this + "comments"
+
+    @SemanticUiCssMarker
+    val comment: SemanticTag get() = this + "comment"
+
+    @SemanticUiCssMarker
+    val threaded: SemanticTag get() = this + "threaded"
+
+    @SemanticUiCssMarker
+    val minimal: SemanticTag get() = this + "minimal"
+
+    @SemanticUiCssMarker
+    val author: SemanticTag get() = this + "author"
+
+    @SemanticUiCssMarker
     val raised: SemanticTag get() = this + "raised"
 
     @SemanticUiCssMarker
@@ -545,6 +560,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val meta: SemanticTag get() = this + "meta"
+
+    @SemanticUiCssMarker
+    val metadata: SemanticTag get() = this + "metadata"
 
     @SemanticUiCssMarker
     val dropdown: SemanticTag get() = this + "dropdown"
@@ -593,6 +611,9 @@ class SemanticTag(
 
     @SemanticUiCssMarker
     val only: SemanticTag get() = this + "only"
+
+    @SemanticUiCssMarker
+    val reply: SemanticTag get() = this + "reply"
 
     @SemanticUiCssMarker
     val form: SemanticTag get() = this + "form"
