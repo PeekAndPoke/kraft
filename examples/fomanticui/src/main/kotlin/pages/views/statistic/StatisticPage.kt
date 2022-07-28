@@ -13,6 +13,7 @@ import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.fixture.LoremIpsum
 import generated.ExtractedCodeBlocks
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
@@ -51,6 +52,9 @@ class StatisticPage(ctx: NoProps) : PureComponent(ctx) {
             renderVariationsColored()
             renderVariationsInverted()
             renderVariationsStackable()
+            renderVariationsEvenlyDivided()
+            renderVariationsFloated()
+            renderVariationsSize()
         }
     }
 
@@ -390,6 +394,175 @@ class StatisticPage(ctx: NoProps) : PureComponent(ctx) {
                 noui.white.statistic {
                     noui.value { +"34" }
                     noui.label { +"white" }
+                }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderVariationsEvenlyDivided() = example {
+        ui.header { +"Evenly Divided" }
+
+        p { +"A statistic group can have its items divided evenly" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_views_statistic_StatisticPage_kt_renderVariationsEvenlyDivided,
+        ) {
+            // <CodeBlock renderVariationsEvenlyDivided>
+            ui.four.statistics {
+                ui.statistic {
+                    noui.value { +"22" }
+                    noui.label { +"Users" }
+                }
+                ui.statistic {
+                    noui.text.value { +"Three"; br(); +"Thousand" }
+                    noui.label { +"Signups" }
+                }
+                ui.statistic {
+                    noui.value { icon.plane(); +"5" }
+                    noui.label { +"Flights" }
+                }
+                ui.statistic {
+                    noui.value {
+                        ui.circular.inline.image Img { src = "images/avatar2/large/kristy.png" }
+                        +"42"
+                    }
+                    noui.label { +"Members" }
+                }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderVariationsFloated() = example {
+        ui.header { +"Evenly Divided" }
+
+        p { +"A statistic group can have its items divided evenly" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_views_statistic_StatisticPage_kt_renderVariationsFloated,
+        ) {
+            // <CodeBlock renderVariationsFloated>
+            ui.segment {
+                ui.right.floated.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                p { +LoremIpsum(50) }
+                p { +LoremIpsum(50) }
+                ui.left.floated.statistic {
+                    noui.value { +"50,220" }
+                    noui.label { +"Views" }
+                }
+                p { +LoremIpsum(50) }
+            }
+            // </CodeBlock>
+        }
+    }
+
+    private fun FlowContent.renderVariationsSize() = example {
+        ui.header { +"Size" }
+
+        p { +"A statistic can vary in size" }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_views_statistic_StatisticPage_kt_renderVariationsSize_1,
+        ) {
+            // <CodeBlock renderVariationsSize_1>
+            ui.statistics {
+                ui.mini.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.tiny.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.small.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.medium.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.large.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.big.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.huge.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.massive.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+            }
+            // </CodeBlock>
+        }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_views_statistic_StatisticPage_kt_renderVariationsSize_2,
+        ) {
+            // <CodeBlock renderVariationsSize_2>
+            ui.statistics {
+                ui.mini.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.tiny.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.small.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.medium.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.large.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.big.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.huge.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.massive.horizontal.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+            }
+            // </CodeBlock>
+        }
+
+        HorizontalContentAndCode(
+            ExtractedCodeBlocks.pages_views_statistic_StatisticPage_kt_renderVariationsSize_3,
+        ) {
+            // <CodeBlock renderVariationsSize_3>
+            ui.massive.statistics {
+                ui.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
+                }
+                ui.statistic {
+                    noui.value { +"10,220" }
+                    noui.label { +"Users" }
                 }
             }
             // </CodeBlock>
