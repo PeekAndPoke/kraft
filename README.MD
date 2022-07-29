@@ -56,7 +56,11 @@ Or run it locally
 
 ## Example projects / repos
 
-[Hello World Repo](https://github.com/PeekAndPoke/kraft-example-helloworld). A minimal project.
+[Hello World Demo](https://github.com/PeekAndPoke/kraft-example-helloworld)  
+A minimal project.
+
+[Router Demo](https://github.com/PeekAndPoke/kraft-example-router)  
+A minimal example of how to write an app with multiple pages.
 
 # Motivations for this project
 
