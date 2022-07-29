@@ -54,6 +54,10 @@ The addon examples show the usage of other Javascript libraries within a Kraft-A
 Or run it locally
 > ./gradlew -t --parallel :examples:addons:run
 
+## Example projects / repos
+
+[Hello World Repo](https://github.com/PeekAndPoke/kraft-example-helloworld). A minimal project.
+
 # Motivations for this project
 
 ## Why Kraft ?
