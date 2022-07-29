@@ -62,6 +62,9 @@ A minimal project.
 [Router Demo](https://github.com/PeekAndPoke/kraft-example-router)  
 A minimal example of how to write an app with multiple pages.
 
+[Remote Demo](https://github.com/PeekAndPoke/kraft-example-remote)  
+An example project that shows how to consume rest apis and display the results.
+
 # Motivations for this project
 
 ## Why Kraft ?
