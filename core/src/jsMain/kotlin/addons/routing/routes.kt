@@ -188,9 +188,6 @@ open class Static(pattern: String) : RouteBase(pattern, 0) {
 open class Route1(pattern: String) : RouteBase(pattern, 1) {
     /** Builds the uri with the given parameters */
     fun build(p1: String) = buildUri(p1)
-
-    /** Builds the uri with the given parameters */
-    operator fun invoke(p1: String) = build(p1)
 }
 
 /**
@@ -199,9 +196,6 @@ open class Route1(pattern: String) : RouteBase(pattern, 1) {
 open class Route2(pattern: String) : RouteBase(pattern, 2) {
     /** Builds the uri with the given parameters */
     fun build(p1: String, p2: String) = buildUri(p1, p2)
-
-    /** Builds the uri with the given parameters */
-    operator fun invoke(p1: String, p2: String) = build(p1, p2)
 }
 
 /**
@@ -210,9 +204,6 @@ open class Route2(pattern: String) : RouteBase(pattern, 2) {
 open class Route3(pattern: String) : RouteBase(pattern, 3) {
     /** Builds the uri with the given parameters */
     fun build(p1: String, p2: String, p3: String) = buildUri(p1, p2, p3)
-
-    /** Builds the uri with the given parameters */
-    operator fun invoke(p1: String, p2: String, p3: String) = build(p1, p2, p3)
 }
 
 /**
@@ -221,9 +212,6 @@ open class Route3(pattern: String) : RouteBase(pattern, 3) {
 open class Route4(pattern: String) : RouteBase(pattern, 4) {
     /** Builds the uri with the given parameters */
     fun build(p1: String, p2: String, p3: String, p4: String) = buildUri(p1, p2, p3, p4)
-
-    /** Builds the uri with the given parameters */
-    operator fun invoke(p1: String, p2: String, p3: String, p4: String) = build(p1, p2, p3, p4)
 }
 
 /**
@@ -232,7 +220,4 @@ open class Route4(pattern: String) : RouteBase(pattern, 4) {
 open class Route5(pattern: String) : RouteBase(pattern, 5) {
     /** Builds the uri with the given parameters */
     fun build(p1: String, p2: String, p3: String, p4: String, p5: String) = buildUri(p1, p2, p3, p4, p5)
-
-    /** Builds the uri with the given parameters */
-    operator fun invoke(p1: String, p2: String, p3: String, p4: String, p5: String) = build(p1, p2, p3, p4, p5)
 }
