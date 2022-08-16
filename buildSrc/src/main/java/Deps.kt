@@ -19,11 +19,11 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
-    const val mavenPublishVersion = "0.20.0"
+    const val mavenPublishVersion = "0.21.0"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.52.1"
+    private const val ultra_version = "0.53.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
 //    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
@@ -38,7 +38,7 @@ object Deps {
     const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.358"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.369"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
@@ -57,7 +57,7 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.358"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.369"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -107,8 +107,8 @@ object Deps {
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
 
-        const val kotest_plugin_version = "5.4.0"
-        const val kotest_version = "5.4.0"
+        const val kotest_plugin_version = "5.4.2"
+        const val kotest_version = "5.4.2"
 
         const val kotest_assertions_core = "io.kotest:kotest-assertions-core:$kotest_version"
         const val kotest_framework_api = "io.kotest:kotest-framework-api:$kotest_version"
