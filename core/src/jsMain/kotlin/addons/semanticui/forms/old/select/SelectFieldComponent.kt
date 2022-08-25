@@ -35,7 +35,7 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
         override val rules: List<Rule<P>> get() = config.rules
     }
 
-    data class Option<T>(
+    data class Option<out T>(
         val realValue: T,
         val formValue: String,
         val display: FlowContent.() -> Unit
