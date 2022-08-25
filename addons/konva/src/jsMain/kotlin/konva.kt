@@ -1,9 +1,7 @@
 /*
-
 Generated from konva.d.ts with ts2kt command line tool.
 Afterwards, commented out @JsQualifier and added @JsModule annotation
 to make it work.
-
  */
 
 @file:Suppress(
@@ -13,12 +11,17 @@ to make it work.
     "CONFLICTING_OVERLOADS",
     "EXTERNAL_DELEGATION",
     "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-    "PackageDirectoryMismatch", "unused", "FunctionName", "ClassName", "PropertyName",
+    "PackageDirectoryMismatch",
+    "unused",
+    "FunctionName",
+    "ClassName",
+    "PropertyName",
+    "Detekt:TooManyFunctions",
+    "Detekt:LongParameterList",
+    "Detekt:ParameterListWrapping",
 )
 
-@file:JsModule("konva")
-@file:JsNonModule
-@file:JsQualifier("default")
+@file:JsModule("konva") @file:JsNonModule @file:JsQualifier("default")
 
 package konva
 
@@ -197,11 +200,8 @@ open external class Node(config: NodeConfig) {
     ): Array<Node> = definedExternally
 
     open fun fire(
-        eventType: String,
-        evt: Any? = definedExternally /* null */,
-        bubble: Boolean? = definedExternally /* null */
-    ): Node /* this */ =
-        definedExternally
+        eventType: String, evt: Any? = definedExternally /* null */, bubble: Boolean? = definedExternally /* null */
+    ): Node /* this */ = definedExternally
 
     open fun getAbsoluteOpacity(): Number = definedExternally
     open fun getAbsolutePosition(): Vector2d = definedExternally
@@ -288,7 +288,7 @@ open external class Node(config: NodeConfig) {
     open fun scaleY(): Number = definedExternally
     open fun scaleY(scaleY: Number): Node /* this */ = definedExternally
     open fun setAbsolutePosition(pos: Vector2d): Node /* this */ = definedExternally
-    open fun setAttr(attr: String, `val`: Any): Node /* this */ = definedExternally
+    open fun setAttr(attr: String, value: Any): Node /* this */ = definedExternally
     open fun setAttrs(attrs: NodeConfig): Unit = definedExternally
     open fun setId(id: String): Node /* this */ = definedExternally
     open fun setSize(size: `T$0`): Node /* this */ = definedExternally
@@ -560,7 +560,7 @@ external interface LayerConfig : ContainerConfig {
 
 open external class FastLayer(config: LayerConfig? = definedExternally /* null */) : Container {
     open fun drawScene(): Unit = definedExternally
-    open fun hitGraphEnabled(`val`: Boolean): FastLayer /* this */ = definedExternally
+    open fun hitGraphEnabled(value: Boolean): FastLayer /* this */ = definedExternally
     open fun batchDraw(): Unit = definedExternally
 }
 
@@ -569,9 +569,9 @@ open external class Layer(config: LayerConfig? = definedExternally /* null */) :
     open fun enableHitGraph(): Layer /* this */ = definedExternally
     open fun disableHitGraph(): Layer /* this */ = definedExternally
     open fun clearBeforeDraw(): Boolean = definedExternally
-    open fun clearBeforeDraw(`val`: Boolean): Layer /* this */ = definedExternally
+    open fun clearBeforeDraw(value: Boolean): Layer /* this */ = definedExternally
     open fun hitGraphEnabled(): Boolean = definedExternally
-    open fun hitGraphEnabled(`val`: Boolean): Layer /* this */ = definedExternally
+    open fun hitGraphEnabled(value: Boolean): Layer /* this */ = definedExternally
     open fun batchDraw(): Unit = definedExternally
     open fun drawScene(): Unit = definedExternally
 }
@@ -589,9 +589,9 @@ open external class Canvas(CanvasConfig: CanvasConfig) {
     open fun getHeight(): Number = definedExternally
     open fun getWidth(): Number = definedExternally
     open fun getPixelRatio(): Number = definedExternally
-    open fun setHeight(`val`: Number): Unit = definedExternally
-    open fun setWidth(`val`: Number): Unit = definedExternally
-    open fun setPixelRatio(`val`: Number): Unit = definedExternally
+    open fun setHeight(value: Number): Unit = definedExternally
+    open fun setWidth(value: Number): Unit = definedExternally
+    open fun setPixelRatio(value: Number): Unit = definedExternally
     open fun setSize(size: `T$0`): Unit = definedExternally
     open fun toDataURL(mimeType: String, quality: Number): String = definedExternally
     open var _canvas: HTMLElement = definedExternally
@@ -614,8 +614,7 @@ open external class Context {
         startAngle: Number,
         endAngle: Number,
         anticlockwise: Boolean? = definedExternally /* null */
-    ): Unit =
-        definedExternally
+    ): Unit = definedExternally
 
     open fun beginPath(): Unit = definedExternally
     open fun bezierCurveTo(cp1x: Number, cp1y: Number, cp2x: Number, cp2y: Number, x: Number, y: Number): Unit =
@@ -635,12 +634,7 @@ open external class Context {
     open fun createPattern(image: HTMLCanvasElement, repetition: String): CanvasPattern = definedExternally
     open fun createPattern(image: HTMLVideoElement, repetition: String): CanvasPattern = definedExternally
     open fun createRadialGradient(
-        x0: Number,
-        y0: Number,
-        r0: Number,
-        x1: Number,
-        y1: Number,
-        r1: Number
+        x0: Number, y0: Number, r0: Number, x1: Number, y1: Number, r1: Number
     ): CanvasGradient = definedExternally
 
     open fun drawImage(image: HTMLImageElement, dstX: Number, dstY: Number): Unit = definedExternally
@@ -882,11 +876,11 @@ open external class Sprite(SpriteConfig: SpriteConfig) : Shape {
     open fun start(): Unit = definedExternally
     open fun stop(): Unit = definedExternally
     open fun animation(): String = definedExternally
-    open fun animation(`val`: String): Sprite /* this */ = definedExternally
+    open fun animation(value: String): Sprite /* this */ = definedExternally
     open fun animations(): Any = definedExternally
-    open fun animations(`val`: Any): Sprite /* this */ = definedExternally
+    open fun animations(value: Any): Sprite /* this */ = definedExternally
     open fun frameIndex(): Number = definedExternally
-    open fun frameIndex(`val`: Number): Sprite /* this */ = definedExternally
+    open fun frameIndex(value: Number): Sprite /* this */ = definedExternally
     open fun image(): HTMLImageElement = definedExternally
     open fun image(image: HTMLImageElement): Sprite /* this */ = definedExternally
     open fun frameRate(): Number = definedExternally

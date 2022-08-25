@@ -316,7 +316,6 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
 //        console.log("rendering component", this)
 
-        @Suppress("UnsafeCastFromDynamic")
         renderCache = ctx.engine.render(this) { render() }
 
         return renderCache

@@ -14,3 +14,6 @@ annotation class SemanticUiTagMarker
 
 @DslMarker
 annotation class SemanticUiConditionalMarker
+
+@DslMarker
+annotation class SemanticFlagMarker

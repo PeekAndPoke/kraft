@@ -21,12 +21,39 @@ fun main() {
 
         CounterComponent(10)
 
+        h2 { +"A ticker" }
+
+        TickerComponent(100)
+
         h2 { +"Component storing data in local storage" }
 
         LocalStorageComponent("INITIAL")
 
         ui.divider {}
 
-        ui.header H2 { +"Playground ..." }
+        ui.container {
+            ui.two.column.grid {
+                ui.column {
+                    ui.segment {
+                        ui.header H2 { +"Playground ..." }
+                    }
+                }
+                ui.column {
+                    ui.red.button { +"red" }
+                    ui.orange.button { +"orange" }
+                    ui.yellow.button { +"yellow" }
+                    ui.olive.button { +"olive" }
+                    ui.green.button { +"green" }
+                    ui.teal.button { +"teal" }
+                    ui.blue.button { +"blue" }
+                    ui.violet.button { +"violet" }
+                    ui.purple.button { +"purple" }
+                    ui.pink.button { +"pink" }
+                    ui.brown.button { +"brown" }
+                    ui.black.button { +"black" }
+                    ui.white.button { +"white" }
+                }
+            }
+        }
     }
 }

@@ -179,7 +179,7 @@ class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
         // Initially we create a placeholder which is filled by [createContent]
         div("prism") {
 
-        pre("language-${props.language}") {
+            pre("language-${props.language}") {
                 code {
                     +props.code
                 }

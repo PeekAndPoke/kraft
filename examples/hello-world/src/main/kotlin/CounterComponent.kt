@@ -10,9 +10,7 @@ import kotlinx.html.button
 import kotlinx.html.div
 
 @Suppress("FunctionName")
-fun Tag.CounterComponent(
-    start: Int,
-) = comp(
+fun Tag.CounterComponent(start: Int) = comp(
     CounterComponent.Props(start = start)
 ) {
     CounterComponent(it)
@@ -20,31 +18,18 @@ fun Tag.CounterComponent(
 
 class CounterComponent(ctx: Ctx<Props>) : Component<CounterComponent.Props>(ctx) {
 
-    //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
-
     data class Props(
         val start: Int,
     )
 
-    //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private var counter by value(props.start)
-
-    //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
+    private var counter: Int by value(props.start)
 
     override fun VDom.render() {
         div {
             div { +"Value: $counter" }
-
             div {
-                button {
-                    onClick { counter-- }
-                    +"Minus"
-                }
-                button {
-                    onClick { counter++ }
-                    +"Plus"
-                }
+                button { onClick { counter-- }; +"Minus" }
+                button { onClick { counter++ }; +"Plus" }
             }
         }
     }

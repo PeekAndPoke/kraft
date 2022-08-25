@@ -1,3 +1,10 @@
+@file:Suppress(
+    "DuplicatedCode",
+    "Detekt:TooManyFunctions",
+    "Detekt:LargeClass",
+    "Detekt:LongMethod",
+)
+
 package de.peekandpoke.kraft.examples.fomanticui.pages.home
 
 import de.peekandpoke.kraft.components.NoProps
@@ -10,7 +17,6 @@ import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
-import kotlinx.html.p
 
 @Suppress("FunctionName")
 fun Tag.HomePage() = comp {
@@ -26,8 +32,8 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     override fun VDom.render() {
         ui.basic.segment {
             ui.header H1 {
-                +"FomanticUI + K.R.A.F.T. = "
-                icon.red.heart_outline()
+                +"FomanticUI + KRAFT = "
+                icon.red.heart()
             }
 
             renderFomanticUiExamplesLink()
@@ -36,76 +42,136 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
         }
     }
 
-    private fun FlowContent.renderFomanticUiExamplesLink() {
-        example {
-            ui.header H2 { +"FomanticUI + Kraft code examples" }
+    private fun FlowContent.renderFomanticUiExamplesLink() = example {
+        ui.header H2 { +"FomanticUI + Kraft code examples" }
 
-            ui.big.green.basic.button A {
-                href = "https://github.com/PeekAndPoke/kraft/tree/master/examples/semanticui"
-                target = "_blank"
-                icon.github()
-                +"Show me the code!"
-            }
+        ui.big.green.basic.button A {
+            href = "https://github.com/PeekAndPoke/kraft/tree/master/examples/fomanticui"
+            target = "_blank"
+            icon.github()
+            +"Show me the code!"
         }
     }
 
-    private fun FlowContent.renderDslIntro() {
-        example {
-            ui.header H2 { +"Intro to the DSL" }
+    private fun FlowContent.renderDslIntro() = example {
+        ui.header H2 { +"Intro to the DSL" }
 
-            p {
-                +"Fomantic-UI often times needs the css classes to be prefixed with "
-                ui.basic.label { +"ui" }
-            }
-
-            kotlinToHtml(
-                kotlin = """
-                    ui.basic.segment {
-                        +"Hello World"
-                    }
-                """.trimIndent(),
-                html = """
-                    <div class="ui basic segment">
-                        Hello World
-                    </div>
-                """.trimIndent()
-            )
-
-            p {
-                +"But there are also cases where you want to omit this prefix. Then you can use "
-                ui.basic.label { +"noui" }
-            }
-
-            kotlinToHtml(
-                kotlin = """
-                    noui.basic.item {
-                        +"Hello World"
-                    }
-                """.trimIndent(),
-                html = """
-                    <div class="basic item">
-                        Hello World
-                    </div>
-                """.trimIndent()
-            )
-
-            p {
-                +"Sometimes you want to change the html tag from div to something else"
-            }
-
-            kotlinToHtml(
-                kotlin = """
-                    no.basic.item A {
-                        href = "https://github.com/PeekAndPoke/kraft"
-                        +"K.R.A.F.T."
-                    }
-                """.trimIndent(),
-                html = """
-                    <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
-                        K.R.A.F.T.
-                    </a>
-                """.trimIndent()
-            )
+        ui.info.message {
+            +"Fomantic-UI often times needs the css classes to be prefixed with "
+            ui.basic.label { +"ui" }
         }
+
+        kotlinToHtml(
+            kotlin = """
+                ui.basic.segment {
+                    +"Hello World"
+                }
+            """.trimIndent(),
+            html = """
+                <div class="ui basic segment">
+                    Hello World
+                </div>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"But there are also cases where you want to omit this prefix. Then you can use "
+            ui.basic.label { +"noui" }
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                noui.basic.item {
+                    +"Hello World"
+                }
+            """.trimIndent(),
+            html = """
+                <div class="basic item">
+                    Hello World
+                </div>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you want to change the html tag from div to something else"
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                no.basic.item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"KRAFT"
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
+                    KRAFT
+                </a>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you might want to add custom css class. You can use "
+            ui.basic.label { +"with(...)" }
+            +" to achieve this"
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                no.basic.with("my-custom-class").item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"KRAFT"
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic my-custom-class item" href="https://github.com/PeekAndPoke/kraft">
+                    KRAFT
+                </a>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you only want to set a css class when a condition is met. You can use "
+            ui.basic.label { +"given(...) { ... }" }
+            +" to achieve this."
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                val myCondition = false
+                
+                no.basic.given(myCondition) { disabled }.item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"KRAFT"
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic item" href="https://github.com/PeekAndPoke/kraft">
+                    KRAFT
+                </a>
+            """.trimIndent()
+        )
+
+        ui.info.message {
+            +"Sometimes you only want to set a css class when a condition is NOT met. You can use "
+            ui.basic.label { +"givenNot(...) { ... }" }
+            +" to achieve this."
+        }
+
+        kotlinToHtml(
+            kotlin = """
+                val myCondition = false
+                
+                no.basic.givenNot(myCondition) { disabled }.item A {
+                    href = "https://github.com/PeekAndPoke/kraft"
+                    +"KRAFT"
+                }
+            """.trimIndent(),
+            html = """
+                <a class="basic disabled item" href="https://github.com/PeekAndPoke/kraft">
+                    KRAFT
+                </a>
+            """.trimIndent()
+        )
     }
 }
