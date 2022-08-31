@@ -2,6 +2,7 @@ package de.peekandpoke.kraft.components.state
 
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.utils.launch
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlin.properties.ObservableProperty
@@ -24,15 +25,21 @@ class FunctionalComponentStateProperty<P>(
 
         @Suppress("UNCHECKED_CAST")
         return component.internalData.getOrPut(property.getPropertyKey()) {
-            initial
-
             launch {
-                lazyInitCallbacks.forEach { init ->
-                    init()
-                        .catch { e -> console.error(e) }
-                        .collect { setValue(thisRef, property, it) }
+                if (lazyInitCallbacks.isNotEmpty()) {
+                    // We delay by 1ms to avoid immediate results of the initializers
+                    delay(1)
+
+                    lazyInitCallbacks.forEach { init ->
+                        init()
+                            .catch { e -> console.error(e) }
+                            .collect { setValue(thisRef, property, it) }
+                    }
                 }
             }
+
+            // We return and set the initial value
+            initial
         } as P
     }
 
