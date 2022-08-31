@@ -19,7 +19,7 @@ private class TestMessage(sender: Component<*>) : MessageBase<Component<*>>(send
     }
 }
 
-@Suppress("FunctionName", "TestFunctionName")
+@Suppress("TestFunctionName")
 private fun Tag.SimpleSender() = comp {
     SimpleSender(it)
 }
@@ -51,7 +51,7 @@ private class SimpleSender(ctx: NoProps) : PureComponent(ctx) {
     }
 }
 
-@Suppress("FunctionName", "TestFunctionName")
+@Suppress("TestFunctionName")
 private fun Tag.InBetween(stopMessages: Boolean) = comp(
     InBetween.Props(
         stopMessages = stopMessages,
@@ -86,7 +86,7 @@ private class InBetween(ctx: Ctx<Props>) : Component<InBetween.Props>(ctx) {
     }
 }
 
-@Suppress("FunctionName", "TestFunctionName")
+@Suppress("TestFunctionName")
 private fun Tag.SimpleReceiver(stopMessages: Boolean) = comp(
     SimpleReceiver.Props(
         stopMessages = stopMessages

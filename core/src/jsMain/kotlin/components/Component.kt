@@ -1,5 +1,7 @@
 package de.peekandpoke.kraft.components
 
+import de.peekandpoke.kraft.components.state.ComponentStateProperty
+import de.peekandpoke.kraft.components.state.ComponentStreamProperty
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
 import de.peekandpoke.kraft.streams.Unsubscribe
@@ -50,8 +52,8 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     /** A list of stream unsubscribe functions. Will be called when the component is removed */
     private val unSubscribers = mutableListOf<Unsubscribe>()
 
-    /** Map of state values created via useState or useSubscription */
-    internal val inlineProperties = mutableMapOf<String, Any?>()
+    /** Map of state values of any kind */
+    internal val internalData = mutableMapOf<String, Any?>()
 
     /**
      * Every component needs to implement this method
@@ -144,9 +146,9 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
      * @param initial  The initial value of the property
      * @param onChange Callback to be called when the value has changed
      */
-    fun <T> value(initial: T, onChange: ((T) -> Unit)? = null): ObservableComponentProperty<T> {
+    fun <T> value(initial: T, onChange: ((T) -> Unit)? = null): ComponentStateProperty<T> {
 
-        return ObservableComponentProperty(
+        return ComponentStateProperty(
             component = this,
             initialValue = initial,
             onChange = onChange
@@ -212,7 +214,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
         initial: T,
         config: (Stream<T>.() -> Stream<T>)? = null,
         handler: (T) -> Unit = {}
-    ): ObservableStreamProperty<T> {
+    ): ComponentStreamProperty<T> {
 
         val stream = StreamSource(initial)
 
@@ -229,7 +231,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
             configured { handler(it) }
         }
 
-        return ObservableStreamProperty(component = this, stream = stream)
+        return ComponentStreamProperty(component = this, stream = stream)
     }
 
     //  Ref Helpers  /////////////////////////////////////////////////////////////////////////////////////////////////

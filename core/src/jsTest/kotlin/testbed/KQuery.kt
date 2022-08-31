@@ -28,7 +28,6 @@ class KQuery<E : Element>(val elements: List<E>) {
                 return KQuery(elements = found.distinct())
             }
         }
-
     }
 
     val size: Int get() = elements.size
