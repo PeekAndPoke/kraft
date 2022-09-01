@@ -23,7 +23,7 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.54.0"
+    private const val ultra_version = "0.55.0.RC1-SNAPSHOT"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
 //    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
@@ -69,25 +69,25 @@ object Deps {
         }
 
         // https://www.npmjs.com/package/chart.js
-        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "3.8.0")
+        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "3.9.1")
 
         // https://www.npmjs.com/package/jwt-decode
         fun KotlinDependencyHandler.jwtDecode() = npm("jwt-decode", "3.1.2")
 
         // https://www.npmjs.com/package/konva
-        fun KotlinDependencyHandler.konva() = npm("konva", "8.3.10")
+        fun KotlinDependencyHandler.konva() = npm("konva", "8.3.12")
 
         // https://www.npmjs.com/package/marked
-        fun KotlinDependencyHandler.marked() = npm("marked", "4.0.18")
+        fun KotlinDependencyHandler.marked() = npm("marked", "4.1.0")
 
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
 
         // https://www.npmjs.com/package/preact
-        fun KotlinDependencyHandler.preact() = npm("preact", "10.8.2")
+        fun KotlinDependencyHandler.preact() = npm("preact", "10.10.6")
 
         // https://www.npmjs.com/package/prismjs
-        fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.28.0")
+        fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
 
         // https://www.npmjs.com/package/sourcemapped-stacktrace
         fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
@@ -102,7 +102,7 @@ object Deps {
         }
 
         // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
-        const val logback_version = "1.2.11"
+        const val logback_version = "1.4.0"
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
