@@ -12,6 +12,11 @@
  * Released under the MIT License
  */
 
+/*!
+ * Signature Pad v4.0.7 | https://github.com/szimek/signature_pad
+ * (c) 2022 Szymon Nowak | Released under the MIT license
+ */
+
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  *

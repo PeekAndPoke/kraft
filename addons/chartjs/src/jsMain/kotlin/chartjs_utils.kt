@@ -7,8 +7,10 @@ object ChartJsUtils {
     fun registerAllModules() {
         if (!alreadyRegistered) {
             alreadyRegistered = true
-            console.log("Chart.register", Chart.Companion::register)
-            console.log("registerables", registerables)
+
+//            console.info("Chart.register", Chart.Companion::register)
+//            console.info("registerables", registerables)
+
             Chart.register(*registerables)
         }
     }

@@ -11,6 +11,7 @@ include(
     ":addons:marked",
     ":addons:nxcompile",
     ":addons:prismjs",
+    ":addons:signaturepad",
     ":addons:sourcemappedstacktrace",
 
     // Examples

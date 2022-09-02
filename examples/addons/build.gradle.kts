@@ -25,6 +25,7 @@ dependencies {
     api(project(":addons:marked"))
     api(project(":addons:nxcompile"))
     api(project(":addons:prismjs"))
+    api(project(":addons:signaturepad"))
     api(project(":addons:sourcemappedstacktrace"))
 }
 

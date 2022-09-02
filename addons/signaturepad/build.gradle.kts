@@ -61,7 +61,8 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(Deps.Npm { prismjs() })
+                api(Deps.Npm { signaturepad() })
+                api(Deps.Npm { trimCanvas() })
             }
         }
 

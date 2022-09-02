@@ -95,6 +95,20 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                     +"PrismJs"
                 }
             }
+
+            noui.card A {
+                href = routes.signaturePad()
+
+                noui.center.aligned.content {
+                    renderLogo(
+                        src = "https://camo.githubusercontent.com/fcd5a5ab2be5419d00fcb803f14c55652cf60696d7f6d9828b99c1783d9f14a3/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f393837332f3236383034362f39636564333435342d386566632d313165322d383136652d6139623137306135313030342e706e67",
+                        alt = "Signature Pad",
+                    )
+                }
+                noui.center.aligned.content {
+                    +"Signature Pad"
+                }
+            }
         }
     }
 

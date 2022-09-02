@@ -21,7 +21,9 @@ to make it work.
     "Detekt:ParameterListWrapping",
 )
 
-@file:JsModule("konva") @file:JsNonModule @file:JsQualifier("default")
+@file:JsModule("konva")
+@file:JsNonModule
+@file:JsQualifier("default")
 
 package konva
 

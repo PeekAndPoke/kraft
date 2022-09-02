@@ -26,7 +26,6 @@ class PrismJsExample(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
-
         ui.segment {
             ui.header H2 { +"PrismJs syntax highlighter" }
 

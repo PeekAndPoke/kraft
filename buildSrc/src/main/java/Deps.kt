@@ -90,7 +90,13 @@ object Deps {
         fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
 
         // https://www.npmjs.com/package/sourcemapped-stacktrace
+        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.0.7")
+
+        // https://www.npmjs.com/package/sourcemapped-stacktrace
         fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
+
+        // https://www.npmjs.com/package/trim-canvas
+        fun KotlinDependencyHandler.trimCanvas() = npm("trim-canvas", "0.1.2")
     }
 
     // // Test dependencies ////////////////////////////////////////////////////////////////////////
