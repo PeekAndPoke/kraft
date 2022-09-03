@@ -5,7 +5,6 @@ import Deps.Test.jsTestDeps
 plugins {
     kotlin("multiplatform")
     id("io.kotest.multiplatform") version Deps.Test.kotest_plugin_version
-    id("org.jetbrains.dokka") version Deps.dokkaVersion
     id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion
 }
 
@@ -17,6 +16,10 @@ version = VERSION_NAME
 
 repositories {
     mavenCentral()
+}
+
+Docs {
+    useEmptyJavadoc()
 }
 
 kotlin {
