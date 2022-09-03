@@ -1,3 +1,5 @@
+@file:Suppress("PropertyName")
+
 import Deps.Test.commonTestDeps
 import Deps.Test.configureJvmTests
 import Deps.Test.jsTestDeps
@@ -30,13 +32,13 @@ kotlin {
         js(IR) {
             browser {
                 testTask {
-                    useKarma {
+//                    useKarma {
 //                        useChrome()
-                        useChromeHeadless()
+//                        useChromeHeadless()
 //                        useChromiumHeadless()
 //                        useChromeCanaryHeadless()
 //                        useFirefoxHeadless()
-                    }
+//                    }
                 }
             }
         }

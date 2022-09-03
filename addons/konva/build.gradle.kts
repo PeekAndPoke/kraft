@@ -1,5 +1,6 @@
+@file:Suppress("PropertyName")
+
 import Deps.Test.commonTestDeps
-import Deps.Test.configureJvmTests
 import Deps.Test.jsTestDeps
 
 plugins {
@@ -32,15 +33,6 @@ kotlin {
             browser {
             }
         }
-
-//        jvm {
-//            compilations.all {
-//                kotlinOptions {
-//                    verbose = true
-//                    jvmTarget = "1.8"
-//                }
-//            }
-//        }
     }
 
     @Suppress("UNUSED_VARIABLE")
@@ -68,18 +60,5 @@ kotlin {
                 jsTestDeps()
             }
         }
-
-//        val jvmMain by getting {
-//        }
-//
-//        val jvmTest by getting {
-//            dependencies {
-//                jvmTestDeps()
-//            }
-//        }
     }
-}
-
-tasks {
-    configureJvmTests()
 }

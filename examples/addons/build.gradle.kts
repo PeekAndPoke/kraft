@@ -1,3 +1,5 @@
+@file:Suppress("PropertyName")
+
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
