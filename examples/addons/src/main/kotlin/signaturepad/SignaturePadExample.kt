@@ -2,9 +2,8 @@ package de.peekandpoke.kraft.examples.jsaddons.signaturepad
 
 import de.peekandpoke.kraft.addons.signaturepad.SignaturePad
 import de.peekandpoke.kraft.addons.styling.css
-import de.peekandpoke.kraft.components.NoProps
-import de.peekandpoke.kraft.components.PureComponent
-import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.css.*
@@ -29,6 +28,8 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
     private var dataJpg: String? by value(null)
     private var dataJpgTrimmed: String? by value(null)
 
+    private val sigPad = ComponentRef.Tracker<SignaturePad>()
+
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
@@ -38,7 +39,7 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
             div {
                 css {
                     width = 100.pct
-                    height = 20.vh
+                    height = 30.vh
                     backgroundColor = Color.lightGrey
                 }
 
@@ -51,6 +52,23 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
 
                     dataJpg = it.getJpg(0.5)
                     dataJpgTrimmed = it.getJpgTrimmed(0.5)
+                }.track(sigPad)
+            }
+
+            sigPad { pad ->
+
+                ui.divider {}
+
+                ui.button {
+                    onClick { pad.clear() }
+                    icon.times()
+                    +"Clear"
+                }
+
+                if (pad.isEmpty()) {
+                    ui.red.label { +"Empty" }
+                } else {
+                    ui.green.label { +"Not empty" }
                 }
             }
 

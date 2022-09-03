@@ -97,7 +97,6 @@ internal interface PreactElements {
 
             // map the children to a native array
             for (child in children) {
-                @Suppress("UnsafeCastFromDynamic")
                 childArr.push(child.render())
             }
 

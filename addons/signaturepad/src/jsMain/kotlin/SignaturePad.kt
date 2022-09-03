@@ -6,6 +6,7 @@ import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.utils.jsObject
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.window
 import kotlinx.css.height
@@ -21,9 +22,11 @@ import kotlin.math.max
 
 @Suppress("FunctionName")
 fun Tag.SignaturePad(
+    options: signature_pad.Options = jsObject { },
     onChange: (SignaturePad) -> Unit = {},
 ) = comp(
     SignaturePad.Props(
+        options = options,
         onChange = onChange,
     )
 ) {
@@ -35,12 +38,22 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class Props(
+        val options: signature_pad.Options,
         val onChange: (SignaturePad) -> Unit
     )
 
     private var pad: signature_pad.SignaturePad? = null
 
-    //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //  Public interface  ///////////////////////////////////////////////////////////////////////////////////////
+
+    fun clear() {
+        pad?.clear()
+        onChange()
+    }
+
+    fun isEmpty(): Boolean {
+        return pad?.isEmpty() ?: false
+    }
 
     fun getPng(): String? = getCanvas()?.toDataURL("image/png")
 
@@ -60,7 +73,7 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
 
         dom?.let {
             getCanvas()?.let { canvas ->
-                pad = signature_pad.SignaturePad(canvas)
+                pad = signature_pad.SignaturePad(canvas, props.options)
 
                 pad?.addEventListener("endStroke", ::onPadEndStroke)
 
@@ -132,13 +145,18 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
         }
     }
 
+    private fun onChange() {
+        props.onChange(this)
+    }
+
     @Suppress("UNUSED_PARAMETER")
     private fun onWindowResize(evt: Event) {
         resize()
+        onChange()
     }
 
     @Suppress("UNUSED_PARAMETER")
     private fun onPadEndStroke(evt: Event) {
-        props.onChange(this)
+        onChange()
     }
 }

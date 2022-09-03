@@ -67,7 +67,7 @@ internal abstract class PreactLLC(
      * The [KraftComponent] which is wrapped by this low level component
      */
     @Suppress("UNCHECKED_CAST")
-    internal var component: KraftComponent<Any?>? = (props.__ctor(props.__ctx) as KraftComponent<Any?>).also {
+    private var component: KraftComponent<Any?>? = (props.__ctor(props.__ctx) as KraftComponent<Any?>).also {
         // Set this low level instance on the component
         it.lowLevelBridgeComponent = this@PreactLLC
         // Set this low level instance on the ref
@@ -87,6 +87,9 @@ internal abstract class PreactLLC(
      * See [PreactComponent.componentDidMount]
      */
     override fun componentDidMount() {
+        // Update the ref
+        props.__ref.ll = this
+
         component?._internalOnMount(getDom())
     }
 
