@@ -82,8 +82,4 @@ kotlin {
 
 tasks {
     configureJvmTests()
-
-    dokkaHtml.configure {
-        this.enabled = false
-    }
 }
