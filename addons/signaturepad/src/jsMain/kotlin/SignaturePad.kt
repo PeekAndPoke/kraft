@@ -18,7 +18,6 @@ import kotlinx.html.div
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.dom.events.Event
-import kotlin.math.max
 
 @Suppress("FunctionName")
 fun Tag.SignaturePad(
@@ -53,6 +52,10 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
 
     fun isEmpty(): Boolean {
         return pad?.isEmpty() ?: false
+    }
+
+    fun isNotEmpty(): Boolean {
+        return !isEmpty()
     }
 
     fun getPng(): String? = getCanvas()?.toDataURL("image/png")
@@ -125,21 +128,12 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
     }
 
     private fun resize() {
-
         dom?.let { dom ->
-
-            val ratio = max(window.asDynamic()["devicePixelRatio"] as? Double ?: 1.0, 1.0)
-
             getCanvas()?.let { canvas ->
 
                 canvas.width = dom.offsetWidth
                 canvas.height = dom.offsetHeight
 
-                canvas.width = (canvas.offsetWidth * ratio).toInt()
-                canvas.height = (canvas.offsetHeight * ratio).toInt()
-                (canvas.getContext("2d") as? CanvasRenderingContext2D)?.scale(ratio, ratio)
-
-                // otherwise isEmpty() might return incorrect value
                 pad?.clear()
             }
         }
