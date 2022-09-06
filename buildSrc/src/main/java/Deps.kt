@@ -68,6 +68,9 @@ object Deps {
             return this.block()
         }
 
+        // https://www.npmjs.com/package/bowser
+        fun KotlinDependencyHandler.bowser() = npm("bowser", "2.11.0")
+
         // https://www.npmjs.com/package/chart.js
         fun KotlinDependencyHandler.chartJs() = npm("chart.js", "3.9.1")
 

@@ -28,7 +28,7 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
     private var dataJpg: String? by value(null)
     private var dataJpgTrimmed: String? by value(null)
 
-    private val sigPadRef = ComponentRef.Tracker<SignaturePad>()
+    private val sigPad = ComponentRef.Tracker<SignaturePad>()
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -38,10 +38,9 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
 
             div {
                 css {
-                    position = Position.relative
-                    border(2.px, BorderStyle.dashed, Color.lightGrey)
-                    backgroundColor = Color.white
+                    width = 100.pct
                     height = 30.vh
+                    backgroundColor = Color.lightGrey
                 }
 
                 SignaturePad {
@@ -53,29 +52,10 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
 
                     dataJpg = it.getJpg(0.5)
                     dataJpgTrimmed = it.getJpgTrimmed(0.5)
-                }.track(sigPadRef)
-
-                sigPadRef { sigPad ->
-                    if (sigPad.isNotEmpty()) {
-                        div {
-                            css {
-                                position = Position.absolute
-                                right = 1.px
-                                bottom = 1.px
-                            }
-
-                            ui.big.tertiary.icon.button {
-                                onClick {
-                                    sigPad.clear()
-                                }
-                                icon.eraser()
-                            }
-                        }
-                    }
-                }
+                }.track(sigPad)
             }
 
-            sigPadRef { pad ->
+            sigPad { pad ->
 
                 ui.divider {}
 

@@ -24,7 +24,21 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
-        ui.four.link.cards {
+        ui.four.doubling.link.cards {
+
+            noui.card A {
+                href = routes.browserDetect()
+
+                noui.center.aligned.content {
+                    renderLogo(
+                        src = "images/browsers.jpg",
+                        alt = "Browser Detect",
+                    )
+                }
+                noui.center.aligned.content {
+                    +"Browser Detect"
+                }
+            }
 
             noui.card A {
                 href = routes.chartJs()
