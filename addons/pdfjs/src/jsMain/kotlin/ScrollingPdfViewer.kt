@@ -12,29 +12,31 @@ import de.peekandpoke.kraft.utils.jsObject
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.window
 import kotlinx.coroutines.await
+import kotlinx.coroutines.delay
 import kotlinx.css.*
 import kotlinx.html.Tag
 import kotlinx.html.canvas
 import kotlinx.html.div
 import org.w3c.dom.CanvasRenderingContext2D
 import org.w3c.dom.HTMLCanvasElement
+import org.w3c.dom.asList
 
 @Suppress("FunctionName")
-fun Tag.PagedPdfViewer(
+fun Tag.ScrollingPdfViewer(
     src: PdfSource,
-    options: PagedPdfViewer.Options,
-    onChange: (PagedPdfViewer.State) -> Unit = {},
+    options: ScrollingPdfViewer.Options,
+    onChange: (ScrollingPdfViewer.State) -> Unit = {},
 ) = comp(
-    PagedPdfViewer.Props(
+    ScrollingPdfViewer.Props(
         src = src,
         options = options,
         onChange = onChange,
     )
 ) {
-    PagedPdfViewer(it)
+    ScrollingPdfViewer(it)
 }
 
-class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
+class ScrollingPdfViewer(ctx: Ctx<Props>) : Component<ScrollingPdfViewer.Props>(ctx) {
 
     //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,7 +56,6 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
 
     data class State(
         val doc: PdfjsLib.PDFDocumentProxy? = null,
-        val page: Int = 1,
         val scale: Double = 1.0,
     )
 
@@ -68,7 +69,7 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
         state = state.block()
 
         jobQueue.add {
-            renderPage()
+            renderAllPages()
         }
     }
 
@@ -79,25 +80,17 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
             val doc = (it as? DataLoader.State.Loaded<PdfjsLib.PDFDocumentProxy>)?.data
 
             if (doc != null && state.doc == null) {
+                modifyState { copy(doc = doc) }
+
                 jobQueue.add {
-                    calculateInitialScale(doc)
-                    modifyState { copy(doc = doc) }
+                    delay(10)
+                    renderAllPages()
                 }
             }
         }
     }
 
-    override fun onMount() {
-        dom?.let {
-            val canvas = getCanvas()
-            canvas.width = it.offsetWidth
-            canvas.height = it.offsetHeight
-        }
-    }
-
     fun getState(): State = state
-
-    fun getCurrentPage(): Int = state.page
 
     fun getNumPages(): Int? = state.doc?.numPages
 
@@ -115,63 +108,72 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
         }
     }
 
-    fun gotoPreviousPage() {
-        modifyState {
-            copy(
-                page = maxOf(1, page - 1)
-            )
-        }
-    }
-
-    fun gotoNextPage() {
-        modifyState {
-            copy(
-                page = minOf(doc?.numPages ?: 1, page + 1)
-            )
-        }
-    }
-
     override fun VDom.render() {
 
         div {
             css {
                 width = 100.pct
-                height = 100.pct
-                textAlign = TextAlign.center
-                overflow = Overflow.hidden
+                height = calcMaxHeight().px
+                overflowY = Overflow.auto
+                overflowX = Overflow.auto
             }
 
-            canvas {}
+            state.doc?.numPages?.let { numPages ->
+                (1..numPages).forEach { idx ->
+
+                    div("page page-$idx") {
+                        css {
+                            textAlign = TextAlign.center
+                        }
+                        canvas {}
+                    }
+                }
+            }
         }
     }
 
-    private suspend fun calculateInitialScale(doc: PdfjsLib.PDFDocumentProxy) {
-        val page = doc.getPage(state.page).await()
+    private suspend fun renderAllPages() {
 
-        val (pageLeft, pageTop, pageRight, pageBottom) = page.view
+        val canvases: List<HTMLCanvasElement> = dom?.querySelectorAll(".page canvas")
+            ?.asList()
+            ?.filterIsInstance<HTMLCanvasElement>()
+            ?: emptyList()
 
-        val pageWidth = pageRight.toDouble() - pageLeft.toDouble()
-        val pageHeight = pageBottom.toDouble() - pageTop.toDouble()
+        val doc = state.doc
 
-        modifyState {
-            copy(
-                scale = minOf(
-                    dom!!.offsetWidth / pageWidth,
-                    calcMaxHeight() / pageHeight,
-                )
-            )
+        // Wait for all canvases to be rendered and the document to be loaded
+        if (doc == null || canvases.size < doc.numPages) {
+            delay(100)
+            renderAllPages()
+            return
+        }
+
+        canvases.forEachIndexed { idx, canvas ->
+            jobQueue.add {
+                renderPage(canvas, idx + 1)
+                delay(1)
+            }
         }
     }
 
-    private suspend fun renderPage() {
+    private suspend fun renderPage(canvas: HTMLCanvasElement, pageNumber: Int) {
         state.doc?.let { doc ->
-            val canvas = getCanvas()
             val context = canvas.getContext("2d") as CanvasRenderingContext2D
 
-            val page = doc.getPage(state.page).await()
+            val page = doc.getPage(pageNumber).await()
+
+            val (pageLeft, pageTop, pageRight, pageBottom) = page.view
+
+            val pageWidth = pageRight.toDouble() - pageLeft.toDouble()
+            val pageHeight = pageBottom.toDouble() - pageTop.toDouble()
+
+            val pageScale = minOf(
+                (dom!!.offsetWidth * 0.95) / pageWidth,
+                (dom!!.offsetHeight * 0.95) / pageHeight,
+            )
 
             val viewport = page.getViewport(jsObject {
-                this.scale = state.scale
+                this.scale = pageScale * state.scale
             })
 
 //            console.log("Got page", page, viewport)
@@ -196,9 +198,5 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
             // landscape
             (window.innerHeight * props.options.maxHeightLandscapeVh) / 100
         }
-    }
-
-    private fun getCanvas(): HTMLCanvasElement {
-        return dom!!.querySelector("canvas") as HTMLCanvasElement
     }
 }

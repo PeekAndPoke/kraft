@@ -97,7 +97,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.card A {
-                href = routes.pdfjs()
+                href = routes.pdfjs.index()
 
                 noui.center.aligned.content {
                     renderLogo(
