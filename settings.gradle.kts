@@ -11,6 +11,7 @@ include(
     ":addons:konva",
     ":addons:marked",
     ":addons:nxcompile",
+    ":addons:pdfjs",
     ":addons:prismjs",
     ":addons:signaturepad",
     ":addons:sourcemappedstacktrace",

@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/addons/konva" />
             <option value="$PROJECT_DIR$/addons/marked" />
             <option value="$PROJECT_DIR$/addons/nxcompile" />
+            <option value="$PROJECT_DIR$/addons/pdfjs" />
             <option value="$PROJECT_DIR$/addons/prismjs" />
             <option value="$PROJECT_DIR$/addons/signaturepad" />
             <option value="$PROJECT_DIR$/addons/sourcemappedstacktrace" />

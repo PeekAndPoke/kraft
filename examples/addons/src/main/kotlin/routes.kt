@@ -7,6 +7,7 @@ import de.peekandpoke.kraft.examples.jsaddons.chartjs.ChartJsExample
 import de.peekandpoke.kraft.examples.jsaddons.jwtdecode.JwtDecodeExample
 import de.peekandpoke.kraft.examples.jsaddons.konva.KonvaExample
 import de.peekandpoke.kraft.examples.jsaddons.marked.MarkedExample
+import de.peekandpoke.kraft.examples.jsaddons.pdfjs.PdfJsExample
 import de.peekandpoke.kraft.examples.jsaddons.prismjs.PrismJsExample
 import de.peekandpoke.kraft.examples.jsaddons.signaturepad.SignaturePadExample
 
@@ -20,6 +21,7 @@ class Routes {
     val jwtDecode = Static("/example/jwt-decode")
     val konva = Static("/example/konva")
     val marked = Static("/example/marked")
+    val pdfjs = Static("/example/pdfjs")
     val prismjs = Static("/example/prism-js")
     val signaturePad = Static("/example/signature-pad")
 }
@@ -33,6 +35,7 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.jwtDecode) { JwtDecodeExample() }
     mount(routes.konva) { KonvaExample() }
     mount(routes.marked) { MarkedExample() }
+    mount(routes.pdfjs) { PdfJsExample() }
     mount(routes.prismjs) { PrismJsExample() }
     mount(routes.signaturePad) { SignaturePadExample() }
 }

@@ -27,6 +27,7 @@ dependencies {
     api(project(":addons:konva"))
     api(project(":addons:marked"))
     api(project(":addons:nxcompile"))
+    api(project(":addons:pdfjs"))
     api(project(":addons:prismjs"))
     api(project(":addons:signaturepad"))
     api(project(":addons:sourcemappedstacktrace"))

@@ -97,6 +97,20 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.card A {
+                href = routes.pdfjs()
+
+                noui.center.aligned.content {
+                    renderLogo(
+                        src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Pdf-js_logo.svg/800px-Pdf-js_logo.svg.png",
+                        alt = "PDF JS",
+                    )
+                }
+                noui.center.aligned.content {
+                    +"PDF JS"
+                }
+            }
+
+            noui.card A {
                 href = routes.prismjs()
 
                 noui.center.aligned.content {

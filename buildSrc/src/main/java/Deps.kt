@@ -86,6 +86,9 @@ object Deps {
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
 
+        // https://www.npmjs.com/package/pdfjs-dist
+        fun KotlinDependencyHandler.pdfjs_dist() = npm("pdfjs-dist", "2.16.105")
+
         // https://www.npmjs.com/package/preact
         fun KotlinDependencyHandler.preact() = npm("preact", "10.10.6")
 
