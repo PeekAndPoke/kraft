@@ -51,7 +51,6 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(Deps.Npm { pdfjs_dist() })
             }
         }
 

@@ -1,15 +1,54 @@
+@file:Suppress("PropertyName", "ClassName")
+
 package de.peekandpoke.kraft.addons.pdfjs.js
 
+import kotlinx.js.Object
+import org.khronos.webgl.Uint8Array
 import org.w3c.dom.CanvasRenderingContext2D
 import kotlin.js.Promise
 
-@Suppress("ClassName")
-@JsModule("pdfjs-dist")
-@JsNonModule
-external object pdfjsLib {
+external val pdfjsLib: PdfjsLib
 
-    object GlobalWorkerOptions {
+external interface PdfjsLib {
+
+    interface GlobalWorkerOptionsDef {
         var workerSrc: String
+    }
+
+    val GlobalWorkerOptions: GlobalWorkerOptionsDef
+
+    /**
+     * https://github.com/mozilla/pdf.js/blob/af6aacfc0eaa70f254cd6158e5cd9cbc23fb13cf/src/display/api.js#L133
+     */
+    interface GetDocumentParameters {
+        /**
+         * The URL of the PDF
+         */
+        var url: String
+
+        /**
+         * Binary PDF data.
+         *
+         * Use typed arrays (Uint8Array) to improve the memory usage. If PDF data is
+         * BASE64-encoded, use `atob()` to convert it to a binary string first.
+         */
+        var data: Uint8Array
+
+        /**
+         * Basic authentication headers.
+         */
+        var httpHeaders: Object
+
+        /**
+         * Indicates whether or not cross-site Access-Control requests should be made using credentials such
+         * as cookies or authorization headers. The default is `false`.
+         */
+        var withCredentials: Boolean
+
+        /**
+         * For decrypting password-protected PDFs.
+         */
+        var password: String
     }
 
     interface PDFDocumentLoadingTask {
@@ -41,8 +80,15 @@ external object pdfjsLib {
             var viewport: PageViewport
         }
 
-        /** Page number of the page. First page is 1. */
+        /**
+         * Page number of the page. First page is 1.
+         */
         val pageNumber: Int
+
+        /**
+         * An array of the visible portion of the PDF page in user space units [x1, y1, x2, y2].
+         */
+        val view: Array<Number>
 
         fun getViewport(options: GetViewportOptions): PageViewport
 
@@ -53,13 +99,14 @@ external object pdfjsLib {
      * https://github.com/mozilla/pdf.js/blob/af6aacfc0eaa70f254cd6158e5cd9cbc23fb13cf/src/display/display_utils.js#L158
      */
     interface PageViewport {
-        val width: Int
-        val height: Int
-        val scale: Number
-        val rotation: Number
-        val offsetX: Number
-        val offsetY: Number
-        val dontFlip: Boolean
+        var viewBox: Array<Number>
+        var width: Int
+        var height: Int
+        var scale: Number
+        var rotation: Number
+        var offsetX: Number
+        var offsetY: Number
+        var dontFlip: Boolean
     }
 
     /**
@@ -69,6 +116,8 @@ external object pdfjsLib {
         val promise: Promise<Unit>
     }
 
-    fun getDocument(url: String): PDFDocumentLoadingTask
+    fun getDocument(src: String): PDFDocumentLoadingTask
+
+    fun getDocument(src: GetDocumentParameters): PDFDocumentLoadingTask
 }
 

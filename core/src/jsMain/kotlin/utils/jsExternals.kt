@@ -1,5 +1,7 @@
 package de.peekandpoke.kraft.utils
 
+import org.khronos.webgl.Uint8Array
+
 external fun encodeURIComponent(value: String): String
 
 external fun decodeURIComponent(value: String): String
@@ -9,7 +11,7 @@ external fun decodeURIComponent(value: String): String
  *
  * See https://developer.mozilla.org/en-US/docs/Glossary/Base64
  */
-external fun atob(value: String): String
+external fun atob(value: String): Uint8Array
 
 /**
  * Encodes a base-64 encoded ASCII string from a "string" of binary data ("btoa" should be read as "binary to ASCII").
