@@ -32,11 +32,28 @@ class PdfJs private constructor(val lib: PdfjsLib) {
                     it.crossOrigin = source.crossOrigin
                     it.asDynamic().referrerPolicy = source.referrerPolicy
                     it.onload = { _ ->
-                        @Suppress("UnsafeCastFromDynamic")
-                        val lib: PdfjsLib = window.asDynamic().pdfjsLib
+
+                        val winDyn = window.asDynamic()
+
+                        val candidates = sequenceOf(
+                            { "window.pdfjsLib" to winDyn.pdfjsLib },
+                            { "window.exports" to winDyn.exports },
+                            { "window.module" to winDyn.module },
+                            { "window.module?.exports" to winDyn.module?.exports }
+                        )
+
+                        val (name: String, lib: PdfjsLib) = candidates
+                            .map { it() }
+                            .first { (name, item) ->
+                                @Suppress("UnsafeCastFromDynamic")
+                                !!item && !!item.getDocument
+                            }
+
+                        console.info("pdfjsLib was loaded into $name")
 
                         lib.GlobalWorkerOptions.workerSrc = source.workerSrc
 
+                        @Suppress("UnsafeCastFromDynamic")
                         resolve(PdfJs(lib))
                     }
 
