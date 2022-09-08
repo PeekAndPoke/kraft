@@ -18,23 +18,24 @@ class PdfJs private constructor(val lib: PdfjsLib) {
 
         var librarySource: LibrarySrc = LibrarySrc.CdnJs.v2_16_105
 
-        suspend fun instance(): PdfJs {
+        private suspend fun instance(): PdfJs {
 
             instance?.let { return it.await() }
 
-            val libSrc = librarySource.src
-            val libWorkerSrc = librarySource.workerSrc
+            val source = librarySource
 
             instance = Promise { resolve, _ ->
 
                 scriptTag = (document.createElement("script") as HTMLScriptElement).also {
-                    it.src = libSrc
+                    it.src = source.src
                     it.type = "text/javascript"
+                    it.crossOrigin = source.crossOrigin
+                    it.asDynamic().referrerPolicy = source.referrerPolicy
                     it.onload = { _ ->
-                        @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-                        val lib: PdfjsLib = window.asDynamic().pdfjsLib as PdfjsLib
+                        @Suppress("UnsafeCastFromDynamic")
+                        val lib: PdfjsLib = window.asDynamic().pdfjsLib
 
-                        lib.GlobalWorkerOptions.workerSrc = libWorkerSrc
+                        lib.GlobalWorkerOptions.workerSrc = source.workerSrc
 
                         resolve(PdfJs(lib))
                     }
@@ -65,6 +66,9 @@ class PdfJs private constructor(val lib: PdfjsLib) {
 
     interface LibrarySrc {
         val src: String
+        val integrity: String
+        val crossOrigin: String
+        val referrerPolicy: String
         val workerSrc: String
 
         /**
@@ -72,17 +76,19 @@ class PdfJs private constructor(val lib: PdfjsLib) {
          */
         data class CdnJs(
             override val src: String,
+            override val integrity: String,
+            override val crossOrigin: String = "anonymous",
+            override val referrerPolicy: String = "no-referrer",
             override val workerSrc: String,
         ) : LibrarySrc {
 
             companion object {
-                val v2_16_105
-                    get() = CdnJs(
-                        src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js",
-                        workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
-                    )
+                val v2_16_105 = CdnJs(
+                    src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js",
+                    integrity = "sha512-tqaIiFJopq4lTBmFlWF0MNzzTpDsHyug8tJaaY0VkcH5AR2ANMJlcD+3fIL+RQ4JU3K6edt9OoySKfCCyKgkng==",
+                    workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
+                )
             }
         }
     }
-
 }
