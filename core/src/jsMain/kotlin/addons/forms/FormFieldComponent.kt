@@ -24,6 +24,8 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
 
     private var inputValue: InputValue<T>? = null
 
+    val domKey = GenericFormField.getNextDomKey()
+
     val currentValue
         get() = when (val input = inputValue) {
             null -> props.initialValue
@@ -54,6 +56,12 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
     }
 
     ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    override fun reset() {
+        touched = false
+        inputValue = null
+        errors = emptyList()
+    }
 
     fun setInput(input: String) {
         try {

@@ -4,6 +4,7 @@ import de.peekandpoke.kraft.addons.forms.*
 import de.peekandpoke.kraft.addons.semanticui.forms.UiInputFieldComponent.Options
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onInput
 import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.semanticui.ui
@@ -67,6 +68,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
+            key = domKey
 
             renderLabel("input")
 

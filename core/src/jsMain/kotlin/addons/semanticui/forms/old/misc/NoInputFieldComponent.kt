@@ -4,8 +4,10 @@ import de.peekandpoke.kraft.addons.forms.FormFieldComponent
 import de.peekandpoke.kraft.addons.forms.validation.Rule
 import de.peekandpoke.kraft.addons.semanticui.forms.renderErrors
 import de.peekandpoke.kraft.components.Ctx
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import kotlinx.html.div
 
 open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, NoInputFieldComponent.Props<T>>(ctx) {
 
@@ -19,7 +21,6 @@ open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, 
         val render: VDom.(field: NoInputFieldComponent<P>) -> Unit = config.render
     }
 
-    @Suppress("FunctionName")
     class Config<T>(
         var value: T,
     ) {
@@ -58,9 +59,13 @@ open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, 
     }
 
     override fun VDom.render() {
-        props.render(
-            this@render,
-            this@NoInputFieldComponent,
-        )
+        div {
+            key = domKey
+
+            props.render(
+                this@render,
+                this@NoInputFieldComponent,
+            )
+        }
     }
 }

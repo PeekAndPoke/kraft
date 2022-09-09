@@ -35,6 +35,13 @@ open class FormController(private val component: Component<*>, val stopEvents: B
         }
 
     /**
+     * Resets the input of all fields
+     */
+    fun resetAllFields() {
+        _fields.forEach { it.reset() }
+    }
+
+    /**
      * Validates all fields by touching them first.
      *
      * When a field is touched, it's errors will be displayed.

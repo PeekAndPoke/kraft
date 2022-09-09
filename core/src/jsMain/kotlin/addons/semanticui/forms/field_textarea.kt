@@ -8,6 +8,7 @@ import de.peekandpoke.kraft.addons.semanticui.forms.UiTextAreaComponent.Options
 import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onInput
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
@@ -60,6 +61,7 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
 
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
+            key = domKey
 
             renderLabel("textarea")
 

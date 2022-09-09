@@ -4,6 +4,7 @@ import de.peekandpoke.kraft.addons.forms.FormFieldComponent
 import de.peekandpoke.kraft.addons.forms.validation.Rule
 import de.peekandpoke.kraft.addons.semanticui.forms.renderErrors
 import de.peekandpoke.kraft.components.Ctx
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.components.onInput
 import de.peekandpoke.kraft.semanticui.SemanticTag
@@ -12,6 +13,7 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 
+@Deprecated(message = "Switch to UiInputField")
 open class InputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, InputFieldComponent.Props<T>>(ctx) {
 
     data class Props<P>(
@@ -108,6 +110,7 @@ open class InputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, In
     override fun VDom.render() {
 
         ui.with(props.config.appearance).given(hasErrors) { error }.field {
+            key = domKey
 
             val l = props.config.label
 

@@ -18,6 +18,15 @@ interface FormField<T> {
     val touched: Boolean
 
     /**
+     * Resets the form field.
+     *
+     * Set the input value to initial value.
+     * Marks the field as not touched.
+     * Clears all errors
+     */
+    fun reset()
+
+    /**
      * Marks the form field as touched.
      */
     fun touch()

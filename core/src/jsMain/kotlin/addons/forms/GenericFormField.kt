@@ -26,9 +26,15 @@ fun <T> Tag.GenericFormField(
     GenericFormField(it)
 }
 
-open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T, O>>(ctx: Ctx<P>) :
-    Component<P>(ctx),
-    FormField<T> {
+open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T, O>>(
+    ctx: Ctx<P>
+) : Component<P>(ctx), FormField<T> {
+
+    companion object {
+        private var nextDomKey: Int = 0
+
+        internal fun getNextDomKey(): String = "form-field-$nextDomKey".also { nextDomKey += 1 }
+    }
 
     //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,19 +56,27 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
 
     class InputValue<T>(val value: T)
 
-    override var touched by value(false)
+    override var touched: Boolean by value(false)
 
     override var errors: List<String> by value(emptyList())
 
     private var inputValue: InputValue<T>? = null
 
-    val currentValue
+    val domKey: String = getNextDomKey()
+
+    val currentValue: T
         get() = when (val input = inputValue) {
             null -> props.value
             else -> input.value
         }
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    override fun reset() {
+        touched = false
+        inputValue = null
+        errors = emptyList()
+    }
 
     override fun touch() {
         touched = true

@@ -268,6 +268,7 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
 
     override fun VDom.render() {
         ui.given(hasErrors) { error }.field {
+            key = domKey
 
             // Prevent the event from bubbling up to the document
             onMouseDown { event ->

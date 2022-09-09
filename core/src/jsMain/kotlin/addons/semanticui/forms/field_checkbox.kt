@@ -6,6 +6,7 @@ import de.peekandpoke.kraft.addons.forms.KraftFormsDsl
 import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckBoxComponent.Options
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onChange
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
@@ -59,6 +60,8 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
     override fun VDom.render() {
 
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
+            key = domKey
+
             div {
                 ui.with(options.style.getOrDefault { this }).checkbox {
                     input {

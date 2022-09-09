@@ -5,6 +5,7 @@ import de.peekandpoke.kraft.addons.forms.validation.Rule
 import de.peekandpoke.kraft.addons.semanticui.forms.renderErrors
 import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Ctx
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onInput
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.launch
@@ -18,6 +19,7 @@ import kotlinx.css.vh
 import kotlinx.html.*
 import org.w3c.dom.HTMLTextAreaElement
 
+@Deprecated(message = "Switch to UiTextArea")
 open class TextAreaFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, TextAreaFieldComponent.Props<T>>(ctx) {
 
     data class Props<P>(
@@ -83,6 +85,7 @@ open class TextAreaFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T,
 
     override fun VDom.render() {
         ui.given(hasErrors) { error }.field {
+            key = domKey
 
             label {
                 apply(props.config.label)
