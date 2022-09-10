@@ -26,8 +26,6 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
 
     private var inputValue: T? = null
 
-    val domKey: String = getNextDomKey()
-
     val currentValue
         get() = when (val input = inputValue) {
             null -> props.initialValue

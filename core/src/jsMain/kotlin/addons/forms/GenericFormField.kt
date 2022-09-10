@@ -62,14 +62,9 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     override var errors: List<String> by value(emptyList())
 
     /**
-     * A unique dom key for the form field.
-     */
-    val domKey: String = getNextDomKey()
-
-    /**
      * The input value set by the user.
      */
-    private var inputValue: T? = null
+    private var _value: T = props.value
 
     /**
      * The effective value
@@ -77,11 +72,7 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
      * - it is either a value set by the user (see [setValue])
      * - or the initial value coming through the props (see [Props.value])
      */
-    val currentValue: T
-        get() = when (val input = inputValue) {
-            null -> props.value
-            else -> input
-        }
+    val currentValue: T get() = _value
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -94,12 +85,16 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
             onUnmount {
                 sendMessage(FormFieldUnmountedMessage(this@GenericFormField))
             }
+
+            onNextProps { new, _ ->
+                _value = new.value
+            }
         }
     }
 
     override fun reset() {
         touched = false
-        inputValue = null
+        _value = props.value
         errors = emptyList()
     }
 
@@ -130,13 +125,13 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     }
 
     fun setValue(value: T) {
-        touch()
-
-        inputValue = value
-
-        if (validate()) {
-            props.onChange(currentValue)
+        if (this._value != value) {
+            touch()
+            this._value = value
+            props.onChange(value)
         }
+
+        validate()
     }
 
     // Label Helpers

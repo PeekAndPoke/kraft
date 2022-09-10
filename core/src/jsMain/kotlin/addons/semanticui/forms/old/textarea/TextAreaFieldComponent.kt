@@ -86,7 +86,7 @@ open class TextAreaFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T,
 
     override fun VDom.render() {
         ui.given(hasErrors) { error }.field {
-            key = domKey
+            key = autoDomKey
 
             label {
                 apply(props.config.label)

@@ -83,15 +83,15 @@ class ListFieldComponent<T>(ctx: Ctx<Props<T>>) : Component<ListFieldComponent.P
                     all = props.items,
                     modify = { new -> onChange(items.modifyAt(idx) { new }) },
                     swapWith = { other ->
-                        reorderCounter += 1;
+//                        reorderCounter += 1;
                         onChange(items.swap(idx, other))
                     },
                     remove = {
-                        reorderCounter += 1;
+//                        reorderCounter += 1;
                         onChange(items.removeAt(idx))
                     },
                     copy = { copied ->
-                        reorderCounter += 1;
+//                        reorderCounter += 1;
                         onChange(items.addAt(idx + 1, copied))
                     },
                     keySuffix = "$reorderCounter"

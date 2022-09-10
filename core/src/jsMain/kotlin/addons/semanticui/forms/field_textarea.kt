@@ -63,7 +63,7 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
 
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
-            key = domKey
+            key = autoDomKey
 
             renderLabel("textarea")
 
@@ -74,6 +74,9 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
                 }
 
                 applyAll()
+
+                // We need this otherwise the value might not update properly
+                attributes["value"] = currentValue
 
                 +currentValue
             }

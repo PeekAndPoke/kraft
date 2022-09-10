@@ -3,7 +3,10 @@ package de.peekandpoke.kraft.examples.fomanticui.pages.howto.blocks.listfield
 import de.peekandpoke.kraft.addons.forms.collections.ListField
 import de.peekandpoke.kraft.addons.forms.collections.ListFieldComponent
 import de.peekandpoke.kraft.addons.semanticui.forms.UiTextArea
-import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.components.NoProps
+import de.peekandpoke.kraft.components.PureComponent
+import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
@@ -24,7 +27,9 @@ class ListFieldPage(ctx: NoProps) : PureComponent(ctx) {
         val texts: List<String> = emptyList()
     )
 
-    private var data by value(Data())
+    private var data by value(Data()) {
+        console.log(it.texts.toTypedArray())
+    }
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,7 +50,7 @@ class ListFieldPage(ctx: NoProps) : PureComponent(ctx) {
                 ListField(items = data.texts, onChange = { data = data.copy(texts = it) }) {
                     renderItem { ctx ->
                         ui.segment {
-                            key = ctx.domKey()
+//                            key = ctx.domKey()
 
                             UiTextArea(ctx.item, { ctx.modify(it) }) {
                                 +"Text ${ctx.idx + 1}"

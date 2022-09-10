@@ -61,7 +61,7 @@ open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, 
 
     override fun VDom.render() {
         div {
-            key = domKey
+            key = autoDomKey
 
             props.render(this@render, this@NoInputFieldComponent)
         }

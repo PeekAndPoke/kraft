@@ -106,6 +106,9 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     /** The life-cycle [LifeCycle] that the component exposes */
     val lifecycle: LifeCycle = LifeCycle()
 
+    /** An automatically generated unique dom key for the component instance. */
+    val autoDomKey: String = getNextDomKey()
+
     /** Pointer to the low level bridge Component for example for Preact */
     internal var lowLevelBridgeComponent: Any? = null
 

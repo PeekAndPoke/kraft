@@ -111,7 +111,7 @@ open class InputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, In
     override fun VDom.render() {
 
         ui.with(props.config.appearance).given(hasErrors) { error }.field {
-            key = domKey
+            key = autoDomKey
 
             val l = props.config.label
 
