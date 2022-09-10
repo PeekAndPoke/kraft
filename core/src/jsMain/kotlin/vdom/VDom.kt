@@ -25,5 +25,4 @@ class VDom(engine: VDomEngine, val component: Component<*>? = null) : FlowConten
     override val namespace: String? = null
 
     override val tagName: String = ""
-
 }

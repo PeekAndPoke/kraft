@@ -55,17 +55,20 @@ class ListFieldComponent<T>(ctx: Ctx<Props<T>>) : Component<ListFieldComponent.P
         val swapWith: (idx: Int) -> Unit,
         val remove: () -> Unit,
         val copy: (T) -> Unit,
+        private val keySuffix: String,
     ) {
         fun domKey(): String {
             val cls = (item ?: Unit)::class
 
-            return "item-$idx-${cls::simpleName}-${cls.hashCode()}"
+            return "item-$idx-${cls::simpleName}-${cls.hashCode()}-$keySuffix"
         }
     }
 
     data class AddCtx<T>(
         val add: (T) -> Unit
     )
+
+    private var reorderCounter by value(0)
 
     ////  IMPL  ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -79,9 +82,19 @@ class ListFieldComponent<T>(ctx: Ctx<Props<T>>) : Component<ListFieldComponent.P
                     item = item,
                     all = props.items,
                     modify = { new -> onChange(items.modifyAt(idx) { new }) },
-                    swapWith = { other -> onChange(items.swap(idx, other)) },
-                    remove = { onChange(items.removeAt(idx)) },
-                    copy = { copied -> onChange(items.addAt(idx + 1, copied)) }
+                    swapWith = { other ->
+                        reorderCounter += 1;
+                        onChange(items.swap(idx, other))
+                    },
+                    remove = {
+                        reorderCounter += 1;
+                        onChange(items.removeAt(idx))
+                    },
+                    copy = { copied ->
+                        reorderCounter += 1;
+                        onChange(items.addAt(idx + 1, copied))
+                    },
+                    keySuffix = "$reorderCounter"
                 )
 
                 props.renderItem(this@render, ctx)

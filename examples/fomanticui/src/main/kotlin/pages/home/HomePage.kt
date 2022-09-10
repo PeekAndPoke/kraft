@@ -32,8 +32,8 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     override fun VDom.render() {
         ui.basic.segment {
             ui.header H1 {
-                +"FomanticUI + KRAFT = "
-                icon.red.heart()
+                +"FomanticUI + kotlinx/html + KRAFT = "
+                icon.red.music()
             }
 
             renderFomanticUiExamplesLink()

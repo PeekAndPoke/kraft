@@ -19,32 +19,61 @@ import kotlin.properties.ReadOnlyProperty
 @Suppress("FunctionName", "Detekt.TooManyFunctions")
 abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
+    companion object {
+        private var nextDomKey = 1
+
+        fun getNextDomKey() = "--component-$nextDomKey--".also { nextDomKey += 1 }
+    }
+
+    /**
+     * Lifecycle hooks for components
+     */
     inner class LifeCycle {
+        /**
+         * Hook with no callback parameters
+         */
         inner class Hook {
             private val listeners = mutableListOf<() -> Unit>()
 
+            /**
+             * Registers a listener.
+             */
             operator fun invoke(block: () -> Unit) {
                 listeners.add(block)
             }
 
+            /**
+             * Notifies all listeners.
+             */
             fun notify() {
                 listeners.forEach { it() }
             }
         }
 
+        /**
+         * Hook for props update
+         */
         inner class NextPropsHook {
-            private val listeners =
-                mutableListOf<(newProps: PROPS, previousProps: PROPS) -> Unit>()
+            private val listeners = mutableListOf<(newProps: PROPS, previousProps: PROPS) -> Unit>()
 
+            /**
+             * Registers a listener.
+             */
             operator fun invoke(block: (newProps: PROPS, previousProps: PROPS) -> Unit) {
                 listeners.add(block)
             }
 
+            /**
+             * Notifies all listeners.
+             */
             fun notify(newProps: PROPS, previousProps: PROPS) {
                 listeners.forEach { it(newProps, previousProps) }
             }
         }
 
+        /**
+         * Brings the [LifeCycle] object into scope.
+         */
         operator fun invoke(block: LifeCycle.() -> Unit) {
             this.block()
         }

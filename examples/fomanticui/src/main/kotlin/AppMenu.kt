@@ -50,6 +50,13 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
             }
 
             noui.item {
+                noui.header { +"Building blocks" }
+                noui.menu {
+                    noui.item A { href = routes.howtoBuildingBlocksListField(); +"List field" }
+                }
+            }
+
+            noui.item {
                 noui.header { +"Elements" }
                 noui.menu {
                     noui.item A { href = routes.elementsButton(); +"Button"; percentLabel(66) }

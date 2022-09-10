@@ -62,27 +62,14 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     override var errors: List<String> by value(emptyList())
 
     /**
-     * The [inputValue] is stored in the [FormStorage] and not directly in the component.
-     *
-     * This is necessary in cases, where form fields are swapped in the DOM.
-     * When the value is stored in the field instance directly, bugs happen, like
-     * modified fields showing the wrong inputs.
-     */
-    private val storageKey = FormStorage.getNextKey<T>()
-
-    /**
      * A unique dom key for the form field.
      */
-    val domKey: String = storageKey.name
+    val domKey: String = getNextDomKey()
 
     /**
      * The input value set by the user.
-     *
-     * The value of the field is NOT stored in the component but inside the [FormStorage].
      */
-    private var inputValue: T?
-        get() = storageKey.get()
-        set(value) = storageKey.set(value)
+    private var inputValue: T? = null
 
     /**
      * The effective value
@@ -106,7 +93,6 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
 
             onUnmount {
                 sendMessage(FormFieldUnmountedMessage(this@GenericFormField))
-                storageKey.remove()
             }
         }
     }

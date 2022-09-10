@@ -24,12 +24,9 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
 
     override var errors by value<List<String>>(emptyList())
 
-    private val storageKey = FormStorage.getNextKey<T>()
-    val domKey: String = storageKey.name
+    private var inputValue: T? = null
 
-    private var inputValue: T?
-        get() = storageKey.get()
-        set(value) = storageKey.set(value)
+    val domKey: String = getNextDomKey()
 
     val currentValue
         get() = when (val input = inputValue) {

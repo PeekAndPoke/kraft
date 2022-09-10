@@ -27,6 +27,7 @@ import de.peekandpoke.kraft.examples.fomanticui.pages.elements.segment.SegmentPa
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.step.StepPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.elements.text.TextPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.home.HomePage
+import de.peekandpoke.kraft.examples.fomanticui.pages.howto.blocks.listfield.ListFieldPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo.FormDemosPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.KraftComponentBasicsPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.howto.kraft.KraftComponentStatePage
@@ -47,6 +48,8 @@ class Routes {
     val howtoKraftComponentState = Static("/howto/kraft/components/state")
 
     val howtoFormsDemo = Static("/howto/forms/demo")
+
+    val howtoBuildingBlocksListField = Static("/howto/building-blocks/list-field")
 
     val elementsButton = Static("/elements/button")
     val elementsContainer = Static("/elements/container")
@@ -91,6 +94,8 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.howtoKraftComponentState) { KraftComponentStatePage() }
 
     mount(routes.howtoFormsDemo) { FormDemosPage() }
+
+    mount(routes.howtoBuildingBlocksListField) { ListFieldPage() }
 
     mount(routes.elementsButton) { ButtonPage() }
     mount(routes.elementsContainer) { ContainerPage() }
