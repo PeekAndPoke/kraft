@@ -19,6 +19,7 @@ import kotlinx.css.vh
 import kotlinx.html.*
 import org.w3c.dom.HTMLTextAreaElement
 
+@Suppress("DEPRECATION")
 @Deprecated(message = "Switch to UiTextArea")
 open class TextAreaFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, TextAreaFieldComponent.Props<T>>(ctx) {
 

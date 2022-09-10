@@ -30,12 +30,6 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     ctx: Ctx<P>
 ) : Component<P>(ctx), FormField<T> {
 
-    companion object {
-        private var nextDomKey: Int = 0
-
-        internal fun getNextDomKey(): String = "form-field-$nextDomKey".also { nextDomKey += 1 }
-    }
-
     //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     interface Props<T, O : FieldOptions<T>> {
@@ -54,20 +48,52 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    class InputValue<T>(val value: T)
-
+    /**
+     * Track if the input value was modified.
+     *
+     * 'True' means the value was modified and thus the field was touched.
+     * 'False' means the value was not modified yet.
+     */
     override var touched: Boolean by value(false)
 
+    /**
+     * A list of validation errors.
+     */
     override var errors: List<String> by value(emptyList())
 
-    private var inputValue: InputValue<T>? = null
+    /**
+     * The [inputValue] is stored in the [FormStorage] and not directly in the component.
+     *
+     * This is necessary in cases, where form fields are swapped in the DOM.
+     * When the value is stored in the field instance directly, bugs happen, like
+     * modified fields showing the wrong inputs.
+     */
+    private val storageKey = FormStorage.getNextKey<T>()
 
-    val domKey: String = getNextDomKey()
+    /**
+     * A unique dom key for the form field.
+     */
+    val domKey: String = storageKey.name
 
+    /**
+     * The input value set by the user.
+     *
+     * The value of the field is NOT stored in the component but inside the [FormStorage].
+     */
+    private var inputValue: T?
+        get() = storageKey.get()
+        set(value) = storageKey.set(value)
+
+    /**
+     * The effective value
+     *
+     * - it is either a value set by the user (see [setValue])
+     * - or the initial value coming through the props (see [Props.value])
+     */
     val currentValue: T
         get() = when (val input = inputValue) {
             null -> props.value
-            else -> input.value
+            else -> input
         }
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,11 +124,14 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     }
 
     override fun onMount() {
+        super.onMount()
         sendMessage(FormFieldMountedMessage(this))
     }
 
     override fun onUnmount() {
+        super.onUnmount()
         sendMessage(FormFieldUnmountedMessage(this))
+        storageKey.remove()
     }
 
     override fun VDom.render() {
@@ -115,7 +144,7 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     fun setValue(value: T) {
         touch()
 
-        inputValue = InputValue(value)
+        inputValue = value
 
         if (validate()) {
             props.onChange(currentValue)

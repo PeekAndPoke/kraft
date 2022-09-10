@@ -18,22 +18,24 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
         val rules: List<Rule<P>>
     }
 
-    class InputValue<T>(val value: T)
-
     ////  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private var inputValue: InputValue<T>? = null
+    override var touched by value(false)
 
-    val domKey = GenericFormField.getNextDomKey()
+    override var errors by value<List<String>>(emptyList())
+
+    private val storageKey = FormStorage.getNextKey<T>()
+    val domKey: String = storageKey.name
+
+    private var inputValue: T?
+        get() = storageKey.get()
+        set(value) = storageKey.set(value)
 
     val currentValue
         get() = when (val input = inputValue) {
             null -> props.initialValue
-            else -> input.value
+            else -> input
         }
-
-    override var touched by value(false)
-    override var errors by value<List<String>>(emptyList())
 
     ////  LIVE-CYCLE  /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,7 +83,7 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
     fun setValue(value: T) {
         touch()
 
-        inputValue = InputValue(value)
+        inputValue = value
 
         if (validate()) {
             props.onChange(currentValue)

@@ -13,6 +13,7 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 
+@Suppress("DEPRECATION")
 @Deprecated(message = "Switch to UiInputField")
 open class InputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, InputFieldComponent.Props<T>>(ctx) {
 
