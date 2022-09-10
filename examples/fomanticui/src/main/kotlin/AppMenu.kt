@@ -52,7 +52,8 @@ class AppMenu(ctx: NoProps) : PureComponent(ctx) {
             noui.item {
                 noui.header { +"Building blocks" }
                 noui.menu {
-                    noui.item A { href = routes.howtoBuildingBlocksListField(); +"List field" }
+                    noui.item A { href = routes.howtoBlocksDragAndDrop(); +"Drag & Drop" }
+                    noui.item A { href = routes.howtoBlocksListField(); +"List field" }
                 }
             }
 
