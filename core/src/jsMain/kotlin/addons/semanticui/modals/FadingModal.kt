@@ -54,16 +54,18 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
 
     init {
         launch {
-            delay(props.transition.fadeInTimeMs.toLong())
-            fadingIn = false
         }
-    }
 
-    override fun onMount() {
-        super.onMount()
+        lifecycle {
+            onMount {
+                window.document.body?.classList?.add(Style.noScroll)
 
-        // Make the body no longer scrollable as long as the popup is shown
-        window.document.body?.classList?.add(Style.noScroll)
+                launch {
+                    delay(props.transition.fadeInTimeMs.toLong())
+                    fadingIn = false
+                }
+            }
+        }
     }
 
     abstract fun FlowContent.renderContent()
@@ -104,4 +106,3 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
         }
     }
 }
-

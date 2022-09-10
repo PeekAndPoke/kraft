@@ -116,14 +116,16 @@ class DropdownMenu(ctx: Ctx<Props>) : Component<DropdownMenu.Props>(ctx) {
 
     ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    override fun onMount() {
-        super.onMount()
-        window.document.addEventListener("mouseup", onClose)
-    }
+    init {
+        lifecycle {
+            onMount {
+                window.document.addEventListener("mouseup", onClose)
+            }
 
-    override fun onUnmount() {
-        super.onUnmount()
-        window.document.removeEventListener("mouseup", onClose)
+            onUnmount {
+                window.document.removeEventListener("mouseup", onClose)
+            }
+        }
     }
 
     private val onClose = { _: Event -> close() }

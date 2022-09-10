@@ -73,7 +73,6 @@ class DndDragHandleComponent<PAYLOAD : Any>(ctx: Ctx<Props<PAYLOAD>>) :
     /**
      * Handler for the mouse down event
      */
-    @Suppress("UNUSED_ANONYMOUS_PARAMETER")
     private val onMouseDown: (Event) -> Unit by lazy {
         { evt: Event ->
 
@@ -140,9 +139,9 @@ class DndDragHandleComponent<PAYLOAD : Any>(ctx: Ctx<Props<PAYLOAD>>) :
                             )
 
                             mouseOffset = (handleParentElement.absolutePosition() -
-                                    hostComponentElement.absolutePosition() -
-                                    scrollPosition) +
-                                    Vector2D(mouseEvent.offsetX, mouseEvent.offsetY)
+                                hostComponentElement.absolutePosition() -
+                                scrollPosition) +
+                                Vector2D(mouseEvent.offsetX, mouseEvent.offsetY)
 
                             // create the clone
                             clone = cloneNode(true) as? HTMLElement
@@ -174,31 +173,34 @@ class DndDragHandleComponent<PAYLOAD : Any>(ctx: Ctx<Props<PAYLOAD>>) :
         }
     }
 
-    /**
-     * Called when the drag handle component is put into the Dom
-     *
-     * Here we get our hands on
-     * - the Dom of the Host Component
-     * - the Dom of the element containing the drag handle
-     */
-    override fun onMount() {
-        super.onMount()
+    init {
+        lifecycle {
+            /**
+             * Called when the drag handle component is put into the Dom
+             *
+             * Here we get our hands on
+             * - the Dom of the Host Component
+             * - the Dom of the element containing the drag handle
+             */
+            onMount {
+                handleParentElement?.apply {
+                    addEventListener("mousedown", onMouseDown)
+                }
+            }
 
-        handleParentElement?.apply {
-            addEventListener("mousedown", onMouseDown)
-        }
-    }
+            /**
+             * Removes all event listeners
+             */
+            onUnmount {
+                handleParentElement?.apply {
+                    removeEventListener("mousedown", onMouseDown)
+                }
 
-    override fun onUnmount() {
-        super.onUnmount()
-
-        handleParentElement?.apply {
-            removeEventListener("mousedown", onMouseDown)
-        }
-
-        window.document.body?.apply {
-            removeEventListener("mouseup", onMouseUpOnBody)
-            removeEventListener("mousemove", onMouseMoveOnBody)
+                window.document.body?.apply {
+                    removeEventListener("mouseup", onMouseUpOnBody)
+                    removeEventListener("mousemove", onMouseMoveOnBody)
+                }
+            }
         }
     }
 

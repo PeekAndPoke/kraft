@@ -19,6 +19,49 @@ import kotlin.properties.ReadOnlyProperty
 @Suppress("FunctionName", "Detekt.TooManyFunctions")
 abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
+    inner class LifeCycle {
+        inner class Hook {
+            private val listeners = mutableListOf<() -> Unit>()
+
+            operator fun invoke(block: () -> Unit) {
+                listeners.add(block)
+            }
+
+            fun notify() {
+                listeners.forEach { it() }
+            }
+        }
+
+        inner class NextPropsHook {
+            private val listeners =
+                mutableListOf<(newProps: PROPS, previousProps: PROPS) -> Unit>()
+
+            operator fun invoke(block: (newProps: PROPS, previousProps: PROPS) -> Unit) {
+                listeners.add(block)
+            }
+
+            fun notify(newProps: PROPS, previousProps: PROPS) {
+                listeners.forEach { it(newProps, previousProps) }
+            }
+        }
+
+        operator fun invoke(block: LifeCycle.() -> Unit) {
+            this.block()
+        }
+
+        /** Hook called when the component was mounted */
+        val onMount = Hook()
+
+        /** Hook called when the DOM of the component was updated */
+        val onUpdate = Hook()
+
+        /** Hook called when the component was unmounted */
+        val onUnmount = Hook()
+
+        /** Hook called when the component receives new props */
+        val onNextProps = NextPropsHook()
+    }
+
     /** The attributes of the component */
     val attributes: MutableTypedAttributes = MutableTypedAttributes.empty()
 
@@ -30,6 +73,9 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
     /** The Dom node to which the component is rendered */
     val dom: HTMLElement? get() = _dom
+
+    /** The life-cycle [LifeCycle] that the component exposes */
+    val lifecycle: LifeCycle = LifeCycle()
 
     /** Pointer to the low level bridge Component for example for Preact */
     internal var lowLevelBridgeComponent: Any? = null
@@ -49,6 +95,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     /** Render cache with the last render result */
     private var renderCache: dynamic = null
 
+
     /** A list of stream unsubscribe functions. Will be called when the component is removed */
     private val unSubscribers = mutableListOf<Unsubscribe>()
 
@@ -65,19 +112,35 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     /**
      * Called when the component is mounted
      */
-    open fun onMount() {
+    internal fun onMount(dom: HTMLElement?) {
+        _setDom(dom)
+
+        lifecycle.onMount.notify()
     }
 
     /**
      * Called when the dom was updated. This is called after the render cycle.
      */
-    open fun onUpdate() {
+    internal fun onUpdate(dom: HTMLElement?) {
+        _setDom(dom)
+
+        lifecycle.onUpdate.notify()
     }
 
     /**
      * Called when the component was removed from the dom
+     *
+     * Unsubscribes all async / stream listeners.
+     * Calls [onUnmount] on the component.
+     * Clears the [dom] reference.
      */
-    open fun onUnmount() {
+    internal fun onUnmount() {
+        // unsubscribe from all stream subscriptions
+        unSubscribers.forEach { it() }
+
+        lifecycle.onUnmount.notify()
+
+        _setDom(null)
     }
 
     /**
@@ -88,8 +151,8 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
      * @param newProps      The new props the component just received
      * @param previousProps The previous props the component had
      */
-    open fun onNextProps(newProps: PROPS, previousProps: PROPS) {
-        // noop
+    internal fun onNextProps(newProps: PROPS, previousProps: PROPS) {
+        lifecycle.onNextProps.notify(newProps = newProps, previousProps = previousProps)
     }
 
     /**
@@ -238,7 +301,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
 
     fun <C : Component<*>> createRef() = ComponentRef.Tracker<C>()
 
-    //  Internal functions  //////////////////////////////////////////////////////////////////////////////////////////
+    //  Private functions  //////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Internal function for setting the [dom] element of the component
@@ -268,38 +331,6 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
         onNextProps(_props, previousProps)
 
         return needsRedraw
-    }
-
-    /**
-     * Internal function called by the [VDomEngine] when the component was mounted.
-     */
-    internal fun _internalOnMount(dom: HTMLElement?) {
-        _setDom(dom)
-        onMount()
-    }
-
-    /**
-     * Internal function called by the [VDomEngine] when the component was updated.
-     */
-    internal fun _internalOnUpdate(dom: HTMLElement?) {
-        _setDom(dom)
-        onUpdate()
-    }
-
-    /**
-     * Internal function called by the [VDomEngine] when the component is removed from the DOM.
-     *
-     * Unsubscribes all async listeners.
-     * Calls [onUnmount] on the component.
-     * Clears the [dom] reference.
-     */
-    internal fun _internalOnUnmount() {
-        // unsubscribe from all stream subscriptions
-        unSubscribers.forEach { it() }
-
-        onUnmount()
-
-        _setDom(null)
     }
 
     /**

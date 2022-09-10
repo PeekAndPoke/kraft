@@ -49,12 +49,13 @@ open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, 
         }
     }
 
-    override fun onNextProps(newProps: Props<T>, previousProps: Props<T>) {
-
-        super.onNextProps(newProps, previousProps)
-
-        if (newProps.initialValue != previousProps.initialValue) {
-            validate()
+    init {
+        lifecycle {
+            onNextProps { new, old ->
+                if (new.initialValue != old.initialValue) {
+                    validate()
+                }
+            }
         }
     }
 
@@ -62,10 +63,7 @@ open class NoInputFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, 
         div {
             key = domKey
 
-            props.render(
-                this@render,
-                this@NoInputFieldComponent,
-            )
+            props.render(this@render, this@NoInputFieldComponent)
         }
     }
 }

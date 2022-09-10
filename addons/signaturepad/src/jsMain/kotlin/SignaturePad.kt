@@ -72,27 +72,30 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
 
     // Life-Cycle /////////////////////////////////////////////////////////////////////////////////////////
 
-    override fun onMount() {
+    init {
+        lifecycle {
+            onMount {
+                window.addEventListener("resize", ::onWindowResize)
 
-        dom?.let {
-            getCanvas()?.let { canvas ->
-                pad = signature_pad.SignaturePad(canvas, props.options)
+                dom?.let {
+                    getCanvas()?.let { canvas ->
+                        pad = signature_pad.SignaturePad(canvas, props.options)
 
-                pad?.addEventListener("endStroke", ::onPadEndStroke)
+                        pad?.addEventListener("endStroke", ::onPadEndStroke)
 
-                resize()
+                        resize()
+                    }
+                }
             }
-        }
 
-        window.addEventListener("resize", ::onWindowResize)
-    }
+            onUnmount {
+                window.removeEventListener("resize", ::onWindowResize)
 
-    override fun onUnmount() {
-        window.removeEventListener("resize", ::onWindowResize)
-
-        pad?.let {
-            it.removeEventListener("endStroke", ::onPadEndStroke)
-            it.off()
+                pad?.let {
+                    it.removeEventListener("endStroke", ::onPadEndStroke)
+                    it.off()
+                }
+            }
         }
     }
 

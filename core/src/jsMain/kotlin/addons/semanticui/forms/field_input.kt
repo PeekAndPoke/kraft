@@ -66,6 +66,17 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     internal val effectiveType: InputType? get() = typeOverride ?: options.type()
 
+    init {
+        lifecycle {
+            onMount {
+                options.autofocusValue()?.takeIf { it }?.let {
+                    focus("input")
+                }
+            }
+        }
+    }
+
+
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
             key = domKey
@@ -93,14 +104,6 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
     private fun FlowContent.renderField() {
         input {
             applyAll()
-        }
-    }
-
-    override fun onMount() {
-        super.onMount()
-
-        options.autofocusValue()?.takeIf { it }?.let {
-            focus("input")
         }
     }
 

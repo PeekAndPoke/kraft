@@ -39,22 +39,22 @@ class Popup(ctx: Ctx<Props>) : Component<Popup.Props>(ctx) {
 
     ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    override fun onMount() {
-        super.onMount()
+    init {
+        lifecycle {
+            onMount {
+                host = dom?.parentElement as HTMLElement
 
-        host = dom?.parentElement as HTMLElement
+                console.log("Popup host", host)
 
-        console.log("Popup host", host)
+                host?.addEventListener("mouseover", onOver)
+                host?.addEventListener("mouseout", onOut)
+            }
 
-        host?.addEventListener("mouseover", onOver)
-        host?.addEventListener("mouseout", onOut)
-    }
-
-    override fun onUnmount() {
-        super.onUnmount()
-
-        host?.removeEventListener("mouseover", onOver)
-        host?.removeEventListener("mouseout", onOut)
+            onUnmount {
+                host?.removeEventListener("mouseover", onOver)
+                host?.removeEventListener("mouseout", onOut)
+            }
+        }
     }
 
     private val onOver = { _: Event ->

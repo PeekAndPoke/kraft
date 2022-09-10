@@ -35,29 +35,28 @@ class ChartJsComponent(ctx: Ctx<Props>) : Component<ChartJsComponent.Props>(ctx)
 
     init {
         ChartJsUtils.registerAllModules()
-    }
 
-    override fun onMount() {
-        super.onMount()
+        lifecycle {
+            onMount {
+                val canvas = dom as HTMLCanvasElement
+                // console.log("chart-data", props.data)
 
-        val canvas = dom as HTMLCanvasElement
+                chart = Chart(
+                    ctx = canvas.getContext("2d") as CanvasRenderingContext2D,
+                    data = props.data,
+                )
+            }
 
-//        console.log("chart-data", props.data)
-
-        chart = Chart(
-            ctx = canvas.getContext("2d") as CanvasRenderingContext2D,
-            data = props.data,
-        )
-
-//        console.log(chart)
+            onUnmount {
+                chart?.destroy()
+                chart = null
+            }
+        }
     }
 
     override fun shouldRedraw(nextProps: Props): Boolean {
-
 //        return super.shouldRedraw(nextProps)
-
         chart?.let { c ->
-
             try {
 //                console.log(Chart)
 //                console.log(Object.getOwnPropertyNames(Chart))
@@ -89,11 +88,6 @@ class ChartJsComponent(ctx: Ctx<Props>) : Component<ChartJsComponent.Props>(ctx)
         }
 
         return super.shouldRedraw(nextProps)
-    }
-
-    override fun onUnmount() {
-        chart?.destroy()
-        chart = null
     }
 
     override fun VDom.render() {

@@ -45,17 +45,19 @@ class PopupComponent(ctx: Ctx<Props>) : Component<PopupComponent.Props>(ctx) {
 
     ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+    init {
+        lifecycle {
+            onMount {
+                captureContentSize()
+            }
+        }
+    }
+
     private fun captureContentSize() {
         dom?.firstElementChild?.let {
             val bounds = it.getBoundingClientRect()
             contentSize = Vector2D(bounds.width, bounds.height)
         }
-    }
-
-    override fun onMount() {
-        super.onMount()
-
-        captureContentSize()
     }
 
     override fun VDom.render() {

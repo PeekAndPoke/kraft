@@ -90,7 +90,16 @@ internal abstract class PreactLLC(
         // Update the ref
         props.__ref.ll = this
 
-        component?._internalOnMount(getDom())
+        component?.onMount(getDom())
+    }
+
+    /**
+     * Hook, called when the component was updated / re-rendered
+     *
+     * See [PreactComponent.componentDidUpdate]
+     */
+    override fun componentDidUpdate(prevProps: dynamic, prevState: dynamic, snapshot: dynamic) {
+        component?.onUpdate(getDom())
     }
 
     /**
@@ -99,7 +108,7 @@ internal abstract class PreactLLC(
      * See [PreactComponent.componentWillUnmount]
      */
     override fun componentWillUnmount() {
-        component?._internalOnUnmount()
+        component?.onUnmount()
         component = null
     }
 
@@ -113,15 +122,6 @@ internal abstract class PreactLLC(
         nextProps.__ref.ll = this
 
         return component?._internalShouldComponentUpdate(nextProps.__ctx) ?: false
-    }
-
-    /**
-     * Hook, called when the component was updated / re-rendered
-     *
-     * See [PreactComponent.componentDidUpdate]
-     */
-    override fun componentDidUpdate(prevProps: dynamic, prevState: dynamic, snapshot: dynamic) {
-        component?._internalOnUpdate(getDom())
     }
 
     /**

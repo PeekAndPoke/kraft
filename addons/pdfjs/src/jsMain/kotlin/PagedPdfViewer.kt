@@ -85,13 +85,15 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
                 }
             }
         }
-    }
 
-    override fun onMount() {
-        dom?.let {
-            val canvas = getCanvas()
-            canvas.width = it.offsetWidth
-            canvas.height = it.offsetHeight
+        lifecycle {
+            onMount {
+                dom?.let {
+                    val canvas = getCanvas()
+                    canvas.width = it.offsetWidth
+                    canvas.height = it.offsetHeight
+                }
+            }
         }
     }
 

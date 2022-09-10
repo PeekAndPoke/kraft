@@ -111,6 +111,17 @@ class DndDropTargetComponent<PAYLOAD : Any>(ctx: Ctx<Props<PAYLOAD>>) :
         val key: String?
     )
 
+    init {
+        lifecycle.onMount {
+            Dnd.registerDropTarget(this)
+
+        }
+
+        lifecycle.onUnmount {
+            Dnd.removeDropTarget(this)
+        }
+    }
+
     /**
      * Returns true when drop target accepts a payload of the given [payloadClass]
      */
@@ -149,18 +160,6 @@ class DndDropTargetComponent<PAYLOAD : Any>(ctx: Ctx<Props<PAYLOAD>>) :
      * Called when dragging ends
      */
     internal fun onDragEnd() = parent?.let { props.onDragEnd(it) }
-
-    override fun onMount() {
-        super.onMount()
-//        console.log("creating drop target for", this.parent)
-        Dnd.registerDropTarget(this)
-    }
-
-    override fun onUnmount() {
-        super.onUnmount()
-//        console.log("removing drop target for", this.parent)
-        Dnd.removeDropTarget(this)
-    }
 
     override fun VDom.render() {
         div {

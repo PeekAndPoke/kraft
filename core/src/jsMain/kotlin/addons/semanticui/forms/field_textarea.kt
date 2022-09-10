@@ -49,15 +49,17 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         override val options: Options,
     ) : GenericFormField.Props<String, Options>
 
-    override fun onMount() {
-        super.onMount()
+    private val isVerticalAutoResize get() = options.verticalAutoResize.getOrDefault(true)
 
-        options.autofocusValue()?.takeIf { it }?.let {
-            focus("textarea")
+    init {
+        lifecycle {
+            onMount {
+                options.autofocusValue()?.takeIf { it }?.let {
+                    focus("textarea")
+                }
+            }
         }
     }
-
-    private val isVerticalAutoResize get() = options.verticalAutoResize.getOrDefault(true)
 
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {

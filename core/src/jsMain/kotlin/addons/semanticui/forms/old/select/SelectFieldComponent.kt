@@ -225,10 +225,25 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
     private fun compare(t1: T?, t2: T?): Boolean =
         // Either both are null
         t1 == null && t2 == null ||
-                // Or both are not null, then we can compare them
-                (t1 != null && t2 != null && props.config.compareBy(t1, t2))
+            // Or both are not null, then we can compare them
+            (t1 != null && t2 != null && props.config.compareBy(t1, t2))
 
     ////  LIFE-CYCLE  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    init {
+        lifecycle {
+            onMount {
+                // Add a mouse down handler on the document.
+                // By doing so we can close the dropdown when the user clicks somewhere else on the page.
+                window.document.addEventListener(type = "mousedown", callback = ::onDocumentMouseDown)
+            }
+
+            onUnmount {
+                // Remove the mouse down handler.
+                window.document.removeEventListener(type = "mousedown", callback = ::onDocumentMouseDown)
+            }
+        }
+    }
 
     override fun shouldRedraw(nextProps: Props<T>): Boolean {
 
@@ -241,21 +256,6 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
         }
 
         return selectedOption != currentOption
-    }
-
-    override fun onMount() {
-        super.onMount()
-
-        // Add a mouse down handler on the document.
-        // By doing so we can close the dropdown when the user clicks somewhere else on the page.
-        window.document.addEventListener(type = "mousedown", callback = ::onDocumentMouseDown)
-    }
-
-    override fun onUnmount() {
-        super.onUnmount()
-
-        // Remove the mouse down handler.
-        window.document.removeEventListener(type = "mousedown", callback = ::onDocumentMouseDown)
     }
 
     @Suppress("UNUSED_PARAMETER")

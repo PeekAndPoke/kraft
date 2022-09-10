@@ -39,22 +39,26 @@ abstract class FormFieldComponent<T, P : FormFieldComponent.Props<T>>(
 
     ////  LIVE-CYCLE  /////////////////////////////////////////////////////////////////////////////////////////////
 
-    override fun onNextProps(newProps: P, previousProps: P) {
-        // A changing input value overrides the current input
-        if (newProps.initialValue != previousProps.initialValue) {
-            // Override the current user input
-            inputValue = null
-            // Notify the form controller about the change
-            sendMessage(FormFieldInputChanged(this))
+    init {
+        lifecycle {
+            onMount {
+                sendMessage(FormFieldMountedMessage(this@FormFieldComponent))
+            }
+
+            onNextProps { new, previous ->
+                // A changing input value overrides the current input
+                if (new.initialValue != previous.initialValue) {
+                    // Override the current user input
+                    inputValue = null
+                    // Notify the form controller about the change
+                    sendMessage(FormFieldInputChanged(this@FormFieldComponent))
+                }
+            }
+
+            onUnmount {
+                sendMessage(FormFieldUnmountedMessage(this@FormFieldComponent))
+            }
         }
-    }
-
-    override fun onMount() {
-        sendMessage(FormFieldMountedMessage(this))
-    }
-
-    override fun onUnmount() {
-        sendMessage(FormFieldUnmountedMessage(this))
     }
 
     ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////

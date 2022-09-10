@@ -49,11 +49,13 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
         val off: X,
     ) : GenericFormField.Props<X, Options<X>>
 
-    override fun onMount() {
-        super.onMount()
-
-        options.autofocusValue()?.takeIf { it }?.let {
-            focus("input")
+    init {
+        lifecycle {
+            onMount {
+                options.autofocusValue()?.takeIf { it }?.let {
+                    focus("input")
+                }
+            }
         }
     }
 

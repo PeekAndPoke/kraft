@@ -98,6 +98,19 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+    init {
+        lifecycle {
+            onMount {
+                sendMessage(FormFieldMountedMessage(this@GenericFormField))
+            }
+
+            onUnmount {
+                sendMessage(FormFieldUnmountedMessage(this@GenericFormField))
+                storageKey.remove()
+            }
+        }
+    }
+
     override fun reset() {
         touched = false
         inputValue = null
@@ -121,17 +134,6 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
         }
 
         return errors.isEmpty()
-    }
-
-    override fun onMount() {
-        super.onMount()
-        sendMessage(FormFieldMountedMessage(this))
-    }
-
-    override fun onUnmount() {
-        super.onUnmount()
-        sendMessage(FormFieldUnmountedMessage(this))
-        storageKey.remove()
     }
 
     override fun VDom.render() {
