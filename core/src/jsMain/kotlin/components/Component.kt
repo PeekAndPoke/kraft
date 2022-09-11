@@ -28,11 +28,11 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     /**
      * Lifecycle hooks for components
      */
-    inner class LifeCycle {
+    class LifeCycle<PROPS> {
         /**
          * Hook with no callback parameters
          */
-        inner class Hook {
+        class Hook {
             private val listeners = mutableListOf<() -> Unit>()
 
             /**
@@ -53,28 +53,28 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
         /**
          * Hook for props update
          */
-        inner class NextPropsHook {
+        inner class NextPropsHook<PROPS> {
             private val listeners = mutableListOf<(newProps: PROPS, previousProps: PROPS) -> Unit>()
 
             /**
              * Registers a listener.
              */
-            operator fun invoke(block: (newProps: PROPS, previousProps: PROPS) -> Unit) {
+            operator fun invoke(block: (new: PROPS, old: PROPS) -> Unit) {
                 listeners.add(block)
             }
 
             /**
              * Notifies all listeners.
              */
-            fun notify(newProps: PROPS, previousProps: PROPS) {
-                listeners.forEach { it(newProps, previousProps) }
+            fun notify(new: PROPS, old: PROPS) {
+                listeners.forEach { it(new, old) }
             }
         }
 
         /**
          * Brings the [LifeCycle] object into scope.
          */
-        operator fun invoke(block: LifeCycle.() -> Unit) {
+        operator fun invoke(block: LifeCycle<PROPS>.() -> Unit) {
             this.block()
         }
 
@@ -88,7 +88,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
         val onUnmount = Hook()
 
         /** Hook called when the component receives new props */
-        val onNextProps = NextPropsHook()
+        val onNextProps = NextPropsHook<PROPS>()
     }
 
     /** The attributes of the component */
@@ -104,7 +104,7 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     val dom: HTMLElement? get() = _dom
 
     /** The life-cycle [LifeCycle] that the component exposes */
-    val lifecycle: LifeCycle = LifeCycle()
+    val lifecycle: LifeCycle<PROPS> = LifeCycle()
 
     /** An automatically generated unique dom key for the component instance. */
     val autoDomKey: String = getNextDomKey()
@@ -176,15 +176,15 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
     }
 
     /**
-     * Called when the component is about to receive new props.
+     * Called when the component receives new props.
      *
      * This function is only called when shouldRedraw(nextProps) returns true.
      *
-     * @param newProps      The new props the component just received
-     * @param previousProps The previous props the component had
+     * @param new The new props the component just received
+     * @param old The previous props the component had
      */
-    internal fun onNextProps(newProps: PROPS, previousProps: PROPS) {
-        lifecycle.onNextProps.notify(newProps = newProps, previousProps = previousProps)
+    private fun onNextProps(new: PROPS, old: PROPS) {
+        lifecycle.onNextProps.notify(new = new, old = old)
     }
 
     /**
