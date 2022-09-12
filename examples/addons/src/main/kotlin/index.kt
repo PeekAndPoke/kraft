@@ -19,5 +19,5 @@ fun main() {
         AddonExamplesApp()
     }
 
-    router.resolveCurrentRoute()
+    router.navigateToWindowUri()
 }

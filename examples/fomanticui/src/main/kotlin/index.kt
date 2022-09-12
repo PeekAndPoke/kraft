@@ -23,5 +23,5 @@ fun main() {
         App()
     }
 
-    router.resolveCurrentRoute()
+    router.navigateToWindowUri()
 }

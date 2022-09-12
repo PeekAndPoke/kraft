@@ -58,7 +58,7 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
         if (window.location.hash != uri) {
             window.location.hash = uri
         } else {
-            resolveCurrentRoute()
+            navigateToWindowUri()
         }
     }
 
@@ -92,7 +92,7 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
             // Remove the last from the history
             _historyEntries.removeLast()
             // Resolve the next route
-            resolveCurrentRoute()
+            navigateToWindowUri()
         }
     }
 
@@ -135,22 +135,17 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
     }
 
     /**
+     * Navigates to the current uri of the browser
+     *
      * Tries to resolve the next [ActiveRoute] by looking at the browser current location.
      *
      * If a route is resolved then the [current] stream will be updated.
      */
-    fun resolveCurrentRoute() {
+    fun navigateToWindowUri() {
         // get the location from the browser
         val uri = window.location.hash.removePrefix(prefix)
 
-        // Go through all routes and try to find the first one that matches the current location
-        val resolved = mountedRoutes.asSequence()
-            // Find matches
-            .map { mounted -> mounted.route.match(uri)?.let { mounted to it } }
-            // Skip all that did not match
-            .filterNotNull()
-            // Get the first match, if there is any
-            .firstOrNull()
+        val resolved = resolveRouteForUri(uri)
 
         if (resolved == null) {
             console.error("Could not resolve route: $uri")
@@ -168,6 +163,7 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
                     // Notify all subscribers that the active route has changed
                     _current(ActiveRoute(uri, match, mounted))
                 }
+
                 else -> {
                     // Yes so let's go to the redirect
                     navToUri(redirect)
@@ -177,13 +173,37 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
     }
 
     /**
+     * Tries to resolve the next [ActiveRoute] by looking at the browser current location.
+     *
+     * If a route is resolved then the [current] stream will be updated.
+     */
+    fun resolveRouteForUri(uri: String): Pair<MountedRoute, Route.Match>? {
+
+        // Go through all routes and try to find the first one that matches the current location
+        return mountedRoutes.asSequence()
+            // Find matches
+            .map { mounted -> mounted.route.match(uri)?.let { mounted to it } }
+            // Skip all that did not match
+            .filterNotNull()
+            // Get the first match, if there is any
+            .firstOrNull()
+    }
+
+    /**
+     * Checks if there is a route for the given uri.
+     */
+    fun hasRouteForUri(uri: String): Boolean {
+        return resolveRouteForUri(uri) != null
+    }
+
+    /**
      * Private listener for the "hashchange" event
      */
     private fun windowListener(event: Event) {
         if (enabled) {
             event.preventDefault()
 
-            resolveCurrentRoute()
+            navigateToWindowUri()
         }
     }
 }
