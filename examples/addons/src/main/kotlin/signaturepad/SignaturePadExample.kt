@@ -6,6 +6,7 @@ import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.model.FileBase64
 import kotlinx.css.*
 import kotlinx.css.properties.border
 import kotlinx.html.Tag
@@ -21,12 +22,12 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private var dataPng: String? by value(null)
-    private var dataPngTrimmed: String? by value(null)
-    private var dataSvg: String? by value(null)
-    private var dataSvgTrimmed: String? by value(null)
-    private var dataJpg: String? by value(null)
-    private var dataJpgTrimmed: String? by value(null)
+    private var dataPng: FileBase64? by value(null)
+    private var dataPngTrimmed: FileBase64? by value(null)
+    private var dataSvg: FileBase64? by value(null)
+    private var dataSvgTrimmed: FileBase64? by value(null)
+    private var dataJpg: FileBase64? by value(null)
+    private var dataJpgTrimmed: FileBase64? by value(null)
 
     private val sigPadRef = ComponentRef.Tracker<SignaturePad>()
 
@@ -62,14 +63,17 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
                 }
 
                 SignaturePad {
-                    dataPng = it.getPng()
-                    dataPngTrimmed = it.getPngTrimmed()
+                    it.export {
+                        dataPng = toPng()
+                        dataSvg = toSvg()
+                        dataJpg = toJpg(0.5)
+                    }
 
-                    dataSvg = it.getSvg()
-                    dataSvgTrimmed = it.getSvgTrimmed()
-
-                    dataJpg = it.getJpg(0.5)
-                    dataJpgTrimmed = it.getJpgTrimmed(0.5)
+                    it.trimmed {
+                        dataPngTrimmed = toPng()
+                        dataSvgTrimmed = toSvg()
+                        dataJpgTrimmed = toJpg(0.5)
+                    }
                 }.track(sigPadRef)
             }
 
@@ -107,14 +111,16 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
 
                         ui.header { +name }
 
-                        ui.fitted.image {
+                        data?.let {
+                            ui.sub.header { +"${data.mimeType}" }
 
-                            css {
-                                border(width = 1.px, style = BorderStyle.dotted, color = Color.gray)
-                            }
+                            ui.fitted.image {
 
-                            data?.let {
-                                img { src = data }
+                                css {
+                                    border(width = 1.px, style = BorderStyle.dotted, color = Color.gray)
+                                }
+
+                                img { src = data.asDataUrl() }
                             }
                         }
                     }

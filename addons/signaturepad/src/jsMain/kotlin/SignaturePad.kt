@@ -8,6 +8,7 @@ import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.utils.jsObject
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.model.FileBase64
 import kotlinx.browser.window
 import kotlinx.css.height
 import kotlinx.css.pct
@@ -41,9 +42,45 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
         val onChange: (SignaturePad) -> Unit
     )
 
+    class Export(canvas: Lazy<HTMLCanvasElement?>) {
+        val canvas by canvas
+
+        /**
+         * Brings the [Export] into scope.
+         */
+        operator fun invoke(block: Export.() -> Unit) {
+            this.block()
+        }
+
+        /**
+         * Exports the content as a [FileBase64].
+         */
+        fun toDataUrl(mimeType: String, quality: Any? = null): FileBase64? {
+            return canvas?.toDataURL(mimeType, quality)?.let { FileBase64.fromDataUrl(it) }
+        }
+
+        /**
+         * Exports the content as PNG as a [FileBase64].
+         */
+        fun toPng(): FileBase64? = toDataUrl("image/png")
+
+        /**
+         * Exports the content as SVG as a [FileBase64].
+         */
+        fun toSvg(): FileBase64? = toDataUrl("image/svg+xml")
+
+        /**
+         * Exports the content as JPG as a [FileBase64].
+         */
+        fun toJpg(quality: Double = 0.9): FileBase64? = toDataUrl("image/jpeg", quality)
+    }
+
     private var pad: signature_pad.SignaturePad? = null
 
     //  Public interface  ///////////////////////////////////////////////////////////////////////////////////////
+
+    val export get() = Export(lazy { getCanvas() })
+    val trimmed get() = Export(lazy { getCanvasTrimmed() })
 
     fun clear() {
         pad?.clear()
@@ -57,18 +94,6 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
     fun isNotEmpty(): Boolean {
         return !isEmpty()
     }
-
-    fun getPng(): String? = getCanvas()?.toDataURL("image/png")
-
-    fun getPngTrimmed(): String? = getCanvasTrimmed()?.toDataURL("image/png")
-
-    fun getSvg(): String? = getCanvas()?.toDataURL("image/svg+xml")
-
-    fun getSvgTrimmed(): String? = getCanvasTrimmed()?.toDataURL("image/svg+xml")
-
-    fun getJpg(quality: Double = 0.9): String? = getCanvas()?.toDataURL("image/jpeg", quality)
-
-    fun getJpgTrimmed(quality: Double = 0.9): String? = getCanvasTrimmed()?.toDataURL("image/jpeg", quality)
 
     // Life-Cycle /////////////////////////////////////////////////////////////////////////////////////////
 

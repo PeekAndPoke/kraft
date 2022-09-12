@@ -74,6 +74,14 @@ class DataLoader<T>(
         return (currentState as? State.Loaded<T>)?.data
     }
 
+    fun setLoaded(data: T) {
+        setState(State.Loaded(data))
+    }
+
+    fun setState(state: State<T>) {
+        stateStream(state)
+    }
+
     fun reload() {
         launch {
             options.load()
