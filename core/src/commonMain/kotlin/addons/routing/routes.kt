@@ -1,7 +1,7 @@
 package de.peekandpoke.kraft.addons.routing
 
-import de.peekandpoke.kraft.utils.decodeURIComponent
-import de.peekandpoke.kraft.utils.encodeURIComponent
+import de.peekandpoke.ultra.common.decodeUriComponent
+import de.peekandpoke.ultra.common.encodeUriComponent
 
 /**
  * Common Route representation
@@ -65,7 +65,7 @@ interface Route {
      * Internal helper for building uris
      */
     fun String.replacePlaceholder(placeholder: String, value: String) =
-        replace("{$placeholder}", encodeURIComponent(value))
+        replace("{$placeholder}", value.encodeUriComponent())
 
     /**
      * Builds a uri with the given [routeParams]
@@ -130,7 +130,7 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
 //        console.log(match.groupValues)
 
         val routeParams = placeholders
-            .zip(match.groupValues.drop(1).map(::decodeURIComponent))
+            .zip(match.groupValues.drop(1).map { it.decodeUriComponent() })
             .toMap()
 
         val queryParams = when (query.isEmpty()) {
@@ -140,7 +140,7 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
                     -1 -> Pair(it, "")
                     else -> Pair(
                         it.substring(0, equalsIdx),
-                        decodeURIComponent(it.substring(equalsIdx + 1)),
+                        it.substring(equalsIdx + 1).decodeUriComponent(),
                     )
                 }
             }
@@ -169,11 +169,10 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
         return when (queryParams.isEmpty()) {
             true -> withoutQuery
             else -> "$withoutQuery?" + queryParams
-                .map { "${it.key}=${encodeURIComponent(it.value)}" }.joinToString("&")
+                .map { "${it.key}=${it.value.encodeUriComponent()}" }.joinToString("&")
         }
     }
 }
-
 
 /**
  * A static route is a route that does not have any route parameters

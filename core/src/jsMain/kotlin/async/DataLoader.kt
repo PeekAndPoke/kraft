@@ -79,7 +79,7 @@ class DataLoader<T>(
     }
 
     fun setState(state: State<T>) {
-        stateStream(state)
+        currentState = state
     }
 
     fun reload() {
