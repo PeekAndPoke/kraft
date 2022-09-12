@@ -141,24 +141,24 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
      */
     fun resolveCurrentRoute() {
         // get the location from the browser
-        val location = window.location.hash.removePrefix(prefix)
+        val uri = window.location.hash.removePrefix(prefix)
 
         // Go through all routes and try to find the first one that matches the current location
         val resolved = mountedRoutes.asSequence()
             // Find matches
-            .map { mounted -> mounted.route.match(location)?.let { mounted to it } }
+            .map { mounted -> mounted.route.match(uri)?.let { mounted to it } }
             // Skip all that did not match
             .filterNotNull()
             // Get the first match, if there is any
             .firstOrNull()
 
         if (resolved == null) {
-            console.error("Could not resolve route: $location")
+            console.error("Could not resolve route: $uri")
         }
 
         resolved?.let { (mounted, match) ->
             // Create a context for the router middlewares
-            val ctx = RouterMiddlewareContext(this, match.route)
+            val ctx = RouterMiddlewareContext(this, uri, match)
             // Call all the middlewares
             mounted.middlewares.forEach { it(ctx) }
 
@@ -166,7 +166,7 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
             when (val redirect = ctx.redirectToUri) {
                 null -> {
                     // Notify all subscribers that the active route has changed
-                    _current(ActiveRoute(location, match, mounted))
+                    _current(ActiveRoute(uri, match, mounted))
                 }
                 else -> {
                     // Yes so let's go to the redirect

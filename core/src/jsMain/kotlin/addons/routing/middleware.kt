@@ -15,7 +15,8 @@ fun routerMiddleware(func: RouterMiddleware): RouterMiddleware = func
  */
 class RouterMiddlewareContext(
     val router: Router,
-    val route: Route,
+    val uri: String,
+    val match: Route.Match,
 ) {
     var redirectToUri: String? = null
         private set

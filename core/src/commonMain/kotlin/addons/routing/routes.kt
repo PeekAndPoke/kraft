@@ -12,6 +12,7 @@ interface Route {
      * Represents a route match
      */
     data class Match(
+        /** The route that was matched */
         val route: Route,
         /** Route params extract from url placeholder */
         val routeParams: Map<String, String>,
