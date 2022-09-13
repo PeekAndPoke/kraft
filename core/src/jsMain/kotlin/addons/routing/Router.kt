@@ -66,9 +66,11 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
      * Navigates to the [route] by filling in the given [routeParams] and [queryParams].
      */
     fun navToUri(route: Route, routeParams: Map<String, String>, queryParams: Map<String, String>) {
-        navToUri(
-            route.buildUri(routeParams = routeParams, queryParams = queryParams)
-        )
+        (route as? Route.Renderable)?.let {
+            navToUri(
+                it.buildUri(routeParams = routeParams, queryParams = queryParams)
+            )
+        }
     }
 
     /**
@@ -100,9 +102,11 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
      * Replaces the current uri without changing the browser history.
      */
     fun replaceUri(route: Route, routeParams: Map<String, String>, queryParams: Map<String, String>) {
-        replaceUri(
-            route.buildUri(routeParams = routeParams, queryParams = queryParams)
-        )
+        (route as? Route.Renderable)?.let {
+            replaceUri(
+                it.buildUri(routeParams = routeParams, queryParams = queryParams)
+            )
+        }
     }
 
     /**

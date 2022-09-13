@@ -41,4 +41,6 @@ fun RouterBuilder.mount(routes: Routes) {
 
     mount(routes.prismjs) { PrismJsExample() }
     mount(routes.signaturePad) { SignaturePadExample() }
+
+    catchAll { NotFoundPage() }
 }

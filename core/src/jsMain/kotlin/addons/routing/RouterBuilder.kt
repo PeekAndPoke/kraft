@@ -43,7 +43,7 @@ class RouterBuilder {
     /**
      * Uses one or multiple [RouterMiddleware]s.
      *
-     * All routes the are mounted inside of the [scope] will be using the given [wares].
+     * All routes that are mounted inside the [scope] will be using the given [wares].
      *
      * The [using] function can be nested
      */
@@ -54,5 +54,14 @@ class RouterBuilder {
         scope()
         // remove all middlewares from the scope
         repeat(wares.size) { middlewares.removeLast() }
+    }
+
+    /**
+     * Mounts a fallback route that matches any pattern.
+     */
+    fun catchAll(view: FlowContent.(Route.Match) -> Unit) {
+        mounted.add(
+            MountedRoute(Pattern.CatchAll, middlewares.toList(), view)
+        )
     }
 }

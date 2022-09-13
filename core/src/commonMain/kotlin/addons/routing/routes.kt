@@ -8,6 +8,18 @@ import de.peekandpoke.ultra.common.encodeUriComponent
  */
 interface Route {
 
+    interface Renderable {
+        /**
+         * Builds a uri with the given [routeParams]
+         */
+        fun buildUri(vararg routeParams: String): String
+
+        /**
+         * Builds a uri with the given [routeParams] and [queryParams]
+         */
+        fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String>): String
+    }
+
     /**
      * Represents a route match
      */
@@ -62,27 +74,27 @@ interface Route {
      */
     fun match(uri: String): Match?
 
-    /**
-     * Internal helper for building uris
-     */
-    fun String.replacePlaceholder(placeholder: String, value: String) =
-        replace("{$placeholder}", value.encodeUriComponent())
-
-    /**
-     * Builds a uri with the given [routeParams]
-     */
-    fun buildUri(vararg routeParams: String): String
-
-    /**
-     * Builds a uri with the given [routeParams] and [queryParams]
-     */
-    fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String>): String
+//    /**
+//     * Internal helper for building uris
+//     */
+//    fun String.replacePlaceholder(placeholder: String, value: String) =
+//        replace("{$placeholder}", value.encodeUriComponent())
+//
+//    /**
+//     * Builds a uri with the given [routeParams]
+//     */
+//    fun buildUri(vararg routeParams: String): String
+//
+//    /**
+//     * Builds a uri with the given [routeParams] and [queryParams]
+//     */
+//    fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String>): String
 }
 
 /**
  * A parameterized route with one route parameter
  */
-abstract class RouteBase(final override val pattern: String, numParams: Int) : Route {
+abstract class RouteBase(final override val pattern: String, numParams: Int) : Route, Route.Renderable {
 
     companion object {
         @Suppress("RegExpRedundantEscape")
@@ -105,7 +117,6 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
         placeholders.fold(pattern) { acc, placeholder ->
             acc.replace("{$placeholder}", extractRegexPattern)
         }.replace("/", "\\/").toRegex()
-
 
     init {
         // Sanity check
@@ -173,6 +184,12 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
                 .map { "${it.key}=${it.value.encodeUriComponent()}" }.joinToString("&")
         }
     }
+
+    /**
+     * Internal helper for building uris
+     */
+    private fun String.replacePlaceholder(placeholder: String, value: String) =
+        replace("{$placeholder}", value.encodeUriComponent())
 }
 
 /**
@@ -180,6 +197,29 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
  */
 open class Static(pattern: String) : RouteBase(pattern, 0) {
     operator fun invoke() = buildUri()
+}
+
+/**
+ * A route that matches a regex, f.e. used as a fallback route.
+ */
+open class Pattern(private val regex: Regex) : Route {
+
+    companion object {
+        val CatchAll = Pattern(".*".toRegex())
+    }
+
+    override val pattern: String
+        get() = regex.pattern
+
+    override fun match(uri: String): Route.Match? {
+        return regex.matchEntire(uri)?.let { result ->
+            Route.Match(
+                route = this,
+                routeParams = emptyMap(),
+                queryParams = emptyMap(),
+            )
+        }
+    }
 }
 
 /**
