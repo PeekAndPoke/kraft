@@ -38,7 +38,7 @@ object Deps {
     const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.369"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.383"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
@@ -57,7 +57,7 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.369"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.383"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -95,7 +95,7 @@ object Deps {
         // https://www.npmjs.com/package/prismjs
         fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
 
-        // https://www.npmjs.com/package/sourcemapped-stacktrace
+        // https://www.npmjs.com/package/signature_pad
         fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.0.7")
 
         // https://www.npmjs.com/package/sourcemapped-stacktrace
@@ -118,7 +118,6 @@ object Deps {
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
-
         const val kotest_plugin_version = "5.4.2"
         const val kotest_version = "5.4.2"
 
