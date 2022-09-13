@@ -10,6 +10,8 @@ val routes = Routes()
 
 val router: Router = router {
     mount(routes)
+
+    catchAll { NotFoundPage() }
 }
 
 fun main() {

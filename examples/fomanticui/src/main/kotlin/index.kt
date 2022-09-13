@@ -3,6 +3,7 @@ package de.peekandpoke.kraft.examples.fomanticui
 import de.peekandpoke.kraft.Kraft
 import de.peekandpoke.kraft.addons.routing.Router
 import de.peekandpoke.kraft.addons.routing.router
+import de.peekandpoke.kraft.examples.fomanticui.pages.NotFoundPage
 import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
 import kotlinx.browser.document
 import org.w3c.dom.HTMLElement
@@ -14,7 +15,11 @@ val kraft = Kraft.initialize()
 val routes = Routes()
 
 /** Create the router */
-val router: Router = router { mount(routes) }
+val router: Router = router {
+    mount(routes)
+
+    catchAll { NotFoundPage() }
+}
 
 fun main() {
     val mountPoint = document.getElementById("spa") as HTMLElement

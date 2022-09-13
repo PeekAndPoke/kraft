@@ -2,7 +2,6 @@ package de.peekandpoke.kraft.examples.fomanticui
 
 import de.peekandpoke.kraft.addons.routing.RouterBuilder
 import de.peekandpoke.kraft.addons.routing.Static
-import de.peekandpoke.kraft.examples.fomanticui.pages.NotFoundPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.collections.breadcrumb.BreadcrumbPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.collections.form.FormPage
 import de.peekandpoke.kraft.examples.fomanticui.pages.collections.grid.GridPage
@@ -133,6 +132,4 @@ fun RouterBuilder.mount(routes: Routes) {
     mount(routes.viewsFeed) { FeedPage() }
     mount(routes.viewsItem) { ItemPage() }
     mount(routes.viewsStatistic) { StatisticPage() }
-
-    catchAll { NotFoundPage() }
 }
