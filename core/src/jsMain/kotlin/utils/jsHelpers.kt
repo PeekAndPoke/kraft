@@ -11,7 +11,6 @@ fun jsObject(): dynamic = js("({})")
 fun jsArray(): dynamic = js("([])")
 
 fun <T> jsObject(block: T.() -> Unit): T {
-    @Suppress("UNCHECKED_CAST")
     val obj = jsObject() as T
     block(obj)
     return obj
@@ -53,7 +52,6 @@ fun jsToKotlin(it: dynamic): Any? {
         return jsObjectToMap(it)
     }
 
-    @Suppress("UnsafeCastFromDynamic")
     return it
 }
 

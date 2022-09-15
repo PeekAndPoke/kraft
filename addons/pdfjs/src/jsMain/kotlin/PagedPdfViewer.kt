@@ -2,12 +2,12 @@ package de.peekandpoke.kraft.addons.pdfjs
 
 import de.peekandpoke.kraft.addons.pdfjs.js.PdfjsLib
 import de.peekandpoke.kraft.addons.styling.css
-import de.peekandpoke.kraft.async.DataLoader
-import de.peekandpoke.kraft.async.dataLoader
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.utils.DataLoader
 import de.peekandpoke.kraft.utils.SimpleAsyncQueue
+import de.peekandpoke.kraft.utils.dataLoader
 import de.peekandpoke.kraft.utils.jsObject
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.window

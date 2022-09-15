@@ -12,15 +12,15 @@ sealed class PdfSource {
     data class Data(val data: Uint8Array) : PdfSource()
 }
 
-fun PdfSource.load(): Flow<PdfjsLib.PDFDocumentProxy> {
+suspend fun PdfSource.load(): Flow<PdfjsLib.PDFDocumentProxy> {
     return when (val src = this) {
-        is PdfSource.Url -> PdfJs.getDocument(src.url)
+        is PdfSource.Url -> PdfJs.instance().getDocument(src.url)
 
-        is PdfSource.Base64 -> PdfJs.getDocument(jsObject<PdfjsLib.GetDocumentParameters> {
+        is PdfSource.Base64 -> PdfJs.instance().getDocument(jsObject<PdfjsLib.GetDocumentParameters> {
             this.data = atob(src.data)
         })
 
-        is PdfSource.Data -> PdfJs.getDocument(jsObject<PdfjsLib.GetDocumentParameters> {
+        is PdfSource.Data -> PdfJs.instance().getDocument(jsObject<PdfjsLib.GetDocumentParameters> {
             this.data = src.data
         })
     }

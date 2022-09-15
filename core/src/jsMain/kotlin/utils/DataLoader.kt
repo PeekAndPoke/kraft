@@ -1,14 +1,13 @@
-package de.peekandpoke.kraft.async
+package de.peekandpoke.kraft.utils
 
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
-import de.peekandpoke.kraft.utils.launch
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.html.FlowContent
 
-fun <T, C> Component<C>.dataLoader(load: () -> Flow<T>): DataLoader<T> = DataLoader(
+fun <T, C> Component<C>.dataLoader(load: suspend () -> Flow<T>): DataLoader<T> = DataLoader(
     component = this,
     options = DataLoader.Options(
         load = load,
@@ -20,7 +19,7 @@ class DataLoader<T>(
     val options: Options<T>,
 ) {
     data class Options<T>(
-        val load: () -> Flow<T>,
+        val load: suspend () -> Flow<T>,
     )
 
     class Render<T> {
