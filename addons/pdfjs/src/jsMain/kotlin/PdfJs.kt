@@ -7,7 +7,7 @@ import kotlinx.coroutines.await
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class PdfJs private constructor(val lib: PdfjsLib) {
+class PdfJs private constructor(private val lib: PdfjsLib) {
 
     companion object {
         private var instance: PdfJs? = null

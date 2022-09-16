@@ -27,6 +27,20 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
         ui.four.doubling.link.cards {
 
             noui.card A {
+                href = routes.avatars.index()
+
+                noui.center.aligned.content {
+                    renderLogo(
+                        src = "https://raw.githubusercontent.com/laurentpayot/minidenticons/HEAD/alienHead66.svg",
+                        alt = "Avatars",
+                    )
+                }
+                noui.center.aligned.content {
+                    +"Avatars"
+                }
+            }
+
+            noui.card A {
                 href = routes.browserDetect()
 
                 noui.center.aligned.content {

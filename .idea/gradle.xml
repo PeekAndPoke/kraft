@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/addons" />
+            <option value="$PROJECT_DIR$/addons/avatars" />
             <option value="$PROJECT_DIR$/addons/browserdetect" />
             <option value="$PROJECT_DIR$/addons/chartjs" />
             <option value="$PROJECT_DIR$/addons/konva" />

@@ -80,6 +80,9 @@ object Deps {
         // https://www.npmjs.com/package/konva
         fun KotlinDependencyHandler.konva() = npm("konva", "8.3.12")
 
+        // https://www.npmjs.com/package/minidenticons
+        fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "1.0.3")
+
         // https://www.npmjs.com/package/marked
         fun KotlinDependencyHandler.marked() = npm("marked", "4.1.0")
 

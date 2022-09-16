@@ -118,7 +118,7 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
     }
 
     private fun TEXTAREA.applyName() {
-        options.placeholder()?.let { name = it }
+        options.name()?.let { name = it }
     }
 
     private fun TEXTAREA.applyPlaceholder() {

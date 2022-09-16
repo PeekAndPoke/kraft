@@ -22,6 +22,7 @@ dependencies {
     // project deps
     api(project(":core"))
     // addons
+    api(project(":addons:avatars"))
     api(project(":addons:browserdetect"))
     api(project(":addons:chartjs"))
     api(project(":addons:konva"))

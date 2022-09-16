@@ -95,7 +95,7 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
     }
 
     private fun INPUT.applyName() {
-        options.placeholder()?.let { name = it }
+        options.name()?.let { name = it }
     }
 }
 

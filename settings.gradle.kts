@@ -6,6 +6,7 @@ include(
     ":semanticui",
 
     // Addons
+    ":addons:avatars",
     ":addons:browserdetect",
     ":addons:chartjs",
     ":addons:konva",

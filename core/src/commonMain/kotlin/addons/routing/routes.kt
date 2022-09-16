@@ -212,7 +212,7 @@ open class Pattern(private val regex: Regex) : Route {
         get() = regex.pattern
 
     override fun match(uri: String): Route.Match? {
-        return regex.matchEntire(uri)?.let { result ->
+        return regex.matchEntire(uri)?.let {
             Route.Match(
                 route = this,
                 routeParams = emptyMap(),
