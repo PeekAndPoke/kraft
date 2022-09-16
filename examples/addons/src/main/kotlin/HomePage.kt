@@ -24,6 +24,14 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        renderAddonCards()
+
+        ui.divider()
+
+        renderCoreCards()
+    }
+
+    private fun FlowContent.renderAddonCards() {
         ui.four.doubling.link.cards {
 
             noui.card A {
@@ -149,6 +157,18 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
                 }
                 noui.center.aligned.content {
                     +"Signature Pad"
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.renderCoreCards() {
+        ui.four.doubling.cards {
+            noui.card A {
+                href = routes.core.scriptLoader()
+
+                noui.center.aligned.content {
+                    +"Script Loader"
                 }
             }
         }

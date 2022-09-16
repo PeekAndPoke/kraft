@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.utils
 
+import de.peekandpoke.kraft.streams.StreamSource
 import kotlinx.browser.document
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.asDeferred
@@ -9,46 +10,88 @@ import kotlin.js.Promise
 
 object ScriptLoader {
 
-    enum class State {
-        Loading,
-        Loaded,
-        Error,
-    }
-
     data class Javascript(
         val src: String,
-        val integrity: String?,
+        val integrity: String? = null,
         val crossOrigin: String? = "anonymous",
         val referrerPolicy: String? = "no-referrer",
     )
 
-    private val javascripts = mutableMapOf<Javascript, Deferred<HTMLScriptElement>>()
+    class Error(message: String, val details: Any? = null) : Throwable(message = message)
 
-    fun load(script: Javascript): Deferred<HTMLScriptElement> {
-        return javascripts.getOrPut(script) {
-            mountScriptTag(script)
-        }
+    private val jsMap = mutableMapOf<Javascript, Pair<HTMLScriptElement, Deferred<HTMLScriptElement>>>()
+
+    private val jsSource = StreamSource<Set<Javascript>>(emptySet())
+
+    val javascripts = jsSource.readonly
+
+    fun hasLoaded(script: Javascript): Boolean {
+        return jsMap.containsKey(script)
     }
 
-    private fun mountScriptTag(script: Javascript): Deferred<HTMLScriptElement> {
+    fun loadJavascriptAsync(src: String): Deferred<HTMLScriptElement> {
+        return loadAsync(
+            Javascript(src = src)
+        )
+    }
 
-        return Promise { accept, reject ->
+    fun loadAsync(script: Javascript): Deferred<HTMLScriptElement> {
+        val (_, deferred) = jsMap.getOrPut(script) {
+            mountAsync(script)
+        }
 
-            val tag = (document.createElement("script") as HTMLScriptElement)
+        jsSource(jsMap.keys)
 
-            tag.src = script.src
-            tag.type = "text/javascript"
-            script.crossOrigin?.let { tag.crossOrigin = it }
-            script.referrerPolicy?.let { tag.asDynamic().referrerPolicy = it }
-            tag.onerror = { e, _, _, _, _ ->
-                reject(e)
-            }
+        return deferred
+    }
+
+    fun unloadJavascript(src: String) {
+        unload(
+            Javascript(src = src)
+        )
+    }
+
+    fun unload(javascript: Javascript) {
+
+        jsMap.remove(javascript)?.let { (tag, _) ->
+            tag.remove()
+        }
+
+        jsSource(jsMap.keys)
+    }
+
+    private fun mountAsync(script: Javascript): Pair<HTMLScriptElement, Deferred<HTMLScriptElement>> {
+
+        val tag = (document.createElement("script") as HTMLScriptElement)
+
+        tag.src = script.src
+        tag.type = "text/javascript"
+        script.crossOrigin?.let { tag.crossOrigin = it }
+        script.referrerPolicy?.let { tag.asDynamic().referrerPolicy = it }
+
+        val promise = Promise { accept, reject ->
+
             tag.onload = { _ ->
                 accept(tag)
             }
 
-            document.getElementsByTagName("head")[0]?.appendChild(tag)
+            tag.onerror = { event, url, line, col, errorObj ->
+                val details = mapOf(
+                    "event" to event,
+                    "url" to url,
+                    "line" to line,
+                    "col" to col,
+                    "errorObj" to errorObj,
+                )
 
+                unload(script)
+
+                reject(Error("Error loading script ${script.src}", details.js))
+            }
+
+            document.getElementsByTagName("head")[0]?.appendChild(tag)
         }.asDeferred()
+
+        return tag to promise
     }
 }

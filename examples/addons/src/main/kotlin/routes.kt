@@ -6,6 +6,8 @@ import de.peekandpoke.kraft.examples.jsaddons.avatars.AvatarsRoutes
 import de.peekandpoke.kraft.examples.jsaddons.avatars.mount
 import de.peekandpoke.kraft.examples.jsaddons.browserdetect.BrowserDetectExample
 import de.peekandpoke.kraft.examples.jsaddons.chartjs.ChartJsExample
+import de.peekandpoke.kraft.examples.jsaddons.core.CoreRoutes
+import de.peekandpoke.kraft.examples.jsaddons.core.mount
 import de.peekandpoke.kraft.examples.jsaddons.jwtdecode.JwtDecodeExample
 import de.peekandpoke.kraft.examples.jsaddons.konva.KonvaExample
 import de.peekandpoke.kraft.examples.jsaddons.marked.MarkedExample
@@ -28,6 +30,8 @@ class Routes {
     val pdfjs = PdfJsRoutes()
     val prismjs = Static("/example/prism-js")
     val signaturePad = Static("/example/signature-pad")
+
+    val core = CoreRoutes()
 }
 
 fun RouterBuilder.mount(routes: Routes) {
@@ -46,4 +50,6 @@ fun RouterBuilder.mount(routes: Routes) {
 
     mount(routes.prismjs) { PrismJsExample() }
     mount(routes.signaturePad) { SignaturePadExample() }
+
+    mount(routes.core)
 }

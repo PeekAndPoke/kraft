@@ -18,7 +18,7 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
 
             instance?.let { return it }
 
-            ScriptLoader.load(librarySource.src).await()
+            ScriptLoader.loadAsync(librarySource.src).await()
 
             val winDyn = window.asDynamic()
 

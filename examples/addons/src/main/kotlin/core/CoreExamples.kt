@@ -1,37 +1,32 @@
-package de.peekandpoke.kraft.examples.jsaddons
+package de.peekandpoke.kraft.examples.jsaddons.core
 
-import de.peekandpoke.kraft.addons.routing.RouterComponent
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.examples.jsaddons.routes
+import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.AddonExamplesApp() = comp {
-    AddonExamplesApp(it)
+fun Tag.CoreExamples() = comp {
+    CoreExamples(it)
 }
 
-class AddonExamplesApp(ctx: NoProps) : PureComponent(ctx) {
+class CoreExamples(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    @Suppress("unused")
-    private val activeRoute by subscribingTo(router.current)
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        ui.header H2 { +"KRAFT Core examples" }
 
-        ui.container {
-
-            ui.basic.segment {
-                ui.header H1 { +"KRAFT Usage Examples" }
-            }
-
-            ui.basic.segment {
-                RouterComponent(router = router)
+        ui.cards {
+            noui.card A {
+                href = routes.core.scriptLoader()
+                +"Script Loader"
             }
         }
     }
