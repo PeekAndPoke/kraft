@@ -78,6 +78,11 @@ class FormDemosPage(ctx: NoProps) : PureComponent(ctx) {
                 ui.header H2 { +"A form with Times" }
                 FormWithTimes()
             }
+
+            ui.segment {
+                ui.header H2 { +"A form with Colors" }
+                FormWithColors()
+            }
         }
     }
 }

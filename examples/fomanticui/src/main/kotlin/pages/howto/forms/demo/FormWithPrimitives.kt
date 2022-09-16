@@ -49,19 +49,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
 
     override fun VDom.render() {
 
-
         ui.two.column.grid {
-            ui.row {
-                ui.column {
-                    ui.basic.button {
-                        onClick {
-                            draft = state
-                            formCtrl.resetAllFields()
-                        }
-                        +"Reset form"
-                    }
-                }
-            }
             ui.column {
                 ui.form {
                     ui.two.fields {
@@ -127,14 +115,21 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
 
                 val canSubmit = formCtrl.isValid && draft != state
 
-                ui.button.given(!canSubmit) { disabled }.then {
-                    +"Submit"
-
+                ui.blue.button.given(!canSubmit) { disabled }.then {
                     onClick {
                         if (formCtrl.validate() && canSubmit) {
                             state = draft
                         }
                     }
+                    +"Submit"
+                }
+
+                ui.basic.button {
+                    onClick {
+                        draft = state
+                        formCtrl.resetAllFields()
+                    }
+                    +"Reset form"
                 }
             }
 

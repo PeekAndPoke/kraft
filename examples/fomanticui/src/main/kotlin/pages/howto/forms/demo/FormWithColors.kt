@@ -8,8 +8,7 @@
 package de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo
 
 import de.peekandpoke.kraft.addons.forms.formController
-import de.peekandpoke.kraft.addons.semanticui.forms.UiDateField
-import de.peekandpoke.kraft.addons.semanticui.forms.UiTimeField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiInputField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -18,23 +17,20 @@ import de.peekandpoke.kraft.examples.fomanticui.helpers.invoke
 import de.peekandpoke.kraft.examples.fomanticui.helpers.renderStateAndDraftTable
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import de.peekandpoke.ultra.common.datetime.Kronos
-import de.peekandpoke.ultra.common.datetime.MpLocalDateTime
-import de.peekandpoke.ultra.common.datetime.MpLocalTime
 import kotlinx.html.*
 
 @Suppress("FunctionName")
-fun Tag.FormWithTimes() = comp {
-    FormWithTimes(it)
+fun Tag.FormWithColors() = comp {
+    FormWithColors(it)
 }
 
-class FormWithTimes(ctx: NoProps) : PureComponent(ctx) {
+class FormWithColors(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
     data class State(
-        val time: MpLocalTime = Kronos.systemUtc.localDateTimeNow().toTime(),
-        val datetime: MpLocalDateTime = Kronos.systemUtc.localDateTimeNow(),
+        val color: String = "#000000",
+        val nullableColor: String? = null,
     )
 
     private var state by value(State())
@@ -42,8 +38,8 @@ class FormWithTimes(ctx: NoProps) : PureComponent(ctx) {
 
     private fun <P> modify(block: State.(P) -> State): (P) -> Unit = { draft = draft.block(it) }
 
-    private val modifyTime = modify<MpLocalTime> { copy(time = it) }
-    private val modifyDateTime = modify<MpLocalDateTime> { copy(datetime = it) }
+    private val modifyColor = modify<String> { copy(color = it) }
+    private val modifyNullableColor = modify<String?> { copy(nullableColor = it) }
 
     private val formCtrl = formController()
 
@@ -55,27 +51,15 @@ class FormWithTimes(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.three.fields {
-                        UiTimeField(draft.time, modifyTime) {
-                            label { +State::time.name }
+                        UiInputField(draft.color, modifyColor) {
+                            label { +State::color.name }
+                            type(InputType.color)
                         }
 
-                        UiDateField(
-                            value = draft.datetime.toDate(),
-                            onChange = { modifyDateTime(it.atTime(draft.datetime.toTime())) }
-                        ) {
-                            label { +"${State::datetime.name} - date" }
+                        UiInputField.nullable(draft.nullableColor, modifyNullableColor) {
+                            label { +State::nullableColor.name }
+                            type(InputType.color)
                         }
-
-                        UiTimeField(
-                            value = draft.datetime.toTime(),
-                            onChange = { modifyDateTime(draft.datetime.toDate().atTime(it)) }
-                        ) {
-                            label { +"${State::datetime.name} - time" }
-                        }
-
-//                        UiDateField(state.zonedDateTime, modifyZonedDateTime) {
-//                            label { +State::zonedDateTime.name }
-//                        }
                     }
                 }
 
@@ -106,8 +90,8 @@ class FormWithTimes(ctx: NoProps) : PureComponent(ctx) {
                     state,
                     draft,
                     listOf(
-                        State::time { it.toIsoString() },
-                        State::datetime { it.toIsoString() },
+                        State::color { it },
+                        State::nullableColor { it },
                     )
                 )
             }

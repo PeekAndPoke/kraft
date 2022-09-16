@@ -72,14 +72,21 @@ class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
 
                 val canSubmit = formCtrl.isValid && draft != state
 
-                ui.button.given(!canSubmit) { disabled }.then {
-                    +"Submit"
-
+                ui.blue.button.given(!canSubmit) { disabled }.then {
                     onClick {
                         if (formCtrl.validate() && canSubmit) {
                             state = draft
                         }
                     }
+                    +"Submit"
+                }
+
+                ui.basic.button {
+                    onClick {
+                        draft = state
+                        formCtrl.resetAllFields()
+                    }
+                    +"Reset form"
                 }
             }
 
