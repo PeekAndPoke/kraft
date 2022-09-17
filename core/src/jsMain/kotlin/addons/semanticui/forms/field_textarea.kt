@@ -12,6 +12,7 @@ import de.peekandpoke.kraft.components.onInput
 import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.Overflow
 import kotlinx.css.maxHeight
@@ -61,6 +62,33 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         }
     }
 
+    /**
+     * Returns true when the text area has the focus.
+     */
+    fun hasFocus(): Boolean {
+        val field = (dom?.querySelector("textarea") as? HTMLTextAreaElement)
+            ?: return false
+
+        return document.activeElement === field
+    }
+
+    /**
+     * Replaces the current selection with given [text].
+     *
+     * When no text is selected the [text] will be inserted at the cursor position.
+     */
+    fun replaceSelection(text: String) {
+        val field = (dom?.querySelector("textarea") as? HTMLTextAreaElement)
+            ?: return
+
+        val startPos = field.selectionStart ?: 0
+        val endPos = field.selectionEnd ?: startPos
+
+        setValue(
+            field.value.replaceRange(startPos, endPos, text)
+        )
+    }
+
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
             key = autoDomKey
@@ -107,11 +135,6 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
     fun TEXTAREA.track() {
         onInput {
             val target = it.target as HTMLTextAreaElement
-
-//            if (options.verticalAutoResize() == true) {
-//                target.style.height = "auto"
-//                target.style.height = "${target.scrollHeight + 6}px"
-//            }
 
             setValue(target.value)
         }
