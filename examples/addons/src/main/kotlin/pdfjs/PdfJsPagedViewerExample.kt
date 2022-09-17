@@ -2,8 +2,8 @@ package de.peekandpoke.kraft.examples.jsaddons.pdfjs
 
 import de.peekandpoke.kraft.addons.pdfjs.PagedPdfViewer
 import de.peekandpoke.kraft.addons.pdfjs.PdfSource
-import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui

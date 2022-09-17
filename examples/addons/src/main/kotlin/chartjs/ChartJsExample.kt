@@ -2,10 +2,10 @@ package de.peekandpoke.kraft.examples.jsaddons.chartjs
 
 import de.peekandpoke.kraft.addons.chartjs.ChartJs
 import de.peekandpoke.kraft.addons.chartjs.chartJsData
-import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.streams.addons.map
 import de.peekandpoke.kraft.streams.addons.ticker

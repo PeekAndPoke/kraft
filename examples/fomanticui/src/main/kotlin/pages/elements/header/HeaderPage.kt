@@ -7,12 +7,12 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.elements.header
 
-import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.examples.fomanticui.helpers.*
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui

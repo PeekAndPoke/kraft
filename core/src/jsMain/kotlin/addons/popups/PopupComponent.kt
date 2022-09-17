@@ -1,9 +1,9 @@
 package de.peekandpoke.kraft.addons.popups
 
-import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.utils.Vector2D
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.css.*

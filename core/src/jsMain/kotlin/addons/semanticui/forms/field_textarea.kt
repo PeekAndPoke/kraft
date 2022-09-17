@@ -5,11 +5,11 @@ import de.peekandpoke.kraft.addons.forms.GenericFormField
 import de.peekandpoke.kraft.addons.forms.KraftFormsDsl
 import de.peekandpoke.kraft.addons.forms.TextAreaOptions
 import de.peekandpoke.kraft.addons.semanticui.forms.UiTextAreaComponent.Options
-import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onInput
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.window

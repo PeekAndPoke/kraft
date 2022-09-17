@@ -1,8 +1,8 @@
 package de.peekandpoke.kraft.examples.jsaddons.signaturepad
 
 import de.peekandpoke.kraft.addons.signaturepad.SignaturePad
-import de.peekandpoke.kraft.addons.styling.css
 import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom

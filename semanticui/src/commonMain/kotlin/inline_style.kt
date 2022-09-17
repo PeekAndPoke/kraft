@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.addons.styling
+package de.peekandpoke.kraft.semanticui
 
 import kotlinx.css.CssBuilder
 import kotlinx.html.CommonAttributeGroupFacade
