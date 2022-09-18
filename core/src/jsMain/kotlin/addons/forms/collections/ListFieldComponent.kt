@@ -62,11 +62,17 @@ class ListFieldComponent<T>(ctx: Ctx<Props<T>>) : Component<ListFieldComponent.P
 
             return "item-$idx-${cls::simpleName}-${cls.hashCode()}-$keySuffix"
         }
+
+        fun <V> modifier(block: T.(value: V) -> T): (V) -> Unit = { value ->
+            modify(item.block(value))
+        }
     }
 
     data class AddCtx<T>(
         val add: (T) -> Unit
-    )
+    ) {
+        fun domKey() = "add-item"
+    }
 
     private var reorderCounter by value(0)
 
@@ -82,18 +88,9 @@ class ListFieldComponent<T>(ctx: Ctx<Props<T>>) : Component<ListFieldComponent.P
                     item = item,
                     all = props.items,
                     modify = { new -> onChange(items.modifyAt(idx) { new }) },
-                    swapWith = { other ->
-//                        reorderCounter += 1;
-                        onChange(items.swap(idx, other))
-                    },
-                    remove = {
-//                        reorderCounter += 1;
-                        onChange(items.removeAt(idx))
-                    },
-                    copy = { copied ->
-//                        reorderCounter += 1;
-                        onChange(items.addAt(idx + 1, copied))
-                    },
+                    swapWith = { other -> onChange(items.swap(idx, other)) },
+                    remove = { onChange(items.removeAt(idx)) },
+                    copy = { copied -> onChange(items.addAt(idx + 1, copied)) },
                     keySuffix = "$reorderCounter"
                 )
 
