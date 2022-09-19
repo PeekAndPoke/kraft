@@ -3,7 +3,6 @@ package de.peekandpoke.kraft.addons.forms.validation.strings
 import de.peekandpoke.kraft.addons.forms.validation.GenericRule
 import de.peekandpoke.kraft.addons.forms.validation.KraftFormsRuleDsl
 import de.peekandpoke.kraft.addons.forms.validation.Rule
-import de.peekandpoke.ultra.common.isEmail
 
 @KraftFormsRuleDsl
 fun <T : CharSequence?> empty(message: (T) -> String): Rule<T> = GenericRule(
@@ -44,16 +43,6 @@ fun <T : CharSequence?> notBlank(message: (T) -> String): Rule<T> = GenericRule(
 @KraftFormsRuleDsl
 fun <T : CharSequence?> notBlank(message: String = "Must not be blank"): Rule<T> =
     notBlank { message }
-
-@KraftFormsRuleDsl
-fun <T : CharSequence?> validEmail(message: (T) -> String): Rule<T> = GenericRule(
-    messageFn = message,
-    checkFn = { (it ?: "").isNotBlank() && (it ?: "").toString().isEmail() }
-)
-
-@KraftFormsRuleDsl
-fun <T : CharSequence?> validEmail(message: String = "Must be a valid email"): Rule<T> =
-    validEmail { message }
 
 @KraftFormsRuleDsl
 fun <T : CharSequence?> minLength(length: Int, message: (T) -> String): Rule<T> = GenericRule(
