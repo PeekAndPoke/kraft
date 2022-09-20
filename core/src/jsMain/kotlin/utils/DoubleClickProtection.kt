@@ -3,6 +3,8 @@ package de.peekandpoke.kraft.utils
 import de.peekandpoke.kraft.components.Component
 import kotlinx.coroutines.Deferred
 
+fun <T> Component<T>.doubleClickProtection() = DoubleClickProtection(this)
+
 class DoubleClickProtection(component: Component<*>) {
 
     private var counter: Int by component.value(0)
