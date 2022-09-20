@@ -37,7 +37,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
         val textInput: String = "",
         val intInput: Int = 0,
         val floatInput: Float = 0.0f,
-        val doubleInput: Double = 0.0,
+        val doubleInput: Double = 3.0,
     )
 
     private var state by value(State())
@@ -79,6 +79,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField(draft.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
+                            step(1.5)
                             rightLabel {
                                 ui.blue.label {
                                     icon.dollar_sign()
@@ -92,7 +93,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             )
                         }
 
-                        UiInputField(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
+                        UiInputField(draft.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             step(0.5)

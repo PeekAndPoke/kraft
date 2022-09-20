@@ -184,7 +184,9 @@ abstract class Component<PROPS>(val ctx: Ctx<PROPS>) {
      * @param old The previous props the component had
      */
     private fun onNextProps(new: PROPS, old: PROPS) {
-        lifecycle.onNextProps.notify(new = new, old = old)
+        if (new != old) {
+            lifecycle.onNextProps.notify(new = new, old = old)
+        }
     }
 
     /**

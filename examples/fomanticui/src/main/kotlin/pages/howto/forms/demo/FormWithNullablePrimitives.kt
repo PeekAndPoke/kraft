@@ -69,7 +69,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                     }
 
                     ui.two.fields {
-                        UiInputField.nullable(state.floatInput, { draft = draft.copy(floatInput = it) }) {
+                        UiInputField.nullable(draft.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
 
@@ -79,7 +79,7 @@ class FormWithNullablePrimitives(ctx: NoProps) : PureComponent(ctx) {
                             )
                         }
 
-                        UiInputField.nullable(state.doubleInput, { draft = draft.copy(doubleInput = it) }) {
+                        UiInputField.nullable(draft.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
                             step(0.5)

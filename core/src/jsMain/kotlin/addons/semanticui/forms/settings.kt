@@ -108,7 +108,7 @@ interface SemanticOptions<T> : FieldOptions<T> {
         @JsName("rightLabel")
         @KraftFormsSettingDsl
         fun rightLabel(labelFn: DIV.(UiInputFieldComponent<T, *>) -> Unit) {
-            attributes[wrapFieldWithKey] = semantic { right.labeled.input }
+            wrapFieldWith { right.labeled.input }
 
             @Suppress("UNCHECKED_CAST")
             attributes[afterFieldKey] = labelFn as DIV.(UiInputFieldComponent<*, *>) -> Unit
@@ -117,7 +117,7 @@ interface SemanticOptions<T> : FieldOptions<T> {
         @JsName("leftLabel")
         @KraftFormsSettingDsl
         fun leftLabel(labelFn: DIV.(UiInputFieldComponent<T, *>) -> Unit) {
-            attributes[wrapFieldWithKey] = semantic { left.labeled.input }
+            wrapFieldWith { left.labeled.input }
 
             @Suppress("UNCHECKED_CAST")
             attributes[beforeFieldKey] = labelFn as DIV.(UiInputFieldComponent<*, *>) -> Unit
@@ -125,6 +125,15 @@ interface SemanticOptions<T> : FieldOptions<T> {
 
         @KraftFormsSettingDsl
         fun wrapFieldWith(): (SemanticTag.() -> SemanticTag)? = attributes[wrapFieldWithKey]
+
+        fun wrapFieldWith(wrap: (SemanticTag.() -> SemanticTag)) {
+            val current = wrapFieldWith()
+
+            attributes[wrapFieldWithKey] = semantic {
+                current?.invoke(this)
+                wrap()
+            }
+        }
 
         @KraftFormsSettingDsl
         fun renderBeforeField(): (DIV.(UiInputFieldComponent<*, *>) -> Unit)? = attributes[beforeFieldKey]

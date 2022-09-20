@@ -73,7 +73,7 @@ class FormWithTimes(ctx: NoProps) : PureComponent(ctx) {
                             label { +"${State::datetime.name} - time" }
                         }
 
-//                        UiDateField(state.zonedDateTime, modifyZonedDateTime) {
+//                        UiDateField(draft.zonedDateTime, modifyZonedDateTime) {
 //                            label { +State::zonedDateTime.name }
 //                        }
                     }

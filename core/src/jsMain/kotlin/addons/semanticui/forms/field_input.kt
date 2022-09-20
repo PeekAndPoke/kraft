@@ -111,10 +111,8 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         try {
             val newValue = props.fromStr(input)
             setValue(newValue)
-
         } catch (t: Throwable) {
-            console.error(t)
-
+            console.warn(t)
             // TODO: how to translate this?
             errors = listOf("Invalid value")
         }

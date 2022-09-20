@@ -92,6 +92,10 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
         }
     }
 
+    override fun shouldRedraw(nextProps: P): Boolean {
+        return props.value != nextProps.value
+    }
+
     override fun reset() {
         touched = false
         _value = props.value
@@ -125,6 +129,8 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     }
 
     fun setValue(value: T) {
+//        console.log("setValue", value, (value as Any)::class)
+
         if (this._value != value) {
             touch()
             this._value = value
