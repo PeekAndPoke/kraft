@@ -5,6 +5,7 @@ import de.peekandpoke.kraft.addons.signaturepad.js.trim_canvas
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.debugId
 import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.utils.jsObject
 import de.peekandpoke.kraft.vdom.VDom
@@ -128,6 +129,8 @@ class SignaturePad(ctx: Ctx<Props>) : Component<SignaturePad.Props>(ctx) {
 
     override fun VDom.render() {
         div {
+            debugId("signature-pad")
+
             css {
                 width = 100.pct
                 height = 100.pct

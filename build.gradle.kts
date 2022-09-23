@@ -14,6 +14,7 @@ plugins {
 
 allprojects {
     repositories {
+        mavenLocal()
         mavenCentral()
 
         // KotlinX
