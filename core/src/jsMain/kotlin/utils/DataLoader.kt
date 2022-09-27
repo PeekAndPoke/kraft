@@ -83,9 +83,13 @@ class DataLoader<T>(
 
     fun reload() {
         launch {
-            options.load()
-                .catch { currentState = State.Error(it) }
-                .collect { currentState = State.Loaded(it) }
+            try {
+                options.load()
+                    .catch { currentState = State.Error(it) }
+                    .collect { currentState = State.Loaded(it) }
+            } catch (e: Throwable) {
+                currentState = State.Error(e)
+            }
         }
     }
 }
