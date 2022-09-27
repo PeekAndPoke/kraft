@@ -16,5 +16,5 @@ interface Stream<T> {
      *
      * Returns an unsubscribe function. Calling this function unsubscribes from the stream.
      */
-    fun subscribeToStream(sub: (T) -> Unit): Unsubscribe
+    fun subscribeToStream(sub: (T) -> Unit = {}): Unsubscribe
 }

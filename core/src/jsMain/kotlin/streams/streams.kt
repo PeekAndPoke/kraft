@@ -1,8 +1,8 @@
 package de.peekandpoke.kraft.streams
 
-import de.peekandpoke.kraft.utils.launch
+import de.peekandpoke.kraft.streams.addons.mapAsync
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.onCompletion
 
 /**
@@ -35,14 +35,19 @@ fun <T> Stream<T>.permanent(handler: (T) -> Unit): Stream<T> = apply { subscribe
  * Converts the [Stream] into a [Flow]
  */
 fun <T> Stream<T>.asFlow(): Flow<T> {
+    val stream = this
     var sub: Unsubscribe? = null
+    var count = 0
 
-    return flow {
-        sub = subscribeToStream {
-            launch {
-                emit(it)
+    return channelFlow {
+        channel.send(stream())
+
+        sub = stream.mapAsync {
+            if (count++ > 0) {
+                channel.send(it)
             }
-        }
+        }.subscribeToStream()
+
     }.onCompletion {
         sub?.invoke()
     }
