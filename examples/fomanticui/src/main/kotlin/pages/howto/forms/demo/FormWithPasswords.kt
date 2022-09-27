@@ -61,7 +61,7 @@ class FormWithPasswords(ctx: NoProps) : PureComponent(ctx) {
                         UiPasswordField(draft.reveal, { draft = draft.copy(reveal = it) }) {
                             label { +"Reveal" }
 
-                            revealRevealPasswordIcon()
+                            revealPasswordIcon()
 
                             accepts(equalTo({ draft.password }, "Passwords must match"))
                         }

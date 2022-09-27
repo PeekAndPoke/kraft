@@ -71,7 +71,10 @@ interface SemanticOptions<T> : FieldOptions<T> {
 
         @JsName("revealRevealPasswordIcon")
         @KraftFormsSettingDsl
-        fun revealRevealPasswordIcon() {
+        fun revealPasswordIcon(
+            hiddenIcon: SemanticIconFn = { eye_outline },
+            visibleIcon: SemanticIconFn = { eye_slash_outline },
+        ) {
             attributes[wrapFieldWithKey] = semantic { right.icon.input }
 
             val fn: DIV.(UiInputFieldComponent<*, *>) -> Unit = {
@@ -79,8 +82,8 @@ interface SemanticOptions<T> : FieldOptions<T> {
                 val type = it.effectiveType ?: InputType.password
 
                 val iconFn = when (type) {
-                    InputType.password -> semanticIcon { eye_outline }
-                    else -> semanticIcon { eye_slash_outline }
+                    InputType.password -> hiddenIcon
+                    else -> visibleIcon
                 }
 
                 icon.link.iconFn().invoke {
