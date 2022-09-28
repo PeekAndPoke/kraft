@@ -82,6 +82,11 @@ class DataLoader<T>(
     }
 
     fun reload() {
+        currentState = State.Loading()
+        reloadSilently()
+    }
+
+    fun reloadSilently() {
         launch {
             try {
                 options.load()
