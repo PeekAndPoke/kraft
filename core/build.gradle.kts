@@ -24,31 +24,25 @@ repositories {
 }
 
 kotlin {
-    /**
-     * To find out how to configure the targets, please follZow the link:
-     * https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#setting-up-targets
-     */
-    targets {
-        js(IR) {
-            browser {
-                testTask {
-//                    useKarma {
-//                        useChrome()
-//                        useChromeHeadless()
-//                        useChromiumHeadless()
-//                        useChromeCanaryHeadless()
-//                        useFirefoxHeadless()
-//                    }
-                }
+    js(IR) {
+        browser {
+            testTask {
+//                useKarma {
+//                    useChrome()
+//                    useChromeHeadless()
+//                    useChromiumHeadless()
+//                    useChromeCanaryHeadless()
+//                    useFirefoxHeadless()
+//                }
             }
         }
+    }
 
-        jvm {
-            compilations.all {
-                kotlinOptions {
-                    verbose = true
-                    jvmTarget = "1.8"
-                }
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                verbose = true
+                jvmTarget = "1.8"
             }
         }
     }

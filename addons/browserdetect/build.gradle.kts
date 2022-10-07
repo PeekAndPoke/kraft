@@ -24,14 +24,8 @@ Docs {
 }
 
 kotlin {
-    /**
-     * To find out how to configure the targets, please follZow the link:
-     * https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#setting-up-targets
-     */
-    targets {
-        js(IR) {
-            browser {
-            }
+    js(IR) {
+        browser {
         }
     }
 

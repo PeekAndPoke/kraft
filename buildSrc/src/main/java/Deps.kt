@@ -9,13 +9,13 @@ object Deps {
     }
 
     // Kotlin ////////////////////////////////////////////////////////////////////////////////////
-    const val kotlinVersion = "1.7.10"
+    const val kotlinVersion = "1.7.20"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Dokka /////////////////////////////////////////////////////////////////////////////////////
     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
     // Dokka gradle plugin org.jetbrains.dokka
-    const val dokkaVersion = kotlinVersion
+    const val dokkaVersion = "1.7.10" // kotlinVersion
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.57.0"
+    private const val ultra_version = "0.58.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
 //    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
@@ -38,26 +38,26 @@ object Deps {
     const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.383"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.399"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
-    private const val kotlinx_coroutines_version = "1.6.3"
+    private const val kotlinx_coroutines_version = "1.6.4"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.serialization/releases
-    private const val kotlinx_serialization_version = "1.3.3"
+    private const val kotlinx_serialization_version = "1.4.0"
     const val kotlinx_serialization_core =
         "org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinx_serialization_version"
     const val kotlinx_serialization_json =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.383"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.399"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -78,13 +78,13 @@ object Deps {
         fun KotlinDependencyHandler.jwtDecode() = npm("jwt-decode", "3.1.2")
 
         // https://www.npmjs.com/package/konva
-        fun KotlinDependencyHandler.konva() = npm("konva", "8.3.12")
+        fun KotlinDependencyHandler.konva() = npm("konva", "8.3.13")
 
         // https://www.npmjs.com/package/minidenticons
         fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "1.0.3")
 
         // https://www.npmjs.com/package/marked
-        fun KotlinDependencyHandler.marked() = npm("marked", "4.1.0")
+        fun KotlinDependencyHandler.marked() = npm("marked", "4.1.1")
 
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
@@ -93,13 +93,13 @@ object Deps {
         fun KotlinDependencyHandler.pdfjs_dist() = npm("pdfjs-dist", "2.16.105")
 
         // https://www.npmjs.com/package/preact
-        fun KotlinDependencyHandler.preact() = npm("preact", "10.10.6")
+        fun KotlinDependencyHandler.preact() = npm("preact", "10.11.1")
 
         // https://www.npmjs.com/package/prismjs
         fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
 
         // https://www.npmjs.com/package/signature_pad
-        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.0.7")
+        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.0.9")
 
         // https://www.npmjs.com/package/sourcemapped-stacktrace
         fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
@@ -117,12 +117,12 @@ object Deps {
         }
 
         // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
-        const val logback_version = "1.4.0"
+        const val logback_version = "1.4.3"
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
-        const val kotest_plugin_version = "5.4.2"
-        const val kotest_version = "5.4.2"
+        const val kotest_plugin_version = "5.5.0"
+        const val kotest_version = "5.5.0"
 
         const val kotest_assertions_core = "io.kotest:kotest-assertions-core:$kotest_version"
         const val kotest_framework_api = "io.kotest:kotest-framework-api:$kotest_version"

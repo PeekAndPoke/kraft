@@ -24,26 +24,23 @@ repositories {
 }
 
 kotlin {
-    targets {
-
-        js(IR) {
-            browser {
-//                testTask {
-//                    useKarma {
-//                        useChromeHeadless()
-//                        usePhantomJS()
-//                        useChromiumHeadless()
-//                        useFirefoxHeadless()
-//                    }
+    js(IR) {
+        browser {
+//            testTask {
+//                useKarma {
+//                    useChromeHeadless()
+//                    usePhantomJS()
+//                    useChromiumHeadless()
+//                    useFirefoxHeadless()
 //                }
-            }
+//            }
         }
+    }
 
-        jvm {
-            compilations.all {
-                kotlinOptions {
-                    jvmTarget = "1.8"
-                }
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
             }
         }
     }
