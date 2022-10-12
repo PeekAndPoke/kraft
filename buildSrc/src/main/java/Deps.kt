@@ -15,7 +15,7 @@ object Deps {
     // Dokka /////////////////////////////////////////////////////////////////////////////////////
     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
     // Dokka gradle plugin org.jetbrains.dokka
-    const val dokkaVersion = "1.7.10" // kotlinVersion
+    const val dokkaVersion = kotlinVersion // "1.7.10"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.59.2"
+    private const val ultra_version = "0.59.3"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
 //    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
