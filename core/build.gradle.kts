@@ -64,6 +64,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
+                api(Deps.kotlinx_coroutines_core_js)
                 api(Deps.kotlinx_wrappers_extensions)
                 api(project(":semanticui"))
 

@@ -61,23 +61,23 @@ kotlin {
             }
         }
 
-        js().compilations["main"].defaultSourceSet {
+        val jsMain by getting {
             dependencies {
             }
         }
 
-        js().compilations["test"].defaultSourceSet {
+        val jsTest by getting {
             dependencies {
                 jsTestDeps()
             }
         }
 
-        jvm().compilations["main"].defaultSourceSet {
+        val jvmMain by getting {
             dependencies {
             }
         }
 
-        jvm().compilations["test"].defaultSourceSet {
+        val jvmTest by getting {
             dependencies {
                 jvmTestDeps()
             }
