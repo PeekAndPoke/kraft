@@ -23,7 +23,7 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.59.4"
+    private const val ultra_version = "0.59.7"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
 //    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
@@ -123,8 +123,8 @@ object Deps {
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
-        const val kotest_plugin_version = "5.5.0"
-        const val kotest_version = "5.5.0"
+        const val kotest_plugin_version = "5.5.4"
+        const val kotest_version = "5.5.4"
 
         const val kotest_assertions_core = "io.kotest:kotest-assertions-core:$kotest_version"
         const val kotest_framework_api = "io.kotest:kotest-framework-api:$kotest_version"
@@ -136,6 +136,7 @@ object Deps {
         fun KotlinDependencyHandler.commonTestDeps() {
             kotlin("test-common")
             kotlin("test-annotations-common")
+            implementation(kotlinx_coroutines_core)
             implementation(kotest_assertions_core)
             implementation(kotest_framework_api)
             implementation(kotest_framework_datatest)
@@ -143,6 +144,7 @@ object Deps {
         }
 
         fun KotlinDependencyHandler.jsTestDeps() {
+            implementation(kotlinx_coroutines_core_js)
             implementation(kotest_assertions_core)
             implementation(kotest_framework_api)
             implementation(kotest_framework_datatest)

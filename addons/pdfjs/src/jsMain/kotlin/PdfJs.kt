@@ -31,7 +31,7 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
 
             val (name: String, lib: PdfjsLib) = candidates
                 .map { it() }
-                .first { (name, item) ->
+                .first { (_, item) ->
                     @Suppress("UnsafeCastFromDynamic")
                     !!item && !!item.getDocument
                 }
