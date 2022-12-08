@@ -3,6 +3,7 @@ package de.peekandpoke.kraft.utils
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
+import de.peekandpoke.kraft.streams.addons.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.html.FlowContent
@@ -52,7 +53,11 @@ class DataLoader<T>(
 
     private var stateStream: StreamSource<State<T>> = StreamSource(currentState)
 
+    /** The current state of the loader */
     val state: Stream<State<T>> = stateStream.readonly
+
+    /** The current value of the loader */
+    val value: Stream<T?> = state.map { (it as? State.Loaded<T>)?.data }
 
     init {
         reload()
@@ -67,10 +72,6 @@ class DataLoader<T>(
             is State.Loaded<T> -> render.loaded(flow, s.data)
             is State.Error -> render.error(flow, s.error)
         }
-    }
-
-    fun value(): T? {
-        return (currentState as? State.Loaded<T>)?.data
     }
 
     fun setLoaded(data: T) {

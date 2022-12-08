@@ -59,7 +59,7 @@ class FunctionalComponentStateProperty<P>(
     }
 
     /**
-     * Adds a callback that will initialize the property when it is access for the first time.
+     * Adds a callback that will initialize the property when it is accessed for the first time.
      */
     fun initLazy(block: suspend () -> Flow<P>): FunctionalComponentStateProperty<P> = apply {
         lazyInitCallbacks.add(block)
@@ -74,4 +74,3 @@ class FunctionalComponentStateProperty<P>(
 
     private fun KProperty<*>.getPropertyKey(): String = "value::$name::$typeStr"
 }
-
