@@ -43,13 +43,29 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     }
 
     private fun FlowContent.renderFomanticUiExamplesLink() = example {
-        ui.header H2 { +"FomanticUI + Kraft code examples" }
 
-        ui.big.green.basic.button A {
-            href = "https://github.com/PeekAndPoke/kraft/tree/master/examples/fomanticui"
-            target = "_blank"
-            icon.github()
-            +"Show me the code!"
+        ui.two.column.grid {
+            ui.column {
+                ui.header H2 { +"FomanticUI Docs" }
+
+                ui.big.green.basic.button A {
+                    href = "https://fomantic-ui.com/"
+                    target = "_blank"
+                    icon.linkify()
+                    +"Version 2.9.0"
+                }
+            }
+
+            ui.column {
+                ui.header H2 { +"FomanticUI + Kraft code examples" }
+
+                ui.big.green.basic.button A {
+                    href = "https://github.com/PeekAndPoke/kraft/tree/master/examples/fomanticui"
+                    target = "_blank"
+                    icon.github()
+                    +"Show me the code!"
+                }
+            }
         }
     }
 

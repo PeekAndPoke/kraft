@@ -65,7 +65,11 @@ class KraftGettingStartedPage(ctx: NoProps) : PureComponent(ctx) {
 <head>
     <meta charset="UTF-8">
     <title>My App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.0/semantic.min.css"
+          integrity="sha512-PwhgdrueUt7iVICnZMjYcbiLalCztrVfzUIYXekIK8hZu4DQP141GrKh6fUHmNERWi4bGdBXIZqtBZnsSzHEMg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
 </head>
 <div id="spa"></div>
 
