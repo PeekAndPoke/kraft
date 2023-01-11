@@ -11,19 +11,7 @@ fun <C> Component<C>.pagedSearchFilter(
     onChange: ((PagedSearchFilter) -> Unit)? = null,
 ): ReadWriteProperty<Component<C>, PagedSearchFilter> = urlParams(
     router = router,
-    fromParams = {
-        PagedSearchFilter(
-            search = it["search"] ?: "",
-            page = it["page"]?.toIntOrNull() ?: 1,
-            epp = it["epp"]?.toIntOrNull() ?: 20,
-        )
-    },
-    toParams = {
-        mapOf(
-            "search" to it.search,
-            "page" to it.page,
-            "epp" to it.epp
-        )
-    },
+    fromParams = { PagedSearchFilter.ofMap(it) },
+    toParams = { it.toMap() },
     onChange = onChange,
 )
