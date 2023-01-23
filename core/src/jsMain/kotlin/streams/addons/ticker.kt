@@ -5,11 +5,14 @@ import de.peekandpoke.kraft.streams.StreamSourceImpl
 import kotlinx.browser.window
 import kotlin.js.Date
 import kotlin.math.round
+import kotlin.time.Duration
 
 fun ticker(intervalMs: Int): Stream<Long> = Ticker(intervalMs)
 
+fun ticker(interval: Duration): Stream<Long> = ticker(interval.inWholeMilliseconds.toInt())
+
 internal class Ticker(
-    private val intervalMs: Int = 1000,
+    private val intervalMs: Int,
 ) : StreamSourceImpl<Long>(0) {
 
     private val start = Date.now()

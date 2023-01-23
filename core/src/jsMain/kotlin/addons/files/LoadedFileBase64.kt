@@ -15,15 +15,22 @@ data class LoadedFileBase64(
                 return LoadedFileBase64(file = file, dataUrl = null, mimeType = null, dataBase64 = null)
             }
 
-            val regex = "data:(.*);.*,(.*)".toRegex()
-            val match: MatchResult = regex.matchEntire(dataUrl) ?: error("Invalid data url given")
+            try {
+                val parts = dataUrl.split(',')
+                // Get the mime component
+                val mimeType = parts[0].split(':')[1].split(';')[0]
+                // Get the content
+                val dataBase64 = parts[1]
 
-            return LoadedFileBase64(
-                file = file,
-                dataUrl = dataUrl,
-                mimeType = match.groupValues[1],
-                dataBase64 = match.groupValues[2],
-            )
+                return LoadedFileBase64(
+                    file = file,
+                    dataUrl = dataUrl,
+                    mimeType = mimeType,
+                    dataBase64 = dataBase64,
+                )
+            } catch (e: Throwable) {
+                return LoadedFileBase64(file = file, dataUrl = dataUrl, mimeType = null, dataBase64 = null)
+            }
         }
     }
 }
