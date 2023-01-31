@@ -42,7 +42,7 @@ fun <T : Comparable<T>> lessThan(
 )
 
 @KraftFormsRuleDsl
-fun <T : Comparable<T>> lessThenOrEqual(
+fun <T : Comparable<T>> lessThanOrEqual(
     value: T,
     message: (T) -> String,
 ): Rule<T> = GenericRule(

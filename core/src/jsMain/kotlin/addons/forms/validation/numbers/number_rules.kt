@@ -73,7 +73,7 @@ fun <T : Number?> lessThan(
     lessThan(value) { message }
 
 @KraftFormsRuleDsl
-fun <T : Number?> lessThenOrEqual(
+fun <T : Number?> lessThanOrEqual(
     value: Number,
     message: (T) -> String,
 ): Rule<T> = GenericRule(
@@ -82,8 +82,8 @@ fun <T : Number?> lessThenOrEqual(
 )
 
 @KraftFormsRuleDsl
-fun <T : Number?> lessThenOrEqual(
+fun <T : Number?> lessThanOrEqual(
     value: Number,
     message: String = "Must be less than $value or equal",
 ): Rule<T> =
-    lessThenOrEqual(value) { message }
+    lessThanOrEqual(value) { message }
