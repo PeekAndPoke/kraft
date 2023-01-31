@@ -8,6 +8,7 @@
 package de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo
 
 import de.peekandpoke.kraft.addons.forms.formController
+import de.peekandpoke.kraft.addons.forms.validation.comparable.greaterThan
 import de.peekandpoke.kraft.addons.forms.validation.numbers.greaterThan
 import de.peekandpoke.kraft.addons.forms.validation.numbers.lessThan
 import de.peekandpoke.kraft.addons.forms.validation.strings.notBlank
@@ -59,7 +60,10 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             autofocus()
                             rightClearingIcon()
 
-                            accepts(notBlank())
+                            accepts(
+                                notBlank(),
+                                greaterThan("abc") { "Must be greater than 'abc'" },
+                            )
                         }
 
                         UiInputField(draft.intInput, { draft = draft.copy(intInput = it) }) {
