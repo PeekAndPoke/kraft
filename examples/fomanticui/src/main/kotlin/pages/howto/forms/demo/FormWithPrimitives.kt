@@ -12,6 +12,7 @@ import de.peekandpoke.kraft.addons.forms.validation.comparable.greaterThan
 import de.peekandpoke.kraft.addons.forms.validation.numbers.greaterThan
 import de.peekandpoke.kraft.addons.forms.validation.numbers.lessThan
 import de.peekandpoke.kraft.addons.forms.validation.strings.notBlank
+import de.peekandpoke.kraft.addons.semanticui.forms.UiCheckboxField
 import de.peekandpoke.kraft.addons.semanticui.forms.UiInputField
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
@@ -43,6 +44,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
 
     private var state by value(State())
     private var draft by value(state)
+    private var disableFields by value(false)
 
     private val formCtrl = formController()
 
@@ -54,9 +56,16 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
             ui.column {
                 ui.form {
                     ui.two.fields {
+                        UiCheckboxField(::disableFields) {
+                            toggle()
+                            label("Disable fields")
+                        }
+                    }
+                    ui.two.fields {
                         UiInputField(draft.textInput, { draft = draft.copy(textInput = it) }) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
+                            disabled(disableFields)
                             autofocus()
                             rightClearingIcon()
 
@@ -69,6 +78,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField(draft.intInput, { draft = draft.copy(intInput = it) }) {
                             label { +"Int Input" }
                             placeholder("Enter a number")
+                            disabled(disableFields)
                             step(3)
                             leftIcon { green.percent }
 
@@ -83,6 +93,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField(draft.floatInput, { draft = draft.copy(floatInput = it) }) {
                             label { +"Float Input" }
                             placeholder("Enter a number")
+                            disabled(disableFields)
                             step(1.5)
                             rightLabel {
                                 ui.blue.label {
@@ -100,6 +111,7 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                         UiInputField(draft.doubleInput, { draft = draft.copy(doubleInput = it) }) {
                             label { +"Double Input" }
                             placeholder("Enter a number")
+                            disabled(disableFields)
                             step(0.5)
                             leftLabel {
                                 ui.label {

@@ -76,7 +76,6 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         }
     }
 
-
     override fun VDom.render() {
         ui.with(options.appear.getOrDefault { this }).given(hasErrors) { error }.field {
             key = autoDomKey
@@ -128,6 +127,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         setValue()
         track()
 
+        applyDisabled()
         applyFormatValue()
         applyName()
         applyPlaceholder()
@@ -143,6 +143,14 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     private fun INPUT.setValue() {
         value = valueAsString()
+    }
+
+    private fun INPUT.applyDisabled() {
+        console.log("options.isDisabled", options.isDisabled)
+
+        if (options.isDisabled) {
+            disabled = true
+        }
     }
 
     private fun INPUT.applyFormatValue() {

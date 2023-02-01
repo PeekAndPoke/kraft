@@ -93,7 +93,9 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     }
 
     override fun shouldRedraw(nextProps: P): Boolean {
-        return props.value != nextProps.value
+        return props.value != nextProps.value ||
+            props.options.attributes.entries.size != nextProps.options.attributes.entries.size ||
+            props.options.attributes.asImmutable() != nextProps.options.attributes.asImmutable()
     }
 
     override fun reset() {

@@ -38,9 +38,18 @@ interface SemanticOptions<T> : FieldOptions<T> {
 
     interface Input<T> : InputOptions<T> {
         companion object {
+            val disabledKey = TypedKey<Boolean>("disabled")
             val wrapFieldWithKey = TypedKey<SemanticFn>("wrap-field-with")
             val beforeFieldKey = TypedKey<DIV.(UiInputFieldComponent<*, *>) -> Unit>("before-field")
             val afterFieldKey = TypedKey<DIV.(UiInputFieldComponent<*, *>) -> Unit>("after-field")
+        }
+
+        @KraftFormsSettingDsl
+        val isDisabled: Boolean get() = access(disabledKey).invoke() ?: false
+
+        @KraftFormsSettingDsl
+        fun disabled(disabled: Boolean = true) {
+            access(disabledKey)(disabled)
         }
 
         @JsName("rightIcon")
