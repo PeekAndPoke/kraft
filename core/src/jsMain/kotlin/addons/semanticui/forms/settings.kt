@@ -8,6 +8,7 @@ import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.semanticui.*
 import de.peekandpoke.ultra.common.TypedKey
 import kotlinx.html.DIV
+import kotlinx.html.I
 import kotlinx.html.InputType
 
 interface SemanticOptions<T> : FieldOptions<T> {
@@ -55,9 +56,17 @@ interface SemanticOptions<T> : FieldOptions<T> {
         @JsName("rightIcon")
         @KraftFormsSettingDsl
         fun rightIcon(iconFn: SemanticIconFn) {
+            rightIcon(iconFn = iconFn, block = {})
+        }
+
+        @JsName("rightIconWithBlock")
+        @KraftFormsSettingDsl
+        fun rightIcon(iconFn: SemanticIconFn, block: I.() -> Unit) {
             attributes[wrapFieldWithKey] = semantic { right.icon.input }
 
-            val fn: DIV.(UiInputFieldComponent<*, *>) -> Unit = { icon.iconFn().invoke() }
+            val fn: DIV.(UiInputFieldComponent<*, *>) -> Unit = {
+                icon.iconFn().invoke(block)
+            }
             attributes[afterFieldKey] = fn
         }
 
