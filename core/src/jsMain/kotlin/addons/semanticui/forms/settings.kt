@@ -61,13 +61,16 @@ interface SemanticOptions<T> : FieldOptions<T> {
 
         @JsName("rightIconWithBlock")
         @KraftFormsSettingDsl
-        fun rightIcon(iconFn: SemanticIconFn, block: I.() -> Unit) {
+        fun rightIcon(iconFn: SemanticIconFn, block: I.(UiInputFieldComponent<T, *>) -> Unit) {
             attributes[wrapFieldWithKey] = semantic { right.icon.input }
 
-            val fn: DIV.(UiInputFieldComponent<*, *>) -> Unit = {
-                icon.iconFn().invoke(block)
+            val fn: DIV.(UiInputFieldComponent<T, *>) -> Unit = { field ->
+                icon.iconFn().invoke {
+                    block(field)
+                }
             }
-            attributes[afterFieldKey] = fn
+            @Suppress("UNCHECKED_CAST")
+            attributes[afterFieldKey] = fn as DIV.(UiInputFieldComponent<*, *>) -> Unit
         }
 
         @JsName("clearingRightIcon")
