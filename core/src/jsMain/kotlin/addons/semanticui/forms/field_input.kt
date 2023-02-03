@@ -146,8 +146,6 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
     }
 
     private fun INPUT.applyDisabled() {
-        console.log("options.isDisabled", options.isDisabled)
-
         if (options.isDisabled) {
             disabled = true
         }
