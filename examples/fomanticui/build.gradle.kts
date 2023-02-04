@@ -1,8 +1,5 @@
 @file:Suppress("PropertyName")
 
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
-
 plugins {
     kotlin("js")
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
@@ -44,18 +41,4 @@ Docs {
     distributeJsExample()
 }
 
-// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// https://stackoverflow.com/questions/72731436/kotlin-multiplatform-gradle-task-jsrun-gives-error-webpack-cli-typeerror-c/72731728
-// Fixes webpack-cli incompatibility by pinning the newest version.
-
-rootProject.plugins.withType<YarnPlugin> {
-    rootProject.extensions.findByType<YarnRootExtension>()?.let { ext ->
-//        ext.resolution("webpack-cli", "^4.10.0")
-        ext.lockFileName = "examples-${project.name}.yarn.lock"
-    }
-}
-
-// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

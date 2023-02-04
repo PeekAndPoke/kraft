@@ -39,7 +39,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
 
                 noui.center.aligned.content {
                     renderLogo(
-                        src = "https://raw.githubusercontent.com/laurentpayot/minidenticons/HEAD/alienHead66.svg",
+                        src = "https://raw.githubusercontent.com/laurentpayot/minidenticons/9af06691877901f8b50bdc304e34e13220521278/img/alienHead66.svg",
                         alt = "Avatars",
                     )
                 }

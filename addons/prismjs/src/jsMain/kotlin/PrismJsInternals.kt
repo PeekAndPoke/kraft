@@ -1,8 +1,8 @@
 package de.peekandpoke.kraft.addons.prismjs
 
+import js.import.Module
 import kotlinx.browser.document
 import kotlinx.coroutines.delay
-import kotlinx.js.Module
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLHeadElement
 import org.w3c.dom.HTMLLinkElement
