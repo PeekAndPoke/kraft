@@ -9,7 +9,7 @@ object Deps {
     }
 
     // Kotlin ////////////////////////////////////////////////////////////////////////////////////
-    const val kotlinVersion = "1.7.21"
+    const val kotlinVersion = "1.8.10"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Dokka /////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.61.2"
+    private const val ultra_version = "0.62.0-kotlin-1.8.10"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
 //    // https://search.maven.org/search?q=g:io.peekandpoke.kotlinx%20AND%20a:kotlinx-html
@@ -38,7 +38,7 @@ object Deps {
 //    const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.450"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.491"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
@@ -59,7 +59,7 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.450"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.491"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -77,21 +77,24 @@ object Deps {
         fun KotlinDependencyHandler.chartJs() = npm("chart.js", "3.9.1")
 
         // https://www.npmjs.com/package/jwt-decode
+        // TODO: upgrade to 4.x
         fun KotlinDependencyHandler.jwtDecode() = npm("jwt-decode", "3.1.2")
 
         // https://www.npmjs.com/package/konva
-        fun KotlinDependencyHandler.konva() = npm("konva", "8.3.14")
+        fun KotlinDependencyHandler.konva() = npm("konva", "8.4.2")
 
         // https://www.npmjs.com/package/minidenticons
+        // TODO: upgrade to 2.x
         fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "1.0.4")
 
         // https://www.npmjs.com/package/marked
-        fun KotlinDependencyHandler.marked() = npm("marked", "4.2.3")
+        fun KotlinDependencyHandler.marked() = npm("marked", "4.2.12")
 
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
 
         // https://www.npmjs.com/package/pdfjs-dist
+        // TODO: upgrade to 3.x
         fun KotlinDependencyHandler.pdfjs_dist() = npm("pdfjs-dist", "2.16.105")
 
         // https://www.npmjs.com/package/preact
