@@ -21,7 +21,7 @@ open class StreamMapper<WRAPPED, RESULT>(
     override fun invoke(): RESULT {
         // If we are not subscribed to the wrapped we might miss values.
         // So we need to get the value directly.
-        if (isSubscribedToWrapped()) {
+        if (!isSubscribedToWrapped()) {
             return mapper(wrapped()).also { latest = it }
         }
 

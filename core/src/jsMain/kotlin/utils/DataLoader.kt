@@ -74,6 +74,15 @@ class DataLoader<T>(
         }
     }
 
+    fun modifyLoaded(block: (T) -> T) {
+        when (val s = state) {
+            is State.Loaded<*> -> setLoaded(
+                @Suppress("UNCHECKED_CAST")
+                block(s.data as T)
+            )
+        }
+    }
+
     fun setLoaded(data: T) {
         setState(State.Loaded(data))
     }
