@@ -18,7 +18,16 @@ open class StreamMapper<WRAPPED, RESULT>(
 ) {
     private var latest: RESULT? = null
 
-    override fun invoke(): RESULT = latest ?: initial().also { latest = it }
+    override fun invoke(): RESULT {
+        // If we are not subscribed to the wrapped we might miss values.
+        // So we need to get the value directly.
+        if (isSubscribedToWrapped()) {
+            return mapper(wrapped()).also { latest = it }
+        }
+
+        // Otherwise we can
+        return latest ?: initial().also { latest = it }
+    }
 
     override fun handleIncoming(value: WRAPPED) {
         mapper(value)?.let {

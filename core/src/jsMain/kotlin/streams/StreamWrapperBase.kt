@@ -15,6 +15,13 @@ abstract class StreamWrapperBase<WRAPPED, RESULT>(
     private val subscriptions = mutableSetOf<StreamHandler<RESULT>>()
 
     /**
+     * Returns 'true' if the stream has subscriptions
+     */
+    protected fun isSubscribedToWrapped(): Boolean {
+        return wrappedUnsubscribe != null
+    }
+
+    /**
      * Handles the next incoming value of the wrapped stream
      */
     protected abstract fun handleIncoming(value: WRAPPED)
