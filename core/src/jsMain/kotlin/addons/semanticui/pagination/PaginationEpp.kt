@@ -8,21 +8,21 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.ElementsPerPage(
+fun Tag.PaginationEpp(
     epp: Int,
     options: Set<Int> = setOf(10, 20, 50, 100, 500),
     onChange: (Int) -> Unit,
 ) = comp(
-    ElementsPerPage.Props(
+    PaginationEpp.Props(
         epp = epp,
         options = options,
         onChange = onChange
     )
 ) {
-    ElementsPerPage(it)
+    PaginationEpp(it)
 }
 
-class ElementsPerPage(ctx: Ctx<Props>) : Component<ElementsPerPage.Props>(ctx) {
+class PaginationEpp(ctx: Ctx<Props>) : Component<PaginationEpp.Props>(ctx) {
 
     ////  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 

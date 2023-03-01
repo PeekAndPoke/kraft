@@ -1,4 +1,4 @@
-package de.peekandpoke.kraft.addons.semanticui.pagination
+package de.peekandpoke.kraft.addons.semanticui.PaginationPages
 
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
@@ -13,23 +13,23 @@ import kotlin.math.max
 import kotlin.math.min
 
 @Suppress("FunctionName")
-fun Tag.Pagination(
+fun Tag.PaginationPages(
     activePage: Int,
     totalPages: Number?,
-    style: Pagination.Style = Pagination.Style.default,
+    style: PaginationPages.Style = PaginationPages.Style.default,
     onChange: (Int) -> Unit,
 ) = comp(
-    Pagination.Props(
+    PaginationPages.Props(
         activePage = activePage,
         totalPages = totalPages,
         style = style,
         onChange = onChange,
     )
 ) {
-    Pagination(it)
+    PaginationPages(it)
 }
 
-class Pagination(ctx: Ctx<Props>) : Component<Pagination.Props>(ctx) {
+class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
 
     ////  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 

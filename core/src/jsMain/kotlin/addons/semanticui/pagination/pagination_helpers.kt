@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.addons.semanticui.pagination
 
+import de.peekandpoke.kraft.addons.semanticui.PaginationPages.PaginationPages
 import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.ultra.common.model.Paged
@@ -16,13 +17,13 @@ fun <T> FlowContent.renderPaginationAsAttachedSegment(
 
         ui.horizontal.list {
             ui.item {
-                Pagination(
+                PaginationPages(
                     activePage = filter.page,
                     totalPages = paged.fullPageCount
                 ) { onChange(filter.copy(page = it)) }
             }
             ui.item {
-                ElementsPerPage(epp = filter.epp) { onChange(filter.copy(epp = it)) }
+                PaginationEpp(epp = filter.epp) { onChange(filter.copy(epp = it)) }
             }
         }
     }

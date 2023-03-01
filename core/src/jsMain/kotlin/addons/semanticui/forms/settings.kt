@@ -150,6 +150,7 @@ interface SemanticOptions<T> : FieldOptions<T> {
         @KraftFormsSettingDsl
         fun wrapFieldWith(): (SemanticTag.() -> SemanticTag)? = attributes[wrapFieldWithKey]
 
+        @KraftFormsSettingDsl
         fun wrapFieldWith(wrap: (SemanticTag.() -> SemanticTag)) {
             val current = wrapFieldWith()
 

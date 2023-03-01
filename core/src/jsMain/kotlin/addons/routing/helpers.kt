@@ -77,10 +77,14 @@ fun <C, T> Component<C>.urlParams(
                     }
                 }
                 .filter { (_, v) ->
-                    v != null && v.isNotEmpty()
+                    !v.isNullOrEmpty()
                 }
 
-            router.replaceUri(route = router.current().matchedRoute.withQueryParams(params))
+            val currentRoute = router.current().matchedRoute
+            val currentParams = currentRoute.queryParams
+            val updatedParams = currentParams.plus(params)
+
+            router.replaceUri(route = currentRoute.withQueryParams(updatedParams))
 
             triggerRedraw()
         }
