@@ -45,7 +45,7 @@ fun <C, T> Component<C>.urlParams(
     onChange: ((T) -> Unit)? = null,
 ): ReadWriteProperty<Component<C>, T> {
 
-    var current = fromParams(router.current().matchedRoute.allParams)
+    var current: T = fromParams(router.current().matchedRoute.allParams)
 
     // When the URI changes we modify the object and send it through the stream
     router.current.mapAsync { it.also { delay(10) } }.subscribe {
@@ -71,18 +71,23 @@ fun <C, T> Component<C>.urlParams(
             val params = toParams(value)
                 .mapValues { (_, v) ->
                     when (v) {
-                        null -> null
+                        null -> ""
                         is Iterable<*> -> v.joinToString(",")
                         else -> v.toString()
                     }
                 }
-                .filter { (_, v) ->
-                    !v.isNullOrEmpty()
-                }
+
+            val toBeRemoved = params
+                .filter { (_, v) -> v.isBlank() }
+                .map { (n, _) -> n }
 
             val currentRoute = router.current().matchedRoute
             val currentParams = currentRoute.queryParams
-            val updatedParams = currentParams.plus(params)
+            val updatedParams = currentParams
+                .plus(params)
+                .filter { (n, _) -> n !in toBeRemoved }
+
+            current = fromParams(updatedParams)
 
             router.replaceUri(route = currentRoute.withQueryParams(updatedParams))
 
