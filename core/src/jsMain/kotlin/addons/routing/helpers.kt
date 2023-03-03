@@ -77,16 +77,20 @@ fun <C, T> Component<C>.urlParams(
                     }
                 }
 
+            // We will remove empty parameters from the url
             val toBeRemoved = params
                 .filter { (_, v) -> v.isBlank() }
                 .map { (n, _) -> n }
 
+            // We will also keep additional parameters on the url
             val currentRoute = router.current().matchedRoute
             val currentParams = currentRoute.queryParams
-            val updatedParams = currentParams
-                .plus(params)
+            // Merge the currentParams with the incoming params
+            val updatedParams = currentParams.plus(params)
+                // And remove the empty ones
                 .filter { (n, _) -> n !in toBeRemoved }
 
+            // Keep the current value
             current = fromParams(updatedParams)
 
             router.replaceUri(route = currentRoute.withQueryParams(updatedParams))
