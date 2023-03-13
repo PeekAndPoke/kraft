@@ -62,17 +62,19 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
         val firstEntry = max(1, props.activePage - groupSizeHalf)
         val lastEntry = min(firstEntry + groupSize - 1, lastPage)
 
-        ui.pagination.menu {
+        ui.small.pagination.menu {
 
-            noui.item A {
-                icon.angle_double_left()
+            noui.icon.item A {
                 onClick {
                     props.onChange(1)
                 }
+                icon.angle_double_left()
             }
 
             if (firstEntry > 1) {
-                noui.item { +"..." }
+                noui.icon.item {
+                    icon.comment_dots()
+                }
             }
 
             (firstEntry..lastEntry).forEach { page ->
@@ -85,14 +87,16 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
             }
 
             if (lastEntry < lastPage) {
-                noui.item { +"..." }
+                noui.icon.item {
+                    icon.comment_dots()
+                }
             }
 
-            noui.item A {
-                icon.angle_double_right()
+            noui.icon.item A {
                 onClick {
                     props.onChange(lastPage)
                 }
+                icon.angle_double_right()
             }
         }
     }
