@@ -73,7 +73,7 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
 
             if (firstEntry > 1) {
                 noui.icon.item {
-                    icon.comment_dots()
+                    icon.ellipsis_horizontal()
                 }
             }
 
@@ -88,7 +88,7 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
 
             if (lastEntry < lastPage) {
                 noui.icon.item {
-                    icon.comment_dots()
+                    icon.ellipsis_horizontal()
                 }
             }
 
