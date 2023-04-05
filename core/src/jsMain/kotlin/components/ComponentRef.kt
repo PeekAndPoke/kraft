@@ -9,8 +9,8 @@ interface ComponentRef<C : Component<*>> {
 
     operator fun invoke(): C? = getComponent()
 
-    operator fun invoke(block: (C) -> Unit) {
-        getComponent()?.let {
+    operator fun <R> invoke(block: (C) -> R): R? {
+        return getComponent()?.let {
             block(it)
         }
     }
