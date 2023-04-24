@@ -47,6 +47,27 @@ fun CommonAttributeGroupFacade.onClick(handler: (MouseEvent) -> Unit) {
 }
 
 /**
+ * Adds an onContextMenu handler.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
+ */
+fun CommonAttributeGroupFacade.onContextMenu(handler: (UIEvent) -> Unit) {
+    onContextMenuFunction = handler.asDynamic()
+}
+
+/**
+ * Adds an onContextMenu handler and prevents the default.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
+ */
+fun CommonAttributeGroupFacade.onContextMenuPreventingDefault(handler: (UIEvent) -> Unit) {
+    onContextMenuFunction = { e ->
+        e.preventDefault()
+        handler(e.asDynamic())
+    }
+}
+
+/**
  * Adds an onClick handler.
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/error_event

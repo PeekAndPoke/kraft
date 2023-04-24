@@ -1,8 +1,10 @@
 package de.peekandpoke.kraft.examples.helloworld
 
+import de.peekandpoke.kraft.components.onContextMenuPreventingDefault
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
 import kotlinx.browser.document
+import kotlinx.browser.window
 import kotlinx.html.h1
 import kotlinx.html.h2
 import org.w3c.dom.HTMLElement
@@ -28,6 +30,17 @@ fun main() {
         h2 { +"Component storing data in local storage" }
 
         LocalStorageComponent("INITIAL")
+
+        ui.divider()
+
+        h2 { +"OnContextMenu" }
+
+        ui.segment {
+            onContextMenuPreventingDefault {
+                window.alert("oncontextmenu")
+            }
+            +"Right click me"
+        }
 
         ui.divider {}
 
