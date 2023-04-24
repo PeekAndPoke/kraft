@@ -1,10 +1,12 @@
 package de.peekandpoke.kraft.examples.helloworld
 
-import de.peekandpoke.kraft.components.onContextMenuPreventingDefault
+import de.peekandpoke.kraft.addons.popups.PopupsManager
+import de.peekandpoke.kraft.addons.popups.PopupsStage
+import de.peekandpoke.kraft.components.onContextMenuStoppingEvent
+import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.preact.PreactVDomEngine
 import kotlinx.browser.document
-import kotlinx.browser.window
 import kotlinx.html.h1
 import kotlinx.html.h2
 import org.w3c.dom.HTMLElement
@@ -12,7 +14,11 @@ import org.w3c.dom.HTMLElement
 fun main() {
     val mountPoint = document.getElementById("spa") as HTMLElement
 
+    val popups = PopupsManager()
+
     PreactVDomEngine(mountPoint) {
+        PopupsStage(popups)
+
         h1 { +"Hello World!" }
 
         h2 { +"First Counter" }
@@ -35,11 +41,24 @@ fun main() {
 
         h2 { +"OnContextMenu" }
 
-        ui.segment {
-            onContextMenuPreventingDefault {
-                window.alert("oncontextmenu")
+        ui.card {
+            noui.content {
+                onContextMenuStoppingEvent {
+                    popups.showContextMenu(it) {
+                        ui.basic.vertical.menu {
+                            noui.item A {
+                                href = "#"
+                                +"Menu 1"
+                            }
+                            noui.item A {
+                                href = "#"
+                                +"Menu 2"
+                            }
+                        }
+                    }
+                }
+                +"Right click me"
             }
-            +"Right click me"
         }
 
         ui.divider {}

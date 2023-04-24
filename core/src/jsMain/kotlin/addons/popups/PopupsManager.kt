@@ -3,11 +3,16 @@ package de.peekandpoke.kraft.addons.popups
 import de.peekandpoke.kraft.components.onMouseOut
 import de.peekandpoke.kraft.components.onMouseOver
 import de.peekandpoke.kraft.components.onMouseUp
+import de.peekandpoke.kraft.semanticui.css
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
 import de.peekandpoke.kraft.utils.Vector2D
+import kotlinx.css.*
 import kotlinx.html.CommonAttributeGroupFacade
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.events.UIEvent
+import org.w3c.dom.pointerevents.PointerEvent
 
 class PopupsManager {
     private var handleCounter = 0
@@ -52,7 +57,7 @@ class PopupsManager {
     class Handle internal constructor(
         val id: Int,
         val view: PopupRenderer,
-        internal val dialogs: PopupsManager,
+        internal val manager: PopupsManager,
     ) {
         internal val onCloseHandlers = mutableListOf<() -> Unit>()
 
@@ -60,7 +65,7 @@ class PopupsManager {
             onCloseHandlers.add(onClose)
         }
 
-        fun close() = dialogs.close(this)
+        fun close() = manager.close(this)
     }
 
     val showHoverPopup = ShowHoverPopup(popups = this)
@@ -71,9 +76,48 @@ class PopupsManager {
 
     val current: Stream<List<Handle>> = popupStream.readonly
 
+    fun showContextMenu(event: UIEvent, view: PopupRenderer): Handle {
+        val target = event.target as HTMLElement
+
+        closeAll()
+
+        val content: PopupRenderer = { handle ->
+            ui.basic.bottom.visible.popup {
+                css {
+                    left = 0.px
+                    right = LinearDimension.auto
+                    padding(0.px)
+                }
+                view(handle)
+            }
+        }
+
+        return add { handle ->
+            val positioning: (target: HTMLElement, contentSize: Vector2D) -> Vector2D = { target, _ ->
+
+                val pointerEvt = event as? PointerEvent
+
+                if (pointerEvt != null) {
+                    Vector2D(x = pointerEvt.x, y = pointerEvt.y + 7)
+                } else {
+                    val rect = target.getBoundingClientRect()
+
+                    Vector2D(x = rect.right, y = rect.bottom + 7)
+                }
+            }
+
+            PopupComponent(
+                target = target,
+                positioning = positioning,
+                handle = handle,
+                content = content,
+            )
+        }
+    }
+
     internal fun add(view: PopupRenderer): Handle {
 
-        return Handle(id = ++handleCounter, view = view, dialogs = this).apply {
+        return Handle(id = ++handleCounter, view = view, manager = this).apply {
             stack.add(this)
             notify()
         }

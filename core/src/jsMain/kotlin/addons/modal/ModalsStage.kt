@@ -8,15 +8,15 @@ import kotlinx.html.Tag
 import kotlinx.html.div
 
 @Suppress("FunctionName")
-fun Tag.ModelsStage(
+fun Tag.ModalsStage(
     modals: ModalsManager
 ) = comp(
-    ModelsStage.Props(modals = modals)
+    ModalsStage.Props(modals = modals)
 ) {
-    ModelsStage(it)
+    ModalsStage(it)
 }
 
-class ModelsStage(ctx: Ctx<Props>) : Component<ModelsStage.Props>(ctx) {
+class ModalsStage(ctx: Ctx<Props>) : Component<ModalsStage.Props>(ctx) {
 
     ////  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
 

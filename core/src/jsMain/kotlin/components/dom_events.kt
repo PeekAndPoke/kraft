@@ -60,9 +60,10 @@ fun CommonAttributeGroupFacade.onContextMenu(handler: (UIEvent) -> Unit) {
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
  */
-fun CommonAttributeGroupFacade.onContextMenuPreventingDefault(handler: (UIEvent) -> Unit) {
+fun CommonAttributeGroupFacade.onContextMenuStoppingEvent(handler: (UIEvent) -> Unit) {
     onContextMenuFunction = { e ->
         e.preventDefault()
+        e.stopPropagation()
         handler(e.asDynamic())
     }
 }

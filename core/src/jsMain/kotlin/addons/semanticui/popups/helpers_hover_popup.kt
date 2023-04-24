@@ -67,7 +67,6 @@ fun PopupsManager.ShowHoverPopup.topRight(
             x = rect.right,
             y = rect.top - contentSize.y - 7
         )
-
     }
 
     show(tag, positioning) {
