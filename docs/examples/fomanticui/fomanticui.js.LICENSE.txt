@@ -1,7 +1,12 @@
 /*
-	 * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
+     * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
+     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+     */
+
+/*
+ * @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
 
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -46,6 +51,6 @@
 
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 
-//! @version @js-joda/core - 5.4.2
+//! @version @js-joda/core - 5.5.3
 
-//! @version @js-joda/timezone - 2.15.0-2022e
+//! @version @js-joda/timezone - 2.18.0-2023c

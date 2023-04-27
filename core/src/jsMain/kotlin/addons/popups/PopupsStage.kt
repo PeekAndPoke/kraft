@@ -64,6 +64,7 @@ class PopupsStage(ctx: Ctx<Props>) : Component<PopupsStage.Props>(ctx) {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun closeAllListener(evt: Event) {
         props.popups.closeAll()
     }

@@ -67,7 +67,7 @@ fun main() {
             ui.two.column.grid {
                 ui.column {
                     ui.segment {
-                        ui.header H2 { +"Playground ..." }
+                        ui.header H2 { +"Playground" }
                     }
                 }
                 ui.column {
