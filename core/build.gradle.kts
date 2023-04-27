@@ -41,8 +41,7 @@ kotlin {
     jvm {
         compilations.all {
             kotlinOptions {
-                verbose = true
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
