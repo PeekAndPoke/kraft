@@ -34,8 +34,9 @@ object Deps {
 //    private const val peekandpoke_kotlinx_html_version = "0.7.5.2-SNAPSHOT"
 //    const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
 
+    // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.544"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.450"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
@@ -55,8 +56,9 @@ object Deps {
     const val kotlinx_serialization_json =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
 
+    // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.544"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.450"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
