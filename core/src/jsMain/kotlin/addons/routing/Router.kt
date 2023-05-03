@@ -4,6 +4,7 @@ import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
 import kotlinx.browser.window
 import org.w3c.dom.events.Event
+import org.w3c.dom.events.MouseEvent
 
 /**
  * The Router
@@ -59,6 +60,41 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
             window.location.hash = uri
         } else {
             navigateToWindowUri()
+        }
+    }
+
+    /**
+     * Navigate to the given [uri].
+     *
+     * If [evt].ctrlKey is true, the uri will be opened in a new tab.
+     */
+    fun navToUri(uri: String, evt: MouseEvent) {
+        return navToUri(uri = uri, newTab = evt.ctrlKey)
+    }
+
+    /**
+     * Navigate to the given [uri].
+     *
+     * If [newTab] is true, the uri will be opened in a new tab.
+     */
+    fun navToUri(uri: String, newTab: Boolean) {
+        return navToUri(
+            uri = uri,
+            target = if (newTab) "_blank" else null,
+        )
+    }
+
+    /**
+     * Navigate to the given [uri].
+     *
+     * If [target] is null, it will navigate to the uri in the same window.
+     * If [target] is not null, window.open(target = target) will be used to open a new tab / window.
+     */
+    fun navToUri(uri: String, target: String? = null) {
+        if (target == null) {
+            navToUri(uri)
+        } else {
+            window.open(uri, target = target)
         }
     }
 
