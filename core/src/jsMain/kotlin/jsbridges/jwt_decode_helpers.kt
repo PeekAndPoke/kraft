@@ -1,7 +1,7 @@
 package de.peekandpoke.kraft.jsbridges
 
 import de.peekandpoke.kraft.utils.jsObjectToMap
-import kotlinx.js.Object
+import js.core.Object
 
 /**
  * Decodes the [jwt] and returns a javascript object
