@@ -41,7 +41,7 @@ kotlin {
     jvm {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "17"
+                jvmTarget = Deps.jvmTarget.target
             }
         }
     }
