@@ -8,7 +8,7 @@
                                                              
 ```
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.7.21-success.svg)](https://kotlinlang.org/docs/releases.html)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.8.21-success.svg)](https://kotlinlang.org/docs/releases.html)
 [![CodeFactor](https://www.codefactor.io/repository/github/peekandpoke/kraft/badge)](https://www.codefactor.io/repository/github/peekandpoke/kraft)
 [![Maven Central](https://shields.io/maven-central/v/io.peekandpoke.kraft/core)](https://search.maven.org/search?q=io.peekandpoke.kraft)
 [![Snapshot](https://shields.io/nexus/s/io.peekandpoke.kraft/core?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/peekandpoke/kraft/)
