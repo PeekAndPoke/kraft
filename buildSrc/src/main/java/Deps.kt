@@ -29,7 +29,7 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.66.0"
+    private const val ultra_version = "0.67.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
     // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
@@ -41,13 +41,13 @@ object Deps {
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.544"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.549"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
-    private const val kotlinx_coroutines_version = "1.6.4"
+    private const val kotlinx_coroutines_version = "1.7.1"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
     const val kotlinx_coroutines_core_js =
@@ -55,7 +55,7 @@ object Deps {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.serialization/releases
-    private const val kotlinx_serialization_version = "1.5.0"
+    private const val kotlinx_serialization_version = "1.5.1"
     const val kotlinx_serialization_core =
         "org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinx_serialization_version"
     const val kotlinx_serialization_json =
@@ -63,7 +63,7 @@ object Deps {
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.544"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.549"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -130,8 +130,8 @@ object Deps {
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
-        const val kotest_plugin_version = "5.6.1"
-        const val kotest_version = "5.6.1"
+        const val kotest_plugin_version = "5.6.2"
+        const val kotest_version = "5.6.2"
 
         const val kotest_assertions_core = "io.kotest:kotest-assertions-core:$kotest_version"
         const val kotest_framework_api = "io.kotest:kotest-framework-api:$kotest_version"
