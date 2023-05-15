@@ -13,7 +13,6 @@ import kotlinx.html.Tag
 import kotlinx.html.code
 import kotlinx.html.div
 import kotlinx.html.pre
-import org.intellij.lang.annotations.Language
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLPreElement
 
@@ -27,85 +26,85 @@ fun Tag.Prism(language: String, code: String, options: PrismOptsBuilder) = comp(
     )
 ) { Prism(it) }
 
-inline fun Tag.PrismAtom(@Language("atom") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismAtom(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "atom", code = code, options = options)
 
-inline fun Tag.PrismCLike(@Language("c") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismCLike(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "clike", code = code, options = options)
 
-inline fun Tag.PrismCss(@Language("css") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismCss(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "css", code = code, options = options)
 
-inline fun Tag.PrismDart(@Language("dart") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismDart(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "dart", code = code, options = options)
 
-inline fun Tag.PrismHtml(@Language("html") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismHtml(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "html", code = code, options = options)
 
-inline fun Tag.PrismKotlin(@Language("kotlin") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismKotlin(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "kotlin", code = code, options = options)
 
-inline fun Tag.PrismKotlinScript(@Language("kts") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismKotlinScript(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "kts", code = code, options = options)
 
-inline fun Tag.PrismJava(@Language("java") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismJava(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "java", code = code, options = options)
 
-inline fun Tag.PrismJavascript(@Language("javascript") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismJavascript(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "javascript", code = code, options = options)
 
-inline fun Tag.PrismJson(@Language("json") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismJson(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "json", code = code, options = options)
 
-inline fun Tag.PrismJson5(@Language("json5") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismJson5(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "json5", code = code, options = options)
 
-inline fun Tag.PrismJsonp(@Language("jsonp") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismJsonp(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "jsonp", code = code, options = options)
 
-inline fun Tag.PrismLess(@Language("less") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismLess(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "less", code = code, options = options)
 
-inline fun Tag.PrismMarkup(@Language("markup") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismMarkup(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "markup", code = code, options = options)
 
-inline fun Tag.PrismPhp(@Language("php") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismPhp(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "php", code = code, options = options)
 
 inline fun Tag.PrismPlain(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "plain", code = code, options = options)
 
-inline fun Tag.PrismRegex(@Language("regex") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismRegex(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "regex", code = code, options = options)
 
-inline fun Tag.PrismRuby(@Language("ruby") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismRuby(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "ruby", code = code, options = options)
 
-inline fun Tag.PrismRust(@Language("rust") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismRust(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "rust", code = code, options = options)
 
-inline fun Tag.PrismRss(@Language("rss") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismRss(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "rss", code = code, options = options)
 
-inline fun Tag.PrismSass(@Language("sass") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismSass(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "sass", code = code, options = options)
 
-inline fun Tag.PrismScss(@Language("scss") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismScss(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "scss", code = code, options = options)
 
-inline fun Tag.PrismSsml(@Language("ssml") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismSsml(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "ssml", code = code, options = options)
 
-inline fun Tag.PrismSvg(@Language("svg") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismSvg(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "svg", code = code, options = options)
 
 inline fun Tag.PrismText(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "text", code = code, options = options)
 
-inline fun Tag.PrismTypescript(@Language("typescript") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismTypescript(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "typescript", code = code, options = options)
 
-inline fun Tag.PrismXml(@Language("xml") code: String, noinline options: PrismOptsBuilder = {}) =
+inline fun Tag.PrismXml(code: String, noinline options: PrismOptsBuilder = {}) =
     Prism(language = "xml", code = code, options = options)
 
 class Prism(ctx: Ctx<Props>) : Component<Prism.Props>(ctx) {
