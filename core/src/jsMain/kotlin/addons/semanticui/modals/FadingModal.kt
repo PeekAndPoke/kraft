@@ -22,7 +22,7 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
     companion object {
 
         object Style : StyleSheet() {
-            val noScroll = cls("modals--noscroll") {
+            val noScroll = rule {
                 overflowX = Overflow.hidden
                 overflowY = Overflow.hidden
             }

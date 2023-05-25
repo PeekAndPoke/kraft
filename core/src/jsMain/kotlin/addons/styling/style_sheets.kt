@@ -86,9 +86,11 @@ abstract class StyleSheet : StyleSheetDefinition {
 
         builder.apply {
             if (contextSelector == null) {
-                rule(".$mangled") { block() }
+                rule(".$mangled") {
+                    block()
+                }
             } else {
-                rule("$contextSelector .$mangled") {
+                rule("$contextSelector.$mangled") {
                     block()
                 }
             }
