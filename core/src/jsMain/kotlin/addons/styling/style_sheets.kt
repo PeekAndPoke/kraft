@@ -71,6 +71,10 @@ abstract class StyleSheet : StyleSheetDefinition {
 
     private var counter = 1
 
+    fun rule(block: CssBuilder.() -> Unit): String {
+        return makeRule(null, block)
+    }
+
     fun rule(contextSelector: String, block: CssBuilder.() -> Unit): String {
         return makeRule(contextSelector, block)
     }
