@@ -69,13 +69,24 @@ abstract class StyleSheet : StyleSheetDefinition {
 
     private val builder = CssBuilder()
 
-    fun cls(cssClassName: String, block: CssBuilder.() -> Unit): String {
+    private var counter = 1
+
+    fun rule(contextSelector: String, block: CssBuilder.() -> Unit): String {
+        return makeRule(contextSelector, block)
+    }
+
+    private fun makeRule(contextSelector: String? = null, block: CssBuilder.() -> Unit): String {
+        val cssClassName = "r$counter"
 
         val mangled = StyleSheets.mangleClassName(cssClassName)
 
         builder.apply {
-            rule(".$mangled") {
-                block()
+            if (contextSelector == null) {
+                rule(".$mangled") { block() }
+            } else {
+                rule("$contextSelector .$mangled") {
+                    block()
+                }
             }
         }
 
