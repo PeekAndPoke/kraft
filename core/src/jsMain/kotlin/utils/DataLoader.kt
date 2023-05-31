@@ -4,6 +4,7 @@ import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
 import de.peekandpoke.kraft.streams.addons.map
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -115,8 +116,21 @@ class DataLoader<T>(
 
             try {
                 options.load()
-                    .catch { currentState = State.Error(it) }
-                    .collect { currentState = State.Loaded(it) }
+                    .catch {
+                        when (it) {
+                            is CancellationException -> {
+                                // Do nothing if the current flow was cancelled
+                            }
+
+                            else -> {
+                                // Go to error state for each other exception
+                                currentState = State.Error(it)
+                            }
+                        }
+                    }
+                    .collect {
+                        currentState = State.Loaded(it)
+                    }
             } catch (e: Throwable) {
                 currentState = State.Error(e)
             }
