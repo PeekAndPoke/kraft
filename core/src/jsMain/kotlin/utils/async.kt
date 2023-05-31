@@ -6,8 +6,8 @@ private val scopeJob = SupervisorJob()
 
 private val scope = CoroutineScope(scopeJob)
 
-fun <T : Any?> launch(block: suspend () -> T) {
-    scope.launch {
+fun <T : Any?> launch(block: suspend () -> T): Job {
+    return scope.launch {
         block()
     }
 }

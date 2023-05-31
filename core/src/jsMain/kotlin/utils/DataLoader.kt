@@ -4,6 +4,8 @@ import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
 import de.peekandpoke.kraft.streams.addons.map
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.html.FlowContent
@@ -59,8 +61,14 @@ class DataLoader<T>(
     /** The current value of the loader */
     val value: Stream<T?> = state.map { (it as? State.Loaded<T>)?.data }
 
+    private var lastJob: Job? = null
+
     init {
-        reload()
+        component.lifecycle {
+            onMount {
+                reload()
+            }
+        }
     }
 
     operator fun invoke(flow: FlowContent, block: Render<T>.() -> Unit) {
@@ -90,13 +98,21 @@ class DataLoader<T>(
         currentState = state
     }
 
-    fun reload() {
+    fun reload(debounceMs: Long = 20) {
         currentState = State.Loading()
-        reloadSilently()
+        reloadSilently(debounceMs)
     }
 
-    fun reloadSilently() {
-        launch {
+    fun reloadSilently(debounceMs: Long = 20) {
+        lastJob?.let {
+            if (it.isActive) {
+                it.cancel()
+            }
+        }
+
+        lastJob = launch {
+            delay(debounceMs)
+
             try {
                 options.load()
                     .catch { currentState = State.Error(it) }
