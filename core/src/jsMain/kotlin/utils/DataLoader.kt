@@ -99,12 +99,12 @@ class DataLoader<T>(
         currentState = state
     }
 
-    fun reload(debounceMs: Long = 20) {
+    fun reload(debounceMs: Long = 200) {
         currentState = State.Loading()
         reloadSilently(debounceMs)
     }
 
-    fun reloadSilently(debounceMs: Long = 20) {
+    fun reloadSilently(debounceMs: Long = 200) {
         lastJob?.let {
             if (it.isActive) {
                 it.cancel()
