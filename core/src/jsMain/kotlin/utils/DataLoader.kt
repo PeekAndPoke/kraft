@@ -116,22 +116,24 @@ class DataLoader<T>(
 
             try {
                 options.load()
-                    .catch {
-                        when (it) {
-                            is CancellationException -> {
-                                // Do nothing if the current flow was cancelled
-                            }
-
-                            else -> {
-                                // Go to error state for each other exception
-                                currentState = State.Error(it)
-                            }
-                        }
-                    }
-                    .collect {
-                        currentState = State.Loaded(it)
-                    }
+                    .catch { handleException(it) }
+                    .collect { currentState = State.Loaded(it) }
             } catch (e: Throwable) {
+                handleException(e)
+            }
+        }
+    }
+
+    private fun handleException(e: Throwable) {
+        when (e) {
+            is CancellationException -> {
+                console.log("do nothing")
+                // Do nothing if the current flow was cancelled
+            }
+
+            else -> {
+                console.log("set error state")
+                // Go to error state for each other exception
                 currentState = State.Error(e)
             }
         }

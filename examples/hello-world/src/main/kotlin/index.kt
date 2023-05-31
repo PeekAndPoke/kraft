@@ -37,6 +37,10 @@ fun main() {
 
         LocalStorageComponent("INITIAL")
 
+        h2 { +"Component with a DataLoader" }
+
+        DataLoaderComponent(100)
+
         ui.divider()
 
         h2 { +"OnContextMenu" }
