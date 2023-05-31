@@ -127,12 +127,10 @@ class DataLoader<T>(
     private fun handleException(e: Throwable) {
         when (e) {
             is CancellationException -> {
-                console.log("do nothing")
                 // Do nothing if the current flow was cancelled
             }
 
             else -> {
-                console.log("set error state")
                 // Go to error state for each other exception
                 currentState = State.Error(e)
             }
