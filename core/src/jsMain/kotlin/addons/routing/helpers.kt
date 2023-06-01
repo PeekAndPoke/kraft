@@ -45,14 +45,18 @@ fun <C, T> Component<C>.urlParams(
 
     return object : ReadWriteProperty<Component<C>, T> {
 
-        var current: T = fromParams(router.current().matchedRoute.allParams)
+        private val initialRoute = router.current()
+
+        var current: T = fromParams(initialRoute.matchedRoute.allParams)
 
         init {
-            // When the URI changes we modify the object and send it through the stream
-            router.current { route ->
-                setValueInternal(
-                    fromParams(route.matchedRoute.allParams)
-                )
+            router.current { nextRoute ->
+                // Only accept the change, if we stay on the same page
+                if (initialRoute.route == nextRoute.route) {
+                    setValueInternal(
+                        fromParams(nextRoute.matchedRoute.allParams)
+                    )
+                }
             }
         }
 
