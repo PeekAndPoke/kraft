@@ -67,7 +67,7 @@ class DataLoader<T>(
     init {
         component.lifecycle {
             onMount {
-                reload()
+                reload(0)
             }
         }
     }
