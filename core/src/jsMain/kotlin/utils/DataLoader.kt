@@ -115,16 +115,26 @@ class DataLoader<T>(
                 delay(5)
             }
 
-            requestsCounter++
-
             try {
                 options.load()
-                    .catch { handleException(it) }
-                    .collect { currentState = State.Loaded(it) }
+                    .catch {
+                        handleFinished()
+                        handleException(it)
+                    }
+                    .collect {
+                        handleFinished()
+                        currentState = State.Loaded(it)
+                    }
             } catch (e: Throwable) {
+                handleFinished()
                 handleException(e)
             }
         }
+    }
+
+    private fun handleFinished() {
+        requestsCounter += 1
+        lastJob = null
     }
 
     private fun handleException(e: Throwable) {
