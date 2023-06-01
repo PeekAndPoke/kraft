@@ -66,11 +66,7 @@ class DataLoader<T>(
     private var lastJob: Job? = null
 
     init {
-        component.lifecycle {
-            onMount {
-                reload(0)
-            }
-        }
+        reload(0)
     }
 
     operator fun invoke(flow: FlowContent, block: Render<T>.() -> Unit) {
