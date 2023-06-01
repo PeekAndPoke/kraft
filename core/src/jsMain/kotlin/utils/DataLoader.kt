@@ -9,7 +9,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onEach
 import kotlinx.html.FlowContent
 
 fun <T, C> Component<C>.dataLoader(load: suspend () -> Flow<T>): DataLoader<T> = DataLoader(
@@ -63,7 +62,7 @@ class DataLoader<T>(
     /** The current value of the loader */
     val value: Stream<T?> = state.map { (it as? State.Loaded<T>)?.data }
 
-    private var resultsCounter = 0
+    private var requestsCounter = 0
     private var lastJob: Job? = null
 
     init {
@@ -114,14 +113,17 @@ class DataLoader<T>(
         }
 
         lastJob = launch {
-            if (resultsCounter > 0) {
+            if (requestsCounter > 0) {
                 delay(debounceMs)
+            } else {
+                delay(5)
             }
+
+            requestsCounter++
 
             try {
                 options.load()
                     .catch { handleException(it) }
-                    .onEach { resultsCounter++ }
                     .collect { currentState = State.Loaded(it) }
             } catch (e: Throwable) {
                 handleException(e)
