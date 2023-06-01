@@ -62,12 +62,18 @@ class DataLoader<T>(
     /** The current value of the loader */
     val value: Stream<T?> = state.map { (it as? State.Loaded<T>)?.data }
 
+    private var isMounted = false
     private var lastJob: Job? = null
 
     init {
         component.lifecycle {
             onMount {
-                reload(0)
+                isMounted = true
+                reload(1)
+            }
+
+            onUnmount {
+                isMounted = false
             }
         }
     }
@@ -105,6 +111,10 @@ class DataLoader<T>(
     }
 
     fun reloadSilently(debounceMs: Long = 200) {
+        if (!isMounted) {
+            return
+        }
+
         lastJob?.let {
             if (it.isActive) {
                 it.cancel()
