@@ -9,14 +9,25 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.html.FlowContent
 
+/**
+ * Creates a data loader for the given [load] function.
+ */
 fun <T, C> Component<C>.dataLoader(load: suspend () -> Flow<T>): DataLoader<T> = DataLoader(
     component = this,
     options = DataLoader.Options(
         load = load,
     )
 )
+
+/**
+ * Creates a data loader for a fixed [value].
+ */
+fun <T, C> Component<C>.dataLoaderOf(value: T): DataLoader<T> = dataLoader {
+    flowOf(value)
+}
 
 class DataLoader<T>(
     component: Component<*>,

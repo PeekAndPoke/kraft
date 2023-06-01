@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.helloworld
 
+import de.peekandpoke.kraft.addons.pagination.pagedSearchFilter
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
@@ -25,6 +26,11 @@ class DataLoaderComponent(ctx: Ctx<Props>) : Component<DataLoaderComponent.Props
         val start: Int,
     )
 
+    private val something by pagedSearchFilter(router) {
+        console.log(it)
+        reload()
+    }
+
     private var reloads by value(0)
 
     private val loader = dataLoader {
@@ -32,6 +38,10 @@ class DataLoaderComponent(ctx: Ctx<Props>) : Component<DataLoaderComponent.Props
             delay(1_000)
             emit(props.start + reloads)
         }
+    }
+
+    private fun reload() {
+        loader.reloadSilently()
     }
 
     override fun VDom.render() {

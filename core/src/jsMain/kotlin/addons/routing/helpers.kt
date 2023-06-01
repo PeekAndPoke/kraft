@@ -1,9 +1,7 @@
 package de.peekandpoke.kraft.addons.routing
 
 import de.peekandpoke.kraft.components.Component
-import de.peekandpoke.kraft.streams.addons.mapAsync
 import kotlinx.browser.window
-import kotlinx.coroutines.delay
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -48,11 +46,12 @@ fun <C, T> Component<C>.urlParams(
     var current: T = fromParams(router.current().matchedRoute.allParams)
 
     // When the URI changes we modify the object and send it through the stream
-    router.current.mapAsync { it.also { delay(10) } }.subscribe {
+    router.current { route ->
 
-        it?.let { next ->
-            current = fromParams(next.matchedRoute.allParams)
-//            console.log("Next params", current)
+        val next = fromParams(route.matchedRoute.allParams)
+
+        if (next != current) {
+            current = next
             onChange?.invoke(current)
         }
     }
