@@ -43,28 +43,37 @@ fun <C, T> Component<C>.urlParams(
     onChange: ((T) -> Unit)? = null,
 ): ReadWriteProperty<Component<C>, T> {
 
-    var current: T = fromParams(router.current().matchedRoute.allParams)
-
-    // When the URI changes we modify the object and send it through the stream
-    router.current { route ->
-
-        val next = fromParams(route.matchedRoute.allParams)
-
-        if (next != current) {
-            current = next
-            onChange?.invoke(current)
-        }
-    }
-
     return object : ReadWriteProperty<Component<C>, T> {
+
+        var current: T = fromParams(router.current().matchedRoute.allParams)
+
+        init {
+            // When the URI changes we modify the object and send it through the stream
+            router.current { route ->
+                setValueInternal(
+                    fromParams(route.matchedRoute.allParams)
+                )
+            }
+        }
 
         override fun getValue(thisRef: Component<C>, property: KProperty<*>): T {
             return current
         }
 
         override fun setValue(thisRef: Component<C>, property: KProperty<*>, value: T) {
+            setValueInternal(value)
+        }
+
+        private fun setValueInternal(value: T) {
+            if (value == current) {
+                return
+            }
+
             // remember the next value
             current = value
+
+            // Call onChange callback
+            onChange?.invoke(current)
 
             // Modify the params in the route
             val params = toParams(value)

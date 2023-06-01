@@ -26,7 +26,7 @@ class DataLoaderComponent(ctx: Ctx<Props>) : Component<DataLoaderComponent.Props
         val start: Int,
     )
 
-    private val something by pagedSearchFilter(router) {
+    private var filter by pagedSearchFilter(router) {
         console.log(it)
         reload()
     }
@@ -66,6 +66,13 @@ class DataLoaderComponent(ctx: Ctx<Props>) : Component<DataLoaderComponent.Props
                         loader.reload()
                     }
                     +"Reload"
+                }
+
+                ui.orange.button {
+                    onClick {
+                        filter = filter.copy(epp = filter.epp + 1)
+                    }
+                    +"Change uri"
                 }
             }
         }
