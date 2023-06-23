@@ -4,6 +4,7 @@ package de.peekandpoke.kraft.components
 
 import kotlinx.html.CommonAttributeGroupFacade
 import kotlinx.html.js.*
+import org.w3c.dom.DragEvent
 import org.w3c.dom.events.*
 
 /**
@@ -66,6 +67,33 @@ fun CommonAttributeGroupFacade.onContextMenuStoppingEvent(handler: (UIEvent) -> 
         e.stopPropagation()
         handler(e.asDynamic())
     }
+}
+
+/**
+ * Adds an onDragOver handler and prevents the default.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event
+ */
+fun CommonAttributeGroupFacade.onDragOver(handler: (DragEvent) -> Unit) {
+    onDragOverFunction = handler.asDynamic()
+}
+
+/**
+ * Adds an onDragLeave handler and prevents the default.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragleave_event
+ */
+fun CommonAttributeGroupFacade.onDragLeave(handler: (DragEvent) -> Unit) {
+    onDragLeaveFunction = handler.asDynamic()
+}
+
+/**
+ * Adds an onDrop handler and prevents the default.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event
+ */
+fun CommonAttributeGroupFacade.onDrop(handler: (DragEvent) -> Unit) {
+    onDropFunction = handler.asDynamic()
 }
 
 /**
