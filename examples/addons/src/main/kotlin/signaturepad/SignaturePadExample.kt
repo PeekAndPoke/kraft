@@ -8,7 +8,6 @@ import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.common.model.FileBase64
 import kotlinx.css.*
-import kotlinx.css.properties.border
 import kotlinx.html.Tag
 import kotlinx.html.div
 import kotlinx.html.img
@@ -40,7 +39,7 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
             div {
                 css {
                     position = Position.relative
-                    border(2.px, BorderStyle.dashed, Color.lightGrey)
+                    border = Border(2.px, BorderStyle.dashed, Color.lightGrey)
                     backgroundColor = Color.white
                     height = 30.vh
                 }
@@ -117,7 +116,7 @@ class SignaturePadExample(ctx: NoProps) : PureComponent(ctx) {
                             ui.fitted.image {
 
                                 css {
-                                    border(width = 1.px, style = BorderStyle.dotted, color = Color.gray)
+                                    border = Border(width = 1.px, style = BorderStyle.dotted, color = Color.gray)
                                 }
 
                                 img { src = data.asDataUrl() }

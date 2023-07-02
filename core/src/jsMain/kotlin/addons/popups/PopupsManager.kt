@@ -86,7 +86,7 @@ class PopupsManager {
                 css {
                     left = 0.px
                     right = LinearDimension.auto
-                    padding(0.px)
+                    padding = Padding(0.px)
                 }
                 view(handle)
             }

@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.jsaddons
 
+import de.peekandpoke.kraft.addons.avatars.Avatars
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -39,7 +40,7 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
 
                 noui.center.aligned.content {
                     renderLogo(
-                        src = "https://raw.githubusercontent.com/laurentpayot/minidenticons/HEAD/alienHead66.svg",
+                        src = Avatars.MinIdenticon.getDataUrl("alienHead66.svg"),
                         alt = "Avatars",
                     )
                 }

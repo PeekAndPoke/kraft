@@ -23,56 +23,56 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
-        ui.basic.segment {
-            h1 { +"Hello World!" }
+        ui.container {
+            ui.basic.segment {
+                h1 { +"Hello World!" }
 
-            h2 { +"First Counter" }
+                h2 { +"First Counter" }
 
-            CounterComponent(0)
+                CounterComponent(0)
 
-            h2 { +"Another Counter" }
+                h2 { +"Another Counter" }
 
-            CounterComponent(10)
+                CounterComponent(10)
 
-            h2 { +"A ticker" }
+                h2 { +"A ticker" }
 
-            TickerComponent(100)
+                TickerComponent(100)
 
-            h2 { +"Component storing data in local storage" }
+                h2 { +"Component storing data in local storage" }
 
-            LocalStorageComponent("INITIAL")
+                LocalStorageComponent("INITIAL")
 
-            h2 { +"Component with a DataLoader" }
+                h2 { +"Component with a DataLoader" }
 
-            DataLoaderComponent(100)
+                DataLoaderComponent(100)
 
-            ui.divider()
+                ui.divider()
 
-            h2 { +"OnContextMenu" }
+                h2 { +"OnContextMenu" }
 
-            ui.card {
-                noui.content {
-                    onContextMenuStoppingEvent {
-                        popups.showContextMenu(it) {
-                            ui.basic.vertical.menu {
-                                noui.item A {
-                                    href = "#"
-                                    +"Menu 1"
-                                }
-                                noui.item A {
-                                    href = "#"
-                                    +"Menu 2"
+                ui.card {
+                    noui.content {
+                        onContextMenuStoppingEvent {
+                            popups.showContextMenu(it) {
+                                ui.basic.vertical.menu {
+                                    noui.item A {
+                                        href = "#"
+                                        +"Menu 1"
+                                    }
+                                    noui.item A {
+                                        href = "#"
+                                        +"Menu 2"
+                                    }
                                 }
                             }
                         }
+                        +"Right click me"
                     }
-                    +"Right click me"
                 }
-            }
 
-            ui.divider {}
+                ui.divider {}
 
-            ui.container {
                 ui.two.column.grid {
                     ui.column {
                         ui.segment {

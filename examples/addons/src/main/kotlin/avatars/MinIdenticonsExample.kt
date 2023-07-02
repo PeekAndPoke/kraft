@@ -14,10 +14,10 @@ import kotlinx.html.p
 
 @Suppress("FunctionName")
 fun Tag.MinIdenticonsExample() = comp {
-    MinidenticonsExample(it)
+    MinIdenticonsExample(it)
 }
 
-class MinidenticonsExample(ctx: NoProps) : PureComponent(ctx) {
+class MinIdenticonsExample(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 

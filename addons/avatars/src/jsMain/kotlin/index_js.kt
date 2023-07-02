@@ -8,7 +8,9 @@ object Avatars {
     object MinIdenticon {
 
         fun get(name: String, saturation: Number? = null, lightness: Number? = null): String {
-            return JsMinIdenticons.identicon(
+//            console.log(JsMinIdenticons)
+
+            return JsMinIdenticons.minidenticon(
                 name = name,
                 saturation = saturation ?: undefined,
                 lightness = lightness ?: undefined,

@@ -1871,10 +1871,10 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-marked@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-4.3.0.tgz#796362821b019f734054582038b116481b456cf3"
-  integrity sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==
+marked@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-5.1.0.tgz#cf51f03ba04dfb3469774029fd0106d258658767"
+  integrity sha512-z3/nBe7aTI8JDszlYLk7dDVNpngjw0o1ZJtrA9kIfkkHcIF+xH7mO23aISl4WxP83elU+MFROgahqdpd05lMEQ==
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -1938,10 +1938,10 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-minidenticons@3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/minidenticons/-/minidenticons-3.1.2.tgz#f96a6df7cfd320a94117ebcbe1c952390302b88d"
-  integrity sha512-UKMFgjagF6kZvGTV/SuMFLqvqvcnylBKLFRgpX3/1emp8zjLswZPaFbdslN81D+GsYNxwjxUkWRIo71cM3W0uA==
+minidenticons@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/minidenticons/-/minidenticons-4.2.0.tgz#6c5e06e30127d160902f6ba600da3db4ac8e70dd"
+  integrity sha512-2T3VU1N30yI3kXMRbdLsJ5DgsBoGLi2+2hbm1xTOU2RQXWW5wwpmz9XQohVSsVlhymf4W69sMGj6s39t796PBA==
 
 minimalistic-assert@^1.0.0:
   version "1.0.1"
@@ -2207,10 +2207,10 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-preact@10.13.2:
-  version "10.13.2"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.13.2.tgz#2c40c73d57248b57234c4ae6cd9ab9d8186ebc0a"
-  integrity sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==
+preact@10.15.1:
+  version "10.15.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.15.1.tgz#a1de60c9fc0c79a522d969c65dcaddc5d994eede"
+  integrity sha512-qs2ansoQEwzNiV5eAcRT1p1EC/dmEzaATVDJNiB3g2sRDWdA7b7MurXdJjB2+/WQktGWZwxvDrnuRFbWuIr64g==
 
 prismjs@1.29.0:
   version "1.29.0"

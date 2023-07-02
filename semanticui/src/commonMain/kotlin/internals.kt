@@ -1,17 +1,11 @@
 package de.peekandpoke.kraft.semanticui
 
 import kotlinx.html.Tag
+import kotlinx.html.visitTag
 
 @PublishedApi
 internal fun <T : Tag> T.visitNoInline(block: T.() -> Unit) {
-    consumer.onTagStart(this)
-    try {
-        this.block()
-    } catch (err: Throwable) {
-        consumer.onTagError(this, err)
-    } finally {
-        consumer.onTagEnd(this)
-    }
+    visitTag(block)
 }
 
 @Suppress("unused")

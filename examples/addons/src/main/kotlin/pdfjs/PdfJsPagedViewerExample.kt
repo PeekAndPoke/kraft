@@ -8,10 +8,7 @@ import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import kotlinx.css.Color
-import kotlinx.css.backgroundColor
-import kotlinx.css.padding
-import kotlinx.css.px
+import kotlinx.css.*
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
@@ -89,7 +86,7 @@ class PdfJsPagedViewerExample(ctx: NoProps) : PureComponent(ctx) {
 
         ui.bottom.attached.segment {
             css {
-                padding(10.px)
+                padding = Padding(10.px)
                 backgroundColor = Color("#F8F8F8")
             }
 

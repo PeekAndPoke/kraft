@@ -10,7 +10,7 @@ object Deps {
     }
 
     // Kotlin ////////////////////////////////////////////////////////////////////////////////////
-    const val kotlinVersion = "1.8.21"
+    const val kotlinVersion = "1.8.22"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // JVM ///////////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ object Deps {
     // Dokka /////////////////////////////////////////////////////////////////////////////////////
     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
     // Dokka gradle plugin org.jetbrains.dokka
-    const val dokkaVersion = "1.8.10" // kotlinVersion
+    const val dokkaVersion = "1.8.20" // kotlinVersion
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
@@ -29,11 +29,11 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.67.1"
+    private const val ultra_version = "0.68.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
     // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
-    private const val kotlinx_html_version = "0.8.0"
+    private const val kotlinx_html_version = "0.9.0"
     const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
 //    private const val peekandpoke_kotlinx_html_version = "0.7.5.2-SNAPSHOT"
@@ -41,13 +41,13 @@ object Deps {
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.549"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.583"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
-    private const val kotlinx_coroutines_version = "1.7.1"
+    private const val kotlinx_coroutines_version = "1.7.2"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
     const val kotlinx_coroutines_core_js =
@@ -63,7 +63,7 @@ object Deps {
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.549"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.583"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -89,10 +89,10 @@ object Deps {
         fun KotlinDependencyHandler.konva() = npm("konva", "8.4.3")
 
         // https://www.npmjs.com/package/minidenticons
-        fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "3.1.2")
+        fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "4.2.0")
 
         // https://www.npmjs.com/package/marked
-        fun KotlinDependencyHandler.marked() = npm("marked", "4.3.0")
+        fun KotlinDependencyHandler.marked() = npm("marked", "5.1.0")
 
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
@@ -102,7 +102,7 @@ object Deps {
         fun KotlinDependencyHandler.pdfjs_dist() = npm("pdfjs-dist", "2.16.105")
 
         // https://www.npmjs.com/package/preact
-        fun KotlinDependencyHandler.preact() = npm("preact", "10.13.2")
+        fun KotlinDependencyHandler.preact() = npm("preact", "10.15.1")
 
         // https://www.npmjs.com/package/prismjs
         fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
@@ -126,7 +126,7 @@ object Deps {
         }
 
         // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
-        const val logback_version = "1.4.7"
+        const val logback_version = "1.4.8"
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
