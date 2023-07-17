@@ -21,6 +21,7 @@ if (devServer) {
 
     // config.plugins = []
 
+    devServer.host = "127.0.0.1"
     devServer.port = 57203
     devServer.open = true
     devServer.hot = false

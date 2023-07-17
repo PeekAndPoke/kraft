@@ -20,15 +20,19 @@ fun stringToDouble(it: String): Double = if (it.isBlank()) 0.0 else it.toDouble(
 fun dateToYmd(it: MpLocalDate?): String = it?.format("yyyy-MM-dd") ?: ""
 
 fun stringToDate(it: String): MpLocalDate = MpLocalDate.parse(it)
+fun stringToDateOrNull(it: String): MpLocalDate? = MpLocalDate.tryParse(it)
 
-fun dateTimeToYmdHms(it: MpLocalDateTime?): String = it?.atUTC()?.format("yyyy-MM-ddTHH:mm:ss") ?: ""
+fun localDateTimeToYmdHms(it: MpLocalDateTime?): String = zonedDateTimeToYmdHms(it?.atUTC())
 
-fun dateTimeToYmdHms(it: MpZonedDateTime?): String = it?.format("yyyy-MM-ddTHH:mm:ss") ?: ""
+fun stringToLocalDateTime(it: String): MpLocalDateTime = MpLocalDateTime.parse(it)
+fun stringToLocalDateTimeOrNull(it: String): MpLocalDateTime? = MpLocalDateTime.tryParse(it)
+
+fun zonedDateTimeToYmdHms(it: MpZonedDateTime?): String = it?.format("yyyy-MM-ddTHH:mm:ss") ?: ""
+
+fun stringToZonedDateTime(it: String): MpZonedDateTime = MpZonedDateTime.parse(it)
+fun stringToZonedDateTimeOrNull(it: String): MpZonedDateTime? = MpZonedDateTime.tryParse(it)
 
 fun timeToHms(it: MpLocalTime?): String = it?.format("HH:mm:ss") ?: ""
 
-fun stringToLocalDateTime(it: String): MpLocalDateTime = MpLocalDateTime.parse(it)
-
-fun stringToZonedDateTime(it: String): MpZonedDateTime = MpZonedDateTime.parse(it)
-
 fun stringToLocalTime(it: String): MpLocalTime = MpLocalTime.parse(it)
+

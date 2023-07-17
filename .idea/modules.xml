@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/io.peekandpoke.kraft.examples.kraft.examples.addons.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/io.peekandpoke.kraft.examples.kraft.examples.addons.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/io.peekandpoke.kraft.examples.kraft.examples.addons.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/io.peekandpoke.kraft.examples.kraft.examples.addons.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/fomanticui/io.peekandpoke.kraft.examples.kraft.examples.fomanticui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/fomanticui/io.peekandpoke.kraft.examples.kraft.examples.fomanticui.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/fomanticui/io.peekandpoke.kraft.examples.kraft.examples.fomanticui.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/fomanticui/io.peekandpoke.kraft.examples.kraft.examples.fomanticui.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/hello-world/io.peekandpoke.kraft.examples.kraft.examples.hello-world.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/hello-world/io.peekandpoke.kraft.examples.kraft.examples.hello-world.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/hello-world/io.peekandpoke.kraft.examples.kraft.examples.hello-world.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/hello-world/io.peekandpoke.kraft.examples.kraft.examples.hello-world.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/addons/kraft.examples.addons.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/fomanticui/kraft.examples.fomanticui.main.iml" />

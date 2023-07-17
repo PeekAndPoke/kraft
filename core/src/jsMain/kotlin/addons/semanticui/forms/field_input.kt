@@ -62,6 +62,8 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         val fromStr: (String) -> X,
     ) : GenericFormField.Props<X, Options<X>>
 
+    private var userInput: String by value(props.toStr(props.value))
+
     internal var typeOverride: InputType? by value(null)
 
     internal val effectiveType: InputType? get() = typeOverride ?: options.type()
@@ -71,6 +73,21 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
             onMount {
                 options.autofocusValue()?.takeIf { it }?.let {
                     focus("input")
+                }
+            }
+
+            onNextProps { new, old ->
+                if (new.value != old.value) {
+                    // We keep the current [userInput] as long when it fromStr value is the same as the current value
+                    val userMapped = try {
+                        props.fromStr(userInput)
+                    } catch (e: Throwable) {
+                        null
+                    }
+
+                    if (userMapped != currentValue) {
+                        userInput = new.toStr(new.value)
+                    }
                 }
             }
         }
@@ -108,6 +125,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     fun setInput(input: String) {
         try {
+            userInput = input
             val newValue = props.fromStr(input)
             setValue(newValue)
         } catch (t: Throwable) {
@@ -120,7 +138,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
     }
 
     private fun valueAsString(): String {
-        return props.toStr(currentValue)
+        return userInput
     }
 
     fun INPUT.applyAll() {
@@ -133,11 +151,13 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         applyPlaceholder()
         applyStep()
         applyType()
+        applyRequired()
     }
 
     private fun INPUT.track() {
         onInput {
-            setInput((it.target as HTMLInputElement).value)
+            val elem = (it.target as HTMLInputElement)
+            setInput(elem.value)
         }
     }
 
@@ -169,6 +189,10 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     private fun INPUT.applyType() {
         effectiveType?.let { type = it }
+    }
+
+    private fun INPUT.applyRequired() {
+        options.required()?.let { required = it }
     }
 }
 
@@ -388,6 +412,7 @@ class UiDateFieldRenderer(private val tag: Tag) {
         builder: Options<MpLocalDate>.() -> Unit = {},
     ) = tag.UiInputField(value, onChange, ::dateToYmd, ::stringToDate) {
         asDateInput()
+        required(true)
         builder()
     }
 
@@ -408,7 +433,7 @@ class UiDateFieldRenderer(private val tag: Tag) {
         value: MpLocalDate?,
         onChange: (MpLocalDate?) -> Unit,
         builder: Options<MpLocalDate?>.() -> Unit = {},
-    ) = tag.UiInputField(value, onChange, ::dateToYmd, ::stringToDate) {
+    ) = tag.UiInputField(value, onChange, ::dateToYmd, ::stringToDateOrNull) {
         asDateInput()
         builder()
     }
@@ -560,8 +585,9 @@ class UiDateTimeFieldRenderer(private val tag: Tag) {
         value: MpLocalDateTime,
         onChange: (MpLocalDateTime) -> Unit,
         builder: Options<MpLocalDateTime>.() -> Unit = {},
-    ) = tag.UiInputField(value, onChange, ::dateTimeToYmdHms, ::stringToLocalDateTime) {
+    ) = tag.UiInputField(value, onChange, ::localDateTimeToYmdHms, ::stringToLocalDateTime) {
         asDateTimeInput()
+        required(true)
         builder()
     }
 
@@ -582,7 +608,7 @@ class UiDateTimeFieldRenderer(private val tag: Tag) {
         value: MpLocalDateTime?,
         onChange: (MpLocalDateTime?) -> Unit,
         builder: Options<MpLocalDateTime?>.() -> Unit = {},
-    ) = tag.UiInputField(value, onChange, ::dateTimeToYmdHms, ::stringToLocalDateTime) {
+    ) = tag.UiInputField(value, onChange, ::localDateTimeToYmdHms, ::stringToLocalDateTimeOrNull) {
         asDateTimeInput()
         builder()
     }
@@ -628,7 +654,7 @@ class UiDateTimeFieldRenderer(private val tag: Tag) {
     ) = tag.UiInputField(
         value,
         onChange,
-        ::dateTimeToYmdHms,
+        ::zonedDateTimeToYmdHms,
         { stringToZonedDateTime(it).copy(timezone = timezone) },
     ) {
         asDateTimeInput()
@@ -657,8 +683,8 @@ class UiDateTimeFieldRenderer(private val tag: Tag) {
     ) = tag.UiInputField(
         value,
         onChange,
-        ::dateTimeToYmdHms,
-        { stringToZonedDateTime(it).copy(timezone = timezone) },
+        ::zonedDateTimeToYmdHms,
+        { stringToZonedDateTimeOrNull(it)?.copy(timezone = timezone) },
     ) {
         asDateTimeInput()
         builder()
