@@ -19,7 +19,7 @@ internal interface PreactElements {
 
         internal var ll: PreactLLC? = null
 
-        override fun getComponent(): C? {
+        override fun getOrNull(): C? {
             @Suppress("UNCHECKED_CAST")
             return ll?.getComponent() as? C?
         }

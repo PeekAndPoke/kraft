@@ -16,7 +16,7 @@ import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.h2
 
-@Suppress("FunctionName", "TestFunctionName")
+@Suppress("TestFunctionName")
 private fun Tag.PureCounter() = comp {
     PureCounter(it)
 }

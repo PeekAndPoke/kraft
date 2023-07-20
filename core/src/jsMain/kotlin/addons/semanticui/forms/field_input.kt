@@ -2,10 +2,7 @@ package de.peekandpoke.kraft.addons.semanticui.forms
 
 import de.peekandpoke.kraft.addons.forms.*
 import de.peekandpoke.kraft.addons.semanticui.forms.UiInputFieldComponent.Options
-import de.peekandpoke.kraft.components.Ctx
-import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.components.key
-import de.peekandpoke.kraft.components.onInput
+import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.*
@@ -62,6 +59,8 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         val fromStr: (String) -> X,
     ) : GenericFormField.Props<X, Options<X>>
 
+    val inputElement: HTMLInputElement get() = dom!!.querySelector("input") as HTMLInputElement
+
     private var userInput: String by value(props.toStr(props.value))
 
     internal var typeOverride: InputType? by value(null)
@@ -72,7 +71,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         lifecycle {
             onMount {
                 options.autofocusValue()?.takeIf { it }?.let {
-                    focus("input")
+                    focus()
                 }
             }
 
@@ -91,6 +90,10 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
                 }
             }
         }
+    }
+
+    fun focus() {
+        inputElement.focus()
     }
 
     override fun VDom.render() {
@@ -117,12 +120,6 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         }
     }
 
-    private fun FlowContent.renderField() {
-        input {
-            applyAll()
-        }
-    }
-
     fun setInput(input: String) {
         try {
             userInput = input
@@ -135,6 +132,14 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         }
 
         sendMessage(FormFieldInputChanged(this))
+    }
+
+    // Private helpers ////////////////////////////////////////////////////////////////////////////////////
+
+    private fun FlowContent.renderField() {
+        input {
+            applyAll()
+        }
     }
 
     private fun valueAsString(): String {
@@ -156,6 +161,11 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
 
     private fun INPUT.track() {
         onInput {
+            val elem = (it.target as HTMLInputElement)
+            setInput(elem.value)
+        }
+
+        onChange {
             val elem = (it.target as HTMLInputElement)
             setInput(elem.value)
         }

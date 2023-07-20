@@ -5,20 +5,47 @@ import kotlinx.coroutines.delay
 
 interface ComponentRef<C : Component<*>> {
 
-    fun getComponent(): C?
+    /**
+     * Gets the tracked component or null.
+     */
+    fun getOrNull(): C?
 
-    operator fun invoke(): C? = getComponent()
+    /**
+     * Gets the tracked component.
+     *
+     * Will throw a [IllegalStateException] if no component is tracked (yet).
+     */
+    fun get(): C = getOrNull() ?: throw IllegalStateException("Component is not tracked.")
 
+    /**
+     * Shortcut for [getOrNull]
+     */
+    operator fun invoke(): C? = getOrNull()
+
+    /**
+     * Execute code on the tracked component.
+     *
+     * Gets the component and if the component is not null executes the [block] with the tracked
+     * component as parameter.
+     *
+     * Will return the result of [block] or null if no component is tracked.
+     */
     operator fun <R> invoke(block: (C) -> R): R? {
-        return getComponent()?.let {
+        return getOrNull()?.let {
             block(it)
         }
     }
 
+    /**
+     * Tracks a component with the giver [tracker].
+     */
     fun track(tracker: Tracker<C>): ComponentRef<C> = apply {
         tracker.track(this)
     }
 
+    /**
+     * Tracker implementation of [ComponentRef]
+     */
     class Tracker<C : Component<*>> : ComponentRef<C> {
 
         private var previousRef: ComponentRef<C>? = null
@@ -26,8 +53,8 @@ interface ComponentRef<C : Component<*>> {
 
         private var alreadyTracked: Boolean = false
 
-        override fun getComponent(): C? {
-            return currentRef?.getComponent() ?: previousRef?.getComponent()
+        override fun getOrNull(): C? {
+            return currentRef?.getOrNull() ?: previousRef?.getOrNull()
         }
 
         internal fun track(ref: ComponentRef<C>) {
@@ -40,7 +67,7 @@ interface ComponentRef<C : Component<*>> {
         }
 
         private fun waitForComponent() {
-            val comp = getComponent()
+            val comp = getOrNull()
 
             if (comp == null) {
                 launch {
@@ -54,8 +81,13 @@ interface ComponentRef<C : Component<*>> {
         }
     }
 
+    /**
+     * Null implementation of [ComponentRef].
+     *
+     * This implementation will never track a component.
+     */
     class Null<C : Component<*>> : ComponentRef<C> {
-        override fun getComponent(): C? {
+        override fun getOrNull(): C? {
             return null
         }
     }
