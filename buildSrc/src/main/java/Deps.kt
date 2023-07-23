@@ -29,11 +29,11 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.69.1"
+    private const val ultra_version = "0.69.2"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
     // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
-    private const val kotlinx_html_version = "0.9.0"
+    private const val kotlinx_html_version = "0.9.1"
     const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
 //    private const val peekandpoke_kotlinx_html_version = "0.7.5.2-SNAPSHOT"
@@ -41,7 +41,7 @@ object Deps {
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.583"
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.598"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
@@ -63,7 +63,7 @@ object Deps {
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.583"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.598"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -92,7 +92,7 @@ object Deps {
         fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "4.2.0")
 
         // https://www.npmjs.com/package/marked
-        fun KotlinDependencyHandler.marked() = npm("marked", "5.1.0")
+        fun KotlinDependencyHandler.marked() = npm("marked", "5.1.1")
 
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
@@ -102,13 +102,13 @@ object Deps {
         fun KotlinDependencyHandler.pdfjs_dist() = npm("pdfjs-dist", "2.16.105")
 
         // https://www.npmjs.com/package/preact
-        fun KotlinDependencyHandler.preact() = npm("preact", "10.15.1")
+        fun KotlinDependencyHandler.preact() = npm("preact", "10.16.0")
 
         // https://www.npmjs.com/package/prismjs
         fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
 
         // https://www.npmjs.com/package/signature_pad
-        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.1.5")
+        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.1.6")
 
         // https://www.npmjs.com/package/sourcemapped-stacktrace
         fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
