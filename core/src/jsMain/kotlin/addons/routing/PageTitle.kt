@@ -14,7 +14,7 @@ fun Tag.JoinedPageTitle(parts: () -> Iterable<String?>) {
 
 @Suppress("FunctionName")
 fun Tag.JoinedPageTitle(glue: String, parts: () -> Iterable<String?>) {
-    PageTitle(provider = { parts().filterNotNull().joinToString(glue) })
+    PageTitle(provider = { parts().filterNotNull().filter { it.isNotBlank() }.joinToString(glue) })
 }
 
 @Suppress("FunctionName")
