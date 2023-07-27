@@ -7,6 +7,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.elements.text
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -32,6 +33,8 @@ class TextPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Elements | Text")
+
         ui.basic.segment {
             ui.dividing.header H1 { +"Text" }
 

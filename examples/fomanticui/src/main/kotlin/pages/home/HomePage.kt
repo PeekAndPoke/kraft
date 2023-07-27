@@ -7,6 +7,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.home
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -30,6 +31,8 @@ class HomePage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("FomanticUI")
+
         ui.basic.segment {
             ui.header H1 {
                 +"FomanticUI + kotlinx/html + KRAFT = "

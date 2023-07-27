@@ -2,6 +2,7 @@ package de.peekandpoke.kraft.examples.fomanticui.pages.howto.blocks.listfield
 
 import de.peekandpoke.kraft.addons.forms.collections.ListField
 import de.peekandpoke.kraft.addons.forms.collections.ListFieldComponent
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.addons.semanticui.forms.UiTextArea
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.icon
@@ -31,6 +32,7 @@ class ListFieldPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("How To | List Field")
 
         ui.basic.padded.segment {
             ui.dividing.header H1 { +"List Field" }

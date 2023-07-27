@@ -2,6 +2,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.views.item
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -29,6 +30,8 @@ class ItemPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Views | Item")
+
         ui.basic.segment {
             ui.dividing.header H1 { +"Item" }
 

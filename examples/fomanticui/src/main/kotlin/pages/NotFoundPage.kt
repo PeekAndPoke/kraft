@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.fomanticui.pages
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -19,6 +20,8 @@ class NotFoundPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Oops ... Not Found")
+
         ui.basic.segment {
             ui.header H1 {
                 +"Oops ... this page does not exist."

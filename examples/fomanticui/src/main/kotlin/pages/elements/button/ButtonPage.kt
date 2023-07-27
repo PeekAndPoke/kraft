@@ -7,6 +7,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.elements.button
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -38,6 +39,8 @@ class ButtonPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Elements | Button")
+
         ui.basic.segment {
             ui.dividing.header H1 { +"Button" }
 

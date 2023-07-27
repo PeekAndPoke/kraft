@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.fomanticui.pages.howto.blocks.dnd
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -17,6 +18,7 @@ fun Tag.DragAndDropPage() = comp {
 class DragAndDropPage(ctx: NoProps) : PureComponent(ctx) {
 
     override fun VDom.render() {
+        PageTitle("How To | Drag and drop")
 
         ui.basic.padded.segment {
             ui.header H2 { +"DnD" }

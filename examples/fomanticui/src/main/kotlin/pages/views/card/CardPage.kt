@@ -7,6 +7,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.views.card
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -33,6 +34,8 @@ class CardPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Views | Card")
+
         ui.basic.segment {
             ui.dividing.header H1 { +"Card" }
 

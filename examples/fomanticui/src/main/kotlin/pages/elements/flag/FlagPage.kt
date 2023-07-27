@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.fomanticui.pages.elements.flag
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -20,6 +21,8 @@ class FlagPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Elements | Flag")
+
         ui.basic.segment {
             ui.dividing.header H1 { +"Flag" }
 

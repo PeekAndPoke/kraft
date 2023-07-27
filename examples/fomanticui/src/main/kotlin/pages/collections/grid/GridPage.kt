@@ -2,6 +2,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.collections.grid
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -31,6 +32,8 @@ class GridPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Collections | Grid")
+
         ui.basic.segment {
             ui.dividing.header H1 { +"Grid" }
 

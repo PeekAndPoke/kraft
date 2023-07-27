@@ -7,6 +7,7 @@
 
 package de.peekandpoke.kraft.examples.fomanticui.pages.howto.forms.demo
 
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -26,6 +27,8 @@ class FormDemosPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("How To | Forms | Demo")
+
         ui.basic.padded.segment {
             ui.dividing.header H1 { +"Form demos" }
 

@@ -11,6 +11,7 @@ import de.peekandpoke.kraft.addons.prismjs.PrismHtml
 import de.peekandpoke.kraft.addons.prismjs.PrismKotlin
 import de.peekandpoke.kraft.addons.prismjs.PrismPlugin.CopyToClipboard.Companion.copyToClipboard
 import de.peekandpoke.kraft.addons.prismjs.PrismPlugin.LineNumbers.Companion.lineNumbers
+import de.peekandpoke.kraft.addons.routing.PageTitle
 import de.peekandpoke.kraft.components.NoProps
 import de.peekandpoke.kraft.components.PureComponent
 import de.peekandpoke.kraft.components.comp
@@ -34,6 +35,8 @@ class KraftGettingStartedPage(ctx: NoProps) : PureComponent(ctx) {
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
+        PageTitle("Kraft | Getting Started")
+
         ui.basic.padded.segment {
             ui.dividing.header H1 { +"KRAFT - getting started" }
 
