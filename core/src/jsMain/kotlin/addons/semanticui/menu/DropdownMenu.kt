@@ -7,6 +7,7 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.window
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.css.zIndex
 import kotlinx.html.DIV
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
@@ -160,6 +161,9 @@ class DropdownMenu(ctx: Ctx<Props>) : Component<DropdownMenu.Props>(ctx) {
                 props.content(this)
 
                 noui.given(opened) { transition.visible }.menu {
+                    css {
+                        zIndex = 2000
+                    }
                     onClick { evt ->
                         evt.stopPropagation()
                         opened = false
