@@ -80,6 +80,24 @@ class DataLoader<T>(
         reload(0)
     }
 
+    /** Returns true when the loader is in the [State.Loading] */
+    fun isLoading(): Boolean = state() is State.Loading
+
+    /** Returns true when the loader is NOT in the [State.Loading] */
+    fun isNotLoading(): Boolean = !isLoading()
+
+    /** Returns true when the loader is in the [State.Error] */
+    fun isError(): Boolean = state() is State.Error
+
+    /** Returns true when the loader is NOT in the [State.Error] */
+    fun isNotError(): Boolean = !isError()
+
+    /** Returns true when the loader is in the [State.Loaded] */
+    fun isLoaded(): Boolean = state() is State.Loaded
+
+    /** Returns true when the loader is NOT in the [State.Loaded] */
+    fun isNotLoaded(): Boolean = !isLoaded()
+
     operator fun invoke(flow: FlowContent, block: Render<T>.() -> Unit) {
 
         val render = Render<T>().apply(block)
