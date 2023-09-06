@@ -68,8 +68,8 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
      *
      * If [evt].ctrlKey is true, the uri will be opened in a new tab.
      */
-    fun navToUri(uri: String, evt: MouseEvent) {
-        return navToUri(uri = uri, newTab = evt.ctrlKey)
+    fun navToUri(evt: MouseEvent?, uri: String) {
+        return navToUri(uri = uri, newTab = evt?.ctrlKey == true)
     }
 
     /**
