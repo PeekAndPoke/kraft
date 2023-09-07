@@ -108,7 +108,18 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
 
     enum class Result {
         Ok,
-        Cancel
+        Cancel;
+
+        val isOk: Boolean get() = this == Ok
+        val isCancel: Boolean get() = this == Cancel
+
+        fun <R> handle(onOk: () -> R, onCancel: () -> R): R {
+            return if (isOk) {
+                onOk()
+            } else {
+                onCancel()
+            }
+        }
     }
 
     data class View(
