@@ -18,6 +18,7 @@ import kotlin.reflect.KMutableProperty0
 val Tag.UiCheckboxField get() = UiCheckboxFieldRenderer(this)
 
 @Suppress("FunctionName")
+@KraftFormsDsl
 fun <T> Tag.UiCheckboxField(
     value: T,
     onChange: (T) -> Unit,
@@ -76,6 +77,7 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
                         type = InputType.checkBox
                         checked = currentValue == props.on
 
+                        applyDisabled()
                         applyName()
                     }
 
@@ -91,6 +93,12 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
             }
 
             renderErrors(this)
+        }
+    }
+
+    private fun INPUT.applyDisabled() {
+        if (options.isDisabled) {
+            disabled = true
         }
     }
 

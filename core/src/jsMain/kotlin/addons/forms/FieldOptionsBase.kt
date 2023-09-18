@@ -17,6 +17,7 @@ interface FieldOptions<T> {
         private val placeholderKey = TypedKey<String>("placeholder")
         private val nameKey = TypedKey<String>("name")
         private val requiredKey = TypedKey<Boolean>("required")
+        private val disabledKey = TypedKey<Boolean>("disabled")
     }
 
     open class Base<T> : FieldOptions<T> {
@@ -78,12 +79,20 @@ interface FieldOptions<T> {
     @KraftFormsSettingDsl
     val required get() = access(requiredKey)
 
+    @KraftFormsSettingDsl
+    val isDisabled: Boolean get() = access(disabledKey).invoke() ?: false
+
     /** Adds a validation rule */
     @KraftFormsSettingDsl
     fun accepts(vararg rules: Rule<T>)
 
     @KraftFormsSettingDsl
     fun label(label: String)
+
+    @KraftFormsSettingDsl
+    fun disabled(disabled: Boolean = true) {
+        access(disabledKey)(disabled)
+    }
 
     private fun <X> set(key: TypedKey<X>, value: X) {
         attributes[key] = value

@@ -128,6 +128,7 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
     fun TEXTAREA.applyAll() {
         track()
 
+        applyDisabled()
         applyName()
         applyPlaceholder()
     }
@@ -137,6 +138,12 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
             val target = it.target as HTMLTextAreaElement
 
             setValue(target.value)
+        }
+    }
+
+    private fun TEXTAREA.applyDisabled() {
+        if (options.isDisabled) {
+            disabled = true
         }
     }
 

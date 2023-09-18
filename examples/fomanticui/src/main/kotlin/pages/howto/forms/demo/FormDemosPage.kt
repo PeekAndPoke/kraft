@@ -86,6 +86,11 @@ class FormDemosPage(ctx: NoProps) : PureComponent(ctx) {
                 ui.header H2 { +"A form with Colors" }
                 FormWithColors()
             }
+
+            ui.segment {
+                ui.header H2 { +"A form with disabled fields" }
+                FormWithDisabledFields()
+            }
         }
     }
 }

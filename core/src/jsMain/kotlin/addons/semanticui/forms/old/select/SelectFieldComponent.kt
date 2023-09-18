@@ -34,7 +34,7 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
     data class Option<out T>(
         val realValue: T,
         val formValue: String,
-        val display: FlowContent.() -> Unit
+        val display: FlowContent.() -> Unit = { +formValue }
     )
 
     class Config<T>(
@@ -54,6 +54,10 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
 
         /** The label renderer of the field */
         var label: (LABEL.() -> Unit)? = null
+            private set
+
+        /** Flag whether the field is disabled */
+        var disabled: Boolean = false
             private set
 
         /** Renderer for a placeholder option */
@@ -92,6 +96,13 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
          */
         fun label(rendered: LABEL.() -> Unit) = apply {
             label = rendered
+        }
+
+        /**
+         * Sets the disabled flag
+         */
+        fun disabled(disabled: Boolean = true) = apply {
+            this.disabled = disabled
         }
 
         /**
@@ -303,6 +314,7 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
     private fun FlowContent.renderDefaultField(options: List<Option<T>>) {
 
         ui.given(props.config.inverted) { inverted }
+            .given(props.config.disabled) { disabled }
             .let { ctrl.applyStateOnField(it) }
             .selection.dropdown {
 
@@ -333,6 +345,7 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
     private fun FlowContent.renderSearchableField(options: List<Option<T>>) {
 
         ui.given(props.config.inverted) { inverted }
+            .given(props.config.disabled) { disabled }
             .let { ctrl.applyStateOnField(it) }
             .search.selection.dropdown {
                 onClick { ctrl.toggleState() }
