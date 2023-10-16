@@ -1,15 +1,13 @@
 package de.peekandpoke.kraft.examples.helloworld
 
-import de.peekandpoke.kraft.components.NoProps
-import de.peekandpoke.kraft.components.PureComponent
-import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.components.onContextMenuStoppingEvent
+import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.html.Tag
 import kotlinx.html.h1
 import kotlinx.html.h2
+import org.w3c.dom.pointerevents.PointerEvent
 
 @Suppress("FunctionName")
 fun Tag.MainPage() = comp {
@@ -46,6 +44,64 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                 h2 { +"Component with a DataLoader" }
 
                 DataLoaderComponent(100)
+
+                ui.divider()
+
+                h2 { +"Left Click | Aux Click | Right Click" }
+
+                ui.card {
+                    fun evt2str(evt: PointerEvent) = """
+                        MouseEvent:
+                            screenX: ${evt.screenX}
+                            screenY: ${evt.screenY}
+                            clientX: ${evt.clientX}
+                            clientY: ${evt.clientY}
+                            ctrlKey: ${evt.ctrlKey}
+                            shiftKey: ${evt.shiftKey}
+                            altKey: ${evt.altKey}
+                            metaKey: ${evt.metaKey}
+                            button: ${evt.button}
+                            buttons: ${evt.buttons}
+                            relatedTarget: ${evt.relatedTarget}
+                            region: ${evt.region}?
+                            pageX: ${evt.pageX}
+                            pageY: ${evt.pageY}
+                            x: ${evt.x}
+                            y: ${evt.y}
+                            offsetX: ${evt.offsetX}
+                            offsetY: ${evt.offsetY}
+                        PointerEvent:
+                            pointerId: ${evt.pointerId}
+                            width: ${evt.width}
+                            height: ${evt.height}
+                            pressure: ${evt.pressure}
+                            tangentialPressure: ${evt.tangentialPressure}
+                            tiltX: ${evt.tiltX}
+                            tiltY: ${evt.tiltY}
+                            twist: ${evt.twist}
+                            pointerType: ${evt.pointerType}
+                            isPrimary: ${evt.isPrimary}                        
+                    """.trimIndent()
+
+                    onClick {
+                        val str = "Left Click:\n\n${evt2str(it)}"
+                        console.log(str)
+                    }
+
+                    onAuxClick {
+                        val str = "Middle Click:\n\n${evt2str(it)}"
+                        console.log(str)
+                    }
+
+                    onContextMenu {
+                        val str = "Right Click:\n\n${evt2str(it)}"
+                        console.log(str)
+                    }
+
+                    noui.content {
+                        +"Click me -> Check console output"
+                    }
+                }
 
                 ui.divider()
 

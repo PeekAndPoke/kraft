@@ -6,6 +6,7 @@ import kotlinx.html.CommonAttributeGroupFacade
 import kotlinx.html.js.*
 import org.w3c.dom.DragEvent
 import org.w3c.dom.events.*
+import org.w3c.dom.pointerevents.PointerEvent
 
 /**
  * Adds an onAnimationEnd handler.
@@ -16,6 +17,15 @@ import org.w3c.dom.events.*
  */
 fun CommonAttributeGroupFacade.onAnimationEnd(handler: (Event) -> Unit) {
     consumer.onTagEvent(this, "onanimationend", handler.asDynamic())
+}
+
+/**
+ * Adds an auxClick handler.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event
+ */
+fun CommonAttributeGroupFacade.onAuxClick(handler: (PointerEvent) -> Unit) {
+    consumer.onTagEvent(this, "onauxclick", handler.asDynamic())
 }
 
 /**
@@ -43,7 +53,7 @@ fun CommonAttributeGroupFacade.onChange(handler: (Event) -> Unit) {
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
  */
-fun CommonAttributeGroupFacade.onClick(handler: (MouseEvent) -> Unit) {
+fun CommonAttributeGroupFacade.onClick(handler: (PointerEvent) -> Unit) {
     onClickFunction = handler.asDynamic()
 }
 
@@ -52,7 +62,7 @@ fun CommonAttributeGroupFacade.onClick(handler: (MouseEvent) -> Unit) {
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
  */
-fun CommonAttributeGroupFacade.onContextMenu(handler: (UIEvent) -> Unit) {
+fun CommonAttributeGroupFacade.onContextMenu(handler: (PointerEvent) -> Unit) {
     onContextMenuFunction = handler.asDynamic()
 }
 
