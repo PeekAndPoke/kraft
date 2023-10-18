@@ -58,6 +58,17 @@ fun CommonAttributeGroupFacade.onClick(handler: (PointerEvent) -> Unit) {
 }
 
 /**
+ * Adds an onClick and an onAuxClick handler.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event
+ */
+fun CommonAttributeGroupFacade.onClickOrAuxClick(handler: (PointerEvent) -> Unit) {
+    onClick(handler)
+    onAuxClick(handler)
+}
+
+/**
  * Adds an onContextMenu handler.
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
