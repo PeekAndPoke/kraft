@@ -80,6 +80,15 @@ internal interface PreactElements {
         val events: MutableMap<String, (Event) -> Any?> = mutableMapOf(),
     ) : VDomElement {
 
+        private var unsafeContents: MutableList<UnsafeContentBlock>? = null
+
+        fun addUnsafeContent(content: UnsafeContentBlock) {
+            when (val u = unsafeContents) {
+                null -> mutableListOf<UnsafeContentBlock>().also { unsafeContents = it }
+                else -> u
+            }.add(content)
+        }
+
         override fun appendChild(child: VDomElement) {
             children.add(child)
         }
@@ -91,6 +100,13 @@ internal interface PreactElements {
         override fun render(): dynamic {
             // Convert attributes to plain js object
             val attrs = tag.attributes.js
+
+            unsafeContents?.let { unsafe ->
+                val allUnsafe = unsafe.joinToString("\n") { it.content }
+                attrs.dangerouslySetInnerHTML = jsObject {
+                    __html = allUnsafe
+                }
+            }
 
             // Create a low level array for the render results of the children
             val childArr = jsArray()
@@ -108,25 +124,12 @@ internal interface PreactElements {
         }
     }
 
-    class UnsafeContentElement : VDomElement, Unsafe {
-
-        private var _content = ""
-
-        val content get() = _content
+    class UnsafeContentBlock : Unsafe {
+        var content = ""
+            private set
 
         override fun String.unaryPlus() {
-            _content += this
-        }
-
-        override fun render(): dynamic {
-            return h(
-                "span",
-                jsObject {
-                    dangerouslySetInnerHTML = jsObject {
-                        __html = content
-                    }
-                }
-            )
+            content += this
         }
     }
 }

@@ -4,9 +4,7 @@ import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
-import kotlinx.html.Tag
-import kotlinx.html.h1
-import kotlinx.html.h2
+import kotlinx.html.*
 import org.w3c.dom.pointerevents.PointerEvent
 
 @Suppress("FunctionName")
@@ -125,6 +123,24 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                         }
                         +"Right click me"
                     }
+                }
+
+                ui.divider {}
+
+                h2 { +"Unsafe Content" }
+
+                style {
+                    unsafe {
+                        +"""
+                            .red-text {
+                              color: #FF0000;
+                            }
+                        """.trimIndent()
+                    }
+                }
+
+                div("red-text") {
+                    +"This text should be red"
                 }
 
                 ui.divider {}

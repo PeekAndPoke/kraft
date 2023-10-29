@@ -76,9 +76,10 @@ internal class PreactTagConsumer(
 
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
         // see https://github.com/preactjs/preact/issues/844
-        stack.last().appendChild(
-            PreactElements.UnsafeContentElement().apply(block)
-        )
+        (stack.last() as? PreactElements.TagElement)
+            ?.addUnsafeContent(
+                PreactElements.UnsafeContentBlock().apply(block)
+            )
     }
 
     override fun onTagEnd(tag: Tag) {
