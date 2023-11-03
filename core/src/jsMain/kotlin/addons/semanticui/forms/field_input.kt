@@ -578,6 +578,9 @@ class UiDateFieldRenderer(private val tag: Tag) {
 }
 
 class UiDateTimeFieldRenderer(private val tag: Tag) {
+
+    // MpLocalDateTime /////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * Renders the field for an MpLocalDateTime
      */
@@ -622,6 +625,68 @@ class UiDateTimeFieldRenderer(private val tag: Tag) {
         asDateTimeInput()
         builder()
     }
+
+    // MpInstant ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Renders the field for an [MpInstant]
+     */
+    @KraftFormsDsl
+    operator fun invoke(
+        prop: KMutableProperty0<MpInstant>,
+        timezone: MpTimezone,
+        builder: Options<MpZonedDateTime>.() -> Unit = {},
+    ) = invoke(prop(), timezone, prop::set, builder)
+
+    /**
+     * Renders the field for an MpZonedDateTime
+     */
+    @KraftFormsDsl
+    operator fun invoke(
+        value: MpInstant,
+        timezone: MpTimezone,
+        onChange: (MpInstant) -> Unit,
+        builder: Options<MpZonedDateTime>.() -> Unit = {},
+    ) = tag.UiInputField(
+        value.atZone(timezone),
+        { onChange(it.toInstant()) },
+        ::zonedDateTimeToYmdHms,
+        { stringToZonedDateTime(it).copy(timezone = timezone) },
+    ) {
+        asDateTimeInput()
+        builder()
+    }
+
+    /**
+     * Renders the field for a nullable MpZonedDateTime
+     */
+    @KraftFormsDsl
+    fun nullable(
+        prop: KMutableProperty0<MpInstant?>,
+        timezone: MpTimezone,
+        builder: Options<MpZonedDateTime?>.() -> Unit = {},
+    ) = nullable(prop(), timezone, prop::set, builder)
+
+    /**
+     * Renders the field for a nullable MpZonedDateTime
+     */
+    @KraftFormsDsl
+    fun nullable(
+        value: MpInstant?,
+        timezone: MpTimezone,
+        onChange: (MpInstant?) -> Unit,
+        builder: Options<MpZonedDateTime?>.() -> Unit = {},
+    ) = tag.UiInputField(
+        value?.atZone(timezone),
+        { onChange(it?.toInstant()) },
+        ::zonedDateTimeToYmdHms,
+        { stringToZonedDateTimeOrNull(it)?.copy(timezone = timezone) },
+    ) {
+        asDateTimeInput()
+        builder()
+    }
+
+    // MpZonedDateTime /////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Renders the field for an MpZonedDateTime
