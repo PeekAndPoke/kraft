@@ -23,6 +23,15 @@ internal class PersistentStreamSource<T>(
     }
 
     /**
+     * The initialValue property represents the initial value of the StreamSource.
+     *
+     * It is obtained from the wrapped StreamSource, which provides the functionality of storing and retrieving
+     * values.
+     */
+    override val initialValue: T
+        get() = wrapped.initialValue
+
+    /**
      * Gets all subscriptions
      */
     override val subscriptions: Set<StreamHandler<T>>

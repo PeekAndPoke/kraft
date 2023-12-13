@@ -1,11 +1,16 @@
 package de.peekandpoke.kraft.streams
 
-open class StreamSourceImpl<T>(initialValue: T) : StreamSource<T> {
+open class StreamSourceImpl<T>(initial: T) : StreamSource<T> {
+
+    /**
+     * The initial value of the stream source.
+     */
+    override val initialValue = initial
 
     /**
      * The current value of the stream
      */
-    protected var current: T = initialValue
+    protected var current: T = initial
 
     /**
      * All subscriptions to the stream

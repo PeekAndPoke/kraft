@@ -10,6 +10,11 @@ interface StreamSource<T> : Stream<T> {
     }
 
     /**
+     * The initial value of the stream source.
+     */
+    val initialValue: T
+
+    /**
      * Get the readonly version of this stream.
      */
     val readonly get() = this as Stream<T>
@@ -49,6 +54,15 @@ interface StreamSource<T> : Stream<T> {
      * The [block] will have the current value of the stream as the scopes this pointer.
      */
     fun modify(block: T.() -> T): Unit = invoke(block(invoke()))
+
+    /**
+     * Resets the stream source to its initial value.
+     */
+    fun reset(): T {
+        invoke(initialValue)
+
+        return invoke()
+    }
 
     /**
      * Removes all subscriptions
