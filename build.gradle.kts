@@ -14,8 +14,8 @@ plugins {
 
 allprojects {
     repositories {
-        mavenLocal()
         mavenCentral()
+        mavenLocal()
 
         // KotlinX
         maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")

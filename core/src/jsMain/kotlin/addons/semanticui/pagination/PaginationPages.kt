@@ -1,9 +1,6 @@
 package de.peekandpoke.kraft.addons.semanticui.PaginationPages
 
-import de.peekandpoke.kraft.components.Component
-import de.peekandpoke.kraft.components.Ctx
-import de.peekandpoke.kraft.components.comp
-import de.peekandpoke.kraft.components.onClick
+import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
@@ -65,6 +62,7 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
         ui.small.pagination.menu {
 
             noui.icon.item A {
+                key = "goto-first"
                 onClick {
                     props.onChange(1)
                 }
@@ -73,12 +71,16 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
 
             if (firstEntry > 1) {
                 noui.icon.item {
+                    key = "ellipsis-left"
+
                     icon.ellipsis_horizontal()
                 }
             }
 
             (firstEntry..lastEntry).forEach { page ->
                 noui.given(props.activePage == page) { active }.item A {
+                    key = "goto-page-$page"
+
                     +"$page"
                     onClick {
                         props.onChange(page)
@@ -88,11 +90,14 @@ class PaginationPages(ctx: Ctx<Props>) : Component<PaginationPages.Props>(ctx) {
 
             if (lastEntry < lastPage) {
                 noui.icon.item {
+                    key = "ellipsis-right"
+
                     icon.ellipsis_horizontal()
                 }
             }
 
             noui.icon.item A {
+                key = "goto-last"
                 onClick {
                     props.onChange(lastPage)
                 }
