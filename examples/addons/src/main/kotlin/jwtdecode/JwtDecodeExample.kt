@@ -39,7 +39,11 @@ class JwtDecodeExample(ctx: NoProps) : PureComponent(ctx) {
                 }
                 ui.column {
                     pre {
-                        +JSON.stringify(decodeJwt(jwt))
+                        try {
+                            +JSON.stringify(decodeJwt(jwt))
+                        } catch (e: Throwable) {
+                            +e.stackTraceToString()
+                        }
                     }
                 }
             }

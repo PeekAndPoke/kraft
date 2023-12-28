@@ -24,7 +24,7 @@ repositories {
 }
 
 kotlin {
-    js(IR) {
+    js {
         browser {
             testTask {
 //                useKarma {
@@ -46,7 +46,6 @@ kotlin {
         }
     }
 
-    @Suppress("UNUSED_VARIABLE")
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -65,6 +64,7 @@ kotlin {
             dependencies {
                 api(Deps.kotlinx_coroutines_core_js)
                 api(Deps.kotlinx_wrappers_extensions)
+                api(Deps.kotlinx_serialization_json)
                 api(project(":semanticui"))
 
                 // Preact VDOM engine
