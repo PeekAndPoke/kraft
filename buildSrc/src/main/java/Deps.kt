@@ -24,12 +24,11 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
-    // TODO: Check update to 0.25.x version
-    const val mavenPublishVersion = "0.22.0"
+    const val mavenPublishVersion = "0.26.0"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.72.0"
+    private const val ultra_version = "0.72.2"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
 
     // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
@@ -47,7 +46,7 @@ object Deps {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
-    private const val kotlinx_coroutines_version = "1.8.0-RC2"
+    private const val kotlinx_coroutines_version = "1.7.3"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
     const val kotlinx_coroutines_core_js =
@@ -55,7 +54,7 @@ object Deps {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.serialization/releases
-    private const val kotlinx_serialization_version = "1.6.2"
+    private const val kotlinx_serialization_version = "1.6.0"
     const val kotlinx_serialization_core =
         "org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinx_serialization_version"
     const val kotlinx_serialization_json =
@@ -79,7 +78,7 @@ object Deps {
 
         // TODO: check update to 4.x versions
         // https://www.npmjs.com/package/chart.js
-        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "3.9.1")
+        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "4.4.1")
 
         // TODO: check update to 4.x versions
         // https://www.npmjs.com/package/jwt-decode
@@ -179,10 +178,7 @@ object Deps {
         fun TaskContainerScope.configureJvmTests(
             configure: org.gradle.api.tasks.testing.Test.() -> Unit = {}
         ) {
-            listOfNotNull(
-                findByName("test") as? org.gradle.api.tasks.testing.Test,
-                findByName("jvmTest") as? org.gradle.api.tasks.testing.Test,
-            ).firstOrNull()?.apply {
+            withType(org.gradle.api.tasks.testing.Test::class.java).configureEach {
                 useJUnitPlatform { }
 
                 filter {
