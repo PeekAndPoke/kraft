@@ -17,7 +17,7 @@ interface Route {
         /**
          * Builds a uri with the given [routeParams] and [queryParams]
          */
-        fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String>): String
+        fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String?>): String
     }
 
     /**
@@ -172,15 +172,18 @@ abstract class RouteBase(final override val pattern: String, numParams: Int) : R
     /**
      * Builds a uri with the given [routeParams] and [queryParams]
      */
-    override fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String>): String {
+    override fun buildUri(routeParams: Map<String, String>, queryParams: Map<String, String?>): String {
 
         val withoutQuery = routeParams.entries.fold("#$pattern") { pattern, entry ->
             pattern.replacePlaceholder(entry.key, entry.value)
         }
 
-        return when (queryParams.isEmpty()) {
+        @Suppress("UNCHECKED_CAST")
+        val cleanedQueryParams = queryParams.filterValues { it != null } as Map<String, String>
+
+        return when (cleanedQueryParams.isEmpty()) {
             true -> withoutQuery
-            else -> "$withoutQuery?" + queryParams
+            else -> "$withoutQuery?" + cleanedQueryParams
                 .map { "${it.key}=${it.value.encodeUriComponent()}" }.joinToString("&")
         }
     }
