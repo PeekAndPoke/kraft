@@ -9,7 +9,11 @@ data class AnalyticsTracker(private val handlers: List<AnalyticsHandler>) {
     fun sendEvent(eventName: String, parameters: Map<String, Any> = emptyMap()) {
 
         handlers.forEach {
-            it.sendEvent(eventName, parameters)
+            try {
+                it.sendEvent(eventName, parameters)
+            } catch (e: Throwable) {
+                console.error("Error tracking event with ${it::class.simpleName}", e)
+            }
         }
     }
 }
