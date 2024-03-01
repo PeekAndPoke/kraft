@@ -11,8 +11,8 @@ import de.peekandpoke.kraft.utils.Vector2D
 import kotlinx.css.*
 import kotlinx.html.CommonAttributeGroupFacade
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.events.UIEvent
-import org.w3c.dom.pointerevents.PointerEvent
 
 class PopupsManager {
     private var handleCounter = 0
@@ -95,10 +95,10 @@ class PopupsManager {
         return add { handle ->
             val positioning: (target: HTMLElement, contentSize: Vector2D) -> Vector2D = { target, _ ->
 
-                val pointerEvt = event as? PointerEvent
+                val mouseEvent = event as? MouseEvent
 
-                if (pointerEvt != null) {
-                    Vector2D(x = pointerEvt.x, y = pointerEvt.y + 7)
+                if (mouseEvent != null) {
+                    Vector2D(x = mouseEvent.x, y = mouseEvent.y + 7)
                 } else {
                     val rect = target.getBoundingClientRect()
 
