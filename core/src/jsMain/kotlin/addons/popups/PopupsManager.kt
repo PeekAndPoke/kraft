@@ -3,13 +3,13 @@ package de.peekandpoke.kraft.addons.popups
 import de.peekandpoke.kraft.components.onMouseOut
 import de.peekandpoke.kraft.components.onMouseOver
 import de.peekandpoke.kraft.components.onMouseUp
-import de.peekandpoke.kraft.semanticui.css
-import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.streams.Stream
 import de.peekandpoke.kraft.streams.StreamSource
+import de.peekandpoke.kraft.utils.Rectangle
 import de.peekandpoke.kraft.utils.Vector2D
-import kotlinx.css.*
+import kotlinx.browser.document
 import kotlinx.html.CommonAttributeGroupFacade
+import org.w3c.dom.DOMRect
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.events.UIEvent
@@ -94,11 +94,11 @@ class PopupsManager {
         val element = event.target as HTMLElement
 
         return add(element, view) { target, contentSize ->
-            val rect = target.getBoundingClientRect()
+            val coords = getPageCoords(target)
 
             when (positioning) {
-                Positioning.BottomLeft -> Vector2D(x = rect.left, y = rect.bottom)
-                Positioning.BottomRight -> Vector2D(x = rect.right - contentSize.x, y = rect.bottom)
+                Positioning.BottomLeft -> coords.bottomLeft
+                Positioning.BottomRight -> coords.bottomRight - Vector2D(contentSize.x, 0.0)
             }
         }
     }
@@ -108,33 +108,33 @@ class PopupsManager {
         closeAll()
 
         val element = event.target as HTMLElement
+        val moveDown = Vector2D(0.0, 7.0)
 
         return add(element, view) { target, _ ->
 
-            val mouseEvent = event as? MouseEvent
+            val mouseEvent: MouseEvent? = event as? MouseEvent
 
             if (mouseEvent != null) {
-                Vector2D(x = mouseEvent.x, y = mouseEvent.y + 7)
+                Vector2D(x = mouseEvent.pageX, y = mouseEvent.pageY + 7)
             } else {
-                val rect = target.getBoundingClientRect()
-
-                Vector2D(x = rect.left, y = rect.bottom + 7)
+                getPageCoords(target).bottomLeft.plus(moveDown)
             }
         }
     }
 
-    internal fun add(element: HTMLElement, view: PopupRenderer, positioning: PopupPositionFn): Handle {
-        val content: PopupRenderer = { handle ->
-            ui.basic.bottom.visible.popup {
-                css {
-                    left = 0.px
-                    right = LinearDimension.auto
-                    padding = Padding(0.px)
-                }
-                view(handle)
-            }
-        }
+    private fun getPageCoords(element: HTMLElement): Rectangle {
+        val body = document.body?.getBoundingClientRect() ?: DOMRect()
+        val rect = element.getBoundingClientRect()
 
+        return Rectangle(
+            x1 = (rect.left - body.left),
+            y1 = (rect.top - body.top),
+            width = rect.width,
+            height = rect.height,
+        )
+    }
+
+    internal fun add(element: HTMLElement, content: PopupRenderer, positioning: PopupPositionFn): Handle {
         return add { handle ->
             PopupComponent(
                 target = element,

@@ -7,7 +7,9 @@ import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.document
+import kotlinx.css.Display
 import kotlinx.css.Position
+import kotlinx.css.display
 import kotlinx.css.position
 import kotlinx.html.Tag
 import kotlinx.html.div
@@ -52,7 +54,9 @@ class PopupsStage(ctx: Ctx<Props>) : Component<PopupsStage.Props>(ctx) {
 
     override fun VDom.render() {
         div(classes = "popup-stage") {
-            css { position = Position.absolute }
+            css {
+                position = Position.absolute
+            }
 //            key = current.hashCode().toString()
 
 //            console.log("ModelDialogStage", current.hashCode().toString(), current.size)
@@ -60,7 +64,9 @@ class PopupsStage(ctx: Ctx<Props>) : Component<PopupsStage.Props>(ctx) {
             current.forEach {
                 div {
                     key = "popup-${it.id}"
-                    css { position = Position.absolute }
+                    css {
+                        display = Display.inlineBlock
+                    }
                     it.view(this, it)
                 }
             }

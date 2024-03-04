@@ -4,11 +4,11 @@ import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.semanticui.css
+import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.Vector2D
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.css.*
 import kotlinx.html.Tag
-import kotlinx.html.div
 import org.w3c.dom.HTMLElement
 
 @Suppress("FunctionName")
@@ -54,7 +54,7 @@ class PopupComponent(ctx: Ctx<Props>) : Component<PopupComponent.Props>(ctx) {
     }
 
     private fun captureContentSize() {
-        dom?.firstElementChild?.let {
+        dom?.let {
             val bounds = it.getBoundingClientRect()
             contentSize = Vector2D(bounds.width, bounds.height)
         }
@@ -65,20 +65,19 @@ class PopupComponent(ctx: Ctx<Props>) : Component<PopupComponent.Props>(ctx) {
         captureContentSize()
 
         // Just a container
-        div {
+        ui.basic.flowing.popup.bottom.left.visible {
             css {
-                display = Display.block
-                position = Position.fixed
-                zIndex = 2000
+                zIndex = 9999
+                display = Display.inlineBlock
+                padding = Padding(0.px)
 
                 val pos = props.positioning(props.target, contentSize)
-
                 left = pos.x.px
                 top = pos.y.px
 
-                if (contentSize == Vector2D.zero) {
-                    visibility = Visibility.hidden
-                }
+//                if (contentSize == Vector2D.zero) {
+//                    visibility = Visibility.hidden
+//                }
             }
 
             props.content(this, props.handle)

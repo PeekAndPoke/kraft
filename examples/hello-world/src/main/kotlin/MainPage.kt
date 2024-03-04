@@ -2,9 +2,12 @@ package de.peekandpoke.kraft.examples.helloworld
 
 import de.peekandpoke.kraft.addons.popups.PopupsManager
 import de.peekandpoke.kraft.components.*
+import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import kotlinx.css.vw
+import kotlinx.css.width
 import kotlinx.html.*
 import org.w3c.dom.pointerevents.PointerEvent
 
@@ -129,9 +132,15 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                         ui.basic.label {
                             onClick {
                                 popups.showContentMenu(it, PopupsManager.Positioning.BottomLeft) {
-                                    ui.basic.vertical.menu {
-                                        noui.item A { href = "#"; +"Menu 1" }
-                                        noui.item A { href = "#"; +"Menu 2" }
+                                    ui.five.column.grid {
+                                        css {
+                                            width = 50.vw
+                                        }
+                                        noui.column { a { href = "#"; +"Menu 1" } }
+                                        noui.column { a { href = "#"; +"Menu 2" } }
+                                        noui.column { a { href = "#"; +"Menu 3" } }
+                                        noui.column { a { href = "#"; +"Menu 4" } }
+                                        noui.column { a { href = "#"; +"Menu 5" } }
                                     }
                                 }
                             }
@@ -143,9 +152,12 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                         ui.basic.label {
                             onClick {
                                 popups.showContentMenu(it, PopupsManager.Positioning.BottomRight) {
-                                    ui.basic.vertical.menu {
+                                    ui.basic.horizontal.menu {
                                         noui.item A { href = "#"; +"Menu 1" }
                                         noui.item A { href = "#"; +"Menu 2" }
+                                        noui.item A { href = "#"; +"Menu 3" }
+                                        noui.item A { href = "#"; +"Menu 4" }
+                                        noui.item A { href = "#"; +"Menu 5" }
                                     }
                                 }
                             }
