@@ -100,7 +100,7 @@ class DropdownMenu(ctx: Ctx<Props>) : Component<DropdownMenu.Props>(ctx) {
     }
 
     sealed class Style {
-        object TextMenu : Style()
+        data object TextMenu : Style()
     }
 
     data class Item(

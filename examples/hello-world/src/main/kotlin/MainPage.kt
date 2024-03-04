@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.examples.helloworld
 
+import de.peekandpoke.kraft.addons.popups.PopupsManager
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
@@ -110,18 +111,46 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                         onContextMenuStoppingEvent {
                             popups.showContextMenu(it) {
                                 ui.basic.vertical.menu {
-                                    noui.item A {
-                                        href = "#"
-                                        +"Menu 1"
-                                    }
-                                    noui.item A {
-                                        href = "#"
-                                        +"Menu 2"
-                                    }
+                                    noui.item A { href = "#"; +"Menu 1" }
+                                    noui.item A { href = "#"; +"Menu 2" }
                                 }
                             }
                         }
                         +"Right click me"
+                    }
+                }
+
+                ui.divider {}
+
+                h2 { +"Popups" }
+
+                ui.horizontal.list {
+                    noui.item {
+                        ui.basic.label {
+                            onClick {
+                                popups.showContentMenu(it, PopupsManager.Positioning.BottomLeft) {
+                                    ui.basic.vertical.menu {
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
+                                }
+                            }
+                            +"Bottom Left Popup"
+                        }
+                    }
+
+                    noui.item {
+                        ui.basic.label {
+                            onClick {
+                                popups.showContentMenu(it, PopupsManager.Positioning.BottomRight) {
+                                    ui.basic.vertical.menu {
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
+                                }
+                            }
+                            +"Bottom Right Popup"
+                        }
                     }
                 }
 

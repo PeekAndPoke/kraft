@@ -3,6 +3,7 @@ package de.peekandpoke.kraft.addons.popups
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
+import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.vdom.VDom
 import kotlinx.browser.document
@@ -51,15 +52,17 @@ class PopupsStage(ctx: Ctx<Props>) : Component<PopupsStage.Props>(ctx) {
 
     override fun VDom.render() {
         div(classes = "popup-stage") {
-            css {
-                position = Position.absolute
-            }
+            css { position = Position.absolute }
 //            key = current.hashCode().toString()
 
 //            console.log("ModelDialogStage", current.hashCode().toString(), current.size)
 
             current.forEach {
-                it.view(this, it)
+                div {
+                    key = "popup-${it.id}"
+                    css { position = Position.absolute }
+                    it.view(this, it)
+                }
             }
         }
     }

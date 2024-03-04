@@ -58,6 +58,18 @@ fun CommonAttributeGroupFacade.onClick(handler: (PointerEvent) -> Unit) {
 }
 
 /**
+ * Adds an onClick handler.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
+ */
+fun CommonAttributeGroupFacade.onClickStoppingEvent(handler: (PointerEvent) -> Unit) = onClick { e ->
+    e.preventDefault()
+    e.stopPropagation()
+    handler(e.asDynamic())
+}
+
+
+/**
  * Adds an onClick and an onAuxClick handler.
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
@@ -82,12 +94,10 @@ fun CommonAttributeGroupFacade.onContextMenu(handler: (PointerEvent) -> Unit) {
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event
  */
-fun CommonAttributeGroupFacade.onContextMenuStoppingEvent(handler: (UIEvent) -> Unit) {
-    onContextMenuFunction = { e ->
-        e.preventDefault()
-        e.stopPropagation()
-        handler(e.asDynamic())
-    }
+fun CommonAttributeGroupFacade.onContextMenuStoppingEvent(handler: (UIEvent) -> Unit) = onContextMenu { e ->
+    e.preventDefault()
+    e.stopPropagation()
+    handler(e.asDynamic())
 }
 
 /**
@@ -118,7 +128,7 @@ fun CommonAttributeGroupFacade.onDrop(handler: (DragEvent) -> Unit) {
 }
 
 /**
- * Adds an onClick handler.
+ * Adds an onError handler.
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/error_event
  */

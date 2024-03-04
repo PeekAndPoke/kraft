@@ -14,6 +14,8 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.MouseEvent
 import org.w3c.dom.events.UIEvent
 
+typealias PopupPositionFn = (target: HTMLElement, contentSize: Vector2D) -> Vector2D
+
 class PopupsManager {
     private var handleCounter = 0
 
@@ -68,6 +70,11 @@ class PopupsManager {
         fun close() = manager.close(this)
     }
 
+    enum class Positioning {
+        BottomLeft,
+        BottomRight,
+    }
+
     val showHoverPopup = ShowHoverPopup(popups = this)
 
     private val stack: MutableList<Handle> = mutableListOf()
@@ -76,11 +83,47 @@ class PopupsManager {
 
     val current: Stream<List<Handle>> = popupStream.readonly
 
-    fun showContextMenu(event: UIEvent, view: PopupRenderer): Handle {
-        val target = event.target as HTMLElement
-
+    fun showContentMenu(
+        event: UIEvent,
+        positioning: Positioning = Positioning.BottomLeft,
+        view: PopupRenderer
+    ): Handle {
+        event.stopPropagation()
         closeAll()
 
+        val element = event.target as HTMLElement
+
+        return add(element, view) { target, contentSize ->
+            val rect = target.getBoundingClientRect()
+
+            when (positioning) {
+                Positioning.BottomLeft -> Vector2D(x = rect.left, y = rect.bottom)
+                Positioning.BottomRight -> Vector2D(x = rect.right - contentSize.x, y = rect.bottom)
+            }
+        }
+    }
+
+    fun showContextMenu(event: UIEvent, view: PopupRenderer): Handle {
+        event.stopPropagation()
+        closeAll()
+
+        val element = event.target as HTMLElement
+
+        return add(element, view) { target, _ ->
+
+            val mouseEvent = event as? MouseEvent
+
+            if (mouseEvent != null) {
+                Vector2D(x = mouseEvent.x, y = mouseEvent.y + 7)
+            } else {
+                val rect = target.getBoundingClientRect()
+
+                Vector2D(x = rect.left, y = rect.bottom + 7)
+            }
+        }
+    }
+
+    internal fun add(element: HTMLElement, view: PopupRenderer, positioning: PopupPositionFn): Handle {
         val content: PopupRenderer = { handle ->
             ui.basic.bottom.visible.popup {
                 css {
@@ -93,21 +136,8 @@ class PopupsManager {
         }
 
         return add { handle ->
-            val positioning: (target: HTMLElement, contentSize: Vector2D) -> Vector2D = { target, _ ->
-
-                val mouseEvent = event as? MouseEvent
-
-                if (mouseEvent != null) {
-                    Vector2D(x = mouseEvent.x, y = mouseEvent.y + 7)
-                } else {
-                    val rect = target.getBoundingClientRect()
-
-                    Vector2D(x = rect.right, y = rect.bottom + 7)
-                }
-            }
-
             PopupComponent(
-                target = target,
+                target = element,
                 positioning = positioning,
                 handle = handle,
                 content = content,
