@@ -64,7 +64,7 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
     /**
      * The input value set by the user.
      */
-    private var _value: T = props.value
+    private var _value: T by value(props.value)
 
     /**
      * The effective value
