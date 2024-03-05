@@ -1,9 +1,11 @@
 package de.peekandpoke.kraft.addons.semanticui.forms
 
-import de.peekandpoke.kraft.addons.forms.*
+import de.peekandpoke.kraft.addons.forms.FieldOptions
+import de.peekandpoke.kraft.addons.forms.GenericFormField
+import de.peekandpoke.kraft.addons.forms.KraftFormsDsl
+import de.peekandpoke.kraft.addons.forms.SettingsBuilder
 import de.peekandpoke.kraft.addons.semanticui.forms.UiInputFieldComponent.Options
 import de.peekandpoke.kraft.components.*
-import de.peekandpoke.kraft.messages.sendMessage
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
@@ -130,8 +132,6 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
             // TODO: how to translate this?
             errors = listOf("Invalid value")
         }
-
-        sendMessage(FormFieldInputChanged(this))
     }
 
     // Private helpers ////////////////////////////////////////////////////////////////////////////////////

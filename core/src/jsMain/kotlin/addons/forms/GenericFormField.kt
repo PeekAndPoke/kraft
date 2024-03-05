@@ -134,6 +134,11 @@ open class GenericFormField<T, O : FieldOptions<T>, P : GenericFormField.Props<T
 //        console.log("setValue", value, (value as Any)::class)
 
         if (this._value != value) {
+            try {
+                sendMessage(FormFieldInputChanged(this))
+            } finally {
+            }
+
             touch()
             this._value = value
             props.onChange(value)
