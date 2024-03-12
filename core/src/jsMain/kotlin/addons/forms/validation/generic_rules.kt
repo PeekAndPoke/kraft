@@ -9,7 +9,13 @@ fun <T> nonNull(message: String = "Must not be empty"): Rule<T> = GenericRule(
 @KraftFormsRuleDsl
 fun <T> nullOrElse(inner: Rule<T>): Rule<T?> = GenericRule(
     checkFn = { it == null || inner.check(it) },
-    messageFn = { it?.let { v -> inner.getMessage(v) } ?: "Invalid input" }
+    messageFn = {
+        if (it == null) {
+            "Invalid input"
+        } else {
+            inner.getMessage(it)
+        }
+    }
 )
 
 @KraftFormsRuleDsl
@@ -19,7 +25,7 @@ fun <T> nonNullAnd(inner: Rule<T>): Rule<T?> = GenericRule(
         if (it == null) {
             "Must not be empty"
         } else {
-            "Invalid input"
+            inner.getMessage(it)
         }
     }
 )
