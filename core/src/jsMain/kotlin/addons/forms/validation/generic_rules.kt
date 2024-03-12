@@ -7,6 +7,24 @@ fun <T> nonNull(message: String = "Must not be empty"): Rule<T> = GenericRule(
 )
 
 @KraftFormsRuleDsl
+fun <T> nullOrElse(inner: Rule<T>): Rule<T?> = GenericRule(
+    checkFn = { it == null || inner.check(it) },
+    messageFn = { it?.let { v -> inner.getMessage(v) } ?: "Invalid input" }
+)
+
+@KraftFormsRuleDsl
+fun <T> nonNullAnd(inner: Rule<T>): Rule<T?> = GenericRule(
+    checkFn = { it != null && inner.check(it) },
+    messageFn = {
+        if (it == null) {
+            "Must not be empty"
+        } else {
+            "Invalid input"
+        }
+    }
+)
+
+@KraftFormsRuleDsl
 fun <T> equalTo(compareWith: () -> T, message: (T) -> String): Rule<T> = GenericRule(
     messageFn = message,
     checkFn = { it == compareWith() }
