@@ -131,7 +131,7 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                     noui.item {
                         ui.basic.label {
                             onClick {
-                                popups.showContentMenu(it, PopupsManager.Positioning.BottomLeft) {
+                                popups.showContextMenu(it, PopupsManager.Positioning.BottomLeft) {
                                     ui.five.column.grid {
                                         css {
                                             width = 50.vw
@@ -151,7 +151,7 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                     noui.item {
                         ui.basic.label {
                             onClick {
-                                popups.showContentMenu(it, PopupsManager.Positioning.BottomRight) {
+                                popups.showContextMenu(it, PopupsManager.Positioning.BottomRight) {
                                     ui.basic.horizontal.menu {
                                         noui.item A { href = "#"; +"Menu 1" }
                                         noui.item A { href = "#"; +"Menu 2" }

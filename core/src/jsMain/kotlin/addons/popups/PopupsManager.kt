@@ -17,8 +17,6 @@ import org.w3c.dom.events.UIEvent
 typealias PopupPositionFn = (target: HTMLElement, contentSize: Vector2D) -> Vector2D
 
 class PopupsManager {
-    private var handleCounter = 0
-
     class ShowHoverPopup(private val popups: PopupsManager) {
 
         fun show(
@@ -63,10 +61,16 @@ class PopupsManager {
     ) {
         internal val onCloseHandlers = mutableListOf<() -> Unit>()
 
+        /**
+         * Adds a listener that is called when the popup gets closed
+         */
         fun onClose(onClose: () -> Unit) = apply {
             onCloseHandlers.add(onClose)
         }
 
+        /**
+         * Closes the popup
+         */
         fun close() = manager.close(this)
     }
 
@@ -75,7 +79,7 @@ class PopupsManager {
         BottomRight,
     }
 
-    val showHoverPopup = ShowHoverPopup(popups = this)
+    private var handleCounter = 0
 
     private val stack: MutableList<Handle> = mutableListOf()
 
@@ -83,7 +87,12 @@ class PopupsManager {
 
     val current: Stream<List<Handle>> = popupStream.readonly
 
-    fun showContentMenu(
+    val showHoverPopup = ShowHoverPopup(popups = this)
+
+    /**
+     * Shows a popup relative to the target of the [event] by using the [positioning]
+     */
+    fun showContextMenu(
         event: UIEvent,
         positioning: Positioning = Positioning.BottomLeft,
         view: PopupRenderer
@@ -120,18 +129,6 @@ class PopupsManager {
                 getPageCoords(target).bottomLeft.plus(moveDown)
             }
         }
-    }
-
-    private fun getPageCoords(element: HTMLElement): Rectangle {
-        val body = document.body?.getBoundingClientRect() ?: DOMRect()
-        val rect = element.getBoundingClientRect()
-
-        return Rectangle(
-            x1 = (rect.left - body.left),
-            y1 = (rect.top - body.top),
-            width = rect.width,
-            height = rect.height,
-        )
     }
 
     internal fun add(element: HTMLElement, content: PopupRenderer, positioning: PopupPositionFn): Handle {
@@ -171,5 +168,17 @@ class PopupsManager {
 
     private fun notify() {
         popupStream(stack)
+    }
+
+    private fun getPageCoords(element: HTMLElement): Rectangle {
+        val body = document.body?.getBoundingClientRect() ?: DOMRect()
+        val rect = element.getBoundingClientRect()
+
+        return Rectangle(
+            x1 = (rect.left - body.left),
+            y1 = (rect.top - body.top),
+            width = rect.width,
+            height = rect.height,
+        )
     }
 }
