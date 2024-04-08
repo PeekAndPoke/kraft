@@ -2,7 +2,7 @@
 
 package de.peekandpoke.kraft.addons.pdfjs.js
 
-import js.core.Object
+import js.objects.Object
 import org.khronos.webgl.Uint8Array
 import org.w3c.dom.CanvasRenderingContext2D
 import kotlin.js.Promise

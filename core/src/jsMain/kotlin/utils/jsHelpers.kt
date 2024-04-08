@@ -1,6 +1,6 @@
 package de.peekandpoke.kraft.utils
 
-import js.core.Object
+import js.objects.Object
 
 fun jsIsObject(o: dynamic): Boolean = jsTypeOf(o) == "object"
 

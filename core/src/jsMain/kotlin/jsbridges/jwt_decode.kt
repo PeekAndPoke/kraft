@@ -2,7 +2,7 @@
 
 package de.peekandpoke.kraft.jsbridges
 
-import js.core.Object
+import js.objects.Object
 
 // TODO: move to ultra::security
 
