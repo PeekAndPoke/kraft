@@ -7,11 +7,14 @@ import de.peekandpoke.kraft.vdom.VDom
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.typeOf
 
-inline fun <reified P> VDom.value(initial: P): FunctionalComponentStateProperty<P> {
+inline fun <reified P> VDom.value(noinline initial: () -> P): FunctionalComponentStateProperty<P> {
     return FunctionalComponentStateProperty(component!!, initial, typeOf<P>())
 }
 
-inline fun <reified P> VDom.value(initial: P, noinline onChange: (P) -> Unit): FunctionalComponentStateProperty<P> {
+inline fun <reified P> VDom.value(
+    noinline initial: () -> P,
+    noinline onChange: (P) -> Unit,
+): FunctionalComponentStateProperty<P> {
     return FunctionalComponentStateProperty(component!!, initial, typeOf<P>()).onChange(onChange)
 }
 

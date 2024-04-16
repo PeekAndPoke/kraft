@@ -6,14 +6,15 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlin.properties.ObservableProperty
+import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 import kotlin.reflect.KType
 
 class FunctionalComponentStateProperty<P>(
     val component: Component<*>,
-    val initial: P,
+    val initial: () -> P,
     type: KType,
-) : ObservableProperty<P>(initial) {
+) : ReadWriteProperty<Any?, P> {
 
     private val lazyInitCallbacks = mutableListOf<suspend () -> Flow<P>>()
 
@@ -39,7 +40,7 @@ class FunctionalComponentStateProperty<P>(
             }
 
             // We return and set the initial value
-            initial
+            initial()
         } as P
     }
 
