@@ -10,7 +10,7 @@ import kotlinx.html.div
 val FunctionalCounterComponent = component { start: Int ->
 
     /** Here we define a property that will trigger a redraw when it's value is changed */
-    var counter: Int by value(start)
+    var counter: Int by value { start }
 
     div {
         div { +"Value: $counter" }

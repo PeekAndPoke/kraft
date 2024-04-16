@@ -12,7 +12,7 @@ val FunctionalTickerComponent = component { delay: Int ->
      * Here we define a stream.
      * It has to be defined with 'by value' in order to remember it when the component is re-rendered.
      */
-    val stream by value(ticker(delay))
+    val stream by value { ticker(delay) }
 
     /**
      * Here we define a property that subscribes to the stream, triggering a redraw whenever a new value
