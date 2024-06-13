@@ -1,8 +1,9 @@
 package de.peekandpoke.kraft.addons.semanticui.forms.old.select
 
 import de.peekandpoke.kraft.semanticui.SemanticTag
+import org.w3c.dom.HTMLInputElement
 
-internal class SelectFieldController<T>(component: SelectFieldComponent<T>) {
+internal class SelectFieldController<T>(private val component: SelectFieldComponent<T>) {
 
     enum class State {
         Closed,
@@ -33,12 +34,25 @@ internal class SelectFieldController<T>(component: SelectFieldComponent<T>) {
         }
     }
 
+    fun isClosed() = state == State.Closed || state == State.Closing
+
+    fun isOpen() = !isClosed()
+
     fun close() {
         state = when (state) {
             State.Closed, State.Closing -> state
             else -> State.Closing
         }
     }
+
+    fun open() {
+        state = when (state) {
+            State.Open, State.Opening -> state
+            else -> State.Opening
+        }
+    }
+
+    fun getInputField() = component.dom!!.querySelector("input.search") as HTMLInputElement
 
     ////  RENDERING  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,11 +1,14 @@
 package de.peekandpoke.kraft.examples.helloworld
 
 import de.peekandpoke.kraft.addons.popups.PopupsManager
+import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectField
+import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectFieldComponent
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.css.vw
 import kotlinx.css.width
 import kotlinx.html.*
@@ -19,6 +22,8 @@ fun Tag.MainPage() = comp {
 class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private var select by value("")
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -49,6 +54,21 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
                 ui.divider()
 
+                h2 { +"Select Field" }
+
+                SelectField(value = select, { select = it }) {
+                    autoSuggest { search ->
+                        flowOf(
+                            listOf("One", "Two", "Three", "Four")
+                                .filter { search.isBlank() || it.startsWith(search, true) }
+                                .map {
+                                    SelectFieldComponent.Option(it, it)
+                                }
+                        )
+                    }
+                }
+
+                ui.divider()
                 h2 { +"Left Click | Aux Click | Right Click" }
 
                 ui.card {

@@ -212,7 +212,7 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
 
     private var autoSuggestOptions: List<Option<T>> by value(emptyList())
 
-    private var search: String by stream("", { debounce(300) }) { newSearch ->
+    private var search: String by stream("", { debounce(100) }) { newSearch ->
         // When this is an auto-suggest field we query the new options
         props.config.autoSuggest?.let { autoSuggest ->
             launch {
@@ -348,7 +348,9 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
             .given(props.config.disabled) { disabled }
             .let { ctrl.applyStateOnField(it) }
             .search.selection.dropdown {
-                onClick { ctrl.toggleState() }
+                onClick {
+                    ctrl.toggleState()
+                }
 
                 icon.dropdown()
 
@@ -357,6 +359,14 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
                     value = search
                     // Prevent the mouse event from bubbling up, as this would close/toggle the dropdown
                     onMouseDown { evt -> evt.stopImmediatePropagation() }
+                    // We will not toggle the state
+                    onClick { evt ->
+                        if (ctrl.isOpen()) {
+                            evt.stopImmediatePropagation()
+                        }
+                    }
+                    // Make sure to open the dropdown when the user is typing
+                    onKeyUp { ctrl.open() }
                     // Watch for inputs
                     onInput { evt -> search = (evt.target as HTMLInputElement).value }
                     // Track if the input field gets the focus
@@ -414,6 +424,9 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
                     noui.given(isSelected) { selected }.item {
                         option.display(this)
                         onClick {
+                            // Remove the focus from the input field
+                            ctrl.getInputField().blur()
+                            // Set the selected option
                             onSelect(option)
                         }
                     }

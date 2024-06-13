@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.flow
 
 private val FuncComponent = component {
 
-    var first: Int by value(0)
+    var first: Int by value { 0 }
 
-    val second: Int by value(0)
+    val second: Int by value { 0 }
         .initLazy {
             flow {
                 delay(10)
