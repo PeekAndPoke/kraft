@@ -24,6 +24,10 @@ internal class SelectFieldController<T>(private val component: SelectFieldCompon
             State.Open -> State.Closing
             State.Opening -> State.Closing
         }
+
+        if (isOpen()) {
+            getInputField()?.focus()
+        }
     }
 
     fun advanceState() {
@@ -52,7 +56,7 @@ internal class SelectFieldController<T>(private val component: SelectFieldCompon
         }
     }
 
-    fun getInputField() = component.dom!!.querySelector("input.search") as HTMLInputElement
+    fun getInputField() = component.dom?.querySelector("input.search") as? HTMLInputElement
 
     ////  RENDERING  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

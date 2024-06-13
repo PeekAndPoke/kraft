@@ -29,7 +29,7 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
     override fun VDom.render() {
         ui.container {
-            ui.basic.segment {
+            ui.basic.form.segment {
                 h1 { +"Hello World!" }
 
                 h2 { +"First Counter" }
@@ -56,15 +56,41 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
                 h2 { +"Select Field" }
 
-                SelectField(value = select, { select = it }) {
-                    autoSuggest { search ->
-                        flowOf(
+                ui.three.fields {
+
+                    SelectField(value = select, { select = it }) {
+                        label("Static Options")
+
+                        option("One", "One")
+                        option("Two", "Two")
+                        option("Three", "Three")
+                        option("Four", "Four")
+                    }
+
+                    SelectField(value = select, { select = it }) {
+                        label("Searchable")
+
+                        searchableBy { search ->
                             listOf("One", "Two", "Three", "Four")
                                 .filter { search.isBlank() || it.startsWith(search, true) }
                                 .map {
                                     SelectFieldComponent.Option(it, it)
                                 }
-                        )
+                        }
+                    }
+
+                    SelectField(value = select, { select = it }) {
+                        label("Auto-Suggest")
+
+                        autoSuggest { search ->
+                            flowOf(
+                                listOf("One", "Two", "Three", "Four")
+                                    .filter { search.isBlank() || it.startsWith(search, true) }
+                                    .map {
+                                        SelectFieldComponent.Option(it, it)
+                                    }
+                            )
+                        }
                     }
                 }
 

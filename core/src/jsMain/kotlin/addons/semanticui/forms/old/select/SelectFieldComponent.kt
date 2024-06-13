@@ -424,10 +424,10 @@ class SelectFieldComponent<T>(ctx: Ctx<Props<T>>) : FormFieldComponent<T, Select
                     noui.given(isSelected) { selected }.item {
                         option.display(this)
                         onClick {
-                            // Remove the focus from the input field
-                            ctrl.getInputField().blur()
                             // Set the selected option
                             onSelect(option)
+                            // Remove the focus from the input field
+                            ctrl.getInputField()?.blur()
                         }
                     }
                 }
