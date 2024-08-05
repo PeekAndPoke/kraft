@@ -116,7 +116,7 @@ class PopupsManager {
                 Positioning.BottomRight -> pageCoords.bottomRight - Vector2D(contentSize.x, 0.0)
             }
 
-            console.log(pageCoords.width, contentSize.x, pageCoords.width - contentSize.x)
+//            console.log(pageCoords.width, contentSize.x, pageCoords.width - contentSize.x)
 
             Vector2D(
                 x = maxOf(
