@@ -155,17 +155,79 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
                 h2 { +"OnContextMenu" }
 
-                ui.card {
-                    noui.content {
-                        onContextMenuStoppingEvent {
-                            popups.showContextMenu(it) {
-                                ui.basic.vertical.menu {
-                                    noui.item A { href = "#"; +"Menu 1" }
-                                    noui.item A { href = "#"; +"Menu 2" }
+                ui.three.cards {
+                    noui.card {
+                        noui.content {
+                            onContextMenuStoppingEvent { evt ->
+                                popups.showContextMenu(evt, PopupsManager.Positioning.BottomLeft) {
+                                    ui.basic.vertical.menu {
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
                                 }
                             }
+                            +"Right click: Context Bottom Left"
                         }
-                        +"Right click me"
+                    }
+
+                    noui.card {
+                        noui.content {
+                            onContextMenuStoppingEvent { evt ->
+                                popups.showContextMenu(evt, PopupsManager.Positioning.BottomCenter) {
+                                    ui.basic.vertical.menu {
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
+                                }
+                            }
+                            +"Right click: Context Bottom Center"
+                        }
+                    }
+
+                    noui.card {
+                        noui.content {
+                            onContextMenuStoppingEvent { evt ->
+                                popups.showContextMenu(evt, PopupsManager.Positioning.BottomRight) {
+                                    ui.basic.vertical.menu {
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
+                                }
+                            }
+                            +"Right click: Context Bottom Right"
+                        }
+                    }
+                }
+
+                ui.two.cards {
+                    noui.card {
+                        noui.content {
+                            onContextMenuStoppingEvent { evt ->
+                                popups.showContextMenu(evt, PopupsManager.Positioning.BottomRight) {
+                                    ui.basic.vertical.menu {
+                                        css { width = 70.vw }
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
+                                }
+                            }
+                            +"Right click: Context Bottom Right"
+                        }
+                    }
+
+                    noui.card {
+                        noui.content {
+                            onContextMenuStoppingEvent { evt ->
+                                popups.showContextMenu(evt, PopupsManager.Positioning.BottomLeft) {
+                                    ui.basic.vertical.menu {
+                                        css { width = 70.vw }
+                                        noui.item A { href = "#"; +"Menu 1" }
+                                        noui.item A { href = "#"; +"Menu 2" }
+                                    }
+                                }
+                            }
+                            +"Right click: Context Bottom Left"
+                        }
                     }
                 }
 
@@ -178,15 +240,15 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                         ui.basic.label {
                             onClick {
                                 popups.showContextMenu(it, PopupsManager.Positioning.BottomLeft) {
-                                    ui.five.column.grid {
+                                    ui.horizontal.menu {
                                         css {
                                             width = 50.vw
                                         }
-                                        noui.column { a { href = "#"; +"Menu 1" } }
-                                        noui.column { a { href = "#"; +"Menu 2" } }
-                                        noui.column { a { href = "#"; +"Menu 3" } }
-                                        noui.column { a { href = "#"; +"Menu 4" } }
-                                        noui.column { a { href = "#"; +"Menu 5" } }
+                                        noui.item { a { href = "#"; +"Menu 1" } }
+                                        noui.item { a { href = "#"; +"Menu 2" } }
+                                        noui.item { a { href = "#"; +"Menu 3" } }
+                                        noui.item { a { href = "#"; +"Menu 4" } }
+                                        noui.item { a { href = "#"; +"Menu 5" } }
                                     }
                                 }
                             }
@@ -199,6 +261,9 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                             onClick {
                                 popups.showContextMenu(it, PopupsManager.Positioning.BottomRight) {
                                     ui.basic.horizontal.menu {
+                                        css {
+                                            width = 50.vw
+                                        }
                                         noui.item A { href = "#"; +"Menu 1" }
                                         noui.item A { href = "#"; +"Menu 2" }
                                         noui.item A { href = "#"; +"Menu 3" }

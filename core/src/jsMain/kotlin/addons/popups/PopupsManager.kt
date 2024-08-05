@@ -76,6 +76,7 @@ class PopupsManager {
 
     enum class Positioning {
         BottomLeft,
+        BottomCenter,
         BottomRight,
     }
 
@@ -103,12 +104,27 @@ class PopupsManager {
         val element = event.target as HTMLElement
 
         return add(element, view) { target, contentSize ->
-            val coords = getPageCoords(target)
+            val bodyWidth = document.body?.offsetWidth?.toDouble() ?: 1200.0
+            val pageCoords = getPageCoords(target)
 
-            when (positioning) {
-                Positioning.BottomLeft -> coords.bottomLeft
-                Positioning.BottomRight -> coords.bottomRight - Vector2D(contentSize.x, 0.0)
+            val temp = when (positioning) {
+                Positioning.BottomLeft -> pageCoords.bottomLeft
+                Positioning.BottomCenter -> {
+                    ((pageCoords.bottomLeft + pageCoords.bottomRight) / 2.0) - Vector2D(contentSize.x / 2.0, 0.0)
+                }
+
+                Positioning.BottomRight -> pageCoords.bottomRight - Vector2D(contentSize.x, 0.0)
             }
+
+            console.log(pageCoords.width, contentSize.x, pageCoords.width - contentSize.x)
+
+            Vector2D(
+                x = maxOf(
+                    0.0,
+                    minOf(bodyWidth - contentSize.x, temp.x),
+                ),
+                y = temp.y,
+            )
         }
     }
 
