@@ -3,6 +3,7 @@ package de.peekandpoke.kraft.examples.helloworld
 import de.peekandpoke.kraft.addons.popups.PopupsManager
 import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectField
 import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectFieldComponent
+import de.peekandpoke.kraft.addons.semanticui.modals.OkCancelModal
 import de.peekandpoke.kraft.components.*
 import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.noui
@@ -95,6 +96,38 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                 }
 
                 ui.divider()
+
+                h2 { +"Modal Popups" }
+
+                ui.blue.button {
+                    onClick {
+                        modals.show { handle ->
+                            OkCancelModal {
+                                mini(
+                                    handle = handle,
+                                    header = { ui.header { +"Modal Dialog" } },
+                                    content = {
+                                        ui.content {
+                                            ui.list {
+                                                noui.item {
+                                                    +"Click any button ..."
+                                                }
+                                                noui.item {
+                                                    +"Or navigate back to close the popup."
+                                                }
+                                            }
+                                        }
+                                    },
+                                ) {}
+                            }
+                        }
+                    }
+
+                    +"Show Modal Popup"
+                }
+
+                ui.divider()
+
                 h2 { +"Left Click | Aux Click | Right Click" }
 
                 ui.card {

@@ -1,5 +1,7 @@
 package de.peekandpoke.kraft.examples.helloworld
 
+import de.peekandpoke.kraft.addons.modal.ModalsManager
+import de.peekandpoke.kraft.addons.modal.ModalsStage
 import de.peekandpoke.kraft.addons.popups.PopupsManager
 import de.peekandpoke.kraft.addons.popups.PopupsStage
 import de.peekandpoke.kraft.addons.routing.RouterComponent
@@ -17,12 +19,14 @@ val router = router {
     catchAll { NotFoundPage() }
 }
 
+val modals = ModalsManager()
 val popups = PopupsManager()
 
 fun main() {
     val mountPoint = document.getElementById("spa") as HTMLElement
 
     PreactVDomEngine(mountPoint) {
+        ModalsStage(modals)
         PopupsStage(popups)
 
         RouterComponent(router)

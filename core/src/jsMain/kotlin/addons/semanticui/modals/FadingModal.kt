@@ -1,6 +1,8 @@
 package de.peekandpoke.kraft.addons.semanticui.modals
 
 import de.peekandpoke.kraft.addons.modal.ModalsManager
+import de.peekandpoke.kraft.addons.routing.BackNavigationTrap
+import de.peekandpoke.kraft.addons.routing.BackNavigationTrap.Companion.trapBackNavigation
 import de.peekandpoke.kraft.addons.styling.StyleSheet
 import de.peekandpoke.kraft.addons.styling.StyleSheets
 import de.peekandpoke.kraft.components.Component
@@ -50,12 +52,16 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
     private var fadingIn by value(true)
     private var fadingOut by value(false)
 
+    private val navTrap = trapBackNavigation {
+        close()
+
+        BackNavigationTrap.TrapResult.Continue
+    }
+
+
     ////  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     init {
-        launch {
-        }
-
         lifecycle {
             onMount {
                 window.document.body?.classList?.add(Style.noScroll)
@@ -90,6 +96,7 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
 
     open fun close() {
         fadeOut()
+        navTrap.deactivate()
     }
 
     private fun fadeOut() {
