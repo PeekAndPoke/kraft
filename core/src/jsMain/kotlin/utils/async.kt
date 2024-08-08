@@ -1,10 +1,9 @@
 package de.peekandpoke.kraft.utils
 
-import kotlinx.browser.window
 import kotlinx.coroutines.*
 
-private val dispatcher = window.asCoroutineDispatcher()
-private val scope = CoroutineScope(dispatcher)
+private val dispatcher = Dispatchers.Default
+private val scope: CoroutineScope = CoroutineScope(dispatcher + SupervisorJob())
 
 fun <T : Any?> launch(block: suspend () -> T): Job {
     return scope.launch {
