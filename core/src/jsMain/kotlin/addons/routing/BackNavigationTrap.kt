@@ -60,7 +60,11 @@ class BackNavigationTrap(
     private fun pushState() {
         if (window.history.state != data) {
             @Suppress("UnsafeCastFromDynamic")
-            window.history.pushState(data, undefined.asDynamic(), window.location.href)
+            window.history.pushState(
+                data = data,
+                title = undefined.asDynamic(),
+                url = window.location.href,
+            )
         }
     }
 
