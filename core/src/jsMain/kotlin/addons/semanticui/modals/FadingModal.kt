@@ -95,8 +95,8 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
     }
 
     open fun close() {
-        fadeOut()
         navTrap.deactivate()
+        fadeOut()
     }
 
     private fun fadeOut() {

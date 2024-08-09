@@ -37,32 +37,36 @@ class BackNavigationTrap(
     }
 
     private val onPopState = { _: Event ->
-//        console.log(evt)
-
-        val result = block()
-
-        if (result == TrapResult.Stop) {
-            window.history.go(1)
+        when (block()) {
+            // Can we continue to go back?
+            TrapResult.Continue -> deactivate()
+            // If not we have to push the state again
+            TrapResult.Stop -> pushState()
         }
     }
 
     fun activate() {
-//        console.log("activating $data")
-
-        @Suppress("UnsafeCastFromDynamic")
-        window.history.pushState(data, undefined.asDynamic(), window.location.href)
+        pushState()
 
         window.addEventListener("popstate", onPopState)
     }
 
     fun deactivate() {
-//        console.log("deactivating $data")
-
         window.removeEventListener("popstate", onPopState)
 
+        goBack()
+    }
+
+    private fun pushState() {
+        if (window.history.state != data) {
+            @Suppress("UnsafeCastFromDynamic")
+            window.history.pushState(data, undefined.asDynamic(), window.location.href)
+        }
+    }
+
+    private fun goBack() {
         // Are we still on the same navigation state?
         if (window.history.state == data) {
-            // go back
             window.history.back()
         }
     }
