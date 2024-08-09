@@ -36,7 +36,7 @@ class BackNavigationTrap(
         }
     }
 
-    private val onPopState = { _: Event ->
+    private val onPopState: (Event) -> Unit = { _: Event ->
         when (block()) {
             // Can we continue to go back?
             TrapResult.Continue -> deactivate()
@@ -69,8 +69,13 @@ class BackNavigationTrap(
     }
 
     private fun goBack() {
+        val shouldGoBack = window.history.state == data
+
+        console.log(window.history.state, data, window.location.href, shouldGoBack)
+
         // Are we still on the same navigation state?
-        if (window.history.state == data) {
+        if (shouldGoBack) {
+            console.log("going back")
             window.history.back()
         }
     }

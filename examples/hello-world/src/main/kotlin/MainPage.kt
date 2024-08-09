@@ -118,7 +118,10 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                                             }
                                         }
                                     },
-                                ) {}
+                                ) {
+                                    console.log("going to 404 page")
+                                    router.navToUri("/404")
+                                }
                             }
                         }
                     }

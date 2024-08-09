@@ -170,8 +170,9 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
                 ui.positive.button {
                     debugId("ok-button")
                     onClick {
-                        close()
-                        props.onResult(Result.Ok)
+                        close {
+                            props.onResult(Result.Ok)
+                        }
                     }
                     view.okText(this)
                 }
