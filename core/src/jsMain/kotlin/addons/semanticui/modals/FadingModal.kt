@@ -94,7 +94,7 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
             }
     }
 
-    fun close(onClose: (suspend () -> Unit)? = null) {
+    open fun close(onClose: (suspend () -> Unit)? = null) {
         doClose(onClose)
     }
 
