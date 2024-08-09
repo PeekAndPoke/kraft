@@ -2,6 +2,7 @@ package de.peekandpoke.kraft.addons.forms
 
 import de.peekandpoke.kraft.addons.forms.validation.Rule
 import de.peekandpoke.kraft.semanticui.RenderFunc
+import de.peekandpoke.kraft.utils.ResponsiveController
 import de.peekandpoke.ultra.common.MutableTypedAttributes
 import de.peekandpoke.ultra.common.TypedKey
 import kotlinx.html.InputType
@@ -9,7 +10,11 @@ import kotlinx.html.LABEL
 
 typealias SettingsBuilder<T> = FieldOptions<T>.() -> Unit
 
-interface FieldOptions<T> {
+interface FieldOptionsAccess<T> {
+    fun <X> access(key: TypedKey<X>): FieldOptions.Access<T, X>
+}
+
+interface FieldOptions<T> : FieldOptionsAccess<T> {
     companion object {
         operator fun <T> invoke(): FieldOptions<T> = Base()
 
@@ -106,33 +111,36 @@ interface FieldOptions<T> {
         return attributes.getOrPut(key, produce)
     }
 
-    fun <X> access(key: TypedKey<X>) = Access(this, key)
+    override fun <X> access(key: TypedKey<X>): Access<T, X> = Access(this, key)
 }
 
-interface CheckboxOptions<T> : FieldOptions<T> {
+interface AutofocusOptions<T> : FieldOptionsAccess<T> {
     companion object {
         private val autofocusKey = TypedKey<Boolean>("autofocus")
     }
 
     @KraftFormsSettingDsl
-    val autofocusValue get() = access(autofocusKey)
+    val autofocusValue: FieldOptions.Access<T, Boolean> get() = access(autofocusKey)
 
     @KraftFormsSettingDsl
     fun autofocus(focus: Boolean = true) {
         autofocusValue(focus)
     }
+
+    @KraftFormsSettingDsl
+    fun autofocusOnDesktop(responsive: ResponsiveController.State) {
+        autofocus(responsive.isDesktop)
+    }
 }
 
-interface InputOptions<T> : FieldOptions<T> {
+interface CheckboxOptions<T> : FieldOptions<T>, AutofocusOptions<T>
+
+interface InputOptions<T> : FieldOptions<T>, AutofocusOptions<T> {
     companion object {
-        private val autofocusKey = TypedKey<Boolean>("autofocus")
         private val stepKey = TypedKey<Number>("step")
         private val typeKey = TypedKey<InputType>("type")
         private val formatValueKey = TypedKey<String>("format-value")
     }
-
-    @KraftFormsSettingDsl
-    val autofocusValue get() = access(autofocusKey)
 
     @KraftFormsSettingDsl
     val formatValue get() = access(formatValueKey)
@@ -142,11 +150,6 @@ interface InputOptions<T> : FieldOptions<T> {
 
     @KraftFormsSettingDsl
     val type get() = access(typeKey)
-
-    @KraftFormsSettingDsl
-    fun autofocus(focus: Boolean = true) {
-        autofocusValue(focus)
-    }
 
     @KraftFormsSettingDsl
     fun asDateInput() {
@@ -167,21 +170,12 @@ interface InputOptions<T> : FieldOptions<T> {
     }
 }
 
-interface TextAreaOptions<T> : FieldOptions<T> {
+interface TextAreaOptions<T> : FieldOptions<T>, AutofocusOptions<T> {
 
     companion object {
-        private val autofocusKey = TypedKey<Boolean>("autofocus")
         private val verticalAutoResizeKey = TypedKey<Boolean>("verticalAutoResize")
     }
 
     @KraftFormsSettingDsl
-    val autofocusValue get() = access(autofocusKey)
-
-    @KraftFormsSettingDsl
     val verticalAutoResize get() = access(verticalAutoResizeKey)
-
-    @KraftFormsSettingDsl
-    fun autofocus(focus: Boolean = true) {
-        autofocusValue(focus)
-    }
 }

@@ -20,6 +20,7 @@ import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.onClick
 import de.peekandpoke.kraft.examples.fomanticui.helpers.invoke
 import de.peekandpoke.kraft.examples.fomanticui.helpers.renderStateAndDraftTable
+import de.peekandpoke.kraft.examples.fomanticui.responsiveCtrl
 import de.peekandpoke.kraft.semanticui.icon
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
@@ -48,6 +49,8 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
 
     private val formCtrl = formController()
 
+    private val responsive by subscribingTo(responsiveCtrl)
+
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     override fun VDom.render() {
@@ -66,7 +69,8 @@ class FormWithPrimitives(ctx: NoProps) : PureComponent(ctx) {
                             label { +"Text Input" }
                             placeholder("Enter some text")
                             disabled(disableFields)
-                            autofocus()
+
+                            autofocusOnDesktop(responsive)
                             rightClearingIcon()
 
                             accepts(

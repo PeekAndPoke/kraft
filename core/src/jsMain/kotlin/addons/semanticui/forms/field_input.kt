@@ -10,6 +10,7 @@ import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.*
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.common.datetime.*
+import kotlinx.browser.document
 import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 import kotlin.reflect.KMutableProperty0
@@ -72,7 +73,7 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
     init {
         lifecycle {
             onMount {
-                options.autofocusValue()?.takeIf { it }?.let {
+                props.options.autofocusValue()?.takeIf { it }?.let {
                     focus()
                 }
             }
@@ -94,8 +95,18 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         }
     }
 
+    /**
+     * Sets the focus on the input element
+     */
     fun focus() {
         inputElement.focus()
+    }
+
+    /**
+     * Returns true when the text area has the focus.
+     */
+    fun hasFocus(): Boolean {
+        return document.activeElement === inputElement
     }
 
     override fun VDom.render() {
@@ -159,6 +170,10 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
         applyRequired()
     }
 
+    private fun INPUT.setValue() {
+        value = valueAsString()
+    }
+
     private fun INPUT.track() {
         onInput {
             val elem = (it.target as HTMLInputElement)
@@ -169,10 +184,6 @@ class UiInputFieldComponent<T, P : UiInputFieldComponent.Props<T>>(ctx: Ctx<P>) 
             val elem = (it.target as HTMLInputElement)
             setInput(elem.value)
         }
-    }
-
-    private fun INPUT.setValue() {
-        value = valueAsString()
     }
 
     private fun INPUT.applyDisabled() {

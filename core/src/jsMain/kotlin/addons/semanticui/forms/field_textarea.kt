@@ -50,26 +50,32 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
         override val options: Options,
     ) : GenericFormField.Props<String, Options>
 
+    val inputElement: HTMLTextAreaElement get() = dom!!.querySelector("textarea") as HTMLTextAreaElement
+
     private val isVerticalAutoResize get() = options.verticalAutoResize.getOrDefault(true)
 
     init {
         lifecycle {
             onMount {
-                options.autofocusValue()?.takeIf { it }?.let {
-                    focus("textarea")
+                props.options.autofocusValue()?.takeIf { it }?.let {
+                    focus()
                 }
             }
         }
     }
 
     /**
+     * Sets the focus on the input element
+     */
+    fun focus() {
+        inputElement.focus()
+    }
+
+    /**
      * Returns true when the text area has the focus.
      */
     fun hasFocus(): Boolean {
-        val field = (dom?.querySelector("textarea") as? HTMLTextAreaElement)
-            ?: return false
-
-        return document.activeElement === field
+        return document.activeElement === inputElement
     }
 
     /**

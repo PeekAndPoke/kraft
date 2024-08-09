@@ -10,6 +10,7 @@ import de.peekandpoke.kraft.components.key
 import de.peekandpoke.kraft.components.onChange
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import kotlinx.browser.document
 import kotlinx.html.*
 import org.w3c.dom.HTMLInputElement
 import kotlin.reflect.KMutableProperty0
@@ -50,15 +51,32 @@ class UiCheckBoxComponent<T, P : UiCheckBoxComponent.Props<T>>(ctx: Ctx<P>) :
         val off: X,
     ) : GenericFormField.Props<X, Options<X>>
 
+    val inputElement: HTMLInputElement get() = dom!!.querySelector("input") as HTMLInputElement
+
     init {
         lifecycle {
             onMount {
-                options.autofocusValue()?.takeIf { it }?.let {
-                    focus("input")
+                props.options.autofocusValue()?.takeIf { it }?.let {
+                    focus()
                 }
             }
         }
     }
+
+    /**
+     * Sets the focus on the input element
+     */
+    fun focus() {
+        inputElement.focus()
+    }
+
+    /**
+     * Returns true when the text area has the focus.
+     */
+    fun hasFocus(): Boolean {
+        return document.activeElement === inputElement
+    }
+
 
     override fun VDom.render() {
 
