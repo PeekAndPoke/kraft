@@ -806,7 +806,7 @@ class UiTimeFieldRenderer(private val tag: Tag) {
         value: MpLocalTime?,
         onChange: (MpLocalTime?) -> Unit,
         builder: Options<MpLocalTime?>.() -> Unit = {},
-    ) = tag.UiInputField(value, onChange, ::timeToHms, ::stringToLocalTime) {
+    ) = tag.UiInputField(value, onChange, ::timeToHms, ::stringToLocalTimeOrNull) {
         asTimeInput()
         builder()
     }

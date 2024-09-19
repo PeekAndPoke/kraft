@@ -35,4 +35,5 @@ fun stringToZonedDateTimeOrNull(it: String): MpZonedDateTime? = MpZonedDateTime.
 fun timeToHms(it: MpLocalTime?): String = it?.format("HH:mm:ss") ?: ""
 
 fun stringToLocalTime(it: String): MpLocalTime = MpLocalTime.parse(it)
+fun stringToLocalTimeOrNull(it: String): MpLocalTime? = MpLocalTime.tryParse(it)
 
