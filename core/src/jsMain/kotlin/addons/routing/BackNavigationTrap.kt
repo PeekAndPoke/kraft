@@ -1,7 +1,9 @@
 package de.peekandpoke.kraft.addons.routing
 
 import de.peekandpoke.kraft.components.Component
+import de.peekandpoke.kraft.utils.SimpleAsyncQueue
 import kotlinx.browser.window
+import kotlinx.coroutines.delay
 import org.w3c.dom.events.Event
 
 class BackNavigationTrap(
@@ -21,6 +23,10 @@ class BackNavigationTrap(
         Stop,
         Continue,
     }
+
+    private val queue = SimpleAsyncQueue()
+
+    private var isActive: Boolean = false
 
     private val data = "back-navigation-trap-${counter++}"
 
@@ -46,15 +52,21 @@ class BackNavigationTrap(
     }
 
     fun activate() {
-        pushState()
+        if (!isActive) {
+            isActive = true
 
-        window.addEventListener("popstate", onPopState)
+            pushState()
+            window.addEventListener("popstate", onPopState)
+        }
     }
 
     fun deactivate() {
-        window.removeEventListener("popstate", onPopState)
+        if (isActive) {
+            isActive = false
 
-        goBack()
+            window.removeEventListener("popstate", onPopState)
+            goBack()
+        }
     }
 
     private fun pushState() {
@@ -69,14 +81,24 @@ class BackNavigationTrap(
     }
 
     private fun goBack() {
+        queue.add { doGoBack() }
+    }
+
+    private suspend fun doGoBack() {
+        delay(1)
+
         val shouldGoBack = window.history.state == data
 
-        console.log(window.history.state, data, window.location.href, shouldGoBack)
+//        console.log(window.history.state, data, window.location.href, shouldGoBack)
 
         // Are we still on the same navigation state?
         if (shouldGoBack) {
             console.log("going back")
             window.history.back()
+
+            // Wait for the browser to catch up, as the history.back() is async itself
+            delay(100)
+//            console.log(window.history.state, data, window.location.href, shouldGoBack)
         }
     }
 }
