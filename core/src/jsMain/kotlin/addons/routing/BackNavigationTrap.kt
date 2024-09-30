@@ -93,11 +93,11 @@ class BackNavigationTrap(
 
         // Are we still on the same navigation state?
         if (shouldGoBack) {
-            console.log("going back")
             window.history.back()
+            console.log("going back")
 
             // Wait for the browser to catch up, as the history.back() is async itself
-            delay(100)
+//            delay(100)
 //            console.log(window.history.state, data, window.location.href, shouldGoBack)
         }
     }

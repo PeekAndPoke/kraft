@@ -105,7 +105,7 @@ abstract class FadingModal<P : FadingModal.Props>(ctx: Ctx<P>) : Component<P>(ct
 
         onClose?.let {
             launch {
-                delay(10)
+                delay(100)
                 onClose()
             }
         }
