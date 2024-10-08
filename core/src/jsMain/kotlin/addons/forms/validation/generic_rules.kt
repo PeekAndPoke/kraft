@@ -1,5 +1,33 @@
 package de.peekandpoke.kraft.addons.forms.validation
 
+fun <T> anyRuleOf(rule: Rule<T>, vararg rules: Rule<T>): Rule<T> {
+    val allRules = listOf(rule) + rules
+
+    return GenericRule(
+        checkFn = { value -> allRules.any { it.check(value) } },
+        messageFn = { value ->
+            rules.filterNot { it.check(value) }
+                .map { it.getMessage(value) }
+                .filter { it.isNotBlank() }
+                .joinToString(" or ")
+        },
+    )
+}
+
+fun <T> allRulesOf(rule: Rule<T>, vararg rules: Rule<T>): Rule<T> {
+    val allRules = listOf(rule) + rules
+
+    return GenericRule(
+        checkFn = { value -> allRules.all { it.check(value) } },
+        messageFn = { value ->
+            rules.filterNot { it.check(value) }
+                .map { it.getMessage(value) }
+                .filter { it.isNotBlank() }
+                .joinToString(" and ")
+        },
+    )
+}
+
 @KraftFormsRuleDsl
 fun <T> nonNull(message: String = "Must not be empty"): Rule<T> = GenericRule(
     messageFn = { message },
