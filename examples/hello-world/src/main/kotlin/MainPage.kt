@@ -115,6 +115,14 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                                                 noui.item {
                                                     +"Or navigate back to close the popup."
                                                 }
+                                                noui.item {
+                                                    a {
+                                                        onClick {
+                                                            router.navToUri("404")
+                                                        }
+                                                        +"Or nav away"
+                                                    }
+                                                }
                                             }
                                         }
                                     },

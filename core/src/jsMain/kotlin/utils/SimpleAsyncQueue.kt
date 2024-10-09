@@ -28,11 +28,11 @@ class SimpleAsyncQueue {
                     } catch (e: Throwable) {
                         console.error("Job failed", e)
                     }
-
-                    running = false
-
-                    runNext()
                 }
+
+                running = false
+
+                runNext()
             }
         }
     }

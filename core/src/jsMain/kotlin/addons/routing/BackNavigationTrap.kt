@@ -3,7 +3,7 @@ package de.peekandpoke.kraft.addons.routing
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.utils.SimpleAsyncQueue
 import kotlinx.browser.window
-import kotlinx.coroutines.delay
+import org.w3c.dom.PopStateEvent
 import org.w3c.dom.events.Event
 
 class BackNavigationTrap(
@@ -28,7 +28,7 @@ class BackNavigationTrap(
 
     private var isActive: Boolean = false
 
-    private val data = "back-navigation-trap-${counter++}"
+    private val data = "--navigation-trap-${counter++}--"
 
     init {
         component.lifecycle {
@@ -42,10 +42,22 @@ class BackNavigationTrap(
         }
     }
 
-    private val onPopState: (Event) -> Unit = { _: Event ->
+    private val onPopState: (PopStateEvent) -> Unit = { event: PopStateEvent ->
+
         when (block()) {
             // Can we continue to go back?
-            TrapResult.Continue -> deactivate()
+            TrapResult.Continue -> {
+                // Are we navigating away or are we navigating back?
+                if (event.state != data) {
+                    // user navigated away
+                    deactivateInternal {
+                        // deactivate immediately without going back ...
+                    }
+                } else {
+                    // user navigated back
+                    deactivate()
+                }
+            }
             // If not we have to push the state again
             TrapResult.Stop -> pushState()
         }
@@ -56,16 +68,26 @@ class BackNavigationTrap(
             isActive = true
 
             pushState()
-            window.addEventListener("popstate", onPopState)
+
+            @Suppress("UNCHECKED_CAST")
+            window.addEventListener("popstate", onPopState as (Event) -> Unit)
         }
     }
 
     fun deactivate() {
+        deactivateInternal {
+            goBack()
+        }
+    }
+
+    private fun deactivateInternal(block: () -> Unit) {
         if (isActive) {
             isActive = false
 
-            window.removeEventListener("popstate", onPopState)
-            goBack()
+            @Suppress("UNCHECKED_CAST")
+            window.removeEventListener("popstate", onPopState as (Event) -> Unit)
+
+            block()
         }
     }
 
@@ -84,11 +106,8 @@ class BackNavigationTrap(
         queue.add { doGoBack() }
     }
 
-    private suspend fun doGoBack() {
-        delay(1)
-
+    private fun doGoBack() {
         val shouldGoBack = window.history.state == data
-
 //        console.log(window.history.state, data, window.location.href, shouldGoBack)
 
         // Are we still on the same navigation state?
