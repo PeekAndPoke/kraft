@@ -1,7 +1,6 @@
 import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.Sync
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.register
 import java.io.File
@@ -48,7 +47,7 @@ object Docs {
             dependsOn("assemble")
             dependsOn("browserProductionWebpack")
 
-            val fromDir = File(buildDir, "distributions")
+            val fromDir = File(buildDir, "dist/js/productionExecutable")
             val intoDir = File(rootProject.projectDir, "docs/examples/${project.name}")
 
             println("== distributeJsExample '${project.name}' ===========================================")

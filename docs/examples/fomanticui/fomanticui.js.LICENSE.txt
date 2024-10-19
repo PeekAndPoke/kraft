@@ -51,6 +51,6 @@
 
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 
-//! @version @js-joda/core - 5.5.3
+//! @version @js-joda/core - 5.6.2
 
-//! @version @js-joda/timezone - 2.18.0-2023c
+//! @version @js-joda/timezone - 2.18.3-2023c
