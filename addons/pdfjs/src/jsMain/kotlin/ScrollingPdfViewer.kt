@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.addons.pdfjs
 
+import de.peekandpoke.kraft.addons.pdfjs.PdfUtils.visitGuarded
 import de.peekandpoke.kraft.addons.pdfjs.js.PdfjsLib
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
@@ -77,6 +78,8 @@ class ScrollingPdfViewer(ctx: Ctx<Props>) : Component<ScrollingPdfViewer.Props>(
 
     init {
         pdfLoader.state {
+            console.log(it)
+
             val doc = (it as? DataLoader.State.Loaded<PdfjsLib.PDFDocumentProxy>)?.data
 
             if (doc != null && state.doc == null) {
@@ -124,8 +127,13 @@ class ScrollingPdfViewer(ctx: Ctx<Props>) : Component<ScrollingPdfViewer.Props>(
                     div("page page-$idx") {
                         css {
                             textAlign = TextAlign.center
+                            overflow = Overflow.hidden
                         }
-                        canvas {}
+                        canvas {
+                            css {
+                                overflow = Overflow.hidden
+                            }
+                        }
                     }
                 }
             }
@@ -150,43 +158,51 @@ class ScrollingPdfViewer(ctx: Ctx<Props>) : Component<ScrollingPdfViewer.Props>(
 
         canvases.forEachIndexed { idx, canvas ->
             jobQueue.add {
-                renderPage(canvas, idx + 1)
-                delay(1)
+                delay(10)
+
+                try {
+                    renderPage(canvas, idx + 1)
+                } catch (e: Throwable) {
+                    console.log(e)
+                }
             }
         }
     }
 
     private suspend fun renderPage(canvas: HTMLCanvasElement, pageNumber: Int) {
-        state.doc?.let { doc ->
-            val context = canvas.getContext("2d") as CanvasRenderingContext2D
 
-            val page = doc.getPage(pageNumber).await()
+        state.doc?.let { doc: PdfjsLib.PDFDocumentProxy ->
+            canvas.visitGuarded { canvas ->
+                val context = canvas.getContext("2d") as CanvasRenderingContext2D
 
-            val (pageLeft, pageTop, pageRight, pageBottom) = page.view
+                val page = doc.getPage(pageNumber).await()
 
-            val pageWidth = pageRight.toDouble() - pageLeft.toDouble()
-            val pageHeight = pageBottom.toDouble() - pageTop.toDouble()
+                val (pageLeft, pageTop, pageRight, pageBottom) = page.view
 
-            val pageScale = minOf(
-                (dom!!.offsetWidth * 0.95) / pageWidth,
-                (dom!!.offsetHeight * 0.95) / pageHeight,
-            )
+                val pageWidth = pageRight.toDouble() - pageLeft.toDouble()
+                val pageHeight = pageBottom.toDouble() - pageTop.toDouble()
 
-            val viewport = page.getViewport(jsObject {
-                this.scale = pageScale * state.scale
-            })
+                val pageScale = minOf(
+                    (dom!!.offsetWidth * 0.95) / pageWidth,
+                    (dom!!.offsetHeight * 0.95) / pageHeight,
+                )
+
+                val viewport = page.getViewport(jsObject {
+                    this.scale = pageScale * state.scale
+                })
 
 //            console.log("Got page", page, viewport)
 
-            canvas.width = viewport.width
-            canvas.height = viewport.height
+                canvas.width = viewport.width
+                canvas.height = viewport.height
 
-            page.render(jsObject {
-                this.canvasContext = context
-                this.viewport = viewport
-            }).promise.await()
+                page.render(jsObject {
+                    this.canvasContext = context
+                    this.viewport = viewport
+                }).promise.await()
 
 //            console.log("rendered page")
+            }
         }
     }
 

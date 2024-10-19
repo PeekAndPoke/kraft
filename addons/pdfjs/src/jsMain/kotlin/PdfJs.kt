@@ -12,10 +12,9 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
     companion object {
         private var instance: PdfJs? = null
 
-        var librarySource: LibrarySrc = LibrarySrc.CdnJs.v2_16_105
+        var librarySource: LibrarySrc = LibrarySrc.CdnJs.v4_7_76
 
         suspend fun instance(): PdfJs {
-
             instance?.let { return it }
 
             ScriptLoader.loadAsync(librarySource.src).await()
@@ -36,7 +35,7 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
                     !!item && !!item.getDocument
                 }
 
-            console.info("pdfjsLib was loaded into $name")
+            console.info("pdfjsLib was loaded into $name", lib)
 
             lib.GlobalWorkerOptions.workerSrc = librarySource.workerSrc
 
@@ -49,23 +48,35 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
 
     interface LibrarySrc {
         val src: ScriptLoader.Javascript
-        val workerSrc: String
+        val workerSrc: String?
 
         /**
          * https://cdnjs.com/libraries/pdf.js
          */
         data class CdnJs(
             override val src: ScriptLoader.Javascript,
-            override val workerSrc: String,
+            override val workerSrc: String? = null,
         ) : LibrarySrc {
 
             companion object {
+                @Suppress("unused")
                 val v2_16_105 = CdnJs(
                     src = ScriptLoader.Javascript(
                         src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js",
                         integrity = "sha512-tqaIiFJopq4lTBmFlWF0MNzzTpDsHyug8tJaaY0VkcH5AR2ANMJlcD+3fIL+RQ4JU3K6edt9OoySKfCCyKgkng==",
                     ),
                     workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
+                )
+
+                // https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.min.mjs
+
+                val v4_7_76 = CdnJs(
+                    src = ScriptLoader.Javascript(
+                        src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.min.mjs",
+                        type = "module",
+                        integrity = "sha384-qgyx6GmMWoI003drRr62DU41/67b3n7M2G0EXu2WhaOsBqONtHyay9Vw4aIivyOX",
+                    ),
+                    workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.worker.min.mjs",
                 )
             }
         }

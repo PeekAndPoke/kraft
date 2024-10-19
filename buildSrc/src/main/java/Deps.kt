@@ -97,9 +97,10 @@ object Deps {
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
 
-        // TODO: check update to 3.x versions
         // https://www.npmjs.com/package/pdfjs-dist
-        fun KotlinDependencyHandler.pdfjs_dist() = npm("pdfjs-dist", "2.16.105")
+        // See [PdfJs.kt] as this lib is loaded asynchronously
+        @Suppress("UnusedReceiverParameter", "unused")
+        fun KotlinDependencyHandler.pdfJs() = "4.7.76"
 
         // https://www.npmjs.com/package/preact
         fun KotlinDependencyHandler.preact() = npm("preact", "10.19.3")

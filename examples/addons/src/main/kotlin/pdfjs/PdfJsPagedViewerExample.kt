@@ -12,11 +12,21 @@ import kotlinx.css.*
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.PdfJsPagedViewerExample() = comp {
+fun Tag.PdfJsPagedViewerExample(
+    uri: String
+) = comp(
+    PdfJsPagedViewerExample.Props(uri = uri)
+) {
     PdfJsPagedViewerExample(it)
 }
 
-class PdfJsPagedViewerExample(ctx: NoProps) : PureComponent(ctx) {
+class PdfJsPagedViewerExample(ctx: Ctx<Props>) : Component<PdfJsPagedViewerExample.Props>(ctx) {
+
+    //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    data class Props(
+        val uri: String
+    )
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,7 +101,7 @@ class PdfJsPagedViewerExample(ctx: NoProps) : PureComponent(ctx) {
             }
 
             PagedPdfViewer(
-                src = PdfSource.Url("pdf/eg14_cats_and_people.pdf"),
+                src = PdfSource.Url(props.uri),
                 options = PagedPdfViewer.Options(
                     maxHeightLandscapeVh = 80,
                     maxHeightPortraitVh = 80,

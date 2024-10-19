@@ -24,14 +24,37 @@ class PdfJsExample(ctx: NoProps) : PureComponent(ctx) {
         ui.segment {
             ui.header H2 { +"PDF JS" }
 
-            ui.very.relaxed.list {
-                noui.item A {
-                    href = routes.pdfjs.paged()
-                    +"Paged Pdf Viewer"
+            val docs = listOf(
+                "pdf/contract.pdf",
+                "pdf/eg14_cats_and_people.pdf",
+                "pdf/Get_Started_With_Smallpdf.pdf",
+            )
+
+            ui.basic.segment {
+                ui.horizontal.list {
+                    noui.item {
+                        noui.header { +"Paged" }
+                    }
+                    docs.forEach { doc ->
+                        noui.item A {
+                            href = routes.pdfjs.paged(doc)
+                            +doc
+                        }
+                    }
                 }
-                noui.item A {
-                    href = routes.pdfjs.scrolling()
-                    +"Scrolling Pdf Viewer"
+            }
+
+            ui.basic.segment {
+                ui.horizontal.list {
+                    noui.item {
+                        noui.header { +"Scrolling" }
+                    }
+                    docs.forEach { doc ->
+                        noui.item A {
+                            href = routes.pdfjs.scrolling(doc)
+                            +doc
+                        }
+                    }
                 }
             }
         }

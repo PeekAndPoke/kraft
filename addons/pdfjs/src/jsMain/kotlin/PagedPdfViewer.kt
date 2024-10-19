@@ -1,5 +1,6 @@
 package de.peekandpoke.kraft.addons.pdfjs
 
+import de.peekandpoke.kraft.addons.pdfjs.PdfUtils.visitGuarded
 import de.peekandpoke.kraft.addons.pdfjs.js.PdfjsLib
 import de.peekandpoke.kraft.components.Component
 import de.peekandpoke.kraft.components.Ctx
@@ -167,26 +168,27 @@ class PagedPdfViewer(ctx: Ctx<Props>) : Component<PagedPdfViewer.Props>(ctx) {
 
     private suspend fun renderPage() {
         state.doc?.let { doc ->
-            val canvas = getCanvas()
-            val context = canvas.getContext("2d") as CanvasRenderingContext2D
+            getCanvas().visitGuarded { canvas ->
+                val context = canvas.getContext("2d") as CanvasRenderingContext2D
 
-            val page = doc.getPage(state.page).await()
+                val page = doc.getPage(state.page).await()
 
-            val viewport = page.getViewport(jsObject {
-                this.scale = state.scale
-            })
+                val viewport = page.getViewport(jsObject {
+                    this.scale = state.scale
+                })
 
 //            console.log("Got page", page, viewport)
 
-            canvas.width = viewport.width
-            canvas.height = viewport.height
+                canvas.width = viewport.width
+                canvas.height = viewport.height
 
-            page.render(jsObject {
-                this.canvasContext = context
-                this.viewport = viewport
-            }).promise.await()
+                page.render(jsObject {
+                    this.canvasContext = context
+                    this.viewport = viewport
+                }).promise.await()
 
 //            console.log("rendered page")
+            }
         }
     }
 

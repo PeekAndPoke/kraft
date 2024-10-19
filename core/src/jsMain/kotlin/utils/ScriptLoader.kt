@@ -12,6 +12,7 @@ object ScriptLoader {
 
     data class Javascript(
         val src: String,
+        val type: String = "text/javascript",
         val integrity: String? = null,
         val crossOrigin: String? = "anonymous",
         val referrerPolicy: String? = "no-referrer",
@@ -65,7 +66,8 @@ object ScriptLoader {
         val tag = (document.createElement("script") as HTMLScriptElement)
 
         tag.src = script.src
-        tag.type = "text/javascript"
+        tag.type = script.type
+        script.integrity?.let { tag.asDynamic()["integrity"] = it }
         script.crossOrigin?.let { tag.crossOrigin = it }
         script.referrerPolicy?.let { tag.asDynamic().referrerPolicy = it }
 

@@ -12,11 +12,21 @@ import kotlinx.css.*
 import kotlinx.html.Tag
 
 @Suppress("FunctionName")
-fun Tag.PdfJsScrollingViewerExample() = comp {
+fun Tag.PdfJsScrollingViewerExample(
+    uri: String
+) = comp(
+    PdfJsScrollingViewerExample.Props(uri = uri)
+) {
     PdfJsScrollingViewerExample(it)
 }
 
-class PdfJsScrollingViewerExample(ctx: NoProps) : PureComponent(ctx) {
+class PdfJsScrollingViewerExample(ctx: Ctx<Props>) : Component<PdfJsScrollingViewerExample.Props>(ctx) {
+
+    //  PROPS  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    data class Props(
+        val uri: String
+    )
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,7 +69,7 @@ class PdfJsScrollingViewerExample(ctx: NoProps) : PureComponent(ctx) {
             }
 
             ScrollingPdfViewer(
-                src = PdfSource.Url("pdf/eg14_cats_and_people.pdf"),
+                src = PdfSource.Url(props.uri),
                 options = ScrollingPdfViewer.Options(
                     maxHeightLandscapeVh = 80,
                     maxHeightPortraitVh = 80,
