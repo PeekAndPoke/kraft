@@ -52,6 +52,17 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
         enabled = true
     }
 
+    fun willOpenNewTab(evt: MouseEvent?): Boolean {
+        return when (evt) {
+            null -> false
+            else -> {
+                evt.ctrlKey // Windows, Linux
+                    || evt.metaKey // MacOS
+                    || (evt.button == 1.toShort()) // Middle Mouse button
+            }
+        }
+    }
+
     /**
      * Navigates to the given uri.
      */
@@ -69,13 +80,9 @@ class Router(private val mountedRoutes: List<MountedRoute>, private var enabled:
      * If [evt].ctrlKey is true, the uri will be opened in a new tab.
      */
     fun navToUri(evt: MouseEvent?, uri: String) {
-        val newTab = (evt?.ctrlKey == true) // Windows, Linux
-            || (evt?.metaKey == true) // MacOS
-            || (evt?.button == 1.toShort()) // Middle Mouse button
-
         return navToUri(
             uri = uri,
-            newTab = newTab,
+            newTab = willOpenNewTab(evt),
         )
     }
 
