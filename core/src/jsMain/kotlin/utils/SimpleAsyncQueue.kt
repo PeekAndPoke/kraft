@@ -12,8 +12,8 @@ class SimpleAsyncQueue(
     fun isEmpty() = jobs.isEmpty()
     fun size() = jobs.size
 
-    fun add(jobs: suspend () -> Unit) {
-        this.jobs.add(jobs)
+    fun add(job: suspend () -> Unit) {
+        jobs.add(job)
         runNext()
     }
 
@@ -26,20 +26,21 @@ class SimpleAsyncQueue(
         if (!running) {
             running = true
 
-            jobs.firstOrNull()?.let { job ->
-                launch {
+            launch {
+                jobs.firstOrNull()?.let { job ->
                     try {
                         job()
                     } catch (e: Throwable) {
                         console.error("Job failed", e)
                     }
-                    // Remove the job
-                    jobs.shift()
-                    // Notify
-                    try {
-                        onTaskFinished()
-                    } finally {
-                    }
+                }
+
+                // Remove the job
+                jobs.shift()
+                // Notify
+                try {
+                    onTaskFinished()
+                } finally {
                 }
 
                 running = false
