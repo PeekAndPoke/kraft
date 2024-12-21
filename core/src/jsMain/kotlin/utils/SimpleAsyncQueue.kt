@@ -36,7 +36,10 @@ class SimpleAsyncQueue(
                     // Remove the job
                     jobs.shift()
                     // Notify
-                    onTaskFinished()
+                    try {
+                        onTaskFinished()
+                    } finally {
+                    }
                 }
 
                 running = false
