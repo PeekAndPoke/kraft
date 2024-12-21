@@ -1,6 +1,8 @@
 package de.peekandpoke.kraft.examples.helloworld
 
+import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.popups.PopupsManager
+import de.peekandpoke.kraft.addons.semanticui.forms.UiDateTimeField
 import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectField
 import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectFieldComponent
 import de.peekandpoke.kraft.addons.semanticui.modals.OkCancelModal
@@ -9,11 +11,13 @@ import de.peekandpoke.kraft.semanticui.css
 import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
+import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.css.vw
 import kotlinx.css.width
 import kotlinx.html.*
 import org.w3c.dom.pointerevents.PointerEvent
+import kotlin.time.Duration.Companion.days
 
 @Suppress("FunctionName")
 fun Tag.MainPage() = comp {
@@ -24,7 +28,12 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
     //  STATE  //////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private val formCtrl = formController()
+
     private var select by value("")
+
+    //    private var datetime by value(Kronos.systemUtc.zonedDateTimeNow(MpTimezone.UTC))
+    private var datetime by value(MpZonedDateTime.Genesis.plus(10000.days))
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,6 +41,13 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
         ui.container {
             ui.basic.form.segment {
                 h1 { +"Hello World!" }
+
+                ui.basic.button {
+                    onClick {
+                        formCtrl.validate()
+                    }
+                    +"Validate form"
+                }
 
                 h2 { +"First Counter" }
 
@@ -52,6 +68,28 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                 h2 { +"Component with a DataLoader" }
 
                 DataLoaderComponent(100)
+
+                ui.divider()
+
+                h2 { +"Date Fields" }
+
+                ui.three.fields {
+                    UiDateTimeField(::datetime) {
+                        label("DateTime")
+                    }
+                    ui.field {
+                        ui.basic.fluid.button {
+                            onClick { datetime = MpZonedDateTime.Genesis.plus(365.days * 9200) }
+                            +"Genesis"
+                        }
+                    }
+                    ui.field {
+                        ui.basic.fluid.button {
+                            onClick { datetime = MpZonedDateTime.Doomsday }
+                            +"Doomsday"
+                        }
+                    }
+                }
 
                 ui.divider()
 
