@@ -270,6 +270,15 @@ fun CommonAttributeGroupFacade.onMouseUp(handler: (MouseEvent) -> Unit) {
 }
 
 /**
+ * Adds an onWheel handler when the mouse wheel is used.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event
+ */
+fun CommonAttributeGroupFacade.onWheel(handler: (WheelEvent) -> Unit) {
+    onWheelFunction = handler.asDynamic()
+}
+
+/**
  * Add an onSelect handler.
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/select_event
