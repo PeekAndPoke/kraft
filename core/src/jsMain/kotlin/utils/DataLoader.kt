@@ -9,6 +9,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.html.FlowContent
 
@@ -74,7 +75,7 @@ class DataLoader<T>(
     val value: Stream<T?> = state.map { (it as? State.Loaded<T>)?.data }
 
     private var requestsCounter = 0
-    private var lastJob: Job? = null
+    private val jobs = mutableListOf<Job>()
 
     init {
         reload(0)
@@ -131,13 +132,25 @@ class DataLoader<T>(
     }
 
     fun reloadSilently(debounceMs: Long = 200) {
-        lastJob?.let {
-            if (it.isActive) {
+        jobs.forEach {
+            try {
                 it.cancel()
+            } finally {
             }
         }
 
-        lastJob = launch {
+        lateinit var currentJob: Job
+
+        fun onComplete(result: T) {
+            if (currentJob == jobs.last()) {
+                handleFinished()
+                currentState = State.Loaded(result)
+
+                jobs.clear()
+            }
+        }
+
+        currentJob = launch {
             if (requestsCounter > 0) {
                 delay(debounceMs)
             } else {
@@ -145,25 +158,26 @@ class DataLoader<T>(
             }
 
             try {
-                options.load()
+                val result = options.load()
                     .catch {
                         handleFinished()
                         handleException(it)
                     }
-                    .collect {
-                        handleFinished()
-                        currentState = State.Loaded(it)
-                    }
+                    .first()
+
+                onComplete(result)
+
             } catch (e: Throwable) {
                 handleFinished()
                 handleException(e)
             }
         }
+
+        jobs.add(currentJob)
     }
 
     private fun handleFinished() {
         requestsCounter += 1
-        lastJob = null
     }
 
     private fun handleException(e: Throwable) {
