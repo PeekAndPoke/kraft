@@ -31,8 +31,8 @@ object Deps {
     // KOTLIN - DEPS ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.78.0"
-    const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
+    private const val ultra_version = "0.79.0"
+    const val ultra_common = "io.peekandpoke.ultra:common:$ultra_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
