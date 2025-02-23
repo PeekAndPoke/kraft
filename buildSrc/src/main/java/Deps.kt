@@ -24,29 +24,19 @@ object Deps {
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
-    const val mavenPublishVersion = "0.26.0"
+    // https://search.maven.org/artifact/com.vanniktech/gradle-maven-publish-plugin
+    const val mavenPublishVersion = "0.29.0"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
+    // KOTLIN - DEPS ///////////////////////////////////////////////////////////////////////////////////////////////////
+
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.77.0"
+    private const val ultra_version = "0.78.0"
     const val ultra_common_mp = "io.peekandpoke.ultra:commonmp:$ultra_version"
-
-    // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
-    private const val kotlinx_html_version = "0.11.0"
-    const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
-
-//    private const val peekandpoke_kotlinx_html_version = "0.7.5.2-SNAPSHOT"
-//    const val peekandpoke_kotlinx_html = "io.peekandpoke.kotlinx:kotlinx-html:$peekandpoke_kotlinx_html_version"
-
-    // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
-    // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.727"
-    const val kotlinx_wrappers_css =
-        "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
-    private const val kotlinx_coroutines_version = "1.8.0"
+    private const val kotlinx_coroutines_version = "1.8.1"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
     const val kotlinx_coroutines_core_js =
@@ -59,6 +49,16 @@ object Deps {
         "org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinx_serialization_version"
     const val kotlinx_serialization_json =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
+
+    // https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven/org/jetbrains/kotlinx/kotlinx-html/
+    private const val kotlinx_html_version = "0.11.0"
+    const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
+
+    // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
+    private const val kotlinx_wrappers_css_version = "1.0.0-pre.727"
+    const val kotlinx_wrappers_css =
+        "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
