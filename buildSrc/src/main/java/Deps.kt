@@ -54,11 +54,10 @@ object Deps {
     private const val kotlinx_html_version = "0.11.0"
     const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
-    // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_css_version = "1.0.0-pre.727"
+    private const val kotlinx_wrappers_version = "1.0.0-pre.727"
     const val kotlinx_wrappers_css =
-        "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_css_version"
+        "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_version"
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
