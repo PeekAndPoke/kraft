@@ -81,6 +81,7 @@ class ExtractExampleCodePlugin : Plugin<Project> {
 
                 val entryPrefix = file.absoluteFile.toString()
                     .replaceFirst(projectDir.absolutePath, "")
+                    .replaceFirst("src/[^/]*/kotlin/".toRegex(), "")
                     .replaceFirst(sourcesDir, "")
                     .replace(alphaNumRegex, "_")
                     .trim('_')
@@ -130,7 +131,7 @@ class ExtractExampleCodePlugin : Plugin<Project> {
                             // escape multiple quotes
                             .replace("\"\"\"", "\\\"\\\"\\\"")
                             // escape $ signs
-                            .replace("$", "${"$"}{\"${"$"}\"}")
+                            .replace("$", "${"$"}{\"$\"}")
                     )
                     appendLine("\"\"\"")
                     appendLine()

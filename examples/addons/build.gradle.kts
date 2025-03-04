@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
-    kotlin("js")
+    kotlin("multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
 }
 
@@ -18,21 +18,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // project deps
-    api(project(":core"))
-    // addons
-    api(project(":addons:avatars"))
-    api(project(":addons:browserdetect"))
-    api(project(":addons:chartjs"))
-    api(project(":addons:konva"))
-    api(project(":addons:marked"))
-    api(project(":addons:nxcompile"))
-    api(project(":addons:pdfjs"))
-    api(project(":addons:prismjs"))
-    api(project(":addons:signaturepad"))
-    api(project(":addons:sourcemappedstacktrace"))
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -42,6 +27,34 @@ kotlin {
         }
 
         binaries.executable()
+    }
+
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = Deps.jvmTarget.target
+            }
+        }
+    }
+
+    sourceSets {
+        val jsMain by getting {
+            dependencies {
+                // project deps
+                api(project(":core"))
+                // addons
+                api(project(":addons:avatars"))
+                api(project(":addons:browserdetect"))
+                api(project(":addons:chartjs"))
+                api(project(":addons:konva"))
+                api(project(":addons:marked"))
+                api(project(":addons:nxcompile"))
+                api(project(":addons:pdfjs"))
+                api(project(":addons:prismjs"))
+                api(project(":addons:signaturepad"))
+                api(project(":addons:sourcemappedstacktrace"))
+            }
+        }
     }
 }
 

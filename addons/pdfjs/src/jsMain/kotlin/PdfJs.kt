@@ -48,14 +48,14 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
 
     interface LibrarySrc {
         val src: ScriptLoader.Javascript
-        val workerSrc: String?
+        val workerSrc: String
 
         /**
          * https://cdnjs.com/libraries/pdf.js
          */
         data class CdnJs(
             override val src: ScriptLoader.Javascript,
-            override val workerSrc: String? = null,
+            override val workerSrc: String,
         ) : LibrarySrc {
 
             companion object {

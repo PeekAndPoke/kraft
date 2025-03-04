@@ -5,8 +5,8 @@ buildscript {
 }
 
 plugins {
-    idea
     kotlin("jvm")
+    idea
 
     id("org.jetbrains.dokka") version Deps.dokkaVersion apply false
     id("com.vanniktech.maven.publish") version Deps.mavenPublishVersion apply false
@@ -32,3 +32,12 @@ allprojects {
 }
 
 dependencies { }
+
+configurations.all {
+    idea {
+        module {
+            isDownloadJavadoc = true
+            isDownloadSources = true
+        }
+    }
+}

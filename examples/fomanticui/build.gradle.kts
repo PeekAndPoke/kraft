@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
-    kotlin("js")
+    kotlin("multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization") version Deps.kotlinVersion
 }
 
@@ -18,13 +18,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // project deps
-    api(project(":core"))
-    // addons
-    api(project(":addons:prismjs"))
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 kotlin {
@@ -33,6 +26,27 @@ kotlin {
         }
 
         binaries.executable()
+    }
+
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = Deps.jvmTarget.target
+            }
+        }
+    }
+
+    sourceSets {
+        val commonMain by getting {}
+
+        val jsMain by getting {
+            dependencies {
+                // project deps
+                api(project(":core"))
+                // addons
+                api(project(":addons:prismjs"))
+            }
+        }
     }
 }
 

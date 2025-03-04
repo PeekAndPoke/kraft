@@ -1,3 +1,5 @@
+@file:Suppress("ConstPropertyName")
+
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.TaskContainerScope
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -10,7 +12,7 @@ object Deps {
     }
 
     // Kotlin ////////////////////////////////////////////////////////////////////////////////////
-    const val kotlinVersion = "1.9.23"
+    const val kotlinVersion = "2.1.10"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // JVM ///////////////////////////////////////////////////////////////////////////////////////
@@ -20,31 +22,29 @@ object Deps {
     // Dokka /////////////////////////////////////////////////////////////////////////////////////
     // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
     // Dokka gradle plugin org.jetbrains.dokka
-    const val dokkaVersion = "1.9.20" // kotlinVersion
+    const val dokkaVersion = "2.0.0" // kotlinVersion
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Publishing ////////////////////////////////////////////////////////////////////////////////
     // https://search.maven.org/artifact/com.vanniktech/gradle-maven-publish-plugin
-    const val mavenPublishVersion = "0.29.0"
+    const val mavenPublishVersion = "0.30.0"
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     // KOTLIN - DEPS ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     // https://search.maven.org/search?q=g:io.peekandpoke.ultra%20AND%20a:commonmp
-    private const val ultra_version = "0.79.0"
+    private const val ultra_version = "0.80.0.3-kotlin2.1"
     const val ultra_common = "io.peekandpoke.ultra:common:$ultra_version"
 
-    // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.coroutines/releases
-    private const val kotlinx_coroutines_version = "1.8.1"
+    private const val kotlinx_coroutines_version = "1.10.1"
     const val kotlinx_coroutines_core =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
     const val kotlinx_coroutines_core_js =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinx_coroutines_version"
 
-    // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/Kotlin/kotlinx.serialization/releases
-    private const val kotlinx_serialization_version = "1.6.3"
+    private const val kotlinx_serialization_version = "1.8.0"
     const val kotlinx_serialization_core =
         "org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinx_serialization_version"
     const val kotlinx_serialization_json =
@@ -55,13 +55,13 @@ object Deps {
     const val kotlinx_html = "org.jetbrains.kotlinx:kotlinx-html:$kotlinx_html_version"
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-css
-    private const val kotlinx_wrappers_version = "1.0.0-pre.727"
+    private const val kotlinx_wrappers_version = "2025.3.2"
     const val kotlinx_wrappers_css =
         "org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinx_wrappers_version"
 
     // NOTICE: KEEP the pre.450 as newer versions do NOT support JAVA eight anymore
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-extensions
-    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.727"
+    private const val kotlinx_wrappers_extensions_version = "1.0.1-pre.823"
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
@@ -75,9 +75,8 @@ object Deps {
         // https://www.npmjs.com/package/bowser
         fun KotlinDependencyHandler.bowser() = npm("bowser", "2.11.0")
 
-        // TODO: check update to 4.x versions
         // https://www.npmjs.com/package/chart.js
-        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "4.4.1")
+        fun KotlinDependencyHandler.chartJs() = npm("chart.js", "4.4.8")
 
         // TODO: check update to 4.x versions
         // https://www.npmjs.com/package/jwt-decode
@@ -88,10 +87,10 @@ object Deps {
         fun KotlinDependencyHandler.konva() = npm("konva", "8.4.3")
 
         // https://www.npmjs.com/package/minidenticons
-        fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "4.2.0")
+        fun KotlinDependencyHandler.minidenticons() = npm("minidenticons", "4.2.1")
 
         // https://www.npmjs.com/package/marked
-        fun KotlinDependencyHandler.marked() = npm("marked", "11.1.0")
+        fun KotlinDependencyHandler.marked() = npm("marked", "15.0.7")
 
         // https://www.npmjs.com/package/@nx-js/compiler-util
         fun KotlinDependencyHandler.nxJsCompilerUtil() = npm("@nx-js/compiler-util", "2.0.0")
@@ -99,16 +98,16 @@ object Deps {
         // https://www.npmjs.com/package/pdfjs-dist
         // See [PdfJs.kt] as this lib is loaded asynchronously
         @Suppress("UnusedReceiverParameter", "unused")
-        fun KotlinDependencyHandler.pdfJs() = "4.7.76"
+        fun KotlinDependencyHandler.pdfJs() = "4.10.38"
 
         // https://www.npmjs.com/package/preact
-        fun KotlinDependencyHandler.preact() = npm("preact", "10.19.3")
+        fun KotlinDependencyHandler.preact() = npm("preact", "10.26.4")
 
         // https://www.npmjs.com/package/prismjs
         fun KotlinDependencyHandler.prismjs() = npm("prismjs", "1.29.0")
 
         // https://www.npmjs.com/package/signature_pad
-        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "4.1.7")
+        fun KotlinDependencyHandler.signaturepad() = npm("signature_pad", "5.0.4")
 
         // https://www.npmjs.com/package/sourcemapped-stacktrace
         fun KotlinDependencyHandler.sourcemappedStacktrace() = npm("sourcemapped-stacktrace", "1.1.11")
@@ -126,12 +125,12 @@ object Deps {
         }
 
         // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
-        const val logback_version = "1.5.3"
+        const val logback_version = "1.5.17"
         const val logback_classic = "ch.qos.logback:logback-classic:$logback_version"
 
         // https://mvnrepository.com/artifact/io.kotest/kotest-common
-        const val kotest_plugin_version = "5.8.1"
-        const val kotest_version = "5.8.1"
+        const val kotest_plugin_version = "5.9.1"
+        const val kotest_version = "5.9.1"
 
         const val kotest_assertions_core = "io.kotest:kotest-assertions-core:$kotest_version"
         const val kotest_framework_api = "io.kotest:kotest-framework-api:$kotest_version"

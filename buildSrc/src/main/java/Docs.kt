@@ -45,7 +45,7 @@ object Docs {
 
         tasks.register<Sync>(taskName) {
             dependsOn("assemble")
-            dependsOn("browserProductionWebpack")
+            dependsOn("jsBrowserProductionWebpack")
 
             val fromDir = File(buildDir, "dist/js/productionExecutable")
             val intoDir = File(rootProject.projectDir, "docs/examples/${project.name}")

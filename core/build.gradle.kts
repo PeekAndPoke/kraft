@@ -51,6 +51,7 @@ kotlin {
             dependencies {
                 api(Deps.kotlinx_coroutines_core)
                 api(Deps.ultra_common)
+                api(project(":semanticui"))
             }
         }
 
@@ -65,7 +66,6 @@ kotlin {
                 api(Deps.kotlinx_coroutines_core_js)
                 api(Deps.kotlinx_wrappers_extensions)
                 api(Deps.kotlinx_serialization_json)
-                api(project(":semanticui"))
 
                 // Preact VDOM engine
                 api(Deps.Npm { preact() })
