@@ -38,12 +38,9 @@ kotlin {
         }
     }
 
+    jvmToolchain(Deps.jvmTargetVersion)
+
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = Deps.jvmTarget.target
-            }
-        }
     }
 
     sourceSets {
