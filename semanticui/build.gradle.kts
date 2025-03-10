@@ -37,47 +37,44 @@ kotlin {
         }
     }
 
+    jvmToolchain(Deps.jvmTargetVersion)
+
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = Deps.jvmTarget.target
-            }
-        }
     }
 
     @Suppress("UNUSED_VARIABLE")
     sourceSets {
 
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 api(Deps.kotlinx_wrappers_css)
                 api(Deps.kotlinx_html)
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 commonTestDeps()
             }
         }
 
-        val jsMain by getting {
+        jsMain {
             dependencies {
             }
         }
 
-        val jsTest by getting {
+        jsTest {
             dependencies {
                 jsTestDeps()
             }
         }
 
-        val jvmMain by getting {
+        jvmMain {
             dependencies {
             }
         }
 
-        val jvmTest by getting {
+        jvmTest {
             dependencies {
                 jvmTestDeps()
             }

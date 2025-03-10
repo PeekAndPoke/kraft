@@ -38,34 +38,31 @@ kotlin {
         }
     }
 
+    jvmToolchain(Deps.jvmTargetVersion)
+
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = Deps.jvmTarget.target
-            }
-        }
     }
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 api(Deps.kotlinx_coroutines_core)
                 api(Deps.ultra_common)
+                api(project(":semanticui"))
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 commonTestDeps()
             }
         }
 
-        val jsMain by getting {
+        jsMain {
             dependencies {
                 api(Deps.kotlinx_coroutines_core_js)
                 api(Deps.kotlinx_wrappers_extensions)
                 api(Deps.kotlinx_serialization_json)
-                api(project(":semanticui"))
 
                 // Preact VDOM engine
                 api(Deps.Npm { preact() })
@@ -74,16 +71,16 @@ kotlin {
             }
         }
 
-        val jsTest by getting {
+        jsTest {
             dependencies {
                 jsTestDeps()
             }
         }
 
-        val jvmMain by getting {
+        jvmMain {
         }
 
-        val jvmTest by getting {
+        jvmTest {
             dependencies {
                 jvmTestDeps()
             }
