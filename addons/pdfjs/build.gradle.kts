@@ -31,24 +31,24 @@ kotlin {
 
     @Suppress("UNUSED_VARIABLE")
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(project(":core"))
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 commonTestDeps()
             }
         }
 
-        val jsMain by getting {
+        jsMain {
             dependencies {
             }
         }
 
-        val jsTest by getting {
+        jsTest {
             dependencies {
                 jsTestDeps()
             }

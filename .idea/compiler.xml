@@ -16,12 +16,7 @@
       <module name="kraft.buildSrc" target="21" />
       <module name="kraft.buildSrc.main" target="21" />
       <module name="kraft.buildSrc.test" target="21" />
-      <module name="kraft.core" target="21" />
-      <module name="kraft.examples.addons" target="21" />
-      <module name="kraft.examples.fomanticui" target="21" />
-      <module name="kraft.examples.hello-world" target="21" />
       <module name="kraft.main" target="21" />
-      <module name="kraft.semanticui" target="21" />
       <module name="kraft.test" target="21" />
     </bytecodeTargetLevel>
   </component>

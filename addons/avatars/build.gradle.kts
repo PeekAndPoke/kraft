@@ -31,25 +31,25 @@ kotlin {
 
     @Suppress("UNUSED_VARIABLE")
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(project(":core"))
             }
         }
 
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 commonTestDeps()
             }
         }
 
-        val jsMain by getting {
+        jsMain {
             dependencies {
                 api(Deps.Npm { minidenticons() })
             }
         }
 
-        val jsTest by getting {
+        jsTest {
             dependencies {
                 jsTestDeps()
             }

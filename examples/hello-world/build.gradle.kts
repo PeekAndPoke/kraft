@@ -34,7 +34,7 @@ kotlin {
     }
 
     sourceSets {
-        val jsMain by getting {
+        jsMain {
             dependencies {
                 // project deps
                 api(project(":core"))
