@@ -113,6 +113,8 @@ class UiTextAreaComponent(ctx: Ctx<Props>) :
                 attributes["value"] = currentValue
 
                 +currentValue
+
+                options.customize()?.let { it() }
             }
 
             renderErrors(this)

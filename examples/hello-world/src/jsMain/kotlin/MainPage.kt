@@ -3,6 +3,7 @@ package de.peekandpoke.kraft.examples.helloworld
 import de.peekandpoke.kraft.addons.forms.formController
 import de.peekandpoke.kraft.addons.popups.PopupsManager
 import de.peekandpoke.kraft.addons.semanticui.forms.UiDateTimeField
+import de.peekandpoke.kraft.addons.semanticui.forms.UiTextArea
 import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectField
 import de.peekandpoke.kraft.addons.semanticui.forms.old.select.SelectFieldComponent
 import de.peekandpoke.kraft.addons.semanticui.modals.OkCancelModal
@@ -12,10 +13,12 @@ import de.peekandpoke.kraft.semanticui.noui
 import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.vdom.VDom
 import de.peekandpoke.ultra.common.datetime.MpZonedDateTime
+import kotlinx.browser.window
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.css.vw
 import kotlinx.css.width
 import kotlinx.html.*
+import org.w3c.dom.events.KeyboardEvent
 import org.w3c.dom.pointerevents.PointerEvent
 import kotlin.time.Duration.Companion.days
 
@@ -34,6 +37,8 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
 
     //    private var datetime by value(Kronos.systemUtc.zonedDateTimeNow(MpTimezone.UTC))
     private var datetime by value(MpZonedDateTime.Genesis.plus(10000.days))
+
+    private var textAreaContent by value("")
 
     //  IMPL  ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -354,6 +359,25 @@ class MainPage(ctx: NoProps) : PureComponent(ctx) {
                                 }
                             }
                             +"Bottom Right Popup"
+                        }
+                    }
+                }
+
+                ui.divider {}
+
+                h2 { +"Textarea customization" }
+
+                UiTextArea(textAreaContent, { textAreaContent = it }) {
+                    label("Customized TextArea")
+
+                    customize {
+                        onKeyDown { evt: KeyboardEvent ->
+                            if (evt.key == "Enter" && !evt.shiftKey) {
+                                evt.preventDefault()
+                                evt.stopPropagation()
+
+                                window.alert("Enter pressed")
+                            }
                         }
                     }
                 }

@@ -7,6 +7,7 @@ import de.peekandpoke.ultra.common.MutableTypedAttributes
 import de.peekandpoke.ultra.common.TypedKey
 import kotlinx.html.InputType
 import kotlinx.html.LABEL
+import kotlinx.html.TEXTAREA
 
 typealias SettingsBuilder<T> = FieldOptions<T>.() -> Unit
 
@@ -174,8 +175,12 @@ interface TextAreaOptions<T> : FieldOptions<T>, AutofocusOptions<T> {
 
     companion object {
         private val verticalAutoResizeKey = TypedKey<Boolean>("verticalAutoResize")
+        private val customizeKey = TypedKey<RenderFunc<TEXTAREA>>("customize")
     }
 
     @KraftFormsSettingDsl
     val verticalAutoResize get() = access(verticalAutoResizeKey)
+
+    @KraftFormsSettingDsl
+    val customize get() = access(customizeKey)
 }
