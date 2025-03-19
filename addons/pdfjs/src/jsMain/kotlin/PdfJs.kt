@@ -17,7 +17,7 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
         suspend fun instance(): PdfJs {
             instance?.let { return it }
 
-            ScriptLoader.loadAsync(librarySource.src).await()
+            ScriptLoader.load(librarySource.src).await()
 
             val winDyn = window.asDynamic()
 
@@ -47,21 +47,21 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
     }
 
     interface LibrarySrc {
-        val src: ScriptLoader.Javascript
+        val src: ScriptLoader.Javascript.Default
         val workerSrc: String
 
         /**
          * https://cdnjs.com/libraries/pdf.js
          */
         data class CdnJs(
-            override val src: ScriptLoader.Javascript,
+            override val src: ScriptLoader.Javascript.Default,
             override val workerSrc: String,
         ) : LibrarySrc {
 
             companion object {
                 @Suppress("unused")
                 val v2_16_105 = CdnJs(
-                    src = ScriptLoader.Javascript(
+                    src = ScriptLoader.Javascript.Default(
                         src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js",
                         integrity = "sha512-tqaIiFJopq4lTBmFlWF0MNzzTpDsHyug8tJaaY0VkcH5AR2ANMJlcD+3fIL+RQ4JU3K6edt9OoySKfCCyKgkng==",
                     ),
@@ -71,7 +71,7 @@ class PdfJs private constructor(private val lib: PdfjsLib) {
                 // https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.min.mjs
 
                 val v4_7_76 = CdnJs(
-                    src = ScriptLoader.Javascript(
+                    src = ScriptLoader.Javascript.Default(
                         src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.7.76/pdf.min.mjs",
                         type = "module",
                         integrity = "sha384-qgyx6GmMWoI003drRr62DU41/67b3n7M2G0EXu2WhaOsBqONtHyay9Vw4aIivyOX",

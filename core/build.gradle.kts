@@ -50,7 +50,7 @@ kotlin {
                 api(Deps.ultra_common)
                 api(project(":semanticui"))
 
-                compileOnly(Deps.IDE.jetbrains_annotations)
+                implementation(Deps.IDE.jetbrains_annotations)
             }
         }
 
