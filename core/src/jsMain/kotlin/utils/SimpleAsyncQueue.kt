@@ -46,16 +46,18 @@ class SimpleAsyncQueue {
             running = true
 
             launch {
-                val nextJob = jobs.firstOrNull() ?: return@launch
+                val nextJob = jobs.firstOrNull()
 
-                try {
-                    nextJob()
-                } catch (e: Throwable) {
-                    console.error("Job failed", e)
+                nextJob?.let {
+                    try {
+                        nextJob()
+                    } catch (e: Throwable) {
+                        console.error("Job failed", e)
+                    }
+
+                    // Remove the job
+                    jobs.remove(nextJob)
                 }
-
-                // Remove the job
-                jobs.remove(nextJob)
 
                 // Notify
                 notify()
