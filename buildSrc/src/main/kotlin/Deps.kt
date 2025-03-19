@@ -66,6 +66,11 @@ object Deps {
     const val kotlinx_wrappers_extensions =
         "org.jetbrains.kotlin-wrappers:kotlin-extensions:$kotlinx_wrappers_extensions_version"
 
+    object IDE {
+        const val jetbrains_annotations_version = "26.0.2"
+        const val jetbrains_annotations = "org.jetbrains:annotations:$jetbrains_annotations_version"
+    }
+
     // // NPM dependencies /////////////////////////////////////////////////////////////////////////
 
     object Npm {

@@ -49,6 +49,8 @@ kotlin {
                 api(Deps.kotlinx_coroutines_core)
                 api(Deps.ultra_common)
                 api(project(":semanticui"))
+
+                compileOnly(Deps.IDE.jetbrains_annotations)
             }
         }
 

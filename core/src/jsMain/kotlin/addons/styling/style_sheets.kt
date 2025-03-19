@@ -2,38 +2,30 @@ package de.peekandpoke.kraft.addons.styling
 
 import kotlinx.browser.document
 import kotlinx.css.CssBuilder
-import org.w3c.dom.HTMLHeadElement
-import org.w3c.dom.get
+import org.w3c.dom.*
 import kotlin.random.Random
 
 object StyleSheets {
-
-    private val mounted = mutableSetOf<String>()
 
     private val mangleMap = mutableMapOf<String, MutableSet<String>>()
 
     private val random = Random(1)
 
-    private val head: HTMLHeadElement? by lazy(LazyThreadSafetyMode.NONE) {
+    private val head: HTMLHeadElement?
+        get() = try {
         document.getElementsByTagName("head")[0] as? HTMLHeadElement
+        } catch (_: Throwable) {
+            null
     }
 
     fun mount(style: StyleSheetDefinition) {
-
-        val css = style.css
-
-        if (!mounted.contains(css)) {
-            mounted.add(css)
-
-            val styleNode = document.createElement("style")
-            styleNode.setAttribute("id", "injected-${css.hashCode()}")
-            styleNode.textContent = css
-
-//            console.log("body", body)
-//            console.log("style", styleNode)
-
-            head?.appendChild(styleNode)
+        head?.let {
+            style.mount(it)
         }
+    }
+
+    fun unmount(style: StyleSheetDefinition) {
+        style.unmount()
     }
 
     internal fun mangleClassName(cls: String): String {
@@ -45,7 +37,7 @@ object StyleSheets {
         lateinit var mangled: String
 
         do {
-            mangled = cls + "_" + (0..6).joinToString("") {
+            mangled = cls + "_" + (0..7).joinToString("") {
                 chars[random.nextInt(until = numChars)].toString()
             }
         } while (mangled in set)
@@ -56,20 +48,91 @@ object StyleSheets {
     }
 }
 
-interface StyleSheetDefinition {
-    val css: String
+private class RawCssMounter(private val content: () -> String) {
+    private var mounted: HTMLStyleElement? = null
+
+    fun mount(into: HTMLElement) {
+        if (mounted == null) {
+            val css = content()
+
+            mounted = document.createElement("style") as HTMLStyleElement
+            mounted!!.setAttribute("id", "injected-${css.hashCode()}")
+            mounted!!.textContent = css
+
+//            console.log("body", body)
+//            console.log("style", styleNode)
+
+            into.appendChild(mounted!!)
+        }
+    }
+
+    fun unmount() {
+        mounted?.let {
+            it.remove()
+            mounted = null
+        }
+    }
 }
 
-data class RawStyleSheet(override val css: String) : StyleSheetDefinition
+private class LinkTagMounter(private val link: () -> HTMLLinkElement) {
+
+    var mounted: HTMLLinkElement? = null
+
+    fun mount(into: HTMLElement) {
+        if (mounted == null) {
+            mounted = link()
+            into.appendChild(mounted!!)
+        }
+    }
+
+    fun unmount() {
+        mounted?.let {
+            it.remove()
+            mounted = null
+        }
+    }
+}
+
+interface StyleSheetDefinition {
+    fun mount(into: HTMLElement)
+    fun unmount()
+}
+
+class StyleSheetTag(
+    block: HTMLLinkElement.() -> Unit
+) : StyleSheetDefinition {
+
+    private val link = (document.createElement("link") as HTMLLinkElement).apply {
+        rel = "stylesheet"
+        block()
+    }
+
+    private val mounter = LinkTagMounter { link }
+
+    override fun mount(into: HTMLElement): Unit = mounter.mount(into)
+
+    override fun unmount(): Unit = mounter.unmount()
+}
+
+data class RawStyleSheet(val css: String) : StyleSheetDefinition {
+    private var mounter = RawCssMounter { css }
+
+    override fun mount(into: HTMLElement): Unit = mounter.mount(into)
+
+    override fun unmount(): Unit = mounter.unmount()
+}
 
 abstract class StyleSheet : StyleSheetDefinition {
 
-    override val css: String
-        get() = builder.toString()
+    val css: String get() = builder.toString()
 
+    private var mounter = RawCssMounter { css }
     private val builder = CssBuilder()
-
     private var counter = 1
+
+    override fun mount(into: HTMLElement): Unit = mounter.mount(into)
+
+    override fun unmount(): Unit = mounter.unmount()
 
     fun rule(block: CssBuilder.() -> Unit): String {
         return makeRule(null, block)
