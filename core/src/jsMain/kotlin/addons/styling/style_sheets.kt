@@ -2,7 +2,9 @@ package de.peekandpoke.kraft.addons.styling
 
 import kotlinx.browser.document
 import kotlinx.css.CssBuilder
-import org.w3c.dom.*
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLLinkElement
+import org.w3c.dom.HTMLStyleElement
 import kotlin.random.Random
 
 object StyleSheets {
@@ -11,15 +13,8 @@ object StyleSheets {
 
     private val random = Random(1)
 
-    private val head: HTMLHeadElement?
-        get() = try {
-        document.getElementsByTagName("head")[0] as? HTMLHeadElement
-        } catch (_: Throwable) {
-            null
-    }
-
     fun mount(style: StyleSheetDefinition) {
-        head?.let {
+        document.head?.let {
             style.mount(it)
         }
     }
