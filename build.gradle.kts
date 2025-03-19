@@ -19,7 +19,7 @@ allprojects {
         // Maven S01
         maven { url = uri("https://s01.oss.sonatype.org/content/repositories/releases/") }
         // Local
-        mavenLocal()
+//        mavenLocal()
     }
 }
 

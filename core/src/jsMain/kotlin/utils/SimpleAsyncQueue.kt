@@ -1,7 +1,6 @@
 package de.peekandpoke.kraft.utils
 
 import de.peekandpoke.kraft.streams.StreamSource
-import de.peekandpoke.ultra.common.shift
 
 class SimpleAsyncQueue {
     data class State(
@@ -16,12 +15,18 @@ class SimpleAsyncQueue {
     private var running: Boolean = false
 
     fun isEmpty() = jobs.isEmpty()
+
     fun size() = jobs.size
 
     fun add(job: suspend () -> Unit) {
         jobs.add(job)
         notify()
         runNext()
+    }
+
+    fun clear() {
+        jobs.clear()
+        notify()
     }
 
     private fun notify() {
@@ -41,16 +46,16 @@ class SimpleAsyncQueue {
             running = true
 
             launch {
-                jobs.firstOrNull()?.let { job ->
-                    try {
-                        job()
-                    } catch (e: Throwable) {
-                        console.error("Job failed", e)
-                    }
+                val nextJob = jobs.firstOrNull() ?: return@launch
+
+                try {
+                    nextJob()
+                } catch (e: Throwable) {
+                    console.error("Job failed", e)
                 }
 
                 // Remove the job
-                jobs.shift()
+                jobs.remove(nextJob)
 
                 // Notify
                 notify()
