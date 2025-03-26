@@ -69,25 +69,25 @@ object ScriptLoader {
     }
 
     fun load(script: Javascript.Default): Deferred<LoadedJavascript.Default> {
-        @Suppress("UNCHECKED_CAST")
         val deferred = jsMap.getOrPut(script) {
-            mount(script)
-        } as Deferred<LoadedJavascript.Default>
-
-        jsSource(jsMap.keys)
-
-        return deferred
-    }
-
-    fun <T : Any> load(script: Javascript.Module<T>): Deferred<LoadedJavascript.Module<T>> {
-        val result = jsMap.getOrPut(script) {
             mount(script)
         }
 
         jsSource(jsMap.keys)
 
         @Suppress("UNCHECKED_CAST")
-        return result.second as Deferred<LoadedJavascript.Module<T>>
+        return deferred.second as Deferred<LoadedJavascript.Default>
+    }
+
+    fun <T : Any> load(script: Javascript.Module<T>): Deferred<LoadedJavascript.Module<T>> {
+        val deferred = jsMap.getOrPut(script) {
+            mount(script)
+        }
+
+        jsSource(jsMap.keys)
+
+        @Suppress("UNCHECKED_CAST")
+        return deferred.second as Deferred<LoadedJavascript.Module<T>>
     }
 
     fun unloadJavascript(src: String) {

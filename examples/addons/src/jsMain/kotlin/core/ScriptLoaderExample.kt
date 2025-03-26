@@ -9,6 +9,7 @@ import de.peekandpoke.kraft.semanticui.ui
 import de.peekandpoke.kraft.utils.ScriptLoader
 import de.peekandpoke.kraft.utils.launch
 import de.peekandpoke.kraft.vdom.VDom
+import kotlinx.browser.window
 import kotlinx.coroutines.asDeferred
 import kotlinx.html.*
 import kotlin.js.Promise
@@ -74,7 +75,9 @@ class ScriptLoaderExample(ctx: NoProps) : PureComponent(ctx) {
         ui.button {
             onClick {
                 launch {
-                    ScriptLoader.loadJavascript("https://js.stripe.com/v3/").await()
+                    val result = ScriptLoader.loadJavascript("https://js.stripe.com/v3/").await()
+
+                    console.log("Stripe loaded", result, window.asDynamic().Stripe)
                 }
             }
             +"Load Stripe"
