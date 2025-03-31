@@ -26,7 +26,7 @@ class ExtractExampleCodePlugin : Plugin<Project> {
         val outputDir = "/build/generated/extracted-code-blocks"
         val outputFileName = "extracted-code-blocks.kt"
 
-        project.extensions.configure<KotlinProjectExtension>() {
+        project.extensions.configure<KotlinProjectExtension> {
             val mainSet = listOfNotNull(
                 sourceSets.findByName("main"),
                 sourceSets.findByName("commonMain"),
@@ -69,10 +69,10 @@ class ExtractExampleCodePlugin : Plugin<Project> {
     ) {
         group = "extractCodeBlocks"
 
-        doFirst {
-            val projectDir = project.projectDir.absoluteFile
+        val projectDir = project.projectDir.absoluteFile
+        val ktFiles = projectDir.walkTopDown().filter { it.isFile && it.extension == "kt" }
 
-            val ktFiles = projectDir.walkTopDown().filter { it.isFile && it.extension == "kt" }
+        doFirst {
 
             val startExampleRegex = "<CodeBlock ([^>]+)>".toRegex()
             val alphaNumRegex = "[^a-zA-Z0-9]+".toRegex()

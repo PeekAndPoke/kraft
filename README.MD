@@ -12,7 +12,16 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/peekandpoke/kraft/badge)](https://www.codefactor.io/repository/github/peekandpoke/kraft)
 [![Maven Central](https://shields.io/maven-central/v/io.peekandpoke.kraft/core)](https://search.maven.org/search?q=io.peekandpoke.kraft)
 
-K.R.A.F.T. = Kotlin Rapid App Framework & Toolkit
+# NOTICE
+
+Development is continued in a Mono-Repo from now on:
+See: https://github.com/PeekAndPoke/ultra
+And: https://github.com/PeekAndPoke/ultra/tree/master/kraft
+
+/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\
+\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/
+
+# K.R.A.F.T. = Kotlin Rapid App Framework & Toolkit
 
 Build single page apps with pure Kotlin.
 

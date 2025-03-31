@@ -5,10 +5,7 @@ import de.peekandpoke.kraft.components.Ctx
 import de.peekandpoke.kraft.components.comp
 import de.peekandpoke.kraft.components.debugId
 import de.peekandpoke.kraft.components.onClick
-import de.peekandpoke.kraft.semanticui.RenderFn
-import de.peekandpoke.kraft.semanticui.SemanticTag
-import de.peekandpoke.kraft.semanticui.noui
-import de.peekandpoke.kraft.semanticui.ui
+import de.peekandpoke.kraft.semanticui.*
 import kotlinx.html.FlowContent
 import kotlinx.html.Tag
 
@@ -40,8 +37,8 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
             handle: ModalsManager.Handle,
             header: RenderFn,
             content: RenderFn,
-            okText: RenderFn = { +"Yes" },
-            cancelText: RenderFn = { +"No" },
+            okText: RenderFn = { +"OK" },
+            cancelText: RenderFn = { +"Cancel" },
             onResult: (Result) -> Unit,
         ) =
             OkCancelModal(
@@ -60,8 +57,8 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
             handle: ModalsManager.Handle,
             header: RenderFn,
             content: RenderFn,
-            okText: RenderFn = { +"Yes" },
-            cancelText: RenderFn = { +"No" },
+            okText: RenderFn = { +"OK" },
+            cancelText: RenderFn = { +"Cancel" },
             onResult: (Result) -> Unit,
         ) =
             OkCancelModal(
@@ -80,8 +77,8 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
             handle: ModalsManager.Handle,
             header: RenderFn,
             content: RenderFn,
-            okText: RenderFn = { +"Yes" },
-            cancelText: RenderFn = { +"No" },
+            okText: RenderFn = { +"OK" },
+            cancelText: RenderFn = { +"Cancel" },
             onResult: (Result) -> Unit,
         ) =
             OkCancelModal(
@@ -159,12 +156,13 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
             view.header(this)
             view.content(this)
             noui.actions {
-                ui.negative.button {
+                ui.basic.negative.button {
                     debugId("cancel-button")
                     onClick {
                         close()
                         props.onResult(Result.Cancel)
                     }
+                    icon.times()
                     view.cancelText(this)
                 }
                 ui.positive.button {
@@ -174,6 +172,7 @@ class OkCancelModal(ctx: Ctx<Props>) : FadingModal<OkCancelModal.Props>(ctx) {
                             props.onResult(Result.Ok)
                         }
                     }
+                    icon.check()
                     view.okText(this)
                 }
             }
